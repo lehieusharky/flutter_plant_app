@@ -1,15 +1,34 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
-class BasePage extends StatefulWidget {
-  const BasePage({super.key});
+class BaseWidget extends StatefulWidget {
+  final Widget? child;
+
+  const BaseWidget({super.key, this.child});
 
   @override
-  State<BasePage> createState() => _BasePageState();
+  State<BaseWidget> createState() => BaseWidgetState();
+
+  static BaseWidgetState of(BuildContext context) {
+    return context.findAncestorStateOfType<BaseWidgetState>()!;
+  }
 }
 
-class _BasePageState extends State<BasePage> {
+class BaseWidgetState extends State<BaseWidget> {
+  bool isLoggedIn = false;
+
+  void checkLoggedIn() {
+    log('callllled');
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return widget.child ?? const SizedBox();
   }
 }
