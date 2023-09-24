@@ -1,7 +1,6 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:plant_market/src/core/presentation/base_page.dart';
+import 'package:plant_market/src/core/presentation/page/base_page.dart';
 
 class AuthGate extends BaseWidget {
   const AuthGate({super.key, super.child});
@@ -24,9 +23,12 @@ class _AuthGateState extends BaseWidgetState {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('Hello'),
+        child: ElevatedButton(
+          onPressed: () => {},
+          child: const Text('Click'),
+        ),
       ),
     );
   }
