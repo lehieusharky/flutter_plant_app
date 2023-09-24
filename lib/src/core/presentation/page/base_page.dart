@@ -9,10 +9,6 @@ class BaseWidget extends StatefulWidget {
 
   @override
   State<BaseWidget> createState() => BaseWidgetState();
-
-  static BaseWidgetState of(BuildContext context) {
-    return context.findAncestorStateOfType<BaseWidgetState>()!;
-  }
 }
 
 class BaseWidgetState extends State<BaseWidget> {
@@ -22,13 +18,17 @@ class BaseWidgetState extends State<BaseWidget> {
     log('callllled');
   }
 
-  @override
+  @override 
   void initState() {
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return widget.child ?? const SizedBox();
+    return SafeArea(
+      child: Scaffold(
+        body: widget.child ?? const SizedBox(),
+      ),
+    );
   }
 }
