@@ -5,7 +5,7 @@ import 'package:plant_market/src/theme/font_theme.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController? controller;
-  final Color backGroundColor = themeColor.gallery;
+  final Color backGroundColor = colorTheme.get2DDA93;
   final String? Function(String?)? validator;
   final Icon? prefixIcon;
   final IconButton? suffixIcon;
@@ -109,13 +109,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         autofocus: widget.autoFocus ?? false,
         validator: widget.validator,
         textInputAction: widget.textInputAction,
-        style: AppTextTheme.getDefaultTextTheme().bodyMedium,
+        style: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
         autovalidateMode: widget.autoValidateMode,
         keyboardType: widget.keyboardType,
         onChanged: widget.onChanged,
         decoration: InputDecoration(
           prefixIcon: widget.prefixIcon,
-          errorStyle: AppTextTheme.getDefaultTextTheme().bodyMedium,
+          errorStyle: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
           suffixIcon: (prefixIcon == const Icon(Icons.password))
               ? IconButton(
                   onPressed: () => _onPressed(),
@@ -123,10 +123,10 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     _obscuteText ? Icons.visibility : Icons.visibility_off,
                   ))
               : widget.suffixIcon,
-          fillColor: themeColor.white,
+          fillColor: colorTheme.get2DDA93,
           filled: true,
           hintText: widget.hintText,
-          hintStyle: AppTextTheme.getDefaultTextTheme().bodyMedium,
+          hintStyle: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
           border: const OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.all(Radius.circular(15)),

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:plant_market/src/modules/auth/login/pages/home_page.dart';
+import 'package:plant_market/src/modules/my_app/widgets/material_app.dart';
 
-class MyApp extends StatelessWidget {   
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
-    );
+    return const MyMaterialApp().build(context);
   }
 }
