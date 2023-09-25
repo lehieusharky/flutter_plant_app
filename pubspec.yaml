@@ -24,6 +24,12 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
+  # firebase
+  firebase_core: ^2.16.0
+  firebase_auth: ^4.10.0
+  cloud_firestore: any
+  firebase_storage: ^11.2.7
+
 dev_dependencies:
   injectable_generator:
   build_runner:

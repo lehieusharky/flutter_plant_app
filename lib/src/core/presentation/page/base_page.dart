@@ -18,7 +18,7 @@ class BaseWidgetState extends State<BaseWidget> {
     log('callllled');
   }
 
-  @override 
+  @override
   void initState() {
     super.initState();
   }
