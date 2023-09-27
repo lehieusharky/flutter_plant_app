@@ -19,7 +19,7 @@ class MyMaterialApp extends MaterialApp {
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      locale: const Locale('vi'),
+      locale: const Locale('en'),
       supportedLocales: const [
         Locale('en'),
         Locale('vi'),

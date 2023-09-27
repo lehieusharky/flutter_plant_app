@@ -5,5 +5,11 @@ class AppLocalizationsEn extends AppLocalizations {
   AppLocalizationsEn([String locale = 'en']) : super(locale);
 
   @override
-  String get helloWorld => 'Hello World!';
+  String get hello => 'Hello';
+
+  @override
+  String get letsLearnMoreAboutPlants => 'Let’s Learn More About Plants';
+
+  @override
+  String get phoneNumber => 'Phone number';
 }

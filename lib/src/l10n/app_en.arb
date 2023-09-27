@@ -1,3 +1,5 @@
 {
-  "helloWorld": "Hello World!"
+  "hello": "Hello",
+  "letsLearnMoreAboutPlants": "Let’s Learn More About Plants",
+  "phoneNumber": "Phone number"
 }

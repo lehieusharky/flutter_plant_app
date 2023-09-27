@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
@@ -19,15 +20,15 @@ class AppTextTheme {
           fontWeight: FontWeight.bold,
           color: colorTheme.get2DDA93,
         ),
-        titleLarge: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.bold,
-          color: colorTheme.get2DDA93,
+        titleLarge: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(30),
+          fontWeight: FontWeight.w700,
+          color: colorTheme.get36455A,
         ),
-        titleMedium: TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.normal,
-          color: colorTheme.get2DDA93,
+        titleMedium: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(16),
+          fontWeight: FontWeight.w400,
+          color: colorTheme.get495566WithOpacity80,
         ),
         titleSmall: TextStyle(
           fontSize: 14,

@@ -93,11 +93,23 @@ abstract class AppLocalizations {
     Locale('vi')
   ];
 
-  /// No description provided for @helloWorld.
+  /// No description provided for @hello.
   ///
   /// In en, this message translates to:
-  /// **'Hello World!'**
-  String get helloWorld;
+  /// **'Hello'**
+  String get hello;
+
+  /// No description provided for @letsLearnMoreAboutPlants.
+  ///
+  /// In en, this message translates to:
+  /// **'Let’s Learn More About Plants'**
+  String get letsLearnMoreAboutPlants;
+
+  /// No description provided for @phoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number'**
+  String get phoneNumber;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
