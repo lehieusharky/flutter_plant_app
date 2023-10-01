@@ -17,6 +17,8 @@ class HeaderHomePage extends StatefulWidget {
 }
 
 class _HeaderHomePageState extends State<HeaderHomePage> {
+  final _heightOfSearchBar = 80;
+  final _heightOfBackgroundContainer = 175;
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -26,7 +28,8 @@ class _HeaderHomePageState extends State<HeaderHomePage> {
           color: colorTheme.get2DDA93,
         ),
         Padding(
-          padding: context.padding(top: 175 - 80 / 2),
+          padding: context.padding(
+              top: _heightOfBackgroundContainer - _heightOfSearchBar / 2),
           child: Padding(
             padding: context.padding(horizontal: 24),
             child: CustomTextFormField(
