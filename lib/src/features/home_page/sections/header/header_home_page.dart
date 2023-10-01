@@ -26,11 +26,18 @@ class _HeaderHomePageState extends State<HeaderHomePage> {
           color: colorTheme.get2DDA93,
         ),
         Padding(
-          padding: context.padding(top: 150),
+          padding: context.padding(top: 175 - 80 / 2),
           child: Padding(
             padding: context.padding(horizontal: 24),
             child: CustomTextFormField(
+              height: context.sizeHeight(80),
               borderRadius: 3100,
+              prefixIcon: Icon(
+                Icons.search,
+                size: context.sizeWidth(25),
+                color: colorTheme.getD2D2D2,
+              ),
+              boxShadowColor: colorTheme.get6A6F7D.withOpacity(0.2),
               controller: widget.searchController,
               keyboardType: TextInputType.text,
               hintText: translate(context).search,

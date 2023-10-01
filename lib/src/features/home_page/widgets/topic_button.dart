@@ -36,7 +36,7 @@ class _TopicButtonState extends State<TopicButton> {
     return CustomButton(
       boxShadowColor: _checkIsChoosed
           ? colorTheme.get2DDA93.withOpacity(0.4)
-          : Colors.transparent,
+          : colorTheme.getD2D2D2.withOpacity(0.2),
       width: context.sizeWidth(108),
       height: context.sizeHeight(76),
       label: 'Hello',

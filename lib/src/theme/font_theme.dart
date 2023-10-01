@@ -10,6 +10,11 @@ class AppTextTheme {
           fontWeight: FontWeight.bold,
           color: colorTheme.get2DDA93,
         ),
+        displayMedium: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(13),
+          fontWeight: FontWeight.w400,
+          color: colorTheme.getD2D2D2,
+        ),
         headlineMedium: TextStyle(
           fontSize: 22,
           fontWeight: FontWeight.bold,
@@ -45,10 +50,10 @@ class AppTextTheme {
           fontWeight: FontWeight.bold,
           color: colorTheme.get2DDA93,
         ),
-        bodyMedium: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.normal,
-          color: colorTheme.get2DDA93,
+        bodyMedium: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(14),
+          fontWeight: FontWeight.w500,
+          color: colorTheme.get36455A,
         ),
         bodySmall: TextStyle(
           fontSize: 16,
