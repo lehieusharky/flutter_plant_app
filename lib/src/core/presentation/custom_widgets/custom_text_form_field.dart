@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/font_theme.dart';
 
@@ -17,6 +18,7 @@ class CustomTextFormField extends StatefulWidget {
   final void Function(String)? onChanged;
   final String hintText;
   final double? borderRadius;
+  final TextStyle? textStyle;
 
   CustomTextFormField({
     super.key,
@@ -25,6 +27,7 @@ class CustomTextFormField extends StatefulWidget {
     this.prefixIcon,
     this.suffixIcon,
     this.borderRadius,
+    this.textStyle,
     this.maxLines,
     required this.keyboardType,
     this.autoValidateMode,
@@ -101,36 +104,38 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: widget.controller,
-      maxLines: widget.maxLines,
-      focusNode: widget.focusNode,
-      obscureText: _obscuteText,
-      autofocus: widget.autoFocus ?? false,
-      validator: widget.validator,
-      textInputAction: widget.textInputAction,
-      style: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
-      autovalidateMode: widget.autoValidateMode,
-      keyboardType: widget.keyboardType,
-      onChanged: widget.onChanged,
-      decoration: InputDecoration(
-        prefixIcon: widget.prefixIcon,
-        errorStyle: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
-        suffixIcon: (prefixIcon == const Icon(Icons.password))
-            ? IconButton(
-                onPressed: () => _onPressed(),
-                icon: Icon(
-                  _obscuteText ? Icons.visibility : Icons.visibility_off,
-                ))
-            : widget.suffixIcon,
-        fillColor: colorTheme.getFBFDFF,
-        filled: true,
-        hintText: widget.hintText,
-        hintStyle: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
-        border: OutlineInputBorder(
-          borderSide: BorderSide.none,
-          borderRadius:
-              BorderRadius.all(Radius.circular(widget.borderRadius ?? 0)),
+    return CustomBorder(
+      child: TextFormField(
+        controller: widget.controller,
+        maxLines: widget.maxLines,
+        focusNode: widget.focusNode,
+        obscureText: _obscuteText,
+        autofocus: widget.autoFocus ?? false,
+        validator: widget.validator,
+        textInputAction: widget.textInputAction,
+        style: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
+        autovalidateMode: widget.autoValidateMode,
+        keyboardType: widget.keyboardType,
+        onChanged: widget.onChanged,
+        decoration: InputDecoration(
+          prefixIcon: widget.prefixIcon,
+          errorStyle: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
+          suffixIcon: (prefixIcon == const Icon(Icons.password))
+              ? IconButton(
+                  onPressed: () => _onPressed(),
+                  icon: Icon(
+                    _obscuteText ? Icons.visibility : Icons.visibility_off,
+                  ))
+              : widget.suffixIcon,
+          fillColor: colorTheme.getFBFDFF,
+          filled: true,
+          hintText: widget.hintText,
+          hintStyle: AppTextTheme.getDefaultTextTheme(context).labelSmall,
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius:
+                BorderRadius.all(Radius.circular(widget.borderRadius ?? 0)),
+          ),
         ),
       ),
     );

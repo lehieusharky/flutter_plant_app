@@ -20,10 +20,10 @@ class CustomBorder extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.6),
+            color: Colors.grey.withOpacity(0.2),
             spreadRadius: 1,
             blurRadius: 15,
-            offset: const Offset(0, 2), // changes position of shadow
+            offset: const Offset(1, 2), // changes position of shadow
           ),
         ],
       ),

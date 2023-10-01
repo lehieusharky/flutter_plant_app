@@ -25,15 +25,20 @@ class AppTextTheme {
           fontWeight: FontWeight.w700,
           color: colorTheme.get36455A,
         ),
+        labelMedium: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(10),
+          fontWeight: FontWeight.w600,
+          color: colorTheme.getFFFFFF,
+        ),
         titleMedium: GoogleFonts.openSans(
           fontSize: context.sizeWidth(16),
           fontWeight: FontWeight.w400,
           color: colorTheme.get495566WithOpacity80,
         ),
-        titleSmall: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.normal,
-          color: colorTheme.get2DDA93,
+        labelSmall: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(14),
+          fontWeight: FontWeight.w400,
+          color: colorTheme.getD2D2D2,
         ),
         bodyLarge: TextStyle(
           fontSize: 14,
