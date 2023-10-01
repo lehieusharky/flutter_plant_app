@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:plant_market/src/core/constants.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/theme/font_theme.dart';
+import 'package:plant_market/src/features/home_page/bloc/home_page_bloc.dart';
+import 'package:plant_market/src/features/home_page/sections/header/header_home_page.dart';
+import 'package:plant_market/src/features/home_page/widgets/row_topic_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -11,25 +13,30 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _searchController = TextEditingController();
+  var _isChoosed = 1;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          children: [
-            Image(
-              image: AssetImage(imageConstant.testImage),
-            ),
-            Container(
-              width: context.sizeWidth(100),
-              height: context.sizeHeight(50),
-              color: Colors.red,
-            ),
-            Text(
-              'Hello World',
-              style: AppTextTheme.getDefaultTextTheme(context).bodyLarge,
-            )
-          ],
+    return SafeArea(
+      child: BlocProvider(
+        create: (context) => HomePageBloc(),
+        child: BlocConsumer<HomePageBloc, HomePageState>(
+          listener: (context, state) {
+            if (state is HomePageChangeTopicSuccess) {
+              _isChoosed = state.isChoosed;
+            }
+          },
+          builder: (context, state) {
+            return Scaffold(
+              body: Column(
+                children: [
+                  HeaderHomePage(searchController: _searchController),
+                  context.sizedBox(height: 35),
+                  RowTopicButton(isChoosed: _isChoosed),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

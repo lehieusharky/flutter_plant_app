@@ -12,4 +12,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get phoneNumber => 'Số điện thoại';
+
+  @override
+  String get search => 'Tìm kiếm';
 }

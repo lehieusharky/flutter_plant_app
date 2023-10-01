@@ -8,6 +8,9 @@ class CustomButton extends StatelessWidget {
   final VoidCallback? onPress;
   final Color? backgroundColor;
   final TextStyle? textStyleText;
+  final double borderRadius;
+  final Widget child;
+  final Color? boxShadowColor;
 
   const CustomButton({
     super.key,
@@ -17,25 +20,28 @@ class CustomButton extends StatelessWidget {
     this.textStyleText,
     this.width,
     this.height,
+    required this.borderRadius,
+    required this.child,
+    this.boxShadowColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    return CustomBorder(
+    return CustomShadow.button(
       width: width,
-      height: height,
+      boxShadowColor: boxShadowColor ?? Colors.transparent,
       child: ElevatedButton(
         onPressed: onPress,
         style: ElevatedButton.styleFrom(
           backgroundColor: backgroundColor,
-          shadowColor: Colors.grey,
+          elevation: 0,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+            borderRadius: BorderRadius.circular(borderRadius),
           ),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
-          child: Text(label, style: textStyleText),
+          child: child,
         ),
       ),
     );

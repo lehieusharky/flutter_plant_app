@@ -1,15 +1,23 @@
 import 'package:flutter/material.dart';
 
-class CustomBorder extends StatelessWidget {
+class CustomShadow extends StatelessWidget {
   final Widget child;
   final double? width;
   final double? height;
+  final Color boxShadowColor;
+  final double spreadRadius;
+  final double blurRadius;
+  final Offset offset;
 
-  const CustomBorder({
+  const CustomShadow({
     super.key,
     required this.child,
     this.width,
     this.height,
+    required this.boxShadowColor,
+    required this.spreadRadius,
+    required this.blurRadius,
+    required this.offset,
   });
 
   @override
@@ -20,13 +28,47 @@ class CustomBorder extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.6),
-            spreadRadius: 1,
-            blurRadius: 15,
-            offset: const Offset(0, 2), // changes position of shadow
+            color: boxShadowColor,
+            spreadRadius: spreadRadius,
+            blurRadius: blurRadius,
+            offset: offset,
           ),
         ],
       ),
+      child: child,
+    );
+  }
+
+  factory CustomShadow.button({
+    required Widget child,
+    double? width,
+    double? height,
+    required Color boxShadowColor,
+  }) {
+    return CustomShadow(
+      width: width,
+      height: height,
+      boxShadowColor: boxShadowColor,
+      spreadRadius: 4,
+      blurRadius: 12,
+      offset: const Offset(0, 3),
+      child: child,
+    );
+  }
+
+  factory CustomShadow.textFormField({
+    required Widget child,
+    double? width,
+    double? height,
+    required Color boxShadowColor,
+  }) {
+    return CustomShadow(
+      width: width,
+      height: height,
+      boxShadowColor: boxShadowColor,
+      spreadRadius: 4,
+      blurRadius: 12,
+      offset: const Offset(0, 3),
       child: child,
     );
   }

@@ -56,6 +56,8 @@ class _LoginPageState extends BaseWidgetState {
                           textStyleText:
                               AppTextTheme.getDefaultTextTheme(context)
                                   .bodyMedium,
+                          borderRadius: 1,
+                          child: const Text('as1'),
                         ),
                       )
                     ],

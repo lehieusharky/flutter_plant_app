@@ -6,3 +6,11 @@ sealed class HomePageEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+final class HomePageChangetTopic extends HomePageEvent {
+  final int index;
+
+  const HomePageChangetTopic({required this.index});
+  @override
+  List<Object> get props => [index];
+}
