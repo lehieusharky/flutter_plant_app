@@ -18,8 +18,9 @@ class CustomTextFormField extends StatefulWidget {
   final void Function(String)? onChanged;
   final String hintText;
   final double? borderRadius;
-  final Color? shadowColor;
+  final Color? boxShadowColor;
   final TextStyle? textStyle;
+  final double? height;
 
   CustomTextFormField({
     super.key,
@@ -30,6 +31,7 @@ class CustomTextFormField extends StatefulWidget {
     this.borderRadius,
     this.textStyle,
     this.maxLines,
+    this.height,
     required this.keyboardType,
     this.autoValidateMode,
     required this.hintText,
@@ -37,7 +39,7 @@ class CustomTextFormField extends StatefulWidget {
     this.focusNode,
     this.autoFocus,
     this.textInputAction,
-    this.shadowColor,
+    this.boxShadowColor,
   });
 
   factory CustomTextFormField.email({
@@ -107,7 +109,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return CustomShadow.textFormField(
-      boxShadowColor: widget.shadowColor ?? Colors.transparent,
+      height: widget.height,
+      boxShadowColor: widget.boxShadowColor ?? Colors.transparent,
       child: TextFormField(
         controller: widget.controller,
         maxLines: widget.maxLines,
@@ -133,7 +136,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           fillColor: colorTheme.getFBFDFF,
           filled: true,
           hintText: widget.hintText,
-          hintStyle: AppTextTheme.getDefaultTextTheme(context).labelSmall,
+          hintStyle: AppTextTheme.getDefaultTextTheme(context).displayMedium,
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius:
