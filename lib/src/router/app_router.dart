@@ -1,7 +1,7 @@
 import 'package:go_router/go_router.dart';
-import 'package:plant_market/src/modules/auth/auth_gate.dart';
-import 'package:plant_market/src/modules/auth/login/pages/login_page.dart';
-import 'package:plant_market/src/modules/home_page/pages/home_page.dart';
+import 'package:plant_market/src/features/auth/auth_gate.dart';
+import 'package:plant_market/src/features/auth/login/pages/login_page.dart';
+import 'package:plant_market/src/features/home_page/pages/home_page.dart';
 
 class AppRouter {
   static final router = GoRouter(
