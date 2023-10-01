@@ -1,3 +1,3 @@
 class RouterPath {
-  static const HOME_PAGE = '/home_page';
+  static const homePage = '/home_page';
 }

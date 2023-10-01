@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
 
 class CustomButton extends StatelessWidget {
   final String label;
@@ -11,7 +10,7 @@ class CustomButton extends StatelessWidget {
   final TextStyle? textStyleText;
   final double borderRadius;
   final Widget child;
-  final Color shadowColor;
+  final Color? boxShadowColor;
 
   const CustomButton({
     super.key,
@@ -23,24 +22,14 @@ class CustomButton extends StatelessWidget {
     this.height,
     required this.borderRadius,
     required this.child,
-    required this.shadowColor,
+    this.boxShadowColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return CustomShadow.button(
       width: width,
-      height: height,
-      decoration: BoxDecoration(
-        boxShadow: [
-          BoxShadow(
-            color: shadowColor,
-            spreadRadius: 4,
-            blurRadius: 12,
-            offset: const Offset(0, 3), // changes position of shadow
-          ),
-        ],
-      ),
+      boxShadowColor: boxShadowColor ?? Colors.transparent,
       child: ElevatedButton(
         onPressed: onPress,
         style: ElevatedButton.styleFrom(

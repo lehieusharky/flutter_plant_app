@@ -26,7 +26,7 @@ class AppTextTheme {
           color: colorTheme.get36455A,
         ),
         labelMedium: GoogleFonts.openSans(
-          fontSize: context.sizeWidth(10),
+          fontSize: context.sizeWidth(11),
           fontWeight: FontWeight.w600,
           color: colorTheme.getFFFFFF,
         ),
@@ -36,9 +36,9 @@ class AppTextTheme {
           color: colorTheme.get495566WithOpacity80,
         ),
         labelSmall: GoogleFonts.openSans(
-          fontSize: context.sizeWidth(14),
-          fontWeight: FontWeight.w400,
-          color: colorTheme.getD2D2D2,
+          fontSize: context.sizeWidth(10),
+          fontWeight: FontWeight.w600,
+          color: colorTheme.get6A6F7D,
         ),
         bodyLarge: TextStyle(
           fontSize: 14,

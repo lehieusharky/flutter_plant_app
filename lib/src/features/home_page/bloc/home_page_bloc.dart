@@ -5,7 +5,15 @@ part 'home_page_state.dart';
 
 class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   HomePageBloc() : super(HomePageInitial()) {
-    on<HomePageEvent>((event, emit) {
-    });
+    on<HomePageChangetTopic>(_changeTopic);
+  }
+
+  Future<void> _changeTopic(
+      HomePageChangetTopic event, Emitter<HomePageState> emit) async {
+    try {
+      emit(HomePageChangeTopicSuccess(isChoosed: event.index));
+    } catch (e) {
+      emit(HomePageFailure());
+    }
   }
 }
