@@ -13,48 +13,42 @@ class RowTopicButton extends StatefulWidget {
 }
 
 class _RowTopicButtonState extends State<RowTopicButton> {
+  final topicSymbols = [1, 2, 3];
+
   @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         TopicButton(
-          onPressed: () {
-            context
-                .read<HomePageBloc>()
-                .add(const HomePageChangetTopic(index: 1));
-          },
+          onPressed: () => _changeTopic(index: topicSymbols[0]),
           backgroundColor: colorTheme.get2cd992,
           title: 'IDENTIFY',
           icon: Icons.camera,
           isChoosed: widget.isChoosed,
-          defaultIndex: 1,
+          defaultIndex: topicSymbols[0],
         ),
         TopicButton(
-          onPressed: () {
-            context
-                .read<HomePageBloc>()
-                .add(const HomePageChangetTopic(index: 2));
-          },
+          onPressed: () => _changeTopic(index: topicSymbols[1]),
           backgroundColor: colorTheme.get2cd992,
           title: 'Communiy',
           icon: Icons.search_off_outlined,
           isChoosed: widget.isChoosed,
-          defaultIndex: 2,
+          defaultIndex: topicSymbols[1],
         ),
         TopicButton(
-          onPressed: () {
-            context
-                .read<HomePageBloc>()
-                .add(const HomePageChangetTopic(index: 3));
-          },
+          onPressed: () => _changeTopic(index: topicSymbols[2]),
           backgroundColor: colorTheme.get2cd992,
           title: 'ABC_XYZ',
           icon: Icons.abc,
           isChoosed: widget.isChoosed,
-          defaultIndex: 3,
+          defaultIndex: topicSymbols[2],
         ),
       ],
     );
+  }
+
+  void _changeTopic({required int index}) {
+    context.read<HomePageBloc>().add(HomePageChangetTopic(index: index));
   }
 }
