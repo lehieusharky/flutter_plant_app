@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_button.dart';
-import 'package:plant_market/src/features/home_page/mock/list_post_mock.dart';
+import 'package:plant_market/src/features/home/mock/list_post_mock.dart';
 import 'package:plant_market/src/theme/font_theme.dart';
 
 class ItemPost extends StatelessWidget {

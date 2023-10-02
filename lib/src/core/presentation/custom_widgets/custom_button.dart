@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
 
 class CustomButton extends StatelessWidget {
-  final String label;
   final double? width;
   final double? height;
   final VoidCallback? onPress;
@@ -14,7 +13,6 @@ class CustomButton extends StatelessWidget {
 
   const CustomButton({
     super.key,
-    required this.label,
     required this.onPress,
     required this.backgroundColor,
     this.textStyleText,

@@ -1,4 +1,4 @@
-import 'package:plant_market/src/features/home_page/mock/post_model.dart';
+import 'package:plant_market/src/features/home/mock/post_model.dart';
 
 class ListPostMock {
   static List<PostModel> posts = [

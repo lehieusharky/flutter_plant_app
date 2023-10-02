@@ -39,6 +39,7 @@ dependencies:
 
   # UI
   like_button: ^2.0.5
+  salomon_bottom_bar: ^3.3.2
 
 dev_dependencies:
   injectable_generator:
