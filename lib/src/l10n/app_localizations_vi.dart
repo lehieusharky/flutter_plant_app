@@ -15,4 +15,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get search => 'Tìm kiếm';
+
+  @override
+  String get today => 'Hôm nay';
+
+  @override
+  String get plant => 'Trồng cây';
 }

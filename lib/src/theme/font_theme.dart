@@ -20,10 +20,15 @@ class AppTextTheme {
           fontWeight: FontWeight.w600,
           color: colorTheme.get36455A,
         ),
-        headlineSmall: TextStyle(
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-          color: colorTheme.get2DDA93,
+        headlineSmall: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(20),
+          fontWeight: FontWeight.w600,
+          color: colorTheme.getFFFFFF,
+        ),
+        headlineLarge: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(50),
+          fontWeight: FontWeight.w500,
+          color: colorTheme.get36455A,
         ),
         titleLarge: GoogleFonts.openSans(
           fontSize: context.sizeWidth(30),

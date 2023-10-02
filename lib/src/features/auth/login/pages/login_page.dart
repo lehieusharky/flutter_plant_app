@@ -8,6 +8,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/features/auth/auth_widgets/custom_header_auth.dart';
 import 'package:plant_market/src/features/auth/login/bloc/login_bloc.dart';
+import 'package:plant_market/src/router/router_path.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/font_theme.dart';
 
@@ -34,7 +35,7 @@ class _LoginPageState extends BaseWidgetState {
               log('error ${state.message}');
             }
             if (state is LoginSuccess) {
-              context.go('/home');
+              context.go(RouterPath.homePage);
             }
           },
           builder: (context, state) {
