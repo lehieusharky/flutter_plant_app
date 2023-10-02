@@ -8,6 +8,7 @@ abstract class ImageConstant {
   String get tree2;
   String get tree3;
   String get tree4;
+  String get heartSvg;
 }
 
 @Injectable(as: ImageConstant)
@@ -26,4 +27,7 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get tree4 => 'assets/lotties/tree_4.json';
+
+  @override
+  String get heartSvg => 'assets/svg/heart.svg';
 }
