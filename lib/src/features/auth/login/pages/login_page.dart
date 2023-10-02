@@ -50,7 +50,6 @@ class _LoginPageState extends BaseWidgetState {
                       context.sizedBox(height: 25),
                       Center(
                         child: CustomButton(
-                          label: 'Login With Google',
                           onPress: () => _loginWithGoogle(context),
                           backgroundColor: colorTheme.get36455A,
                           textStyleText:

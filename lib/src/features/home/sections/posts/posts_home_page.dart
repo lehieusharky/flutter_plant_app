@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/features/home_page/mock/list_post_mock.dart';
-import 'package:plant_market/src/features/home_page/sections/posts/item_post.dart';
+import 'package:plant_market/src/features/home/mock/list_post_mock.dart';
+import 'package:plant_market/src/features/home/sections/posts/item_post.dart';
 
 class PostsHomePage extends StatefulWidget {
   const PostsHomePage({super.key});

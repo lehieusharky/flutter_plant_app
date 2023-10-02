@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/features/home_page/bloc/home_page_bloc.dart';
-import 'package:plant_market/src/features/home_page/sections/header/header_home_page.dart';
-import 'package:plant_market/src/features/home_page/sections/posts/posts_home_page.dart';
-import 'package:plant_market/src/features/home_page/sections/shake_animation/shake_animation.dart';
-import 'package:plant_market/src/features/home_page/widgets/row_topic_button.dart';
+import 'package:plant_market/src/features/home/bloc/home_page_bloc.dart';
+import 'package:plant_market/src/features/home/sections/header/header_home_page.dart';
+import 'package:plant_market/src/features/home/sections/posts/posts_home_page.dart';
+import 'package:plant_market/src/features/home/sections/shake_animation/shake_animation.dart';
+import 'package:plant_market/src/features/home/widgets/row_topic_button.dart';
 import 'package:plant_market/src/theme/font_theme.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,12 +15,14 @@ class HomePage extends StatefulWidget {
   State<HomePage> createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with AutomaticKeepAliveClientMixin {
   final _searchController = TextEditingController();
   var _isChoosed = 1;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return SafeArea(
       child: BlocProvider(
         create: (context) => HomePageBloc(),
@@ -61,4 +63,7 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  @override
+  bool get wantKeepAlive => true;
 }

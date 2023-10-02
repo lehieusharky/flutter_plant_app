@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plant_market/src/features/home_page/bloc/home_page_bloc.dart';
-import 'package:plant_market/src/features/home_page/widgets/topic_button.dart';
+import 'package:plant_market/src/core/constants.dart';
+import 'package:plant_market/src/features/home/bloc/home_page_bloc.dart';
+import 'package:plant_market/src/features/home/widgets/topic_button.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class RowTopicButton extends StatefulWidget {
@@ -24,7 +25,7 @@ class _RowTopicButtonState extends State<RowTopicButton> {
           onPressed: () => _changeTopic(index: topicSymbols[0]),
           backgroundColor: colorTheme.get2cd992,
           title: 'IDENTIFY',
-          icon: Icons.camera,
+          pathIcon: imageConstant.leavesSVG,
           isChoosed: widget.isChoosed,
           defaultIndex: topicSymbols[0],
         ),
@@ -32,7 +33,7 @@ class _RowTopicButtonState extends State<RowTopicButton> {
           onPressed: () => _changeTopic(index: topicSymbols[1]),
           backgroundColor: colorTheme.get2cd992,
           title: 'Communiy',
-          icon: Icons.search_off_outlined,
+          pathIcon: imageConstant.leavesSVG,
           isChoosed: widget.isChoosed,
           defaultIndex: topicSymbols[1],
         ),
@@ -40,7 +41,7 @@ class _RowTopicButtonState extends State<RowTopicButton> {
           onPressed: () => _changeTopic(index: topicSymbols[2]),
           backgroundColor: colorTheme.get2cd992,
           title: 'ABC_XYZ',
-          icon: Icons.abc,
+          pathIcon: imageConstant.leavesSVG,
           isChoosed: widget.isChoosed,
           defaultIndex: topicSymbols[2],
         ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/constants.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/font_theme.dart';
 
@@ -8,17 +10,17 @@ class TopicButton extends StatefulWidget {
   final void Function() onPressed;
   final Color backgroundColor;
   final String title;
-  final IconData icon;
   final int isChoosed;
   final int defaultIndex;
+  final String pathIcon;
   const TopicButton({
     super.key,
     required this.onPressed,
     required this.backgroundColor,
     required this.title,
-    required this.icon,
     required this.isChoosed,
     required this.defaultIndex,
+    required this.pathIcon,
   });
 
   @override
@@ -39,7 +41,6 @@ class _TopicButtonState extends State<TopicButton> {
           : colorTheme.getD2D2D2.withOpacity(0.2),
       width: context.sizeWidth(108),
       height: context.sizeHeight(76),
-      label: 'Hello',
       borderRadius: 3,
       onPress: widget.onPressed,
       backgroundColor:
@@ -47,9 +48,9 @@ class _TopicButtonState extends State<TopicButton> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
-            widget.icon,
-            size: context.sizeWidth(24),
+          CustomSvg(
+            path: imageConstant.leavesSVG,
+            width: context.sizeWidth(24),
             color:
                 _checkIsChoosed ? colorTheme.getFFFFFF : colorTheme.get2DDA93,
           ),
