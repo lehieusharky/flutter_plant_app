@@ -2,5 +2,7 @@
   "hello": "Hello",
   "letsLearnMoreAboutPlants": "Let’s Learn More About Plants",
   "phoneNumber": "Phone number",
-  "search": "Search"
+  "search": "Search",
+  "today": "Today",
+  "plant": "Plant"
 }

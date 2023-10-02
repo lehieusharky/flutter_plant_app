@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/extensions.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_title.dart';
 import 'package:plant_market/src/features/home/bloc/home_page_bloc.dart';
 import 'package:plant_market/src/features/home/sections/header/header_home_page.dart';
 import 'package:plant_market/src/features/home/sections/posts/posts_home_page.dart';
 import 'package:plant_market/src/features/home/sections/shake_animation/shake_animation.dart';
 import 'package:plant_market/src/features/home/widgets/row_topic_button.dart';
-import 'package:plant_market/src/theme/font_theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -43,14 +44,7 @@ class _HomePageState extends State<HomePage>
                     RowTopicButton(isChoosed: _isChoosed),
                     const SharkeAnimationHomePage(),
                     context.sizedBox(height: 20),
-                    Padding(
-                      padding: context.padding(horizontal: 12),
-                      child: Text(
-                        'Today',
-                        style: AppTextTheme.getDefaultTextTheme(context)
-                            .headlineMedium,
-                      ),
-                    ),
+                    CustomTitle(title: translate(context).today),
                     context.sizedBox(height: 10),
                     const PostsHomePage(),
                     context.sizedBox(height: 50),

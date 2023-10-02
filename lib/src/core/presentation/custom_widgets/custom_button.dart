@@ -27,6 +27,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomShadow.button(
       width: width,
+      height: height,
       boxShadowColor: boxShadowColor ?? Colors.transparent,
       child: ElevatedButton(
         onPressed: onPress,
