@@ -128,6 +128,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Plant'**
   String get plant;
+
+  /// No description provided for @send.
+  ///
+  /// In en, this message translates to:
+  /// **'Send'**
+  String get send;
+
+  /// No description provided for @enterYourPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your phone number'**
+  String get enterYourPhoneNumber;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

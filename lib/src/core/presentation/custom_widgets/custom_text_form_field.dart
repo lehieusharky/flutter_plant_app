@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/font_theme.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController? controller;
-  final Color backGroundColor = colorTheme.get2DDA93;
   final String? Function(String?)? validator;
   final Icon? prefixIcon;
   final IconButton? suffixIcon;
@@ -21,8 +19,15 @@ class CustomTextFormField extends StatefulWidget {
   final Color? boxShadowColor;
   final TextStyle? textStyle;
   final double? height;
+  final Color backgroundColor;
+  final Color? focusBorderColo;
+  final Color? defaultBorderColor;
+  final void Function()? onTap;
+  final void Function()? onEditComplete;
+  final void Function(String)? onSubmit;
+  final void Function(PointerDownEvent)? onTapOutSide;
 
-  CustomTextFormField({
+  const CustomTextFormField({
     super.key,
     required this.controller,
     this.validator,
@@ -40,6 +45,13 @@ class CustomTextFormField extends StatefulWidget {
     this.autoFocus,
     this.textInputAction,
     this.boxShadowColor,
+    required this.backgroundColor,
+    this.focusBorderColo,
+    this.defaultBorderColor,
+    this.onTap,
+    this.onEditComplete,
+    this.onSubmit,
+    this.onTapOutSide,
   });
 
   factory CustomTextFormField.email({
@@ -62,6 +74,7 @@ class CustomTextFormField extends StatefulWidget {
       validator: validator,
       suffixIcon: null,
       prefixIcon: const Icon(Icons.email),
+      backgroundColor: Colors.transparent,
     );
   }
 
@@ -83,6 +96,7 @@ class CustomTextFormField extends StatefulWidget {
       autoValidateMode: autoValidateMode,
       validator: validator,
       prefixIcon: const Icon(Icons.password),
+      backgroundColor: Colors.transparent,
     );
   }
 
@@ -116,14 +130,26 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         maxLines: widget.maxLines,
         focusNode: widget.focusNode,
         obscureText: _obscuteText,
+        onTapOutside: widget.onTapOutSide,
         autofocus: widget.autoFocus ?? false,
+        onTap: widget.onTap,
+        onFieldSubmitted: widget.onSubmit,
         validator: widget.validator,
+        onEditingComplete: widget.onEditComplete,
         textInputAction: widget.textInputAction,
         style: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
         autovalidateMode: widget.autoValidateMode,
         keyboardType: widget.keyboardType,
         onChanged: widget.onChanged,
         decoration: InputDecoration(
+          enabledBorder: UnderlineInputBorder(
+            borderSide: BorderSide(
+                color: widget.defaultBorderColor ?? Colors.transparent),
+          ),
+          focusedBorder: UnderlineInputBorder(
+            borderSide:
+                BorderSide(color: widget.focusBorderColo ?? Colors.transparent),
+          ),
           prefixIcon: widget.prefixIcon,
           errorStyle: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
           suffixIcon: (prefixIcon == const Icon(Icons.password))
@@ -133,7 +159,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                     _obscuteText ? Icons.visibility : Icons.visibility_off,
                   ))
               : widget.suffixIcon,
-          fillColor: colorTheme.getFBFDFF,
+          fillColor: widget.backgroundColor,
           filled: true,
           hintText: widget.hintText,
           hintStyle: AppTextTheme.getDefaultTextTheme(context).displayMedium,

@@ -21,4 +21,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get plant => 'Trồng cây';
+
+  @override
+  String get send => 'Gửi';
+
+  @override
+  String get enterYourPhoneNumber => 'Nhập số điện thoại';
 }

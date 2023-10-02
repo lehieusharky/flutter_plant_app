@@ -21,4 +21,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get plant => 'Plant';
+
+  @override
+  String get send => 'Send';
+
+  @override
+  String get enterYourPhoneNumber => 'Enter your phone number';
 }

@@ -34,7 +34,7 @@ class _HeaderHomePageState extends State<HeaderHomePage> {
             padding: context.padding(horizontal: 24),
             child: CustomTextFormField(
               height: context.sizeHeight(80),
-              borderRadius: 3100,
+              borderRadius: 100,
               prefixIcon: Icon(
                 Icons.search,
                 size: context.sizeWidth(25),
@@ -44,6 +44,7 @@ class _HeaderHomePageState extends State<HeaderHomePage> {
               controller: widget.searchController,
               keyboardType: TextInputType.text,
               hintText: translate(context).search,
+              backgroundColor: colorTheme.getFFFFFF,
             ),
           ),
         )

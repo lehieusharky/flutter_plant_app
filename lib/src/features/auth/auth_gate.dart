@@ -1,35 +1,21 @@
-import 'dart:developer';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:plant_market/src/core/presentation/page/base_page.dart';
+import 'package:plant_market/src/features/auth/login/pages/login_page.dart';
+import 'package:plant_market/src/features/dash_board/page/dash_board_page.dart';
 
-class AuthGate extends BaseWidget {
-  const AuthGate({super.key, super.child});
-
-  @override
-  BaseWidgetState createState() => _AuthGateState();
-}
-
-class _AuthGateState extends BaseWidgetState {
-  void doSomeThing() {
-    super.checkLoggedIn();
-    log('toi la ai');
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    doSomeThing();
-  }
+class AuthGate extends StatelessWidget {
+  const AuthGate({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () => {},
-          child: const Text('Click'),
-        ),
-      ),
+    return StreamBuilder<User?>(
+      stream: FirebaseAuth.instance.authStateChanges(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return const DashBoardPage();
+        }
+        return const LoginPage();
+      },
     );
   }
 }
