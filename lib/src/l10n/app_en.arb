@@ -4,5 +4,7 @@
   "phoneNumber": "Phone number",
   "search": "Search",
   "today": "Today",
-  "plant": "Plant"
+  "plant": "Plant",
+  "send": "Send",
+"enterYourPhoneNumber": "Enter your phone number"
 }

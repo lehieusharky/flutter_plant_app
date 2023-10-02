@@ -57,7 +57,7 @@ class _ShakeAnimationPageState extends State<ShakeAnimationPage> {
             CustomButton(
               width: context.sizeWidth(150),
               height: context.sizeHeight(60),
-              boxShadowColor: colorTheme.getD2D2D2,
+              boxShadowColor: colorTheme.get2DDA93.withOpacity(0.4),
               onPress: () {},
               backgroundColor: colorTheme.get2DDA93,
               borderRadius: context.sizeWidth(10),

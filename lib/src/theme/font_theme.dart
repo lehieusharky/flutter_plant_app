@@ -60,10 +60,10 @@ class AppTextTheme {
           fontWeight: FontWeight.w500,
           color: colorTheme.get36455A,
         ),
-        bodySmall: TextStyle(
-          fontSize: 16,
-          fontWeight: FontWeight.bold,
-          color: colorTheme.get2DDA93,
+        bodySmall: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(14),
+          fontWeight: FontWeight.w500,
+          color: colorTheme.get36455A,
         ),
         labelLarge: const TextStyle(
           color: Colors.white,
