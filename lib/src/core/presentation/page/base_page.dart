@@ -1,6 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/extension/responsive.dart';
 
 class BaseWidget extends StatefulWidget {
   final Widget? child;
@@ -12,22 +11,12 @@ class BaseWidget extends StatefulWidget {
 }
 
 class BaseWidgetState extends State<BaseWidget> {
-  bool isLoggedIn = false;
-
-  void checkLoggedIn() {
-    log('callllled');
-  }
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: widget.child ?? const SizedBox(),
+    return Scaffold(
+      body: Padding(
+        padding: context.padding(top: 70, horizontal: 12),
+        child: widget.child,
       ),
     );
   }

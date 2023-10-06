@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plant_market/src/core/constants.dart';
-import 'package:plant_market/src/theme/font_theme.dart';
+import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
+import 'package:plant_market/src/theme/text_theme.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final List<Widget>? action;
@@ -38,7 +38,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
       actions: widget.action,
       title: Text(
         widget.title,
-        style: AppTextTheme.getDefaultTextTheme(context).bodyLarge,
+        style: AppTextTheme.lightTheme(context).bodyLarge,
       ),
     );
   }

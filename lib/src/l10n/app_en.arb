@@ -6,5 +6,8 @@
   "today": "Today",
   "plant": "Plant",
   "send": "Send",
-"enterYourPhoneNumber": "Enter your phone number"
+  "enterYourPhoneNumber": "Enter your phone number",
+  "general": "General",
+  "community": "Community",
+  "map": "Map"
 }
