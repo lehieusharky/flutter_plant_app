@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage>
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     HeaderHomePage(searchController: _searchController),
-                    context.sizedBox(height: 20),
+                    context.sizedBox(height: 40),
                     const RowTopicButton(),
                     const SharkeAnimationHomePage(),
                     context.sizedBox(height: 20),

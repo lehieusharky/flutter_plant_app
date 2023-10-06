@@ -14,3 +14,16 @@ final class HomePageChangetTopic extends HomePageEvent {
   @override
   List<Object> get props => [topicSymbol];
 }
+
+final class HomePageGetWeatherInfomation extends HomePageEvent {
+  final String lat;
+  final String lon;
+
+  const HomePageGetWeatherInfomation({
+    required this.lat,
+    required this.lon,
+  });
+
+  @override
+  List<Object> get props => [lat, lon];
+}

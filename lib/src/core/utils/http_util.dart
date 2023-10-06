@@ -9,8 +9,7 @@ import 'http_response.dart';
 class HttpHelper {
   static Dio getDio() {
     Dio dio = Dio();
-    final apiKey = dotenv.get("API_KEY");
-    dio.options.headers['x-apikey'] = apiKey;
+    // * TODO add header
     dio.interceptors.add(DioInterceptor());
     return dio;
   }

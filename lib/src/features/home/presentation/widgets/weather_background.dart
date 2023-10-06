@@ -12,21 +12,21 @@ class WeatherBackGround extends StatelessWidget {
   Widget build(BuildContext context) {
     return WaveWidget(
       backgroundImage:
-          DecorationImage(image: AssetImage(imageConstant.sunnyImage)),
+          DecorationImage(image: AssetImage(imageConstant.nightImage)),
       config: CustomConfig(
         colors: [
           colorTheme.get2DDA93,
           colorTheme.get2DDA93.withOpacity(0.7),
           colorTheme.getFFFFFF.withOpacity(0.4),
           colorTheme.get2DDA93.withOpacity(0.5),
-          colorTheme.get2F91EB.withOpacity(0.2),
+          colorTheme.getFFFFFF.withOpacity(0.5),
         ],
         durations: [
           118000,
           15000,
           9000,
           9000,
-          120000,
+          10000,
         ],
         heightPercentages: [
           0.95,

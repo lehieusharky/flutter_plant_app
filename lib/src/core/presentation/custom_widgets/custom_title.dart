@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/theme/text_theme.dart';
 
 class CustomTitle extends StatelessWidget {
   final String title;
