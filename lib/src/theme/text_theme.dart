@@ -10,7 +10,11 @@ class AppTextTheme {
           color: Colors.blue,
           fontSize: 30,
         ),
-        displayMedium: GoogleFonts.openSans(),
+        displayMedium: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(60),
+          fontWeight: FontWeight.w400,
+          color: colorTheme.getFFFFFF,
+        ),
         displaySmall: GoogleFonts.openSans(),
 
         // * headline
@@ -53,7 +57,11 @@ class AppTextTheme {
   static TextTheme darkTheme(BuildContext context) => TextTheme(
         // * display
         displayLarge: GoogleFonts.openSans(color: Colors.yellow, fontSize: 20),
-        displayMedium: GoogleFonts.openSans(),
+        displayMedium: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(60),
+          fontWeight: FontWeight.w400,
+          color: colorTheme.getFFFFFF,
+        ),
         displaySmall: GoogleFonts.openSans(),
 
         // * headline
