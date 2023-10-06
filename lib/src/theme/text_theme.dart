@@ -11,7 +11,7 @@ class AppTextTheme {
           fontSize: 30,
         ),
         displayMedium: GoogleFonts.openSans(
-          fontSize: context.sizeWidth(60),
+          fontSize: context.sizeWidth(50),
           fontWeight: FontWeight.w400,
           color: colorTheme.getFFFFFF,
         ),
@@ -57,8 +57,8 @@ class AppTextTheme {
   static TextTheme darkTheme(BuildContext context) => TextTheme(
         // * display
         displayLarge: GoogleFonts.openSans(color: Colors.yellow, fontSize: 20),
-        displayMedium: GoogleFonts.openSans(
-          fontSize: context.sizeWidth(60),
+        displayMedium: GoogleFonts.roboto(
+          fontSize: context.sizeWidth(65),
           fontWeight: FontWeight.w400,
           color: colorTheme.getFFFFFF,
         ),

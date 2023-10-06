@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
+import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/text_theme.dart';
@@ -57,6 +58,26 @@ class CustomTextFormField extends StatefulWidget {
     this.onSubmit,
     this.onTapOutSide,
   });
+
+  factory CustomTextFormField.search({
+    required TextEditingController searchController,
+    required BuildContext context,
+  }) {
+    return CustomTextFormField(
+      height: context.sizeHeight(80),
+      borderRadius: 100,
+      prefixIcon: Icon(
+        Icons.search,
+        size: context.sizeWidth(25),
+        color: colorTheme.getD2D2D2,
+      ),
+      boxShadowColor: colorTheme.get6A6F7D.withOpacity(0.2),
+      controller: searchController,
+      keyboardType: TextInputType.text,
+      hintText: translate(context).search,
+      backgroundColor: colorTheme.getFFFFFF,
+    );
+  }
 
   factory CustomTextFormField.phone({
     required TextEditingController controller,

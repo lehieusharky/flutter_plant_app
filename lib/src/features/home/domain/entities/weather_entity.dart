@@ -1,4 +1,4 @@
-class WeatherModel {
+class WeatherEntity {
   List<Weather>? weather;
   String? base;
   Main? main;
@@ -7,7 +7,7 @@ class WeatherModel {
   int? dt;
   String? name;
 
-  WeatherModel({
+  WeatherEntity({
     this.weather,
     this.base,
     this.main,
@@ -16,21 +16,6 @@ class WeatherModel {
     this.dt,
     this.name,
   });
-
-  WeatherModel.fromJson(Map<String, dynamic> json) {
-    if (json['weather'] != null) {
-      weather = <Weather>[];
-      json['weather'].forEach((v) {
-        weather!.add(Weather.fromJson(v));
-      });
-    }
-    base = json['base'];
-    main = json['main'] != null ? Main.fromJson(json['main']) : null;
-    visibility = json['visibility'];
-    wind = json['wind'] != null ? Wind.fromJson(json['wind']) : null;
-    dt = json['dt'];
-    name = json['name'];
-  }
 }
 
 class Weather {

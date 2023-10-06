@@ -3,4 +3,8 @@ extension StringExt on String {
     List<String> parts = split("@");
     return parts.first;
   }
+
+  String convertCelsiusToFahrenheit(double celsius) {
+    return ((celsius * 9 / 5) + 32).toString();
+  }
 }

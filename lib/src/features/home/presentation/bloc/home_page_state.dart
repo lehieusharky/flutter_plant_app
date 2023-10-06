@@ -13,8 +13,24 @@ final class HomePageChangeTopicSuccess extends HomePageState {
   final TopicSymbol topicSymbol;
 
   const HomePageChangeTopicSuccess({required this.topicSymbol});
+
   @override
   List<Object> get props => [topicSymbol];
 }
 
-final class HomePageFailure extends HomePageState {}
+final class HomePageFailure extends HomePageState {
+  final String message;
+
+  const HomePageFailure({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
+final class HomePageGetWeatherInfomationSuccess extends HomePageState {
+  final WeatherModel weatherModel;
+  const HomePageGetWeatherInfomationSuccess({required this.weatherModel});
+
+  @override
+  List<Object> get props => [weatherModel];
+}
