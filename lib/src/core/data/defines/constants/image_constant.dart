@@ -17,6 +17,14 @@ abstract class ImageConstant {
   String get mapSVG;
   String get vietNamFlagSVG;
   String get englishFlagSVG;
+  String get sunnyImage;
+  String get nightImage;
+  String get minTempSVG;
+  String get maxTempSVG;
+  String get windSVG;
+  String get locationSVG;
+  String get humiditySVG;
+  String get chickenSVG;
 }
 
 @Injectable(as: ImageConstant)
@@ -59,4 +67,27 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get vietNamFlagSVG => 'assets/svg/viet_nam_flag.svg';
+
+  @override
+  String get nightImage => 'assets/images/night.png';
+
+  @override
+  String get sunnyImage => 'assets/images/sun.png';
+
+  @override
+  String get chickenSVG => 'assets/svg/chicken.svg';
+  @override
+  String get humiditySVG => 'assets/svg/humidity.svg';
+
+  @override
+  String get locationSVG => 'assets/svg/location.svg';
+
+  @override
+  String get maxTempSVG => 'assets/svg/max_temp.svg';
+
+  @override
+  String get minTempSVG => 'assets/svg/min_temp.svg';
+
+  @override
+  String get windSVG => 'assets/svg/wind.svg';
 }

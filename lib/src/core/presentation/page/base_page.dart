@@ -15,7 +15,7 @@ class BaseWidgetState extends State<BaseWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: context.padding(top: 70, horizontal: 12),
+        padding: context.padding(top: 60, horizontal: 12),
         child: widget.child,
       ),
     );
