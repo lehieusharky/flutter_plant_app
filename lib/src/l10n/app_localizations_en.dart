@@ -27,4 +27,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get enterYourPhoneNumber => 'Enter your phone number';
+
+  @override
+  String get general => 'General';
+
+  @override
+  String get community => 'Community';
+
+  @override
+  String get map => 'Map';
 }

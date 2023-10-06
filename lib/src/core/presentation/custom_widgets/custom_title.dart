@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/theme/font_theme.dart';
+import 'package:plant_market/src/theme/text_theme.dart';
 
 class CustomTitle extends StatelessWidget {
   final String title;
@@ -15,7 +16,8 @@ class CustomTitle extends StatelessWidget {
       padding: context.padding(horizontal: 12),
       child: Text(
         title,
-        style: AppTextTheme.getDefaultTextTheme(context).headlineMedium,
+        style: theme(context).textTheme.titleMedium!.copyWith(
+            fontSize: context.sizeWidth(17), fontWeight: FontWeight.w700),
       ),
     );
   }

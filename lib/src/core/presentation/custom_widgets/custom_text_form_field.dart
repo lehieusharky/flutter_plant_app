@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:plant_market/src/core/di/di_set_up.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
-import 'package:plant_market/src/theme/font_theme.dart';
+import 'package:plant_market/src/theme/color_theme.dart';
+import 'package:plant_market/src/theme/text_theme.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
-  final Icon? prefixIcon;
+  final Widget? prefixIcon;
   final IconButton? suffixIcon;
   final TextInputAction? textInputAction;
   final bool? autoFocus;
@@ -54,49 +58,30 @@ class CustomTextFormField extends StatefulWidget {
     this.onTapOutSide,
   });
 
-  factory CustomTextFormField.email({
+  factory CustomTextFormField.phone({
     required TextEditingController controller,
-    required String hintText,
-    required TextInputType keyboardType,
-    TextInputAction? textInputAction,
-    bool? autoFocus,
     required AutovalidateMode autoValidateMode,
     String? Function(String?)? validator,
+    required void Function() onTap,
+    void Function(String)? onSubmit,
+    required BuildContext context,
+    void Function(PointerDownEvent)? onTapOutSide,
   }) {
     return CustomTextFormField(
-      maxLines: 1,
+      autoFocus: false,
+      prefixIcon: Icon(
+        FontAwesomeIcons.phone,
+        color: colorTheme.get2DDA93,
+      ),
+      onTap: onTap,
+      defaultBorderColor: colorTheme.getD2D2D2,
+      focusBorderColo: colorTheme.get2DDA93,
       controller: controller,
-      hintText: hintText,
-      autoFocus: autoFocus,
-      keyboardType: keyboardType,
-      textInputAction: textInputAction,
-      autoValidateMode: autoValidateMode,
-      validator: validator,
-      suffixIcon: null,
-      prefixIcon: const Icon(Icons.email),
+      onSubmit: onSubmit,
+      keyboardType: TextInputType.number,
+      hintText: translate(context).enterYourPhoneNumber,
       backgroundColor: Colors.transparent,
-    );
-  }
-
-  factory CustomTextFormField.password({
-    required TextEditingController controller,
-    required String hintText,
-    required bool obscureText,
-    required TextInputType keyboardType,
-    TextInputAction? textInputAction,
-    required AutovalidateMode autoValidateMode,
-    String? Function(String?)? validator,
-  }) {
-    return CustomTextFormField(
-      maxLines: 1,
-      controller: controller,
-      hintText: hintText,
-      textInputAction: textInputAction,
-      keyboardType: keyboardType,
-      autoValidateMode: autoValidateMode,
-      validator: validator,
-      prefixIcon: const Icon(Icons.password),
-      backgroundColor: Colors.transparent,
+      onTapOutSide: onTapOutSide,
     );
   }
 
@@ -106,13 +91,6 @@ class CustomTextFormField extends StatefulWidget {
 
 class _CustomTextFormFieldState extends State<CustomTextFormField> {
   bool _obscuteText = false;
-  Icon? prefixIcon;
-
-  @override
-  initState() {
-    super.initState();
-    prefixIcon = widget.prefixIcon;
-  }
 
   _onPressed() {
     setState(() {
@@ -137,7 +115,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         validator: widget.validator,
         onEditingComplete: widget.onEditComplete,
         textInputAction: widget.textInputAction,
-        style: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
+        style: theme(context).textTheme.titleLarge,
         autovalidateMode: widget.autoValidateMode,
         keyboardType: widget.keyboardType,
         onChanged: widget.onChanged,
@@ -151,8 +129,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 BorderSide(color: widget.focusBorderColo ?? Colors.transparent),
           ),
           prefixIcon: widget.prefixIcon,
-          errorStyle: AppTextTheme.getDefaultTextTheme(context).bodyMedium,
-          suffixIcon: (prefixIcon == const Icon(Icons.password))
+          errorStyle: AppTextTheme.lightTheme(context).bodyMedium,
+          suffixIcon: (widget.prefixIcon == const Icon(Icons.password))
               ? IconButton(
                   onPressed: () => _onPressed(),
                   icon: Icon(
@@ -162,7 +140,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           fillColor: widget.backgroundColor,
           filled: true,
           hintText: widget.hintText,
-          hintStyle: AppTextTheme.getDefaultTextTheme(context).displayMedium,
+          hintStyle: theme(context).textTheme.titleMedium,
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius:

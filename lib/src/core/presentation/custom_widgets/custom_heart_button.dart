@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:like_button/like_button.dart';
-import 'package:plant_market/src/core/constants.dart';
+import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 

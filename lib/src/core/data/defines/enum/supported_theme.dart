@@ -1,0 +1,1 @@
+enum SupportedTheme { light, dark }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/toggle_language_button.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/toggle_theme_button.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -14,7 +16,13 @@ class _SettingPageState extends State<SettingPage>
     super.build(context);
     return const Scaffold(
       body: Center(
-        child: Text('Setting'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ToggleThemeButton(),
+            ToggleLanguageButton(),
+          ],
+        ),
       ),
     );
   }

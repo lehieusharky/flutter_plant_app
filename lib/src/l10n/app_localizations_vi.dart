@@ -27,4 +27,13 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get enterYourPhoneNumber => 'Nhập số điện thoại';
+
+  @override
+  String get general => 'Chung';
+
+  @override
+  String get community => 'Cộng đồng';
+
+  @override
+  String get map => 'Bản đồ ';
 }

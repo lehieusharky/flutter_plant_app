@@ -1,5 +1,5 @@
-import 'package:injectable/injectable.dart';
-import '../core/di/di.dart';
+// import 'package:injectable/injectable.dart';
+// import '../core/di/di.dart';
 
-part 'constants/app_constant.dart';
-part 'constants/image_constant.dart';
+// part 'defines/constants/app_constant.dart';
+// part 'defines/constants/image_constant.dart';

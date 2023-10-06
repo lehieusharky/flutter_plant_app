@@ -1,1 +1,5 @@
-class LoginException implements Exception {}
+class LoginException implements Exception {
+  final String message;
+
+  LoginException({required this.message});
+}
