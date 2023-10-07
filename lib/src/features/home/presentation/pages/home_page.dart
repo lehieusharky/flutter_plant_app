@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_title.dart';
@@ -24,22 +21,19 @@ class _HomePageState extends State<HomePage>
   final _searchController = TextEditingController();
 
   @override
-  void initState() {
-    super.initState();
-    log('theme: ${sharePreference.getTheme().name}');
-  }
-
-  @override
   Widget build(BuildContext context) {
-    sharePreference.isDarkMode()
-        ? log('dark modeeeee')
-        : log('lighttt moddeeee');
     super.build(context);
     return SafeArea(
       child: BlocProvider(
         create: (context) => HomePageBloc(),
         child: BlocConsumer<HomePageBloc, HomePageState>(
-          listener: (context, state) {},
+          listener: (context, state) {
+            if (state is HomePageDeterminePositionSuccess) {
+              context.read<HomePageBloc>().add(HomePageGetWeatherInfomation(
+                  lat: state.position!.latitude.toString(),
+                  lon: state.position!.longitude.toString()));
+            }
+          },
           builder: (context, state) {
             return Scaffold(
               body: SingleChildScrollView(

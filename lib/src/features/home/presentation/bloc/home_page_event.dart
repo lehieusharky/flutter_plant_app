@@ -27,3 +27,5 @@ final class HomePageGetWeatherInfomation extends HomePageEvent {
   @override
   List<Object> get props => [lat, lon];
 }
+
+final class HomePageDeterminePosition extends HomePageEvent {}

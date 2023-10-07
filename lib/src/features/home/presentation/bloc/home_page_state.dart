@@ -34,3 +34,8 @@ final class HomePageGetWeatherInfomationSuccess extends HomePageState {
   @override
   List<Object> get props => [weatherModel];
 }
+
+final class HomePageDeterminePositionSuccess extends HomePageState {
+  final Position? position;
+  const HomePageDeterminePositionSuccess({required this.position});
+}

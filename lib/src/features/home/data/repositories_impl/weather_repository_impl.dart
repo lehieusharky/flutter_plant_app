@@ -1,16 +1,16 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:plant_market/src/features/auth/login/domain/use_cases/failure.dart';
-import 'package:plant_market/src/features/home/data/datasources/get_weather_datasource.dart';
+import 'package:plant_market/src/features/home/data/datasources/weather_datasource.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
-import 'package:plant_market/src/features/home/domain/repositories/get_weather_repository.dart';
+import 'package:plant_market/src/features/home/domain/repositories/weather_repository.dart';
 
-@Injectable(as: GetWeatherRepository)
-class GetWeatherRepositoryImpl implements GetWeatherRepository {
+@Injectable(as: WeatherRepository)
+class WeatherRepositoryImpl implements WeatherRepository {
   // * lazy load datasource
-  final GetWeatherDataSource _dataSource;
+  final WeatherDataSource _dataSource;
 
-  GetWeatherRepositoryImpl(this._dataSource);
+  WeatherRepositoryImpl(this._dataSource);
 
   @override
   Future<Either<ServerFailure, WeatherModel>> getWeatherInfo({
