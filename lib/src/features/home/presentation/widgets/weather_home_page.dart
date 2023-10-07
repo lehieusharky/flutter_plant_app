@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_shimmer.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
@@ -31,7 +32,10 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
       },
       builder: (context, weatherModel) {
         if (weatherModel.name == null) {
-          return const CircularProgressIndicator();
+          return CustomShimmer(
+            width: context.width,
+            height: context.sizeHeight(175),
+          );
         } else {
           return Stack(
             alignment: Alignment.center,
