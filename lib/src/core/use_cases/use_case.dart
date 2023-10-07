@@ -8,3 +8,16 @@ class NoParams extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class GetWeatherParams extends NoParams {
+  final String lat;
+  final String lon;
+
+  GetWeatherParams({
+    required this.lon,
+    required this.lat,
+  });
+
+  @override
+  List<Object> get props => [lat, lon];
+}

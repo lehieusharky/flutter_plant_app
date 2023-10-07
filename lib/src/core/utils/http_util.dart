@@ -1,12 +1,11 @@
 import 'dart:developer';
 import 'dart:io';
 import 'package:dio/dio.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:path/path.dart';
 import 'package:plant_market/src/core/utils/http_interceptor.dart';
 import 'http_response.dart';
 
-class HttpHelper {
+class HttpUtil {
   static Dio getDio() {
     Dio dio = Dio();
     // * TODO add header
@@ -14,11 +13,21 @@ class HttpHelper {
     return dio;
   }
 
+  static bool checkResponseStatusCode({
+    required HttpResponse response,
+  }) {
+    if (response.statusCode == 200) {
+      return true;
+    }
+
+    return false;
+  }
+
   static Future<HttpResponse> get(
     String url, {
     Map<String, dynamic>? queryParameters,
   }) async {
-    final dio = HttpHelper.getDio();
+    final dio = HttpUtil.getDio();
     final Response response = await dio.get(
       url,
       queryParameters: queryParameters,
@@ -37,7 +46,7 @@ class HttpHelper {
     String url, {
     required FormData? data,
   }) async {
-    final dio = HttpHelper.getDio();
+    final dio = HttpUtil.getDio();
     final Response response = await dio.post(url, data: data);
     return HttpResponse(
       body: response.data,
@@ -50,7 +59,7 @@ class HttpHelper {
   }
 
   static Future<HttpResponse> put(String url, Object data) async {
-    final dio = HttpHelper.getDio();
+    final dio = HttpUtil.getDio();
     final Response response = await dio.put(url, data: data);
     return HttpResponse(
       body: response.data,
@@ -63,7 +72,7 @@ class HttpHelper {
   }
 
   static Future<HttpResponse> delete(String url, [Object? data]) async {
-    final dio = HttpHelper.getDio();
+    final dio = HttpUtil.getDio();
     final Response response = await dio.delete(url, data: data);
     return HttpResponse(
       body: response.data,
@@ -77,7 +86,7 @@ class HttpHelper {
 
   static Future<HttpResponse> uploadFile(String url,
       {required File file}) async {
-    final dio = HttpHelper.getDio();
+    final dio = HttpUtil.getDio();
     final uploadFile = await MultipartFile.fromFile(
       file.path,
       filename: basename(file.path),

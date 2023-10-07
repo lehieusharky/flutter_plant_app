@@ -43,42 +43,9 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          '${(weatherModel.main!.temp! - 273).toInt()}°C',
-                          style: theme(context).textTheme.displayMedium,
-                        ),
-                        _buildRowItem(
-                          iconPath: imageConstant.locationSVG,
-                          value: weatherModel.name!,
-                          context: context,
-                          paddingTop: 0,
-                        ),
-                      ],
-                    ),
+                    _buildTemperature(weatherModel),
                     context.sizedBox(width: 10),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildRowItem(
-                          iconPath: imageConstant.humiditySVG,
-                          value: '${weatherModel.main!.humidity} %',
-                          context: context,
-                        ),
-                        _buildRowItem(
-                          iconPath: imageConstant.windSVG,
-                          value: '${weatherModel.wind!.speed} m/s',
-                          context: context,
-                        ),
-                        _buildRowItem(
-                          iconPath: imageConstant.binocularsSVG,
-                          value: '${weatherModel.main!.pressure} hPa',
-                          context: context,
-                        ),
-                      ],
-                    )
+                    _buildWeatherPart(weatherModel),
                   ],
                 ),
               )
@@ -86,6 +53,47 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
           );
         }
       },
+    );
+  }
+
+  Widget _buildTemperature(WeatherModel weatherModel) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          '${(weatherModel.main!.temp! - 273).toInt()}°C',
+          style: theme(context).textTheme.displayMedium,
+        ),
+        _buildRowItem(
+          iconPath: imageConstant.locationSVG,
+          value: weatherModel.name!,
+          context: context,
+          paddingTop: 0,
+        ),
+      ],
+    );
+  }
+
+  Widget _buildWeatherPart(WeatherModel weatherModel) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        _buildRowItem(
+          iconPath: imageConstant.humiditySVG,
+          value: '${weatherModel.main!.humidity} %',
+          context: context,
+        ),
+        _buildRowItem(
+          iconPath: imageConstant.windSVG,
+          value: '${weatherModel.wind!.speed} m/s',
+          context: context,
+        ),
+        _buildRowItem(
+          iconPath: imageConstant.binocularsSVG,
+          value: '${weatherModel.main!.pressure} hPa',
+          context: context,
+        ),
+      ],
     );
   }
 
