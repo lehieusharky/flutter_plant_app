@@ -13,6 +13,14 @@ class LoginFailure extends Failure {
   List<Object> get props => [message];
 }
 
+class LocationFailure extends Failure {
+  final String message;
+
+  LocationFailure({required this.message});
+  @override
+  List<Object> get props => [message];
+}
+
 // General failures
 class ServerFailure extends Failure {
   final String message;
