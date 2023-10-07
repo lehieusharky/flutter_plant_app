@@ -44,6 +44,7 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   device_preview: ^1.1.0
   wave: ^0.2.2
+  shimmer: ^3.0.0
 
 dev_dependencies:
   injectable_generator:
