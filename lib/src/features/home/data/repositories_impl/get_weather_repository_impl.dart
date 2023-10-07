@@ -7,14 +7,18 @@ import 'package:plant_market/src/features/home/domain/repositories/get_weather_r
 
 @Injectable(as: GetWeatherRepository)
 class GetWeatherRepositoryImpl implements GetWeatherRepository {
+  // * lazy load datasource
+  final GetWeatherDataSource _dataSource;
+
+  GetWeatherRepositoryImpl(this._dataSource);
+
   @override
   Future<Either<ServerFailure, WeatherModel>> getWeatherInfo({
     required String lat,
     required String lon,
   }) async {
     try {
-      final result =
-          await getWeatherDataSource.getWeatherInfo(lat: lat, lon: lon);
+      final result = await _dataSource.getWeatherInfo(lat: lat, lon: lon);
       return Right(result);
     } catch (e) {
       return left(ServerFailure(message: e.toString()));
