@@ -1,8 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
-import 'package:plant_market/src/features/home/domain/repositories/get_weather_repository.dart';
+import 'package:plant_market/src/features/home/domain/use_cases/get_weather_use_case.dart';
 part 'home_page_event.dart';
 part 'home_page_state.dart';
 
@@ -11,8 +12,8 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     on<HomePageChangetTopic>(_changeTopic);
     on<HomePageGetWeatherInfomation>(_getWeatherInfomation);
     add(const HomePageGetWeatherInfomation(
-      lat: '10.805309377598595',
-      lon: '106.69564860073011',
+      lat: '10.783935307501704',
+      lon: '106.69827831543994',
     ));
   }
 
@@ -30,15 +31,12 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     Emitter<HomePageState> emit,
   ) async {
     try {
-      final weatherData = await getWeatherRepository.getWeatherInfo(
-        lat: event.lat,
+      final weatherModel = await getWeatherUseCase.call(GetWeatherParams(
         lon: event.lon,
-      );
-      weatherData.fold(
-        (failure) => emit(HomePageFailure(message: failure.message)),
-        (weatherModel) => emit(
-            HomePageGetWeatherInfomationSuccess(weatherModel: weatherModel)),
-      );
+        lat: event.lat,
+      ));
+
+      emit(HomePageGetWeatherInfomationSuccess(weatherModel: weatherModel));
     } catch (e) {
       emit(HomePageFailure(message: e.toString()));
     }

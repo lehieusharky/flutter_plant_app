@@ -13,9 +13,9 @@ class GetWeatherDataSourceImpl implements GetWeatherDataSource {
   }) async {
     try {
       final String weatherUrl = EndPoints.weather(lat: lat, lon: lon);
-      final response = await HttpHelper.get(weatherUrl);
+      final response = await HttpUtil.get(weatherUrl);
 
-      if (response.statusCode == 200) {
+      if (HttpUtil.checkResponseStatusCode(response: response)) {
         return WeatherModel.fromJson(response.body);
       }
       return WeatherModel();

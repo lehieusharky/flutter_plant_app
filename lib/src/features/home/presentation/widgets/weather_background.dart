@@ -12,7 +12,7 @@ class WeatherBackGround extends StatelessWidget {
   Widget build(BuildContext context) {
     return WaveWidget(
       backgroundImage:
-          DecorationImage(image: AssetImage(imageConstant.nightImage)),
+          DecorationImage(image: AssetImage(imageConstant.sunnyImage)),
       config: CustomConfig(
         colors: [
           colorTheme.get2DDA93,
