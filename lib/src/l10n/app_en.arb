@@ -9,5 +9,7 @@
   "enterYourPhoneNumber": "Enter your phone number",
   "general": "General",
   "community": "Community",
-  "map": "Map"
+  "map": "Map",
+  "otpVerification": "OTP verfication",
+  "pleaseVerifyWithin": "Please verify the code within"
 }

@@ -24,25 +24,27 @@ class _LoginPageState extends BaseWidgetState {
       child: Stack(
         alignment: Alignment.topRight,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              //* header
-              CustomHeaderAuthentication(
-                title: translate(context).hello,
-                subTitle: translate(context).letsLearnMoreAboutPlants,
-              ),
-              context.sizedBox(height: 25),
-              //* form
-              FormLogin(
-                keyForm: keyForm,
-                phoneNumberController: phoneNumberController,
-              ),
-              context.sizedBox(height: 20),
-              //* brand button
-              const RowBrandLoginButton(),
-              const ToggleThemeButton(),
-            ],
+          Padding(
+            padding: context.padding(top: 50),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //* header
+                CustomHeaderAuthentication(
+                  title: translate(context).hello,
+                  subTitle: translate(context).letsLearnMoreAboutPlants,
+                ),
+                context.sizedBox(height: 25),
+                //* form
+                FormLogin(
+                  keyForm: keyForm,
+                  phoneNumberController: phoneNumberController,
+                ),
+                context.sizedBox(height: 20),
+                //* brand button
+                const RowBrandLoginButton(),
+              ],
+            ),
           ),
         ],
       ),

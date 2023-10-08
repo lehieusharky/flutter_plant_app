@@ -37,10 +37,10 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
         listener: (context, state) {
           if (state is MyAppToggleThemeSuccess) {
             themeMode = state.themeMode;
+            sharePreference.setTheme(state.themeMode.name);
           }
           if (state is MyAppToggleLanguageSuccess) {
             _languageCode = state.languageCode;
-            sharePreference.setTheme(state.languageCode);
           }
         },
         builder: (context, state) {

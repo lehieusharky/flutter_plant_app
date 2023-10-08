@@ -89,7 +89,7 @@ class CustomTextFormField extends StatefulWidget {
     void Function(PointerDownEvent)? onTapOutSide,
   }) {
     return CustomTextFormField(
-      autoFocus: false,
+      autoFocus: true,
       prefixIcon: Icon(
         FontAwesomeIcons.phone,
         color: colorTheme.get2DDA93,

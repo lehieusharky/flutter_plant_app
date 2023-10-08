@@ -9,5 +9,7 @@
   "enterYourPhoneNumber": "Nhập số điện thoại",
   "general": "Chung", 
   "community": "Cộng đồng",
-  "map": "Bản đồ "
+  "map": "Bản đồ ",
+  "otpVerification": "Xác minh OTP",
+  "pleaseVerifyWithin": "Vui lòng xác minh mã trong vòng "
 }

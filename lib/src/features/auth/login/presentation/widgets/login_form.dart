@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_form_field.dart';
+import 'package:plant_market/src/router/router_path.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class FormLogin extends StatefulWidget {
@@ -41,14 +43,16 @@ class _FormLoginState extends State<FormLogin> {
             autoValidateMode: AutovalidateMode.always,
             onTap: () => _setIconFocus(),
             context: context,
-            onSubmit: (value) => _setIconUnFocus(),
+            onSubmit: (value) => {
+              _setIconUnFocus(),
+            },
             onTapOutSide: (value) => {
               _setIconUnFocus(),
-              FocusScope.of(context).unfocus(),
+              FocusManager.instance.primaryFocus!.unfocus()
             },
           ),
-          context.sizedBox(height: 20),
 
+          context.sizedBox(height: 20),
           // * send button
           CustomButton.send(
             context: context,
@@ -59,5 +63,9 @@ class _FormLoginState extends State<FormLogin> {
     );
   }
 
-  void _sendPhoneNumber() {}
+  void _sendPhoneNumber() {
+    if (widget.keyForm.currentState?.validate() ?? false) {
+      context.go(RouterPath.otpPage);
+    }
+  }
 }

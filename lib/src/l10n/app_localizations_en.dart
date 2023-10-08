@@ -36,4 +36,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get map => 'Map';
+
+  @override
+  String get otpVerification => 'OTP verfication';
+
+  @override
+  String get pleaseVerifyWithin => 'Please verify the code within';
 }
