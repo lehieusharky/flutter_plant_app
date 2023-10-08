@@ -53,6 +53,7 @@ class _OtpFormState extends State<OtpForm> {
           Directionality(
             textDirection: TextDirection.ltr,
             child: Pinput(
+              autofocus: true,
               length: 6,
               controller: pinController,
               focusNode: focusNode,

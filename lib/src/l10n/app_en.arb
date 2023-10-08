@@ -10,5 +10,6 @@
   "general": "General",
   "community": "Community",
   "map": "Map",
-  "otpVerification": "OTP verfication"
+  "otpVerification": "OTP verfication",
+  "pleaseVerifyWithin": "Please verify the code within"
 }

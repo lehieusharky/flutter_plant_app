@@ -39,4 +39,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get otpVerification => 'Xác minh OTP';
+
+  @override
+  String get pleaseVerifyWithin => 'Vui lòng xác minh mã trong vòng ';
 }

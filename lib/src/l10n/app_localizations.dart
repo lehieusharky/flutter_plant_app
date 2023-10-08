@@ -164,6 +164,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'OTP verfication'**
   String get otpVerification;
+
+  /// No description provided for @pleaseVerifyWithin.
+  ///
+  /// In en, this message translates to:
+  /// **'Please verify the code within'**
+  String get pleaseVerifyWithin;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

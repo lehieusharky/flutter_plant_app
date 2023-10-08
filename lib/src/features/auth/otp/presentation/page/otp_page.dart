@@ -1,9 +1,11 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_header_auth.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/toggle_language_button.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/features/auth/otp/presentation/widgets/otp_form.dart';
 
@@ -46,11 +48,12 @@ class _OTPPageState extends BaseWidgetState {
         children: [
           const CustomBackButton(),
           CustomHeaderAuthentication(
-            title: 'translate(context).',
-            subTitle: 'In ${_countDown}s otp code will be sent to you phone.',
+            title: translate(context).otpVerification,
+            subTitle:
+                '${translate(context).pleaseVerifyWithin} ${_countDown}s.',
           ),
           context.sizedBox(height: 25),
-          const Center(child: OtpForm())
+          const Center(child: OtpForm()),
         ],
       ),
     );

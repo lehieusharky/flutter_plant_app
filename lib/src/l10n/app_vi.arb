@@ -10,5 +10,6 @@
   "general": "Chung", 
   "community": "Cộng đồng",
   "map": "Bản đồ ",
-  "otpVerification": "Xác minh OTP"
+  "otpVerification": "Xác minh OTP",
+  "pleaseVerifyWithin": "Vui lòng xác minh mã trong vòng "
 }

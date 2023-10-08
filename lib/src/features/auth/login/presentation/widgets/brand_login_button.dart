@@ -31,7 +31,7 @@ class BrandLoginButton extends StatelessWidget {
           boxShadowColor: colorTheme.getD2D2D2
               .withOpacity(sharePreference.isDarkMode() ? 0 : 0.4),
           backgroundColor: sharePreference.isDarkMode()
-              ? colorTheme.get0A4D68
+              ? colorTheme.get313552
               : colorTheme.getFFFFFF,
           borderRadius: 5,
           child: Row(
