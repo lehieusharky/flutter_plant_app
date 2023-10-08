@@ -36,4 +36,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get map => 'Bản đồ ';
+
+  @override
+  String get otpVerification => 'Xác minh OTP';
 }
