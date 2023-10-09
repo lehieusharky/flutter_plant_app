@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pinput/pinput.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
+import 'package:plant_market/src/core/use_cases/use_case.dart';
+import 'package:plant_market/src/features/auth/login/presentation/bloc/login_bloc.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class OtpForm extends StatefulWidget {
-  const OtpForm({super.key});
+  final String verificationId;
+  const OtpForm({super.key, required this.verificationId});
 
   @override
   State<OtpForm> createState() => _OtpFormState();
 }
 
 class _OtpFormState extends State<OtpForm> {
-  final pinController = TextEditingController();
+  final otpController = TextEditingController();
   final focusNode = FocusNode();
   final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
-    pinController.dispose();
+    otpController.dispose();
     focusNode.dispose();
     super.dispose();
   }
@@ -55,10 +59,9 @@ class _OtpFormState extends State<OtpForm> {
             child: Pinput(
               autofocus: true,
               length: 6,
-              controller: pinController,
+              controller: otpController,
               focusNode: focusNode,
-              androidSmsAutofillMethod:
-                  AndroidSmsAutofillMethod.smsUserConsentApi,
+              androidSmsAutofillMethod: AndroidSmsAutofillMethod.none,
               listenForMultipleSmsOnAndroid: true,
               defaultPinTheme: defaultPinTheme,
               separatorBuilder: (index) => const SizedBox(width: 8),
@@ -108,10 +111,19 @@ class _OtpFormState extends State<OtpForm> {
             onPressed: () => {
               focusNode.unfocus(),
               formKey.currentState!.validate(),
+              _verifyOtp(context),
             },
           ),
         ],
       ),
     );
+  }
+
+  void _verifyOtp(BuildContext context) {
+    context.read<LoginBloc>().add(LoginVerityOtp(
+            verityOtpParams: VerityOtpParams(
+          verificationId: widget.verificationId,
+          smsCode: otpController.text.trim(),
+        )));
   }
 }
