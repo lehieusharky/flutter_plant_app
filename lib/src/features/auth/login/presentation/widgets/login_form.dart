@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_form_field.dart';
+import 'package:plant_market/src/core/use_cases/use_case.dart';
+import 'package:plant_market/src/features/auth/login/presentation/bloc/login_bloc.dart';
 import 'package:plant_market/src/router/router_path.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
@@ -43,6 +47,9 @@ class _FormLoginState extends State<FormLogin> {
             autoValidateMode: AutovalidateMode.always,
             onTap: () => _setIconFocus(),
             context: context,
+            validator: (value) {
+              return null;
+            },
             onSubmit: (value) => {
               _setIconUnFocus(),
             },
@@ -56,16 +63,26 @@ class _FormLoginState extends State<FormLogin> {
           // * send button
           CustomButton.send(
             context: context,
-            onPressed: () => _sendPhoneNumber(),
+            onPressed: () => _sendPhoneNumber(context),
           ),
         ],
       ),
     );
   }
 
-  void _sendPhoneNumber() {
+  void _sendPhoneNumber(BuildContext context) {
     if (widget.keyForm.currentState?.validate() ?? false) {
-      context.go(RouterPath.otpPage);
+      context.read<LoginBloc>().add(LoginSentOtp( 
+              sentOtpParams: SentOtpParams(
+            phoneNumber: widget.phoneNumberController.text.trim(),
+            pushToOtp: (verificationId) =>
+                _nativateToOtpPage(context, verificationId),
+          )));
     }
+  }
+
+  void _nativateToOtpPage(BuildContext context, String verificationId) {
+    return context.go(RouterPath.otpPage,
+        extra: {AppConstant.verificationID: verificationId});
   }
 }

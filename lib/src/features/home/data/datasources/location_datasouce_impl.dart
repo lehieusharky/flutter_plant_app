@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import 'package:plant_market/src/features/auth/login/domain/use_cases/failure.dart';
+import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/features/home/data/datasources/location_datasource.dart';
 import 'package:geolocator/geolocator.dart';
 

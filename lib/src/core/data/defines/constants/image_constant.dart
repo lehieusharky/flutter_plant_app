@@ -9,6 +9,7 @@ abstract class ImageConstant {
   String get tree2;
   String get tree3;
   String get tree4;
+  String get loadingLottie;
   String get heartSvg;
   String get leavesSVG;
   String get appleSVG;
@@ -94,4 +95,7 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get binocularsSVG => 'assets/svg/binoculars.svg';
+
+  @override
+  String get loadingLottie => 'assets/lotties/loading.json';
 }

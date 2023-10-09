@@ -1,4 +1,5 @@
 import 'package:go_router/go_router.dart';
+import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/features/auth/login/presentation/pages/login_page.dart';
 import 'package:plant_market/src/features/auth/otp/presentation/page/otp_page.dart';
 import 'package:plant_market/src/features/dash_board/page/dash_board_page.dart';
@@ -10,7 +11,7 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const DashBoardPage(),
+        builder: (context, state) => const LoginPage(),
         routes: [
           GoRoute(
             path: 'dash_board',
@@ -28,7 +29,14 @@ class AppRouter {
             routes: [
               GoRoute(
                 path: 'otp_page',
-                builder: (context, state) => const OTPPage(),
+                builder: (context, state) {
+                  final params = state.extra! as Map<String, String>;
+                  final verificationid =
+                      params[AppConstant.verificationID] ?? 'empty';
+                  return OTPPage(
+                    verificationId: verificationid,
+                  );
+                },
               ),
             ],
           ),

@@ -18,7 +18,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  # http 
+  # http
   dio: ^5.3.3
   path: ^1.8.3
   dartz: ^0.10.1
@@ -63,7 +63,9 @@ dev_dependencies:
   flutter_lints: ^2.0.0
 
 flutter:
-  generate: true
+  # true => generate multiple language => cannot run bunner command
+  # false => can run bunner command =>  cannot generate
+  generate: false
   uses-material-design: true
 
   assets:

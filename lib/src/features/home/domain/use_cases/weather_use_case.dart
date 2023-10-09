@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
-import 'package:plant_market/src/features/auth/login/domain/use_cases/failure.dart';
+import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
 import 'package:plant_market/src/features/home/domain/repositories/weather_repository.dart';
 

@@ -31,3 +31,11 @@ class ServerFailure extends Failure {
 }
 
 class CacheFailure extends Failure {}
+
+class PhoneFailure extends Failure {
+  final String message;
+
+  PhoneFailure({required this.message});
+  @override
+  List<Object> get props => [message];
+}
