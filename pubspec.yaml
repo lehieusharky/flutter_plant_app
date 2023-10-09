@@ -46,6 +46,7 @@ dependencies:
   like_button: ^2.0.5
   font_awesome_flutter: ^10.5.0
   salomon_bottom_bar: ^3.3.2
+  timelines: ^0.1.0
   device_preview: ^1.1.0
   wave: ^0.2.2
   lottie: ^2.6.0
