@@ -12,7 +12,7 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const AuthGate(),
+        builder: (context, state) => const DashBoardPage(),
         routes: [
           GoRoute(
             path: 'dash_board',

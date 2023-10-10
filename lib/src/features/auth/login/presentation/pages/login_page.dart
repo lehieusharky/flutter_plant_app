@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/toggle_theme_button.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_header_auth.dart';
 import 'package:plant_market/src/features/auth/login/presentation/bloc/login_bloc.dart';
@@ -63,6 +64,7 @@ class _LoginPageState extends BaseWidgetState {
                       context.sizedBox(height: 20),
                       //* brand button
                       const RowBrandLoginButton(),
+                      ToggleThemeButton()
                     ],
                   ),
                 ),

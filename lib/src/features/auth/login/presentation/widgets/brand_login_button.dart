@@ -7,6 +7,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dar
 import 'package:plant_market/src/features/my_app/presentation/bloc/my_app_bloc.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/text_theme.dart';
+import 'package:plant_market/src/theme/theme_manager.dart';
 
 class BrandLoginButton extends StatelessWidget {
   final void Function() onPressed;
@@ -30,9 +31,7 @@ class BrandLoginButton extends StatelessWidget {
           onPress: onPressed,
           boxShadowColor: colorTheme.getD2D2D2
               .withOpacity(sharePreference.isDarkMode() ? 0 : 0.4),
-          backgroundColor: sharePreference.isDarkMode()
-              ? colorTheme.get313552
-              : colorTheme.getFFFFFF,
+          backgroundColor: ThemeManager.backgroundButton(),
           borderRadius: 5,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,

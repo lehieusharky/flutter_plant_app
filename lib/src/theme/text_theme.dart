@@ -35,12 +35,12 @@ class AppTextTheme {
         titleMedium: GoogleFonts.openSans(
           fontSize: context.sizeWidth(15),
           fontWeight: FontWeight.w400,
-          color: colorTheme.get36455A.withOpacity(0.8),
+          color: colorTheme.get36455A,
         ),
         titleSmall: GoogleFonts.openSans(
           fontSize: context.sizeWidth(11),
-          fontWeight: FontWeight.w600,
-          color: colorTheme.getFFFFFF,
+          fontWeight: FontWeight.w400,
+          color: colorTheme.get36455A,
         ),
 
         // * label
@@ -82,12 +82,12 @@ class AppTextTheme {
         titleMedium: GoogleFonts.openSans(
           fontSize: context.sizeWidth(15),
           fontWeight: FontWeight.w400,
-          color: colorTheme.getFFFFFF.withOpacity(0.8),
+          color: colorTheme.getFFFFFF,
         ),
         titleSmall: GoogleFonts.openSans(
           fontSize: context.sizeWidth(11),
-          fontWeight: FontWeight.w600,
-          color: colorTheme.get36455A.withOpacity(0.8),
+          fontWeight: FontWeight.w400,
+          color: colorTheme.getFFFFFF,
         ),
 
         // * label

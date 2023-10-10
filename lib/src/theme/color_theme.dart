@@ -18,8 +18,8 @@ abstract class ColorTheme {
   Color get getFFFFFF;
   Color get get2cd992;
   Color get get0A4D68;
-  Color get get313552;
   Color get get0B1121;
+  Color get get252A3D;
 }
 
 @Injectable(as: ColorTheme)
@@ -64,8 +64,8 @@ class ColorThemeImpl implements ColorTheme {
   Color get get0A4D68 => const Color(0xff0A4D68);
 
   @override
-  Color get get313552 => const Color(0xff313552);
+  Color get get0B1121 => const Color(0xff0B1121);
 
   @override
-  Color get get0B1121 => const Color(0xff0B1121);
+  Color get get252A3D => const Color(0xff252A3D);
 }
