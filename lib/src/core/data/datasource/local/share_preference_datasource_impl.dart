@@ -35,4 +35,23 @@ class SharePreferenceDataSouceImpl implements SharePreferenceDataSource {
       return false;
     }
   }
+
+  @override
+  Future<bool?> setLanguage(String? data) {
+    if (data == null) {
+      return _prefs.remove(PreferencesKey.language);
+    }
+    return _prefs.setString(PreferencesKey.language, data);
+  }
+
+  @override
+  bool firstTimeOpenApp() {
+    final isFirstTimeOpenApp = _prefs.getBool(PreferencesKey.firstTimeOpenApp);
+    if (isFirstTimeOpenApp == null) {
+      return true;
+    } else {
+      _prefs.setBool(PreferencesKey.firstTimeOpenApp, true);
+      return false;
+    }
+  }
 }

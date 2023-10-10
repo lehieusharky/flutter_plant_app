@@ -63,4 +63,13 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get dark => 'Tối';
+
+  @override
+  String get system => 'Hệ thống';
+
+  @override
+  String get defaultVolume => 'Âm lượng mặc định';
+
+  @override
+  String get autoPlayMusic => 'Tự động chơi nhạc';
 }

@@ -10,4 +10,8 @@ abstract class SharePreferenceDataSource {
   SupportedTheme getTheme();
 
   Future<bool?> setTheme(String? data);
+
+  Future<bool?> setLanguage(String? data);
+
+  bool firstTimeOpenApp();
 }

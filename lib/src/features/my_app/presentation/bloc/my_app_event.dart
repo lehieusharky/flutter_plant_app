@@ -24,3 +24,7 @@ final class MyAppToggleLanguage extends MyAppEvent {
   @override
   List<Object> get props => [languageCode];
 }
+
+final class MyAppGetSystemLanguage extends MyAppEvent {}
+
+final class MyAppGetSystemTheme extends MyAppEvent {}

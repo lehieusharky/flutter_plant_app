@@ -63,4 +63,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get dark => 'Dark';
+
+  @override
+  String get system => 'System';
+
+  @override
+  String get defaultVolume => 'Default volume';
+
+  @override
+  String get autoPlayMusic => 'Auto play music';
 }

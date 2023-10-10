@@ -32,3 +32,20 @@ final class MyAppFailure extends MyAppState {
   @override
   List<Object> get props => [message];
 }
+
+final class MyAppGetSystemLanguageSuccess extends MyAppState {
+  final String languageCode;
+
+  const MyAppGetSystemLanguageSuccess({required this.languageCode});
+  @override
+  List<Object> get props => [languageCode];
+}
+
+final class MyAppGetSystemThemeSuccess extends MyAppState {
+  final ThemeMode themeMode;
+
+  const MyAppGetSystemThemeSuccess({required this.themeMode});
+  
+  @override
+  List<Object> get props => [themeMode];
+}

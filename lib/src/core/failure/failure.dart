@@ -39,3 +39,11 @@ class PhoneFailure extends Failure {
   @override
   List<Object> get props => [message];
 }
+
+class SystemFailure extends Failure {
+  final String message;
+
+  SystemFailure({required this.message});
+  @override
+  List<Object> get props => [message];
+}

@@ -212,6 +212,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Dark'**
   String get dark;
+
+  /// No description provided for @system.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get system;
+
+  /// No description provided for @defaultVolume.
+  ///
+  /// In en, this message translates to:
+  /// **'Default volume'**
+  String get defaultVolume;
+
+  /// No description provided for @autoPlayMusic.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto play music'**
+  String get autoPlayMusic;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

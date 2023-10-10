@@ -18,5 +18,8 @@
   "theme":"Theme",
   "language": "Language",
   "light": "Light",
-  "dark": "Dark"
+  "dark": "Dark",
+  "system": "System",
+  "defaultVolume": "Default volume",
+  "autoPlayMusic": "Auto play music"
 }
