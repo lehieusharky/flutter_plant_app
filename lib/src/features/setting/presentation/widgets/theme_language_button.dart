@@ -71,6 +71,6 @@ class _ThemeLanguageButtonState extends State<ThemeLanguageButton> {
   }
 
   void _toggleTheme({required ThemeMode themeMode}) {
-    context.read<MyAppBloc>().add(MyAppToggleTheme(themeMode: themeMode));
+    context.read<MyAppBloc>().add(MyAppToogleTheme(themeMode: themeMode));
   }
 }

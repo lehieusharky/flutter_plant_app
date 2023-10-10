@@ -19,7 +19,7 @@ class _ToggleThemeButtonState extends State<ToggleThemeButton> {
           onPressed: () {
             context
                 .read<MyAppBloc>()
-                .add(const MyAppToggleTheme(themeMode: ThemeMode.light));
+                .add(const MyAppToogleTheme(themeMode: ThemeMode.light));
           },
           child: const Text('LIGHT'),
         ),
@@ -27,7 +27,7 @@ class _ToggleThemeButtonState extends State<ToggleThemeButton> {
           onPressed: () {
             context
                 .read<MyAppBloc>()
-                .add(const MyAppToggleTheme(themeMode: ThemeMode.dark));
+                .add(const MyAppToogleTheme(themeMode: ThemeMode.dark));
           },
           child: const Text('DARK'),
         ),
