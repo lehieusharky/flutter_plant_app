@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/text_theme.dart';
 
 ThemeData lightTheme(BuildContext context) => ThemeData(
@@ -7,6 +8,6 @@ ThemeData lightTheme(BuildContext context) => ThemeData(
     );
 
 ThemeData darkTheme(BuildContext context) => ThemeData(
-      scaffoldBackgroundColor: Colors.black,
+      scaffoldBackgroundColor: colorTheme.get0B1121,
       textTheme: AppTextTheme.darkTheme(context),
     );

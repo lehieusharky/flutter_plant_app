@@ -5,6 +5,7 @@ ImageConstant get imageConstant => injector.get<ImageConstant>();
 
 abstract class ImageConstant {
   String get testImage;
+  String get vegetablePNG;
   String get tree1;
   String get tree2;
   String get tree3;
@@ -98,4 +99,7 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get loadingLottie => 'assets/lotties/loading.json';
+
+  @override
+  String get vegetablePNG => 'assets/images/vegetable.png';
 }

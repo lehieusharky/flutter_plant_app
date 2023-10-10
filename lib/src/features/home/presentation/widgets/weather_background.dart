@@ -11,8 +11,10 @@ class WeatherBackGround extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WaveWidget(
-      backgroundImage:
-          DecorationImage(image: AssetImage(imageConstant.sunnyImage)),
+      backgroundImage: DecorationImage(
+          image: AssetImage(_isNightOrSunny()
+              ? imageConstant.nightImage
+              : imageConstant.sunnyImage)),
       config: CustomConfig(
         colors: [
           colorTheme.get2DDA93,
@@ -39,5 +41,19 @@ class WeatherBackGround extends StatelessWidget {
       size: Size(context.width, context.sizeHeight(175)),
       waveAmplitude: 0,
     );
+  }
+
+  bool _isNightOrSunny() {
+    DateTime now = DateTime.now();
+    int currentHour = now.hour;
+    int sunsetHour = 18; // 6:00 PM
+    int sunriseHour = 6; // 6:00 AM
+    if (currentHour >= sunsetHour || currentHour < sunriseHour) {
+      // It's night
+      return true;
+    } else {
+      // It's sunny
+      return false;
+    }
   }
 }

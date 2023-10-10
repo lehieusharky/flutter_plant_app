@@ -5,6 +5,7 @@ import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_title.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/header_home_page.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/popular_plants_button.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/posts_home_page.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/shake_animation.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/row_topic_button.dart';
@@ -48,6 +49,9 @@ class _HomePageState extends State<HomePage>
                     CustomTitle(title: translate(context).today),
                     context.sizedBox(height: 10),
                     const PostsHomePage(),
+                    context.sizedBox(height: 20),
+                    CustomTitle(title: translate(context).popularPlants),
+                    const PolularPlantsButton(),
                     context.sizedBox(height: 50),
                   ],
                 ),

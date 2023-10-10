@@ -42,4 +42,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseVerifyWithin => 'Please verify the code within';
+
+  @override
+  String get popularPlants => 'Popular Plants';
 }
