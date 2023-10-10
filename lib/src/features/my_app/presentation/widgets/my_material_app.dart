@@ -35,12 +35,19 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
       create: (context) => MyAppBloc(),
       child: BlocConsumer<MyAppBloc, MyAppState>(
         listener: (context, state) {
+          if (state is MyAppGetSystemInfomationSuccess) {
+            themeMode = state.systemModel.themeMode;
+            _languageCode = state.systemModel.languageCode;
+            sharePreference.setTheme(state.systemModel.themeMode.name);
+            sharePreference.setLanguage(state.systemModel.languageCode);
+          }
           if (state is MyAppToggleThemeSuccess) {
             themeMode = state.themeMode;
             sharePreference.setTheme(state.themeMode.name);
           }
           if (state is MyAppToggleLanguageSuccess) {
             _languageCode = state.languageCode;
+            sharePreference.setLanguage(state.languageCode);
           }
         },
         builder: (context, state) {

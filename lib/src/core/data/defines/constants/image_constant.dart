@@ -4,13 +4,11 @@ import 'package:plant_market/src/core/di/di.dart';
 ImageConstant get imageConstant => injector.get<ImageConstant>();
 
 abstract class ImageConstant {
-  String get testImage;
-  String get vegetablePNG;
-  String get tree1;
-  String get tree2;
-  String get tree3;
-  String get tree4;
-  String get loadingLottie;
+  String get tree1Json;
+  String get tree2Json;
+  String get tree3Json;
+  String get tree4Json;
+  String get loadingJson;
   String get heartSvg;
   String get leavesSVG;
   String get appleSVG;
@@ -33,19 +31,16 @@ abstract class ImageConstant {
 @Injectable(as: ImageConstant)
 class ImageConstantImpl implements ImageConstant {
   @override
-  String get testImage => 'assets/images/test_image.png';
+  String get tree1Json => 'assets/lotties/tree_1.json';
 
   @override
-  String get tree1 => 'assets/lotties/tree_1.json';
+  String get tree2Json => 'assets/lotties/tree_2.json';
 
   @override
-  String get tree2 => 'assets/lotties/tree_2.json';
+  String get tree3Json => 'assets/lotties/tree_3.json';
 
   @override
-  String get tree3 => 'assets/lotties/tree_3.json';
-
-  @override
-  String get tree4 => 'assets/lotties/tree_4.json';
+  String get tree4Json => 'assets/lotties/tree_4.json';
 
   @override
   String get heartSvg => 'assets/svg/heart.svg';
@@ -64,7 +59,7 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get mapSVG => 'assets/svg/map.svg';
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+
   @override
   String get englandFlagSVG => 'assets/svg/england_flag.svg';
 
@@ -98,8 +93,5 @@ class ImageConstantImpl implements ImageConstant {
   String get binocularsSVG => 'assets/svg/binoculars.svg';
 
   @override
-  String get loadingLottie => 'assets/lotties/loading.json';
-
-  @override
-  String get vegetablePNG => 'assets/images/vegetable.png';
+  String get loadingJson => 'assets/lotties/loading.json';
 }

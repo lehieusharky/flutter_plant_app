@@ -7,10 +7,10 @@ sealed class MyAppEvent extends Equatable {
   List<Object> get props => [];
 }
 
-final class MyAppToggleTheme extends MyAppEvent {
+final class MyAppToogleTheme extends MyAppEvent {
   final ThemeMode themeMode;
 
-  const MyAppToggleTheme({required this.themeMode});
+  const MyAppToogleTheme({required this.themeMode});
 
   @override
   List<Object> get props => [themeMode];
@@ -25,6 +25,15 @@ final class MyAppToggleLanguage extends MyAppEvent {
   List<Object> get props => [languageCode];
 }
 
-final class MyAppGetSystemLanguage extends MyAppEvent {}
+final class MyAppGetSystemInfomation extends MyAppEvent {}
 
-final class MyAppGetSystemTheme extends MyAppEvent {}
+
+// - time:
+//   + fist time: 
+//     + event: get ThemeLanguage
+//     + state: getThemeLanguage
+
+//   + during :
+//     + event: toggle theme, language
+//     + state: getTheme, getLanguage
+

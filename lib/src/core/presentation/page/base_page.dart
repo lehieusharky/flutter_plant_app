@@ -26,7 +26,7 @@ class BaseWidgetState extends State<BaseWidget> {
   Widget loadingWidget() {
     return Center(
       child: CustomLottie(
-        path: imageConstant.loadingLottie,
+        path: imageConstant.loadingJson,
         width: context.width,
         height: context.height,
       ),

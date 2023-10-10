@@ -1,5 +1,6 @@
 import 'package:injectable/injectable.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
+import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/data/defines/constants/share_preference_key.dart';
 import 'package:plant_market/src/core/data/defines/enum/supported_theme.dart';
 import 'package:plant_market/src/core/di/di.dart';
@@ -45,13 +46,27 @@ class SharePreferenceDataSouceImpl implements SharePreferenceDataSource {
   }
 
   @override
-  bool firstTimeOpenApp() {
+  bool isFirstTimeOpenApp() {
     final isFirstTimeOpenApp = _prefs.getBool(PreferencesKey.firstTimeOpenApp);
     if (isFirstTimeOpenApp == null) {
       return true;
     } else {
-      _prefs.setBool(PreferencesKey.firstTimeOpenApp, true);
       return false;
     }
+  }
+
+  @override
+  String getLanguage() {
+    final languageCode = _prefs.getString(PreferencesKey.language);
+    if (languageCode == null || languageCode == AppConstant.vi) {
+      return AppConstant.vi;
+    } else {
+      return AppConstant.en;
+    }
+  }
+
+  @override
+  void setIsFirstTimeOpenApp() {
+    _prefs.setBool(PreferencesKey.firstTimeOpenApp, true);
   }
 }

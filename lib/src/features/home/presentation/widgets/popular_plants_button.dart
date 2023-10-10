@@ -24,32 +24,32 @@ class PolularPlantsButton extends StatelessWidget {
             colorTheme.get2DDA93.withOpacity(0.5),
             colorTheme.get2DDA93.withOpacity(0.4),
             colorTheme.get2DDA93.withOpacity(0.2),
-          ], image: imageConstant.vegetablePNG, title: 'Vegetables'),
+          ], image: imageConstant.nightImage, title: 'Vegetables'),
           _buildPopularPlantsItem(colors: [
             colorTheme.get2DDA93.withOpacity(0.7),
             colorTheme.get2DDA93.withOpacity(0.4),
             colorTheme.get2DDA93,
-          ], image: imageConstant.vegetablePNG, title: 'Flowers'),
+          ], image: imageConstant.nightImage, title: 'Flowers'),
           _buildPopularPlantsItem(colors: [
             colorTheme.get2DDA93.withOpacity(0.7),
             colorTheme.get2DDA93.withOpacity(0.4),
             colorTheme.get2DDA93,
-          ], image: imageConstant.vegetablePNG, title: 'Fruits'),
+          ], image: imageConstant.nightImage, title: 'Fruits'),
           _buildPopularPlantsItem(colors: [
             colorTheme.get2DDA93.withOpacity(0.7),
             colorTheme.get2DDA93.withOpacity(0.4),
             colorTheme.get2DDA93,
-          ], image: imageConstant.vegetablePNG, title: 'Weeds'),
+          ], image: imageConstant.nightImage, title: 'Weeds'),
           _buildPopularPlantsItem(colors: [
             colorTheme.get2DDA93.withOpacity(0.7),
             colorTheme.get2DDA93.withOpacity(0.4),
             colorTheme.get2DDA93,
-          ], image: imageConstant.vegetablePNG, title: 'Trees'),
+          ], image: imageConstant.nightImage, title: 'Trees'),
           _buildPopularPlantsItem(colors: [
             colorTheme.get2DDA93.withOpacity(0.7),
             colorTheme.get2DDA93.withOpacity(0.4),
             colorTheme.get2DDA93,
-          ], image: imageConstant.vegetablePNG, title: 'Toxic Plants'),
+          ], image: imageConstant.nightImage, title: 'Toxic Plants'),
         ],
       ),
     );

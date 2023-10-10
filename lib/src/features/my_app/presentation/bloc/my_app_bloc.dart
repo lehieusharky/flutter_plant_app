@@ -1,7 +1,9 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
+import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
+import 'package:plant_market/src/core/data/defines/enum/supported_theme.dart';
+import 'package:plant_market/src/features/my_app/data/models/system_model.dart';
 import 'package:plant_market/src/features/my_app/domain/use_cases/system_use_case.dart';
 
 part 'my_app_event.dart';
@@ -9,32 +11,36 @@ part 'my_app_state.dart';
 
 class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
   MyAppBloc() : super(MyAppInitial()) {
-    on<MyAppToggleTheme>(_toggleTheme);
+    on<MyAppToogleTheme>(_toggleTheme);
     on<MyAppToggleLanguage>(_toggleLanguage);
-    on<MyAppGetSystemLanguage>(_getSystemLanguage);
-    on<MyAppGetSystemTheme>(_getSystemThemeMode);
-    add(const MyAppToggleLanguage(languageCode: AppConstant.en));
+    on<MyAppGetSystemInfomation>(_getSystemInfomation);
+    add(MyAppGetSystemInfomation());
   }
 
-  Future<void> _getSystemLanguage(
-    MyAppGetSystemLanguage event,
+  Future<void> _getSystemInfomation(
+    MyAppGetSystemInfomation event,
     Emitter<MyAppState> emit,
   ) async {
     try {
-      final languageCode = systemUseCase.getSystemLanguage();
-      emit(MyAppGetSystemLanguageSuccess(languageCode: languageCode));
-    } catch (e) {
-      emit(MyAppFailure(message: e.toString()));
-    }
-  }
+      String languageCode = '';
+      ThemeMode themeMode = ThemeMode.light;
+      final isFirstTime = sharePreference.isFirstTimeOpenApp();
 
-  Future<void> _getSystemThemeMode(
-    MyAppGetSystemTheme event,
-    Emitter<MyAppState> emit,
-  ) async {
-    try {
-      final themeMode = systemUseCase.getSystemThemeMode();
-      emit(MyAppGetSystemThemeSuccess(themeMode: themeMode));
+      if (isFirstTime) {
+        languageCode = systemUseCase.getSystemLanguage();
+        themeMode = systemUseCase.getSystemThemeMode();
+        sharePreference.setIsFirstTimeOpenApp();
+      } else {
+        languageCode = sharePreference.getLanguage();
+        themeMode = sharePreference.getTheme() == SupportedTheme.light
+            ? ThemeMode.light
+            : ThemeMode.dark;
+      }
+
+      final systemModel =
+          SystemModel(languageCode: languageCode, themeMode: themeMode);
+
+      emit(MyAppGetSystemInfomationSuccess(systemModel: systemModel));
     } catch (e) {
       emit(MyAppFailure(message: e.toString()));
     }
@@ -52,7 +58,7 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
   }
 
   Future<void> _toggleTheme(
-    MyAppToggleTheme event,
+    MyAppToogleTheme event,
     Emitter<MyAppState> emit,
   ) async {
     try {

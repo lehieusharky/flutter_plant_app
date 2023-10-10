@@ -8,10 +8,12 @@ abstract class SharePreferenceDataSource {
   bool isDarkMode();
 
   SupportedTheme getTheme();
+  String getLanguage();
 
   Future<bool?> setTheme(String? data);
 
   Future<bool?> setLanguage(String? data);
 
-  bool firstTimeOpenApp();
+  bool isFirstTimeOpenApp();
+  void setIsFirstTimeOpenApp();
 }
