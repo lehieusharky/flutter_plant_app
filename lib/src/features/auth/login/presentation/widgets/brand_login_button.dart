@@ -27,7 +27,7 @@ class BrandLoginButton extends StatelessWidget {
         return CustomButton(
           foregroundColor: colorTheme.get2DDA93.withOpacity(0.5),
           width: context.width,
-          height: context.sizeHeight(50),
+          height: context.sizeHeight(55),
           onPress: onPressed,
           boxShadowColor: colorTheme.getD2D2D2
               .withOpacity(sharePreference.isDarkMode() ? 0 : 0.4),

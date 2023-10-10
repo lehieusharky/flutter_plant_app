@@ -64,7 +64,7 @@ class _LoginPageState extends BaseWidgetState {
                       context.sizedBox(height: 20),
                       //* brand button
                       const RowBrandLoginButton(),
-                      ToggleThemeButton()
+                      const ToggleThemeButton()
                     ],
                   ),
                 ),

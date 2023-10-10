@@ -45,4 +45,22 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get popularPlants => 'Cây trồng phổ biến';
+
+  @override
+  String get english => 'Tiếng Anh';
+
+  @override
+  String get vietnamese => 'Tiếng Việt';
+
+  @override
+  String get theme => 'Giao diện';
+
+  @override
+  String get language => 'Ngôn ngữ';
+
+  @override
+  String get light => 'Sáng';
+
+  @override
+  String get dark => 'Tối';
 }

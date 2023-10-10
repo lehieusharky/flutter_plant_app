@@ -55,7 +55,7 @@ class _TopicButtonState extends State<TopicButton> {
             lightFocus: colorTheme.get2DDA93,
             darkFocus: colorTheme.get2DDA93,
             lightUnFocus: colorTheme.getFFFFFF,
-            darkUnFocus: colorTheme.get6A6F7D,
+            darkUnFocus: colorTheme.get252A3D,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,

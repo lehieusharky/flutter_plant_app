@@ -18,7 +18,7 @@ abstract class ImageConstant {
   String get communitySVG;
   String get mapSVG;
   String get vietNamFlagSVG;
-  String get englishFlagSVG;
+  String get englandFlagSVG;
   String get sunnyImage;
   String get nightImage;
   String get minTempSVG;
@@ -64,9 +64,9 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get mapSVG => 'assets/svg/map.svg';
-
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
   @override
-  String get englishFlagSVG => 'assets/svg/english_flag.svg';
+  String get englandFlagSVG => 'assets/svg/england_flag.svg';
 
   @override
   String get vietNamFlagSVG => 'assets/svg/viet_nam_flag.svg';
