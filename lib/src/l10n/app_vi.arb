@@ -12,5 +12,11 @@
   "map": "Bản đồ ",
   "otpVerification": "Xác minh OTP",
   "pleaseVerifyWithin": "Vui lòng xác minh mã trong vòng ",
-  "popularPlants": "Cây trồng phổ biến"
+  "popularPlants": "Cây trồng phổ biến",
+  "english": "Tiếng Anh",
+  "vietnamese": "Tiếng Việt",
+  "theme":"Giao diện",
+  "language": "Ngôn ngữ",
+  "light": "Sáng",
+  "dark": "Tối"
 }

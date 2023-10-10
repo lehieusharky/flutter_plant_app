@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/features/dash_board/widgets/item_bottom_nav_bar.dart';
 import 'package:plant_market/src/features/home/presentation/pages/home_page.dart';
-import 'package:plant_market/src/features/setting/page/setting_page.dart';
+import 'package:plant_market/src/features/setting/presentation/page/setting_page.dart';
 import 'package:plant_market/src/features/user/presentation/page/user_page.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 

@@ -12,5 +12,11 @@
   "map": "Map",
   "otpVerification": "OTP verfication",
   "pleaseVerifyWithin": "Please verify the code within",
-  "popularPlants": "Popular Plants"
+  "popularPlants": "Popular Plants",
+  "english": "English",
+  "vietnamese": "VietNamese",
+  "theme":"Theme",
+  "language": "Language",
+  "light": "Light",
+  "dark": "Dark"
 }

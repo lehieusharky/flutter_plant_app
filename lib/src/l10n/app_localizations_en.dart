@@ -45,4 +45,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get popularPlants => 'Popular Plants';
+
+  @override
+  String get english => 'English';
+
+  @override
+  String get vietnamese => 'VietNamese';
+
+  @override
+  String get theme => 'Theme';
+
+  @override
+  String get language => 'Language';
+
+  @override
+  String get light => 'Light';
+
+  @override
+  String get dark => 'Dark';
 }
