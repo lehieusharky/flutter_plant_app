@@ -42,4 +42,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get pleaseVerifyWithin => 'Vui lòng xác minh mã trong vòng ';
+
+  @override
+  String get popularPlants => 'Cây trồng phổ biến';
 }

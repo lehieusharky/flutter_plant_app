@@ -170,6 +170,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please verify the code within'**
   String get pleaseVerifyWithin;
+
+  /// No description provided for @popularPlants.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular Plants'**
+  String get popularPlants;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
