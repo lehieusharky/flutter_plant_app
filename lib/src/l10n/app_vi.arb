@@ -18,5 +18,8 @@
   "theme":"Giao diện",
   "language": "Ngôn ngữ",
   "light": "Sáng",
-  "dark": "Tối"
+  "dark": "Tối",
+  "system": "Hệ thống",
+  "defaultVolume": "Âm lượng mặc định",
+  "autoPlayMusic": "Tự động chơi nhạc"
 }
