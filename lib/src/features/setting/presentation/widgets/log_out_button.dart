@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/features/setting/presentation/bloc/setting_bloc.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class LogoutButton extends StatelessWidget {
@@ -10,7 +12,7 @@ class LogoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () {},
+      onPressed: () => _logOut(context),
       child: Padding(
         padding: context.padding(vertical: 5),
         child: Row(
@@ -33,5 +35,9 @@ class LogoutButton extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _logOut(BuildContext context) {
+    context.read<SettingBloc>().add(SettingLogOut());
   }
 }

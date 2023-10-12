@@ -68,16 +68,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get system => 'System';
 
   @override
-  String get defaultVolume => 'Default volume';
+  String get defaultVolume => 'Default Volume';
 
   @override
-  String get autoPlayMusic => 'Auto play music';
+  String get autoPlayMusic => 'Auto Play Music';
 
   @override
   String get logOut => 'Log out';
 
   @override
-  String get deleteAccount => 'Delete account';
+  String get deleteAccount => 'Delete Account';
 
   @override
   String get deleteYourAccount => 'Delete your account?';
@@ -108,4 +108,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get shareFriends => 'Share Friends';
+
+  @override
+  String get user => 'User';
+
+  @override
+  String get home => 'Home';
+
+  @override
+  String get setting => 'Setting';
 }

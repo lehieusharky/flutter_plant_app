@@ -20,10 +20,10 @@
   "light": "Light",
   "dark": "Dark",
   "system": "System",
-  "defaultVolume": "Default volume",
-  "autoPlayMusic": "Auto play music",
+  "defaultVolume": "Default Volume",
+  "autoPlayMusic": "Auto Play Music",
   "logOut": "Log out",
-  "deleteAccount": "Delete account",
+  "deleteAccount": "Delete Account",
   "deleteYourAccount": "Delete your account?",
   "sure": "Sure",
   "cancel": "Cancel",
@@ -33,5 +33,8 @@
   "about": "About",
   "version": "Version",
   "userInfomation": "User Infomation",
-  "shareFriends": "Share Friends"
+  "shareFriends": "Share Friends",
+  "user": "User",
+  "home": "Home",
+  "setting": "Setting"
 }
