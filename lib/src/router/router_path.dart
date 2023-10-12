@@ -5,4 +5,5 @@ class RouterPath {
   static const shakeAnimationPage = '/dash_board/shake_animation_page';
   static const loginPage = '/login_page';
   static const otpPage = '/login_page/otp_page';
+  static const searchPage = '$dashBoard/search_page';
 }

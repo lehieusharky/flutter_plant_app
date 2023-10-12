@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_form_field.dart';
+import 'package:plant_market/src/router/router_path.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
-class SearchBarHomePage extends StatefulWidget {
+class CustomSearchBar extends StatefulWidget {
   final TextEditingController searchController;
-  const SearchBarHomePage({
+  const CustomSearchBar({
     super.key,
     required this.searchController,
   });
 
   @override
-  State<SearchBarHomePage> createState() => _SearchBarHomePageState();
+  State<CustomSearchBar> createState() => _CustomSearchBarState();
 }
 
-class _SearchBarHomePageState extends State<SearchBarHomePage> {
+class _CustomSearchBarState extends State<CustomSearchBar> {
   Color _iconColor = colorTheme.getD2D2D2;
 
   void _setIconFocus() {
@@ -55,7 +57,7 @@ class _SearchBarHomePageState extends State<SearchBarHomePage> {
 
   Widget _buildSuffixIcon() {
     return InkWell(
-      onTap: () {},
+      onTap: () => context.go(RouterPath.searchPage),
       child: Icon(
         Icons.send_rounded,
         size: context.sizeWidth(25),
