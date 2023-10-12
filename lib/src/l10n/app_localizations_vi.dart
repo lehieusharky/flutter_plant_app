@@ -72,4 +72,40 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get autoPlayMusic => 'Tự động chơi nhạc';
+
+  @override
+  String get logOut => 'Đăng xuất';
+
+  @override
+  String get deleteAccount => 'Xóa tài khoản';
+
+  @override
+  String get deleteYourAccount => 'Xóa tài khoản của bạn?';
+
+  @override
+  String get sure => 'Đồng ý';
+
+  @override
+  String get cancel => 'Hủy';
+
+  @override
+  String get privacyPolicy => 'Chính sách bảo mật';
+
+  @override
+  String get contactWithUs => 'Liên hệ với chúng tôi';
+
+  @override
+  String get account => 'Tài khoản';
+
+  @override
+  String get about => 'Về';
+
+  @override
+  String get version => 'Phiên bản';
+
+  @override
+  String get userInfomation => 'Thông tin người dùng';
+
+  @override
+  String get shareFriends => 'Chia sẻ bạn bè';
 }

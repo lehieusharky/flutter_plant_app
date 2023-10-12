@@ -72,4 +72,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get autoPlayMusic => 'Auto play music';
+
+  @override
+  String get logOut => 'Log out';
+
+  @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get deleteYourAccount => 'Delete your account?';
+
+  @override
+  String get sure => 'Sure';
+
+  @override
+  String get cancel => 'Cancel';
+
+  @override
+  String get privacyPolicy => 'Privacy Policy';
+
+  @override
+  String get contactWithUs => 'Contact With Us';
+
+  @override
+  String get account => 'Account';
+
+  @override
+  String get about => 'About';
+
+  @override
+  String get version => 'Version';
+
+  @override
+  String get userInfomation => 'User Infomation';
+
+  @override
+  String get shareFriends => 'Share Friends';
 }

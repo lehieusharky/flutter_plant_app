@@ -21,5 +21,17 @@
   "dark": "Tối",
   "system": "Hệ thống",
   "defaultVolume": "Âm lượng mặc định",
-  "autoPlayMusic": "Tự động chơi nhạc"
+  "autoPlayMusic": "Tự động chơi nhạc",
+  "logOut": "Đăng xuất",
+  "deleteAccount": "Xóa tài khoản",
+  "deleteYourAccount": "Xóa tài khoản của bạn?",
+  "sure": "Đồng ý",
+  "cancel": "Hủy",
+  "privacyPolicy": "Chính sách bảo mật",
+  "contactWithUs": "Liên hệ với chúng tôi",
+  "account": "Tài khoản",
+  "about": "Về",
+  "version": "Phiên bản",
+  "userInfomation": "Thông tin người dùng",
+  "shareFriends": "Chia sẻ bạn bè"
 }

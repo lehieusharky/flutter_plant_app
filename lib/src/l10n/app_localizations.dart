@@ -230,6 +230,78 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Auto play music'**
   String get autoPlayMusic;
+
+  /// No description provided for @logOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Log out'**
+  String get logOut;
+
+  /// No description provided for @deleteAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete account'**
+  String get deleteAccount;
+
+  /// No description provided for @deleteYourAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete your account?'**
+  String get deleteYourAccount;
+
+  /// No description provided for @sure.
+  ///
+  /// In en, this message translates to:
+  /// **'Sure'**
+  String get sure;
+
+  /// No description provided for @cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancel;
+
+  /// No description provided for @privacyPolicy.
+  ///
+  /// In en, this message translates to:
+  /// **'Privacy Policy'**
+  String get privacyPolicy;
+
+  /// No description provided for @contactWithUs.
+  ///
+  /// In en, this message translates to:
+  /// **'Contact With Us'**
+  String get contactWithUs;
+
+  /// No description provided for @account.
+  ///
+  /// In en, this message translates to:
+  /// **'Account'**
+  String get account;
+
+  /// No description provided for @about.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get about;
+
+  /// No description provided for @version.
+  ///
+  /// In en, this message translates to:
+  /// **'Version'**
+  String get version;
+
+  /// No description provided for @userInfomation.
+  ///
+  /// In en, this message translates to:
+  /// **'User Infomation'**
+  String get userInfomation;
+
+  /// No description provided for @shareFriends.
+  ///
+  /// In en, this message translates to:
+  /// **'Share Friends'**
+  String get shareFriends;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
