@@ -6,9 +6,9 @@ class UserEntity extends Equatable {
   final String? userName;
   final String? email;
   final String createAt;
-  Role role;
+  final Role role;
 
-  UserEntity({
+  const UserEntity({
     required String id,
     this.role = Role.regular,
     required this.createAt,
