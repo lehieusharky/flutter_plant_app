@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
+import 'package:plant_market/src/core/data/defines/enum/supported_theme.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
@@ -23,7 +24,9 @@ class _ThemeLanguageButtonState extends State<ThemeLanguageButton> {
       children: [
         SettingButton(
           title: translate(context).language,
-          field: translate(context).english,
+          field: sharePreference.getLanguage() == AppConstant.en
+              ? translate(context).english
+              : translate(context).vietnamese,
           onPressed: () => _showLanguageModal(),
         ),
         context.sizedBox(height: 8),
@@ -48,6 +51,8 @@ class _ThemeLanguageButtonState extends State<ThemeLanguageButton> {
       iconPath2: imageConstant.englandFlagSVG,
       onPressed1: () => _toggleLanguage(languageCode: AppConstant.vi),
       onPressed2: () => _toggleLanguage(languageCode: AppConstant.en),
+      isChoosed2: sharePreference.getLanguage() == AppConstant.en,
+      isChoosed1: sharePreference.getLanguage() == AppConstant.vi,
     );
   }
 
@@ -57,10 +62,12 @@ class _ThemeLanguageButtonState extends State<ThemeLanguageButton> {
       title: translate(context).theme,
       field1: translate(context).light,
       field2: translate(context).dark,
-      iconPath1: imageConstant.vietNamFlagSVG,
-      iconPath2: imageConstant.englandFlagSVG,
+      iconPath1: imageConstant.sunSVG,
+      iconPath2: imageConstant.moonSVG,
       onPressed1: () => _toggleTheme(themeMode: ThemeMode.light),
       onPressed2: () => _toggleTheme(themeMode: ThemeMode.dark),
+      isChoosed1: sharePreference.getTheme() == SupportedTheme.light,
+      isChoosed2: sharePreference.getTheme() == SupportedTheme.dark,
     );
   }
 

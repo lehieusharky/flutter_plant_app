@@ -32,6 +32,8 @@ class CustomModal {
     required String iconPath2,
     required void Function() onPressed1,
     required void Function() onPressed2,
+    required bool isChoosed1,
+    required bool isChoosed2,
   }) {
     showModalBottomSheet<void>(
       context: context,
@@ -54,13 +56,15 @@ class CustomModal {
                     context: context,
                     value: field1,
                     iconPath: iconPath1,
-                    onPressed: onPressed1),
+                    onPressed: onPressed1,
+                    isChoosed: isChoosed1),
                 context.sizedBox(height: 30),
                 buildField(
                     context: context,
                     value: field2,
                     iconPath: iconPath2,
-                    onPressed: onPressed2),
+                    onPressed: onPressed2,
+                    isChoosed: isChoosed2),
               ],
             ),
           ),
@@ -74,6 +78,7 @@ class CustomModal {
     required String value,
     required String iconPath,
     required void Function() onPressed,
+    required bool isChoosed,
   }) {
     return InkWell(
       onTap: () {
@@ -99,13 +104,13 @@ class CustomModal {
               ),
             ],
           ),
-          // * check which is choosed
-          // ! TODO : check
-          Icon(
-            Icons.check_circle,
-            size: context.sizeWidth(25),
-            color: colorTheme.get2DDA93.withOpacity(0.8),
-          )
+          isChoosed
+              ? Icon(
+                  Icons.check_circle,
+                  size: context.sizeWidth(25),
+                  color: colorTheme.get2DDA93.withOpacity(0.8),
+                )
+              : const SizedBox(),
         ],
       ),
     );
