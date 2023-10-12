@@ -16,7 +16,7 @@ class CustomTitle extends StatelessWidget {
       child: Text(
         title,
         style: theme(context).textTheme.titleMedium!.copyWith(
-              fontSize: context.sizeWidth(20),
+              fontSize: context.sizeWidth(18),
               fontWeight: FontWeight.w700,
             ),
       ),

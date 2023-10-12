@@ -21,5 +21,17 @@
   "dark": "Dark",
   "system": "System",
   "defaultVolume": "Default volume",
-  "autoPlayMusic": "Auto play music"
+  "autoPlayMusic": "Auto play music",
+  "logOut": "Log out",
+  "deleteAccount": "Delete account",
+  "deleteYourAccount": "Delete your account?",
+  "sure": "Sure",
+  "cancel": "Cancel",
+  "privacyPolicy": "Privacy Policy",
+  "contactWithUs": "Contact With Us",
+  "account": "Account",
+  "about": "About",
+  "version": "Version",
+  "userInfomation": "User Infomation",
+  "shareFriends": "Share Friends"
 }

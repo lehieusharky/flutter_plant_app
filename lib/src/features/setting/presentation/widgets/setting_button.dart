@@ -61,7 +61,10 @@ class SettingButton extends StatelessWidget {
         Transform(
           alignment: Alignment.center,
           transform: Matrix4.rotationY(math.pi),
-          child: const Icon(Icons.arrow_back_ios_new),
+          child: Icon(
+            Icons.arrow_back_ios_new,
+            color: theme(context).textTheme.titleMedium!.color,
+          ),
         ),
       ],
     );

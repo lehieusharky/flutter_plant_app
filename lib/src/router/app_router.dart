@@ -4,7 +4,6 @@ import 'package:plant_market/src/features/auth/login/presentation/pages/login_pa
 import 'package:plant_market/src/features/auth/otp/presentation/page/otp_page.dart';
 import 'package:plant_market/src/features/dash_board/page/dash_board_page.dart';
 import 'package:plant_market/src/features/home/presentation/pages/home_page.dart';
-import 'package:plant_market/src/features/setting/presentation/page/setting_page.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -12,7 +11,7 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const SettingPage(),
+        builder: (context, state) => const DashBoardPage(),
         routes: [
           GoRoute(
             path: 'dash_board',
