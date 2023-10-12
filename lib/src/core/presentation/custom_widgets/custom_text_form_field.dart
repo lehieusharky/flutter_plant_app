@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/text_theme.dart';
+import 'package:plant_market/src/theme/theme_manager.dart';
 
 class CustomTextFormField extends StatefulWidget {
   final TextEditingController? controller;
   final String? Function(String?)? validator;
   final Widget? prefixIcon;
-  final IconButton? suffixIcon;
+  final Widget? suffixIcon;
   final TextInputAction? textInputAction;
   final bool? autoFocus;
   final FocusNode? focusNode;
@@ -62,20 +62,25 @@ class CustomTextFormField extends StatefulWidget {
   factory CustomTextFormField.search({
     required TextEditingController searchController,
     required BuildContext context,
+    void Function(PointerDownEvent)? onTapOutSide,
+    void Function(String)? onSubmit,
+    Widget? suffixIcon,
+    void Function()? onTap,
+    Widget? prefixIcon,
   }) {
     return CustomTextFormField(
       height: context.sizeHeight(80),
-      borderRadius: 100,
-      prefixIcon: Icon(
-        Icons.search,
-        size: context.sizeWidth(25),
-        color: colorTheme.getD2D2D2,
-      ),
-      boxShadowColor: colorTheme.get6A6F7D.withOpacity(0.2),
+      borderRadius: context.sizeWidth(10),
+      prefixIcon: prefixIcon,
+      suffixIcon: suffixIcon,
+      onTap: onTap,
+      boxShadowColor: colorTheme.get6A6F7D.withOpacity(0.1),
       controller: searchController,
+      onTapOutSide: onTapOutSide,
       keyboardType: TextInputType.text,
+      onSubmit: onSubmit,
       hintText: translate(context).search,
-      backgroundColor: colorTheme.getFFFFFF,
+      backgroundColor: ThemeManager.backgroundButton(),
     );
   }
 
@@ -87,13 +92,11 @@ class CustomTextFormField extends StatefulWidget {
     void Function(String)? onSubmit,
     required BuildContext context,
     void Function(PointerDownEvent)? onTapOutSide,
+    Widget? prefixIcon,
   }) {
     return CustomTextFormField(
       autoFocus: true,
-      prefixIcon: Icon(
-        FontAwesomeIcons.phone,
-        color: colorTheme.get2DDA93,
-      ),
+      prefixIcon: prefixIcon,
       onTap: onTap,
       defaultBorderColor: colorTheme.getD2D2D2,
       focusBorderColo: colorTheme.get2DDA93,
@@ -142,6 +145,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         onChanged: widget.onChanged,
         decoration: InputDecoration(
           enabledBorder: UnderlineInputBorder(
+            borderRadius: BorderRadius.circular(widget.borderRadius ?? 0),
             borderSide: BorderSide(
                 color: widget.defaultBorderColor ?? Colors.transparent),
           ),
@@ -161,12 +165,13 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           fillColor: widget.backgroundColor,
           filled: true,
           hintText: widget.hintText,
-          hintStyle: theme(context).textTheme.titleMedium,
-          border: OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius:
-                BorderRadius.all(Radius.circular(widget.borderRadius ?? 0)),
-          ),
+          hintStyle: theme(context).textTheme.titleMedium!.copyWith(
+                color: theme(context)
+                    .textTheme
+                    .titleMedium!
+                    .color!
+                    .withOpacity(0.5),
+              ),
         ),
       ),
     );

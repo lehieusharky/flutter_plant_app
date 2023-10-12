@@ -66,9 +66,9 @@ class CustomShadow extends StatelessWidget {
       width: width,
       height: height,
       boxShadowColor: boxShadowColor,
-      spreadRadius: 0,
-      blurRadius: 30,
-      offset: const Offset(0, 0),
+      spreadRadius: 1,
+      blurRadius: 7,
+      offset: const Offset(0, 1),
       child: child,
     );
   }

@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
+import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
@@ -43,10 +44,8 @@ class _TopicButtonState extends State<TopicButton> {
     return BlocBuilder<MyAppBloc, MyAppState>(
       builder: (context, state) {
         return CustomButton(
-          boxShadowColor: _isChoosed
-              ? colorTheme.get2DDA93.withOpacity(0.4)
-              : colorTheme.getD2D2D2.withOpacity(0.3),
-          width: context.sizeWidth(110),
+          boxShadowColor: colorTheme.get6A6F7D.withOpacity(0.1),
+          width: context.sizeWidth(105),
           height: context.sizeHeight(80),
           borderRadius: 3,
           onPress: widget.onPressed,
@@ -83,8 +82,14 @@ class _TopicButtonState extends State<TopicButton> {
     return Text(
       widget.title,
       style: _isChoosed
-          ? AppTextTheme.lightTheme(context).titleSmall
-          : AppTextTheme.darkTheme(context).titleSmall,
+          ? theme(context).textTheme.titleSmall!.copyWith(
+              color: sharePreference.isDarkMode()
+                  ? AppTextTheme.lightTheme(context).titleSmall!.color
+                  : AppTextTheme.darkTheme(context).titleSmall!.color)
+          : theme(context).textTheme.titleSmall!.copyWith(
+              color: sharePreference.isDarkMode()
+                  ? AppTextTheme.darkTheme(context).titleSmall!.color
+                  : AppTextTheme.lightTheme(context).titleSmall!.color),
     );
   }
 

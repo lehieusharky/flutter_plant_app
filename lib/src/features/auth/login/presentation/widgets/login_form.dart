@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
@@ -25,14 +26,18 @@ class FormLogin extends StatefulWidget {
 }
 
 class _FormLoginState extends State<FormLogin> {
-  Color iconColor = colorTheme.get2DDA93;
+  Color _iconColor = colorTheme.getD2D2D2;
 
   void _setIconFocus() {
-    iconColor = colorTheme.get2DDA93;
+    setState(() {
+      _iconColor = colorTheme.get2DDA93;
+    });
   }
 
   void _setIconUnFocus() {
-    iconColor = colorTheme.getD2D2D2;
+    setState(() {
+      _iconColor = colorTheme.getD2D2D2;
+    });
   }
 
   @override
@@ -43,6 +48,10 @@ class _FormLoginState extends State<FormLogin> {
         children: [
           // * phone field
           CustomTextFormField.phone(
+            prefixIcon: Icon(
+              FontAwesomeIcons.phone,
+              color: _iconColor,
+            ),
             controller: widget.phoneNumberController,
             autoValidateMode: AutovalidateMode.always,
             onTap: () => _setIconFocus(),
@@ -72,7 +81,7 @@ class _FormLoginState extends State<FormLogin> {
 
   void _sendPhoneNumber(BuildContext context) {
     if (widget.keyForm.currentState?.validate() ?? false) {
-      context.read<LoginBloc>().add(LoginSentOtp( 
+      context.read<LoginBloc>().add(LoginSentOtp(
               sentOtpParams: SentOtpParams(
             phoneNumber: widget.phoneNumberController.text.trim(),
             pushToOtp: (verificationId) =>
