@@ -6,10 +6,12 @@ import 'package:plant_market/src/core/presentation/custom_widgets/background_con
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_title.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/header_home_page.dart';
-import 'package:plant_market/src/features/home/presentation/widgets/popular_plants_button.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/popular_topic_button.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/posts_home_page.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/search_bar.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/shake_animation.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/row_topic_button.dart';
+import 'package:plant_market/src/features/my_app/presentation/bloc/my_app_bloc.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -37,32 +39,44 @@ class _HomePageState extends State<HomePage>
             }
           },
           builder: (context, state) {
-            return Scaffold(
-              body: Stack(
-                children: [
-                  const BackGroundContainer(),
-                  SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        HeaderHomePage(searchController: _searchController),
-                        context.sizedBox(height: 40),
-                        const RowTopicButton(),
-                        const SharkeAnimationHomePage(),
-                        // context.sizedBox(height: 20),
-                        CustomTitle(title: translate(context).today),
-                        context.sizedBox(height: 10),
-                        const PostsHomePage(),
-                        context.sizedBox(height: 20),
-                        CustomTitle(title: translate(context).popularTopic),
-                        context.sizedBox(height: 12),
-                        const PolularPlantsButton(),
-                        context.sizedBox(height: 50),
-                      ],
-                    ),
+            return BlocBuilder<MyAppBloc, MyAppState>(
+              builder: (context, state) {
+                return Scaffold(
+                  body: Stack(
+                    children: [
+                      const BackGroundContainer(),
+                      SingleChildScrollView(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const HeaderHomePage(),
+                            context.sizedBox(height: 25),
+                            Padding(
+                              padding: context.padding(horizontal: 12),
+                              child: SearchBarHomePage(
+                                  searchController: _searchController),
+                            ),
+                            Padding(
+                              padding: context.padding(horizontal: 12),
+                              child: const RowTopicButton(),
+                            ),
+                            const SharkeAnimationHomePage(),
+                            // context.sizedBox(height: 20),
+                            CustomTitle(title: translate(context).today),
+                            context.sizedBox(height: 10),
+                            const PostsHomePage(),
+                            context.sizedBox(height: 20),
+                            CustomTitle(title: translate(context).popularTopic),
+                            context.sizedBox(height: 12),
+                            const PolularPlantsButton(),
+                            context.sizedBox(height: 50),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                );
+              },
             );
           },
         ),

@@ -1,5 +1,4 @@
 import 'package:flutter/widgets.dart';
-import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class BackGroundContainer extends StatelessWidget {
@@ -8,8 +7,6 @@ class BackGroundContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: context.width,
-      height: context.height,
       decoration: BoxDecoration(
           gradient: LinearGradient(
               begin: Alignment.topCenter,
