@@ -117,4 +117,25 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get setting => 'Setting';
+
+  @override
+  String get plants => 'Plants';
+
+  @override
+  String get flowers => 'Flowers';
+
+  @override
+  String get fruits => 'Fruits';
+
+  @override
+  String get leafy => 'leafy';
+
+  @override
+  String get diseases => 'Diseases';
+
+  @override
+  String get vegetables => 'Vegetables';
+
+  @override
+  String get popularTopic => 'Popular Topic';
 }

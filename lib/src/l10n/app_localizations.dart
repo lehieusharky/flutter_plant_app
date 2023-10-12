@@ -320,6 +320,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Setting'**
   String get setting;
+
+  /// No description provided for @plants.
+  ///
+  /// In en, this message translates to:
+  /// **'Plants'**
+  String get plants;
+
+  /// No description provided for @flowers.
+  ///
+  /// In en, this message translates to:
+  /// **'Flowers'**
+  String get flowers;
+
+  /// No description provided for @fruits.
+  ///
+  /// In en, this message translates to:
+  /// **'Fruits'**
+  String get fruits;
+
+  /// No description provided for @leafy.
+  ///
+  /// In en, this message translates to:
+  /// **'leafy'**
+  String get leafy;
+
+  /// No description provided for @diseases.
+  ///
+  /// In en, this message translates to:
+  /// **'Diseases'**
+  String get diseases;
+
+  /// No description provided for @vegetables.
+  ///
+  /// In en, this message translates to:
+  /// **'Vegetables'**
+  String get vegetables;
+
+  /// No description provided for @popularTopic.
+  ///
+  /// In en, this message translates to:
+  /// **'Popular Topic'**
+  String get popularTopic;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

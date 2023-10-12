@@ -80,7 +80,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get deleteAccount => 'Xóa Tài Khoản';
 
   @override
-  String get deleteYourAccount => 'Xóa tài khoản của bạn?';
+  String get deleteYourAccount => 'Xóa Tài Khoản Của Bạn?';
 
   @override
   String get sure => 'Đồng ý';
@@ -92,7 +92,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get privacyPolicy => 'Chính Sách Bảo Mật';
 
   @override
-  String get contactWithUs => 'Liên hệ với chúng tôi';
+  String get contactWithUs => 'Liên Hệ Với Chúng Tôi';
 
   @override
   String get account => 'Tài Khoản';
@@ -110,11 +110,32 @@ class AppLocalizationsVi extends AppLocalizations {
   String get shareFriends => 'Chia Sẻ Bạn Bè';
 
   @override
-  String get user => 'Người dùng';
+  String get user => 'Người Dùng';
 
   @override
   String get home => 'Nhà';
 
   @override
-  String get setting => 'Cài đặt';
+  String get setting => 'Cài Đặt';
+
+  @override
+  String get plants => 'Cây Trồng';
+
+  @override
+  String get flowers => 'Hoa';
+
+  @override
+  String get fruits => 'Trái Cây';
+
+  @override
+  String get leafy => 'Lá';
+
+  @override
+  String get diseases => 'Bệnh';
+
+  @override
+  String get vegetables => 'Rau Củ';
+
+  @override
+  String get popularTopic => 'Chủ đề phổ biến';
 }
