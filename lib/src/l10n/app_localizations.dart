@@ -222,13 +222,13 @@ abstract class AppLocalizations {
   /// No description provided for @defaultVolume.
   ///
   /// In en, this message translates to:
-  /// **'Default volume'**
+  /// **'Default Volume'**
   String get defaultVolume;
 
   /// No description provided for @autoPlayMusic.
   ///
   /// In en, this message translates to:
-  /// **'Auto play music'**
+  /// **'Auto Play Music'**
   String get autoPlayMusic;
 
   /// No description provided for @logOut.
@@ -240,7 +240,7 @@ abstract class AppLocalizations {
   /// No description provided for @deleteAccount.
   ///
   /// In en, this message translates to:
-  /// **'Delete account'**
+  /// **'Delete Account'**
   String get deleteAccount;
 
   /// No description provided for @deleteYourAccount.
@@ -302,6 +302,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Share Friends'**
   String get shareFriends;
+
+  /// No description provided for @user.
+  ///
+  /// In en, this message translates to:
+  /// **'User'**
+  String get user;
+
+  /// No description provided for @home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get home;
+
+  /// No description provided for @setting.
+  ///
+  /// In en, this message translates to:
+  /// **'Setting'**
+  String get setting;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

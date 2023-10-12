@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/features/dash_board/widgets/item_bottom_nav_bar.dart';
 import 'package:plant_market/src/features/home/presentation/pages/home_page.dart';
 import 'package:plant_market/src/features/setting/presentation/page/setting_page.dart';
 import 'package:plant_market/src/features/user/presentation/page/user_page.dart';
 import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
+
+
 
 class DashBoardPage extends StatefulWidget {
   const DashBoardPage({super.key});
@@ -14,8 +17,8 @@ class DashBoardPage extends StatefulWidget {
 }
 
 class _DashBoardPageState extends State<DashBoardPage> {
-  var _currentIndex = 1;
   final PageController _pageController = PageController(initialPage: 1);
+  var _currentIndex = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +49,18 @@ class _DashBoardPageState extends State<DashBoardPage> {
             );
           },
           items: [
-            itemBottomGreen(icon: const Icon(Icons.person), title: 'User'),
-            itemBottomGreen(icon: const Icon(Icons.home), title: 'Home'),
-            itemBottomGreen(icon: const Icon(Icons.settings), title: 'Setting'),
+            itemBottomGreen(
+              icon: const Icon(Icons.person),
+              title: translate(context).user,
+            ),
+            itemBottomGreen(
+              icon: const Icon(Icons.home),
+              title: translate(context).home,
+            ),
+            itemBottomGreen(
+              icon: const Icon(Icons.settings),
+              title: translate(context).setting,
+            ),
           ],
         ),
       ),

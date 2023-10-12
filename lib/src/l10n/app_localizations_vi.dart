@@ -74,10 +74,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get autoPlayMusic => 'Tự động chơi nhạc';
 
   @override
-  String get logOut => 'Đăng xuất';
+  String get logOut => 'Đăng Xuất';
 
   @override
-  String get deleteAccount => 'Xóa tài khoản';
+  String get deleteAccount => 'Xóa Tài Khoản';
 
   @override
   String get deleteYourAccount => 'Xóa tài khoản của bạn?';
@@ -89,13 +89,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get cancel => 'Hủy';
 
   @override
-  String get privacyPolicy => 'Chính sách bảo mật';
+  String get privacyPolicy => 'Chính Sách Bảo Mật';
 
   @override
   String get contactWithUs => 'Liên hệ với chúng tôi';
 
   @override
-  String get account => 'Tài khoản';
+  String get account => 'Tài Khoản';
 
   @override
   String get about => 'Về';
@@ -104,8 +104,17 @@ class AppLocalizationsVi extends AppLocalizations {
   String get version => 'Phiên bản';
 
   @override
-  String get userInfomation => 'Thông tin người dùng';
+  String get userInfomation => 'Thông Tin Người Dùng';
 
   @override
-  String get shareFriends => 'Chia sẻ bạn bè';
+  String get shareFriends => 'Chia Sẻ Bạn Bè';
+
+  @override
+  String get user => 'Người dùng';
+
+  @override
+  String get home => 'Nhà';
+
+  @override
+  String get setting => 'Cài đặt';
 }
