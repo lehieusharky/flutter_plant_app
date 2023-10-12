@@ -36,5 +36,12 @@
   "shareFriends": "Share Friends",
   "user": "User",
   "home": "Home",
-  "setting": "Setting"
+  "setting": "Setting",
+  "plants": "Plants",
+  "flowers":"Flowers",
+  "fruits":"Fruits",
+  "leafy":"leafy",
+  "diseases":"Diseases",
+  "vegetables":"Vegetables",
+  "popularTopic": "Popular Topic"
 }

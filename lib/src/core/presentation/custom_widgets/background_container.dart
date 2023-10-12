@@ -15,10 +15,9 @@ class BackGroundContainer extends StatelessWidget {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
               colors: [
-            colorTheme.get2DDA93.withOpacity(0.25),
-            colorTheme.get2DDA93.withOpacity(0.23),
-            colorTheme.get2DDA93.withOpacity(0.22),
-            colorTheme.get2DDA93.withOpacity(0.2),
+            colorTheme.get2DDA93.withOpacity(0.19),
+            colorTheme.get2DDA93.withOpacity(0.18),
+            colorTheme.get2DDA93.withOpacity(0.16),
             colorTheme.get2DDA93.withOpacity(0.15),
             colorTheme.get2DDA93.withOpacity(0.1),
             colorTheme.get2DDA93.withOpacity(0.05),
