@@ -1,15 +1,37 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
+import 'package:plant_market/src/core/presentation/page/base_page.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/search_bar.dart';
+import 'package:plant_market/src/features/search/presentation/widgets/list_search_result.dart';
 
-class SearchPage extends StatefulWidget {
+class SearchPage extends BaseWidget {
   const SearchPage({super.key});
 
   @override
-  State<SearchPage> createState() => _SearchPageState();
+  BaseWidgetState createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchPageState extends BaseWidgetState {
+  final _searchController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return BaseWidget(
+      child: Stack(
+        children: [
+          const CustomBackButton(),
+          Column(
+            children: [
+              context.sizedBox(height: 60),
+              CustomSearchBar(searchController: _searchController),
+              const Expanded(
+                child: ListSearchResult(),
+              )
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }

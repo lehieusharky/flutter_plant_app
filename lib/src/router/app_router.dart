@@ -4,7 +4,7 @@ import 'package:plant_market/src/features/auth/auth_gate.dart';
 import 'package:plant_market/src/features/auth/login/presentation/pages/login_page.dart';
 import 'package:plant_market/src/features/auth/otp/presentation/page/otp_page.dart';
 import 'package:plant_market/src/features/dash_board/page/dash_board_page.dart';
-import 'package:plant_market/src/features/home/presentation/pages/home_page.dart';
+import 'package:plant_market/src/features/search/presentation/pages/search_page.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -19,8 +19,8 @@ class AppRouter {
             builder: (context, state) => const DashBoardPage(),
             routes: [
               GoRoute(
-                path: 'home_page',
-                builder: (context, state) => const HomePage(),
+                path: 'search_page',
+                builder: (context, state) => const SearchPage(),
               ),
             ],
           ),
