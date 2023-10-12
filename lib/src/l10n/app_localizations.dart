@@ -186,7 +186,7 @@ abstract class AppLocalizations {
   /// No description provided for @vietnamese.
   ///
   /// In en, this message translates to:
-  /// **'VietNamese'**
+  /// **'Vietnamese'**
   String get vietnamese;
 
   /// No description provided for @theme.

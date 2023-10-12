@@ -50,7 +50,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get english => 'English';
 
   @override
-  String get vietnamese => 'VietNamese';
+  String get vietnamese => 'Vietnamese';
 
   @override
   String get theme => 'Theme';
