@@ -11,7 +11,9 @@ class AppRouter {
     routes: [
       GoRoute(
         path: '/',
-        builder: (context, state) => const DashBoardPage(),
+        builder: (context, state) => const OTPPage(
+          verificationId: '',
+        ),
         routes: [
           GoRoute(
             path: 'dash_board',

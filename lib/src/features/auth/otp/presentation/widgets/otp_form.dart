@@ -22,13 +22,6 @@ class _OtpFormState extends State<OtpForm> {
   final formKey = GlobalKey<FormState>();
 
   @override
-  void dispose() {
-    otpController.dispose();
-    focusNode.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     final focusedBorderColor = colorTheme.get2DDA93;
     const fillColor = Color.fromRGBO(243, 246, 249, 0);
@@ -39,10 +32,11 @@ class _OtpFormState extends State<OtpForm> {
     final defaultPinTheme = PinTheme(
       width: context.sizeWidth(60),
       height: context.sizeWidth(60),
-      textStyle: const TextStyle(
-        fontSize: 22,
-        color: Color.fromRGBO(30, 60, 87, 1),
-      ),
+      textStyle: TextStyle(
+          fontSize: 22,
+          color: sharePreference.isDarkMode()
+              ? colorTheme.getFFFFFF
+              : colorTheme.get6A6F7D),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(19),
         border: Border.all(color: borderColor),
@@ -57,6 +51,9 @@ class _OtpFormState extends State<OtpForm> {
           Directionality(
             textDirection: TextDirection.ltr,
             child: Pinput(
+              onTapOutside: (value) {
+                FocusManager.instance.primaryFocus!.unfocus();
+              },
               autofocus: true,
               length: 6,
               controller: otpController,
@@ -69,12 +66,6 @@ class _OtpFormState extends State<OtpForm> {
                 return value != '' ? null : 'Pin is incorrect';
               },
               hapticFeedbackType: HapticFeedbackType.lightImpact,
-              onCompleted: (pin) {
-                debugPrint('onCompleted: $pin');
-              },
-              onChanged: (value) {
-                debugPrint('onChanged: $value');
-              },
               cursor: Column(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -117,6 +108,13 @@ class _OtpFormState extends State<OtpForm> {
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    otpController.dispose();
+    focusNode.dispose();
+    super.dispose();
   }
 
   void _verifyOtp(BuildContext context) {

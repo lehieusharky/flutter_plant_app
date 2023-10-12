@@ -17,7 +17,7 @@ class PhoneDataSouceImpl implements PhoneDataSource {
         phoneNumber: '+84$phoneNumber',
         verificationCompleted: (PhoneAuthCredential credential) async {
           // ANDROID ONLY!
-          await _auth.signInWithCredential(credential);
+          // await _auth.signInWithCredential(credential);
         },
         verificationFailed: (error) {
           throw Exception(error.message);

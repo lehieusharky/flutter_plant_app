@@ -31,8 +31,12 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => MyAppBloc(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => MyAppBloc(),
+        ),
+      ],
       child: BlocConsumer<MyAppBloc, MyAppState>(
         listener: (context, state) {
           if (state is MyAppGetSystemInfomationSuccess) {
