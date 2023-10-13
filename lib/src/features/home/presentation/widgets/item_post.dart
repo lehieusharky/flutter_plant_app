@@ -1,79 +1,92 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_button.dart';
-import 'package:plant_market/src/features/home/data/mock/list_post_mock.dart';
-import 'package:plant_market/src/theme/text_theme.dart';
 
 class ItemPost extends StatelessWidget {
-  final int index;
-  const ItemPost({
-    super.key,
-    required this.index,
-  });
+  const ItemPost({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: context.padding(right: 15),
-      child: Column(
-        children: [
-          Container(
-            width: context.sizeWidth(300),
-            height: context.sizeHeight(250),
-            decoration: const BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(5)),
-            ),
-            child: Stack(
-              alignment: Alignment.bottomLeft,
+      child: SizedBox(
+        width: context.sizeWidth(280),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
               children: [
-                Stack(
-                  alignment: Alignment.topRight,
-                  children: [
-                    CustomCatchedNetWorkImage(
-                      imageUrl: ListPostMock.posts[index].listImage[0],
-                    ),
-                    const CustomHeartButton()
-                  ],
+                CustomCatchedNetWorkImage(
+                  width: context.sizeWidth(280),
+                  height: context.sizeHeight(150),
+                  imageUrl:
+                      'https://scontent-hkg4-2.xx.fbcdn.net/v/t39.30808-6/387765310_814445547347791_9095668210930062522_n.jpg?stp=dst-jpg_p843x403&_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_ohc=b2oFGk3I1NsAX_DMyY7&_nc_ht=scontent-hkg4-2.xx&oh=00_AfAmUa5tu2v4M823TvyxK9MlmKFJOcO_uoAH_aAGsgcgJg&oe=652E225F',
                 ),
-                Padding(
-                  padding: context.padding(horizontal: 10),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        ListPostMock.posts[index].title,
-                        style:
-                            AppTextTheme.lightTheme(context).bodyLarge,
-                      ),
-                      context.sizedBox(height: 5),
-                      _buildAuthorAndTimeText(context),
-                      context.sizedBox(height: 5)
-                    ],
-                  ),
-                ),
+                const CustomHeartButton(),
               ],
             ),
-          ),
-        ],
+            context.sizedBox(height: 10),
+            _buildTitle(context),
+            context.sizedBox(height: 5),
+            _buildAuthorAndDateTime(context),
+            context.sizedBox(height: 5),
+            _buildTag(),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _buildAuthorAndTimeText(BuildContext context) {
+  Widget _buildTitle(BuildContext context) {
+    return Text(
+      'Cach trong cay trong nha',
+      style: theme(context)
+          .textTheme
+          .titleMedium!
+          .copyWith(fontWeight: FontWeight.w600, fontSize: 15),
+      overflow: TextOverflow.ellipsis,
+    );
+  }
+
+  Widget _buildAuthorAndDateTime(BuildContext context) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          '${ListPostMock.posts[index].author} - ',
-          // style: AppTextTheme.getDefaultTextTheme(context).labelMedium,
+          'Le Nguyen Duc Hieu',
+          style: theme(context).textTheme.titleSmall!.copyWith(),
+          overflow: TextOverflow.ellipsis,
         ),
+        const Text('__'),
         Text(
-          ListPostMock.posts[index].createAt,
-          // style: AppTextTheme.getDefaultTextTheme(context).labelMedium,
+          '01/10/2023',
+          style: theme(context).textTheme.titleSmall!.copyWith(),
+          overflow: TextOverflow.ellipsis,
         ),
       ],
+    );
+  }
+
+  Widget _buildTag() {
+    return SizedBox(
+      height: 20,
+      child: ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: 2,
+        itemBuilder: (context, index) {
+          return Padding(
+            padding: context.padding(horizontal: 3),
+            child: Text(
+              '#hoaHong',
+              style: theme(context).textTheme.titleSmall!.copyWith(
+                    decoration: TextDecoration.underline,
+                  ),
+            ),
+          );
+        },
+      ),
     );
   }
 }
