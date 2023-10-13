@@ -15,25 +15,29 @@ class CustomHeartButton extends StatefulWidget {
 class _CustomHeartButtonState extends State<CustomHeartButton> {
   @override
   Widget build(BuildContext context) {
-    return LikeButton(
-      size: context.sizeWidth(35),
-      circleColor: CircleColor(
-        start: colorTheme.getFF6262,
-        end: colorTheme.getFF6262,
+    return Padding(
+      padding: context.padding(all: 3),
+      child: LikeButton(
+        mainAxisAlignment: MainAxisAlignment.end,
+        size: context.sizeWidth(30),
+        circleColor: CircleColor(
+          start: colorTheme.getFF6262,
+          end: colorTheme.getFF6262,
+        ),
+        bubblesColor: BubblesColor(
+          dotPrimaryColor: colorTheme.getFF6262.withOpacity(0.5),
+          dotSecondaryColor: colorTheme.getFF6262,
+        ),
+        likeBuilder: (bool isLiked) {
+          return SvgPicture.asset(
+            imageConstant.heartSvg,
+            // ignore: deprecated_member_use
+            color: isLiked
+                ? colorTheme.getFF6262
+                : colorTheme.getFFFFFF.withOpacity(0.8),
+          );
+        },
       ),
-      bubblesColor: BubblesColor(
-        dotPrimaryColor: colorTheme.getFF6262.withOpacity(0.5),
-        dotSecondaryColor: colorTheme.getFF6262,
-      ),
-      likeBuilder: (bool isLiked) {
-        return SvgPicture.asset(
-          imageConstant.heartSvg,
-          // ignore: deprecated_member_use
-          color: isLiked
-              ? colorTheme.getFF6262
-              : colorTheme.getFFFFFF.withOpacity(0.8),
-        );
-      },
     );
   }
 }
