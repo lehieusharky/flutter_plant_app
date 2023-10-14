@@ -10,7 +10,7 @@ import 'package:plant_market/src/features/home/presentation/widgets/header_home_
 import 'package:plant_market/src/features/home/presentation/widgets/popular_topic_button.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/list_post_home_page.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/search_bar.dart';
-import 'package:plant_market/src/features/home/presentation/widgets/shake_animation.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/shake_animation_home_page.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/row_topic_button.dart';
 import 'package:plant_market/src/features/my_app/presentation/bloc/my_app_bloc.dart';
 
@@ -63,7 +63,10 @@ class _HomePageState extends State<HomePage>
                             ),
                             const SharkeAnimationHomePage(),
                             // context.sizedBox(height: 20),
-                            CustomTitle(title: translate(context).today),
+                            CustomTitle(
+                              title: translate(context).today,
+                              horizontalPadding: 12,
+                            ),
                             context.sizedBox(height: 10),
                             const ListPostHomePage(),
                             context.sizedBox(height: 5),
@@ -73,7 +76,10 @@ class _HomePageState extends State<HomePage>
                               ),
                             ),
                             context.sizedBox(height: 20),
-                            CustomTitle(title: translate(context).popularTopic),
+                            CustomTitle(
+                              title: translate(context).popularTopic,
+                              horizontalPadding: 12,
+                            ),
                             context.sizedBox(height: 12),
                             const PolularPlantsButton(),
                             context.sizedBox(height: 50),
