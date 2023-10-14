@@ -362,6 +362,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Popular Topic'**
   String get popularTopic;
+
+  /// No description provided for @seeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See All'**
+  String get seeAll;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

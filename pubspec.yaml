@@ -42,6 +42,9 @@ dependencies:
   firebase_storage: ^11.2.7
   google_sign_in: ^6.1.5
 
+  # media
+  assets_audio_player: ^3.1.1
+
   # UI
   like_button: ^2.0.5
   font_awesome_flutter: ^10.5.0
@@ -73,4 +76,5 @@ flutter:
     - .env
     - assets/images/
     - assets/lotties/
+    - assets/audios/
     - assets/svg/

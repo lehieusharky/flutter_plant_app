@@ -64,6 +64,7 @@ class SettingButton extends StatelessWidget {
           child: Icon(
             Icons.arrow_back_ios_new,
             color: theme(context).textTheme.titleMedium!.color,
+            size: context.sizeWidth(25),
           ),
         ),
       ],

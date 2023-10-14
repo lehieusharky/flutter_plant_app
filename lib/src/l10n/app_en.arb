@@ -43,5 +43,6 @@
   "leafy":"leafy",
   "diseases":"Diseases",
   "vegetables":"Vegetables",
-  "popularTopic": "Popular Topic"
+  "popularTopic": "Popular Topic",
+  "seeAll": "See All"
 }

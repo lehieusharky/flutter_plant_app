@@ -138,4 +138,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get popularTopic => 'Popular Topic';
+
+  @override
+  String get seeAll => 'See All';
 }

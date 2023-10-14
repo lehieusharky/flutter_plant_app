@@ -137,5 +137,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get vegetables => 'Rau Củ';
 
   @override
-  String get popularTopic => 'Chủ đề phổ biến';
+  String get popularTopic => 'Chủ Đề Phổ Biến';
+
+  @override
+  String get seeAll => 'Xem tất cả';
 }
