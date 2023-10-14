@@ -15,7 +15,11 @@ class AppTextTheme {
           fontWeight: FontWeight.w400,
           color: colorTheme.getFFFFFF,
         ),
-        displaySmall: GoogleFonts.openSans(),
+        displaySmall: GoogleFonts.openSans(
+          fontSize: context.sizeWidth(50),
+          fontWeight: FontWeight.w700,
+          color: colorTheme.get36455A,
+        ),
 
         // * headline
         headlineLarge: GoogleFonts.openSans(),

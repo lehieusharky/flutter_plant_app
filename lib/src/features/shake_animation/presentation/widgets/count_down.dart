@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/di/di_set_up.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_form_field.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
+import 'package:plant_market/src/features/shake_animation/presentation/widgets/list_wheel_select_time.dart';
 
 class CountDownWidget extends StatefulWidget {
   const CountDownWidget({super.key});
@@ -16,47 +15,32 @@ class _CountDownWidgetState extends State<CountDownWidget> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(
-          height: 100,
-          width: 100,
-          child: ListWheelScrollView(
-            itemExtent: 50,
-            clipBehavior: Clip.antiAlias,
-            children: _hourValue(),
-          ),
-        ),
-        SizedBox(
-          height: 100,
-          width: 100,
-          child: ListWheelScrollView(
-            itemExtent: 50,
-            clipBehavior: Clip.antiAlias,
-            children: _minuteValue(),
-          ),
-        ),
+        CustomListWheelSelectTime(children: _listTimeIndexValue(endIndex: 24)),
+        _seperetorText(),
+        CustomListWheelSelectTime(children: _listTimeIndexValue(endIndex: 59)),
       ],
     );
   }
 
-  List<Widget> _hourValue() {
+  List<Widget> _listTimeIndexValue({required int endIndex, int? beginIndex}) {
     List<Widget> hourValue = [];
-    for (var index = 0; index <= 24; index++) {
-      hourValue.add(Text(
-        '$index',
-        style: theme(context).textTheme.titleMedium,
-      ));
+    for (var index = beginIndex ?? 0; index <= endIndex; index++) {
+      hourValue.add(
+        Text(index <= 9 ? '0$index' : '$index',
+            style: theme(context).textTheme.headlineMedium!.copyWith(
+                  fontSize: 55,
+                  fontWeight: FontWeight.w100,
+                )),
+      );
     }
+
     return hourValue;
   }
 
-  List<Widget> _minuteValue() {
-    List<Widget> hourValue = [];
-    for (var index = 0; index <= 59; index++) {
-      hourValue.add(Text(
-        '$index',
-        style: theme(context).textTheme.titleMedium,
-      ));
-    }
-    return hourValue;
+  Widget _seperetorText() {
+    return Text(
+      ':',
+      style: theme(context).textTheme.headlineMedium!.copyWith(fontSize: 55),
+    );
   }
 }
