@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/extension/responsive.dart';
 
 class CustomListWheelSelectTime extends StatefulWidget {
   final List<Widget> children;
-  const CustomListWheelSelectTime({super.key, required this.children});
+  final ScrollController scrollController;
+  final void Function(int)? onSelectedItem;
+  const CustomListWheelSelectTime({
+    super.key,
+    required this.children,
+    required this.scrollController,
+    this.onSelectedItem,
+  });
 
   @override
   State<CustomListWheelSelectTime> createState() =>
@@ -13,13 +21,17 @@ class _CustomListWheelSelectTimeState extends State<CustomListWheelSelectTime> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 100 ,
-      width: 100,
+      height: context.sizeHeight(100),
+      width: context.sizeWidth(100),
       child: ListWheelScrollView(
-        itemExtent: 80,
+        itemExtent: context.sizeHeight(80),
+        controller: widget.scrollController,
         scrollBehavior: const ScrollBehavior(),
+        physics: const FixedExtentScrollPhysics(),
+        diameterRatio: 2,
         clipBehavior: Clip.antiAlias,
         useMagnifier: true,
+        onSelectedItemChanged: widget.onSelectedItem,
         children: widget.children,
       ),
     );

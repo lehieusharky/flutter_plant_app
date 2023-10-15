@@ -56,10 +56,11 @@ class CustomButton extends StatelessWidget {
 
   factory CustomButton.send({
     required BuildContext context,
+    final double? width,
     required void Function() onPressed,
   }) {
     return CustomButton(
-      width: context.width,
+      width: width ?? context.width,
       height: context.sizeHeight(55),
       onPress: onPressed,
       backgroundColor: colorTheme.get2DDA93,

@@ -3,7 +3,18 @@ import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/list_wheel_select_time.dart';
 
 class CountDownWidget extends StatefulWidget {
-  const CountDownWidget({super.key});
+  final ScrollController hourScrollController;
+  final ScrollController minuteScrollController;
+  final void Function(int)? onSelectedHourItem;
+  final void Function(int)? onSelectedMinuteItem;
+
+  const CountDownWidget({
+    super.key,
+    required this.hourScrollController,
+    required this.minuteScrollController,
+    this.onSelectedHourItem,
+    this.onSelectedMinuteItem,
+  });
 
   @override
   State<CountDownWidget> createState() => _CountDownWidgetState();
@@ -15,9 +26,17 @@ class _CountDownWidgetState extends State<CountDownWidget> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CustomListWheelSelectTime(children: _listTimeIndexValue(endIndex: 24)),
+        CustomListWheelSelectTime(
+          scrollController: widget.hourScrollController,
+          onSelectedItem: widget.onSelectedHourItem,
+          children: _listTimeIndexValue(endIndex: 24),
+        ),
         _seperetorText(),
-        CustomListWheelSelectTime(children: _listTimeIndexValue(endIndex: 59)),
+        CustomListWheelSelectTime(
+          scrollController: widget.minuteScrollController,
+          onSelectedItem: widget.onSelectedMinuteItem,
+          children: _listTimeIndexValue(endIndex: 59),
+        ),
       ],
     );
   }
@@ -33,7 +52,6 @@ class _CountDownWidgetState extends State<CountDownWidget> {
                 )),
       );
     }
-
     return hourValue;
   }
 
