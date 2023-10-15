@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/background_container.dart';
@@ -10,12 +9,10 @@ import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.
 import 'package:plant_market/src/features/home/presentation/widgets/header_home_page.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/popular_topic_button.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/list_post_home_page.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_search_bar.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/search_bar_button.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/shake_animation_home_page.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/row_topic_button.dart';
 import 'package:plant_market/src/features/my_app/presentation/bloc/my_app_bloc.dart';
-import 'package:plant_market/src/router/router_path.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -26,8 +23,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
-  final _searchController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     super.build(context);

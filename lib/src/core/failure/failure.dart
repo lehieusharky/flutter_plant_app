@@ -55,3 +55,11 @@ class SystemFailure extends Failure {
   @override
   List<Object> get props => [message];
 }
+
+class ImagePickerFailure extends Failure {
+  final String message;
+
+  ImagePickerFailure({required this.message});
+  @override
+  List<Object> get props => [message];
+}
