@@ -10,6 +10,7 @@ class ListSearchResult extends StatelessWidget {
       itemCount: 10,
       itemBuilder: (context, index) {
         return const SearchItem();
-      });
+      },
+    );
   }
 }

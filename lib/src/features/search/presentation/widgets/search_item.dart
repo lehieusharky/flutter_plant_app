@@ -12,33 +12,16 @@ class SearchItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: context.padding(vertical: 10),
+      padding: context.padding(vertical: 15),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                width: context.sizeWidth(140),
-                height: context.sizeWidth(140),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: colorTheme.get6A6F7D.withOpacity(0.1),
-                    )
-                  ],
-                  color: Colors.grey,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              ),
-              CustomCatchedNetWorkImage(
-                width: context.sizeWidth(120),
-                height: context.sizeWidth(120),
-                imageUrl:
-                    'https://scontent-hkg4-1.xx.fbcdn.net/v/t39.30808-6/387120876_122128939034025791_3285515382313764214_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_ohc=kSPBpghYo9kAX8akm3q&_nc_ht=scontent-hkg4-1.xx&oh=00_AfDC80T-8pJXJpKY98oOoexPVF5B2VHnQLl37CfTPO92mw&oe=652D688C',
-              ),
-            ],
+          CustomCatchedNetWorkImage(
+            width: context.sizeWidth(80),
+            height: context.sizeWidth(80),
+            borderRadius: 10,
+            imageUrl:
+                'https://scontent-hkg4-1.xx.fbcdn.net/v/t39.30808-6/387120876_122128939034025791_3285515382313764214_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_ohc=kSPBpghYo9kAX8akm3q&_nc_ht=scontent-hkg4-1.xx&oh=00_AfDC80T-8pJXJpKY98oOoexPVF5B2VHnQLl37CfTPO92mw&oe=652D688C',
           ),
           context.sizedBox(width: 10),
           Expanded(
@@ -62,38 +45,6 @@ class SearchItem extends StatelessWidget {
                         fontSize: 14,
                       ),
                 ),
-                const Text(
-                  'ten goi khac cua loai cay',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                context.sizedBox(height: 5),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    CustomSvg(
-                      path: imageConstant.cycleSVG,
-                      width: context.sizeWidth(20),
-                      height: context.sizeWidth(20),
-                    ),
-                    context.sizedBox(width: 5),
-                    const Text('Perennial'),
-                  ],
-                ),
-                context.sizedBox(height: 2),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    CustomSvg(
-                      path: imageConstant.humiditySVG,
-                      width: context.sizeWidth(20),
-                      height: context.sizeWidth(20),
-                    ),
-                    context.sizedBox(width: 5),
-                    const Text('Frequent'),
-                  ],
-                )
               ],
             ),
           )

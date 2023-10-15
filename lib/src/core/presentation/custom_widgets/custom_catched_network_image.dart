@@ -5,12 +5,14 @@ class CustomCatchedNetWorkImage extends StatelessWidget {
   final String imageUrl;
   final double? width;
   final double? height;
+  final double? borderRadius;
 
   const CustomCatchedNetWorkImage({
     super.key,
     required this.imageUrl,
     this.width,
     this.height,
+    this.borderRadius,
   });
 
   @override
@@ -22,7 +24,7 @@ class CustomCatchedNetWorkImage extends StatelessWidget {
       imageUrl: imageUrl,
       imageBuilder: (context, imageProvider) => Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(5),
+          borderRadius: BorderRadius.circular(borderRadius ?? 5),
           image: DecorationImage(
             image: imageProvider,
             fit: BoxFit.cover,

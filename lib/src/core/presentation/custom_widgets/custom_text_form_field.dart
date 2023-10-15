@@ -67,8 +67,10 @@ class CustomTextFormField extends StatefulWidget {
     Widget? suffixIcon,
     void Function()? onTap,
     Widget? prefixIcon,
+    bool? autoFocus,
   }) {
     return CustomTextFormField(
+      autoFocus: autoFocus,
       height: context.sizeHeight(80),
       borderRadius: context.sizeWidth(10),
       prefixIcon: prefixIcon,
