@@ -18,10 +18,13 @@ class _SharkeAnimationHomePageState extends State<SharkeAnimationHomePage> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => context.go(RouterPath.shakeAnimationPage),
-      child: CustomLottie(
-        path: imageConstant.tree1Json,
-        width: context.width,
-        height: context.sizeHeight(300),
+      child: Padding(
+        padding: context.padding(vertical: 40),
+        child: CustomLottie(
+          path: imageConstant.tree1Json,
+          width: context.sizeWidth(280),
+          height: context.sizeHeight(200),
+        ),
       ),
     );
   }

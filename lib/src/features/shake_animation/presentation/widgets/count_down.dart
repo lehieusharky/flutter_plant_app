@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/list_wheel_select_time.dart';
+import 'package:plant_market/src/theme/text_theme.dart';
 
 class CountDownWidget extends StatefulWidget {
   final ScrollController hourScrollController;
@@ -46,7 +46,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
     for (var index = beginIndex ?? 0; index <= endIndex; index++) {
       hourValue.add(
         Text(index <= 9 ? '0$index' : '$index',
-            style: theme(context).textTheme.headlineMedium!.copyWith(
+            style: AppTextTheme.darkTheme(context).headlineMedium!.copyWith(
                   fontSize: 55,
                   fontWeight: FontWeight.w100,
                 )),
@@ -58,7 +58,9 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   Widget _seperetorText() {
     return Text(
       ':',
-      style: theme(context).textTheme.headlineMedium!.copyWith(fontSize: 55),
+      style: AppTextTheme.darkTheme(context)
+          .headlineMedium!
+          .copyWith(fontSize: 55),
     );
   }
 }

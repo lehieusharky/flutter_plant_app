@@ -53,14 +53,13 @@ class _HomePageState extends State<HomePage>
                             Padding(
                                 padding: context.padding(horizontal: 12),
                                 child: const SearchBarButton()),
-
                             context.sizedBox(height: 15),
                             Padding(
                               padding: context.padding(horizontal: 12),
                               child: const RowTopicButton(),
                             ),
-                            const SharkeAnimationHomePage(),
-                            // context.sizedBox(height: 20),
+                            const Center(child: SharkeAnimationHomePage()),
+                            context.sizedBox(height: 30),
                             CustomTitle(
                               title: translate(context).today,
                               horizontalPadding: 12,

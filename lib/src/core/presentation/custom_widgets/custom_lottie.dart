@@ -27,6 +27,7 @@ class _CustomLottieState extends State<CustomLottie> {
       controller: widget.controller,
       width: widget.width,
       height: widget.height,
+      fit: BoxFit.cover,
       onLoaded: (composition) {},
     );
   }

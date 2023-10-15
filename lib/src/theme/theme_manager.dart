@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
+import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class ThemeManager {
@@ -8,6 +9,14 @@ class ThemeManager {
       return colorTheme.get252A3D;
     } else {
       return colorTheme.getFFFFFF;
+    }
+  }
+
+  static String backgroundJSon() {
+    if (sharePreference.isDarkMode()) {
+      return imageConstant.nightJson;
+    } else {
+      return imageConstant.trainJson;
     }
   }
 

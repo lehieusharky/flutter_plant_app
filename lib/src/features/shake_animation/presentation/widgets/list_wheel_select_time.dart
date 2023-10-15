@@ -21,7 +21,7 @@ class _CustomListWheelSelectTimeState extends State<CustomListWheelSelectTime> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.sizeHeight(100),
+      height: context.sizeHeight(90),
       width: context.sizeWidth(100),
       child: ListWheelScrollView(
         itemExtent: context.sizeHeight(80),
