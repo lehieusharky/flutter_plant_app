@@ -8,7 +8,10 @@ abstract class ImageConstant {
   String get tree2Json;
   String get tree3Json;
   String get tree4Json;
+  String get rainJson;
+  String get trainJson;
   String get loadingJson;
+  String get nightJson;
   String get heartSvg;
   String get leavesSVG;
   String get appleSVG;
@@ -53,6 +56,15 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get tree4Json => 'assets/lotties/tree_4.json';
+
+  @override
+  String get rainJson => 'assets/lotties/rain.json';
+
+  @override
+  String get trainJson => 'assets/lotties/train.json';
+
+  @override
+  String get nightJson => 'assets/lotties/night.json';
 
   @override
   String get heartSvg => 'assets/svg/heart.svg';

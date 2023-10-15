@@ -5,9 +5,12 @@ import 'package:plant_market/src/core/data/defines/constants/audio_constant.dart
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_lottie.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/count_down.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/tree_shake_animation.dart';
+import 'package:plant_market/src/theme/color_theme.dart';
+import 'package:plant_market/src/theme/theme_manager.dart';
 
 class ShakeAnimationPage extends BaseWidget {
   const ShakeAnimationPage({super.key});
@@ -33,26 +36,48 @@ class _ShakeAnimationPageState extends BaseWidgetState {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+    return Scaffold(
+      body: Stack(
         children: [
-          const Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [CustomBackButton()],
+          CustomLottie(
+            width: context.width,
+            height: context.height,
+            path: ThemeManager.backgroundJSon(),
           ),
-          TreeShakeAnimation(
-            countDownController: _countDownController,
+          Container(
+            width: context.width,
+            height: context.height,
+            color: colorTheme.get36455A.withOpacity(0.3),
           ),
-          context.sizedBox(height: 15),
-          CountDownWidget(
-            hourScrollController: _hourScrollController,
-            minuteScrollController: _minuteScrollController,
-            onSelectedHourItem: (hourValue) {},
-            onSelectedMinuteItem: (minuteValue) {},
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              context.sizedBox(height: 50),
+              TreeShakeAnimation(
+                countDownController: _countDownController,
+              ),
+              context.sizedBox(height: 15),
+              CountDownWidget(
+                hourScrollController: _hourScrollController,
+                minuteScrollController: _minuteScrollController,
+                onSelectedHourItem: (hourValue) {},
+                onSelectedMinuteItem: (minuteValue) {},
+              ),
+              context.sizedBox(height: 20),
+              _buildSendButton(),
+            ],
           ),
-          context.sizedBox(height: 20),
-          _buildSendButton(),
+          Padding(
+            padding: context.padding(top: 60, horizontal: 12),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                CustomBackButton(
+                  color: colorTheme.getFFFFFF,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );

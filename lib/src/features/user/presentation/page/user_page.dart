@@ -32,13 +32,15 @@ class _UserPageState extends BaseWidgetState
           },
           builder: (context, state) {
             return Column(
-              children: [ 
+              children: [
                 CustomButton.send(
                   title: 'Add post',
                   context: context,
                   onPressed: () =>
                       context.read<UserBloc>().add(UserPickImageFromCamera()),
                 ),
+                if (state is UserPickImageFromCameraSuccess)
+                  Image.file(state.image!),
                 Expanded(
                   child: ListView.separated(
                     itemCount: MockUser.timeLineArray.length,

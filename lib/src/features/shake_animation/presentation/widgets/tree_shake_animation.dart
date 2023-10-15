@@ -5,7 +5,7 @@ import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_lottie.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/count_down_ring.dart';
-import 'package:plant_market/src/theme/theme_manager.dart';
+import 'package:plant_market/src/theme/color_theme.dart';
 
 class TreeShakeAnimation extends StatefulWidget {
   final CountDownController countDownController;
@@ -66,7 +66,7 @@ class _TreeShakeAnimationState extends State<TreeShakeAnimation> {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: ThemeManager.shadowButton().withOpacity(0.8),
+                color: colorTheme.getFFFFFF.withOpacity(0.6),
                 spreadRadius: 5,
                 blurRadius: 40,
                 offset: const Offset(0, 0),
