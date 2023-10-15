@@ -13,10 +13,18 @@ class CustomModal {
   }) {
     showModalBottomSheet<void>(
       context: context,
+      backgroundColor: Colors.transparent,
+      isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
           height: height,
-          color: ThemeManager.backgroundButton(),
+          decoration: BoxDecoration(
+            color: ThemeManager.backgroundButton(),
+            borderRadius: const BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
+          ),
           child: child,
         );
       },
