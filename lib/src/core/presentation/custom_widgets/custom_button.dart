@@ -58,6 +58,7 @@ class CustomButton extends StatelessWidget {
     required BuildContext context,
     final double? width,
     required void Function() onPressed,
+    String? title,
   }) {
     return CustomButton(
       width: width ?? context.width,
@@ -67,7 +68,7 @@ class CustomButton extends StatelessWidget {
       boxShadowColor: colorTheme.getD2D2D2.withOpacity(0.5),
       borderRadius: 5,
       child: Text(
-        translate(context).send,
+        title ?? translate(context).send,
         style: AppTextTheme.darkTheme(context).titleLarge,
       ),
     );
