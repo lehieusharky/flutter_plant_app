@@ -1,15 +1,13 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/data/defines/constants/audio_constant.dart';
-import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/count_down.dart';
-import 'package:plant_market/src/features/shake_animation/presentation/widgets/land_background.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
-import 'package:plant_market/src/theme/text_theme.dart';
+import 'package:plant_market/src/features/shake_animation/presentation/widgets/tree_shake_animation.dart';
 
 class ShakeAnimationPage extends BaseWidget {
   const ShakeAnimationPage({super.key});
@@ -20,11 +18,12 @@ class ShakeAnimationPage extends BaseWidget {
 
 class _ShakeAnimationPageState extends BaseWidgetState {
   final assetsAudioPlayer = AssetsAudioPlayer();
-
+  final _hourScrollController = FixedExtentScrollController();
+  final _minuteScrollController = FixedExtentScrollController(initialItem: 5);
+  final _countDownController = CountDownController();
   @override
   void initState() {
     super.initState();
-
     assetsAudioPlayer.open(
       Audio(audioConstant.chillMp3),
       autoStart: true,
@@ -33,33 +32,25 @@ class _ShakeAnimationPageState extends BaseWidgetState {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-    assetsAudioPlayer.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BaseWidget(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Row(
+          const Row(
             mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              IconButton(
-                onPressed: () => context.pop(true),
-                icon: Icon(
-                  Icons.arrow_back_ios,
-                  size: context.sizeWidth(40),
-                  color: colorTheme.get36455A,
-                ),
-              ),
-            ],
+            children: [CustomBackButton()],
           ),
-          const LandBackGroundWidget(),
+          TreeShakeAnimation(
+            countDownController: _countDownController,
+          ),
           context.sizedBox(height: 15),
-          const CountDownWidget(),
+          CountDownWidget(
+            hourScrollController: _hourScrollController,
+            minuteScrollController: _minuteScrollController,
+            onSelectedHourItem: (hourValue) {},
+            onSelectedMinuteItem: (minuteValue) {},
+          ),
           context.sizedBox(height: 20),
           _buildSendButton(),
         ],
@@ -67,18 +58,52 @@ class _ShakeAnimationPageState extends BaseWidgetState {
     );
   }
 
+  void _countDown() {
+    _countDownCircleBackGround();
+    _countDownHourMinute();
+  }
+
+  void _countDownCircleBackGround() {
+    _countDownController.start();
+  }
+
+  void _countDownHourMinute() {
+    Future.delayed(const Duration(seconds: 1), () {
+      _minuteScrollController.animateToItem(
+        _minuteScrollController.selectedItem - 1,
+        duration: const Duration(seconds: 1),
+        curve: Curves.easeInOut,
+      );
+      if (_minuteScrollController.selectedItem != 0) {
+        _countDownHourMinute();
+      } else {
+        Future.delayed(const Duration(seconds: 1), () {
+          _hourScrollController.animateToItem(
+            _hourScrollController.selectedItem - 1,
+            duration: const Duration(seconds: 1),
+            curve: Curves.easeInOut,
+          );
+          if (_hourScrollController.selectedItem != 0) {
+            _countDownHourMinute();
+          }
+        });
+      }
+    });
+  }
+
   Widget _buildSendButton() {
-    return CustomButton(
-      width: context.sizeWidth(150),
-      height: context.sizeHeight(60),
-      boxShadowColor: colorTheme.get2DDA93.withOpacity(0.4),
-      onPress: () {},
-      backgroundColor: colorTheme.get2DDA93,
-      borderRadius: context.sizeWidth(10),
-      child: Text(
-        translate(context).plant,
-        style: AppTextTheme.lightTheme(context).headlineSmall,
-      ),
+    return CustomButton.send(
+      context: context,
+      width: context.sizeWidth(200),
+      onPressed: () => _countDown(),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    assetsAudioPlayer.dispose();
+    _hourScrollController.dispose();
+    _minuteScrollController.dispose();
   }
 }

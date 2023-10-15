@@ -27,11 +27,7 @@ class _CustomLottieState extends State<CustomLottie> {
       controller: widget.controller,
       width: widget.width,
       height: widget.height,
-      onLoaded: (composition) {
-        // _controller
-        //   ..duration = composition.duration
-        //   ..forward();
-      },
+      onLoaded: (composition) {},
     );
   }
 }

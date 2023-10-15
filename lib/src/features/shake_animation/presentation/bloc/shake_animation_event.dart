@@ -6,3 +6,4 @@ sealed class ShakeAnimationEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
