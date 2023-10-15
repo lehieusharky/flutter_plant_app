@@ -141,4 +141,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get seeAll => 'See All';
+
+  @override
+  String get start => 'Start';
 }

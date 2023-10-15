@@ -368,6 +368,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'See All'**
   String get seeAll;
+
+  /// No description provided for @start.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get start;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

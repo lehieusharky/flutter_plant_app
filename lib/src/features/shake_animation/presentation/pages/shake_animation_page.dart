@@ -2,6 +2,7 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/data/defines/constants/audio_constant.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
@@ -119,6 +120,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
   Widget _buildSendButton() {
     return CustomButton.send(
       context: context,
+      title: translate(context).start,
       width: context.sizeWidth(200),
       onPressed: () => _countDown(),
     );

@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage>
                               child: const RowTopicButton(),
                             ),
                             const Center(child: SharkeAnimationHomePage()),
-                            context.sizedBox(height: 30),
+                            context.sizedBox(height: 50),
                             CustomTitle(
                               title: translate(context).today,
                               horizontalPadding: 12,

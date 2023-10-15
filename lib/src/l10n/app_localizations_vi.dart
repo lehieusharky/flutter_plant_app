@@ -141,4 +141,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get seeAll => 'Xem tất cả';
+
+  @override
+  String get start => 'Bắt đầu';
 }

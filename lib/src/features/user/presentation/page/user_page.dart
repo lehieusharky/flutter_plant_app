@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/features/user/data/mock/mock_user.dart';
 import 'package:plant_market/src/features/user/presentation/bloc/user_bloc.dart';
+import 'package:plant_market/src/features/user/presentation/widgets/create_post_modal.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/separator.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/time_line_item.dart';
 
@@ -36,8 +38,7 @@ class _UserPageState extends BaseWidgetState
                 CustomButton.send(
                   title: 'Add post',
                   context: context,
-                  onPressed: () =>
-                      context.read<UserBloc>().add(UserPickImageFromCamera()),
+                  onPressed: () => _showCreatePostModal(context),
                 ),
                 if (state is UserPickImageFromCameraSuccess)
                   Image.file(state.image!),
@@ -58,12 +59,20 @@ class _UserPageState extends BaseWidgetState
                       );
                     },
                   ),
-                )
+                ),
               ],
             );
           },
         ),
       ),
+    );
+  }
+
+  void _showCreatePostModal(BuildContext context) {
+    CustomModal.baseModal(
+      context: context,
+      height: context.height * 0.9,
+      child: const CreatePostModal(),
     );
   }
 
