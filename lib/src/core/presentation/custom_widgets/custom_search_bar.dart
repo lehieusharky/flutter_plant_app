@@ -38,6 +38,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField.search(
+      autoFocus: true,
       suffixIcon: _showSendButton ? _buildSuffixIcon() : const SizedBox(),
       prefixIcon: Icon(
         Icons.search,

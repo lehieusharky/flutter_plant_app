@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
-import 'package:plant_market/src/features/home/presentation/widgets/search_bar.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_search_bar.dart';
 import 'package:plant_market/src/features/search/presentation/widgets/list_search_result.dart';
 
 class SearchPage extends BaseWidget {
