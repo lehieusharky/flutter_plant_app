@@ -2,7 +2,7 @@ import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/features/auth/login/presentation/pages/login_page.dart';
 import 'package:plant_market/src/features/auth/otp/presentation/page/otp_page.dart';
-import 'package:plant_market/src/features/dash_board/page/dash_board_page.dart';
+import 'package:plant_market/src/features/dash_board/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/search/presentation/pages/search_page.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/pages/shake_animation_page.dart';
 
