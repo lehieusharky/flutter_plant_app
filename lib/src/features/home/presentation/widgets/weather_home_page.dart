@@ -7,6 +7,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_shimmer
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/weather_background.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/text_theme.dart';
 
@@ -37,8 +38,8 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
           );
         } else {
           return Stack(
-            alignment: Alignment.center,
             children: [
+              const WeatherBacground(),
               Padding(
                 padding: context.padding(horizontal: 10, top: 20),
                 child: Row(
@@ -50,7 +51,7 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
                     _buildWeatherPart(weatherModel),
                   ],
                 ),
-              )
+              ),
             ],
           );
         }
@@ -67,7 +68,6 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
           iconPath: imageConstant.locationSVG,
           value: weatherModel.name!,
           context: context,
-          paddingTop: 0,
         ),
         Text(
           '${(weatherModel.main!.temp! - 273).toInt()}°C',
@@ -80,17 +80,20 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
   Widget _buildWeatherPart(WeatherModel weatherModel) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
       children: [
         _buildRowItem(
           iconPath: imageConstant.humiditySVG,
           value: '${weatherModel.main!.humidity} %',
           context: context,
         ),
+        context.sizedBox(height: 15),
         _buildRowItem(
           iconPath: imageConstant.windSVG,
           value: '${weatherModel.wind!.speed} m/s',
           context: context,
         ),
+        context.sizedBox(height: 15),
         _buildRowItem(
           iconPath: imageConstant.binocularsSVG,
           value: '${weatherModel.main!.pressure} hPa',
@@ -104,29 +107,25 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
     required String iconPath,
     required String value,
     required BuildContext context,
-    double? paddingTop,
   }) {
-    return Padding(
-      padding: context.padding(top: paddingTop ?? 10),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          CustomSvg(
-            path: iconPath,
-            color: colorTheme.getFFFFFF,
-            width: context.sizeWidth(20),
-            height: context.sizeWidth(20),
-          ),
-          context.sizedBox(width: 5),
-          Text(
-            value,
-            style: AppTextTheme.darkTheme(context).titleLarge!.copyWith(
-                  fontSize: context.sizeWidth(14),
-                ),
-          ),
-        ],
-      ),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        CustomSvg(
+          path: iconPath,
+          color: colorTheme.getFFFFFF,
+          width: context.sizeWidth(20),
+          height: context.sizeWidth(20),
+        ),
+        context.sizedBox(width: 5),
+        Text(
+          value,
+          style: AppTextTheme.darkTheme(context).titleLarge!.copyWith(
+                fontSize: context.sizeWidth(14),
+              ),
+        ),
+      ],
     );
   }
 }
