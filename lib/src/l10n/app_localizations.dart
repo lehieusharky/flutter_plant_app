@@ -392,6 +392,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Describe something about this stage of the plant'**
   String get describeSomethingAboutThisStageOfThePlant;
+
+  /// No description provided for @recordPlantProcess.
+  ///
+  /// In en, this message translates to:
+  /// **'Record plant\'s process!'**
+  String get recordPlantProcess;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

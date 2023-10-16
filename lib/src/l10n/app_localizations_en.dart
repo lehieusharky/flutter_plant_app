@@ -153,4 +153,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get describeSomethingAboutThisStageOfThePlant => 'Describe something about this stage of the plant';
+
+  @override
+  String get recordPlantProcess => 'Record plant\'s process!';
 }
