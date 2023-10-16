@@ -49,5 +49,6 @@
   "addPhotos": "Thêm ảnh",
   "description": "Mô tả",
   "describeSomethingAboutThisStageOfThePlant": "Mô tả gì đó về giai đoạn này của cây",
-  "recordPlantProcess": "Ghi lại giai đoạn của cây trồng"
+  "recordPlantProcess": "Ghi lại giai đoạn của cây trồng",
+  "save": "Lưu"
 }

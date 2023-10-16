@@ -156,4 +156,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get recordPlantProcess => 'Record plant\'s process!';
+
+  @override
+  String get save => 'Save';
 }

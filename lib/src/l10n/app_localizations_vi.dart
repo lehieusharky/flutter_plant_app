@@ -156,4 +156,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get recordPlantProcess => 'Ghi lại giai đoạn của cây trồng';
+
+  @override
+  String get save => 'Lưu';
 }

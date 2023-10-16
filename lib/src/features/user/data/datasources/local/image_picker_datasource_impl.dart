@@ -12,6 +12,7 @@ class ImagePickerDataSourceImpl implements ImagePickerDataSource {
       final ImagePicker picker = ImagePicker();
       final XFile? image = await picker.pickImage(
         source: ImageSource.camera,
+        preferredCameraDevice: CameraDevice.rear,
         imageQuality: 80,
       );
       return File(image!.path);
