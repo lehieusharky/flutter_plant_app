@@ -63,3 +63,11 @@ class ImagePickerFailure extends Failure {
   @override
   List<Object> get props => [message];
 }
+
+class AuthDataBaseFailure extends Failure {
+  final String message;
+
+  AuthDataBaseFailure({required this.message});
+  @override
+  List<Object> get props => [message];
+}

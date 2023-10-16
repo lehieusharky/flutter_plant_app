@@ -27,6 +27,11 @@ class _UserPageState extends BaseWidgetState
                 const BackGroundContainer(),
                 Column(
                   children: [
+                    context.sizedBox(height: 50),
+                    Text(
+                      firebaseAuth.currentUser!.phoneNumber ?? 'null',
+                      style: theme(context).textTheme.titleMedium,
+                    ),
                     Expanded(
                       child: Padding(
                         padding: context.padding(horizontal: 12),

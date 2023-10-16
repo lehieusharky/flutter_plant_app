@@ -2,22 +2,20 @@ import 'package:equatable/equatable.dart';
 import 'package:plant_market/src/core/data/defines/enum/role.dart';
 
 class UserEntity extends Equatable {
-  final String _id;
+  final String id;
   final String? userName;
   final String? email;
   final String createAt;
   final Role role;
 
   const UserEntity({
-    required String id,
+    required this.id,
     this.role = Role.regular,
     required this.createAt,
     this.userName,
     this.email,
-  }) : _id = id;
-
-  String get getId => _id;
+  });
 
   @override
-  List<Object?> get props => [userName, email, createAt, role, getId];
+  List<Object?> get props => [userName, email, createAt, role, id];
 }

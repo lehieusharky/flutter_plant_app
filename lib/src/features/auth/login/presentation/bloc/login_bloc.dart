@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
+import 'package:plant_market/src/features/auth/login/domain/use_cases/auth_database_usecase.dart';
 import 'package:plant_market/src/features/auth/login/domain/use_cases/login_google_usecase.dart';
 import 'package:plant_market/src/features/auth/login/domain/use_cases/phone_usecase.dart';
 
@@ -21,6 +22,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(LoginLoading());
     try {
       await phoneUseCase.sentOtp(sentOtpParams: event.sentOtpParams);
+
       emit(LoginSentOtpSuccess());
     } catch (e) {
       emit(LoginSentOtpFailure(message: e.toString()));
@@ -34,6 +36,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(LoginLoading());
     try {
       await phoneUseCase.verifyOTP(verityOtpParams: event.verityOtpParams);
+      await _createUserDataBase(emit);
       emit(LoginSuccess());
     } catch (e) {
       emit(LoginVerifyOtpFailure(message: e.toString()));
@@ -47,7 +50,19 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     emit(LoginLoading());
     try {
       await loginWithGoogleUseCase.call(NoParams());
+      await _createUserDataBase(emit);
       emit(LoginSuccess());
+    } catch (e) {
+      emit(LoginWithGoogleFailure(message: e.toString()));
+    }
+  }
+
+  Future<void> _createUserDataBase(Emitter<LoginState> emit) async {
+    try {
+      final isExist = await authenticationDataBaseUseCase.isExist();
+      if (!isExist) {
+        await authenticationDataBaseUseCase.createUserDataBase();
+      }
     } catch (e) {
       emit(LoginWithGoogleFailure(message: e.toString()));
     }
