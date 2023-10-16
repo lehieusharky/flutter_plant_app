@@ -12,4 +12,5 @@ class AppConstant {
   static const String en = 'en';
   static const String light = 'light';
   static const String dark = 'dark';
+  static const String isFromDashBoardRouter = 'isFromDashBoardRouter';
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/features/my_app/presentation/bloc/my_app_bloc.dart';
-import 'package:plant_market/src/theme/theme_manager.dart';
 
 class CustomBackButton extends StatelessWidget {
   final Color? color;
@@ -19,7 +19,7 @@ class CustomBackButton extends StatelessWidget {
           },
           icon: Icon(
             Icons.arrow_back_ios,
-            color: color ?? ThemeManager.backgroundButton(),
+            color: color ?? theme(context).textTheme.titleMedium!.color,
             size: context.sizeWidth(40),
           ),
         );

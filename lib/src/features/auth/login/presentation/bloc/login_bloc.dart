@@ -14,6 +14,20 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginWithGoogle>(_loginWithGoogle);
     on<LoginSentOtp>(_sentOtp);
     on<LoginVerityOtp>(_verityOtp);
+    on<LoginSetNotLoggedIn>(_setNotLoggedIn);
+
+    add(LoginSetNotLoggedIn());
+  }
+
+  Future<void> _setNotLoggedIn(
+    LoginSetNotLoggedIn event,
+    Emitter<LoginState> emit,
+  ) async {
+    try {
+      await sharePreference.setIsLoggedIn(status: false);
+    } catch (e) {
+      emit(LoginSentOtpFailure(message: e.toString()));
+    }
   }
 
   Future<void> _sentOtp(
@@ -62,7 +76,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Future<void> _createUserDataBase(Emitter<LoginState> emit) async {
     try {
       await sharePreference.setIsLoggedIn(status: true);
-
       final isExist = await authenticationDataBaseUseCase.isExist();
       if (!isExist) {
         await authenticationDataBaseUseCase.createUserDataBase();

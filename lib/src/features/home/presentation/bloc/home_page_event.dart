@@ -17,15 +17,15 @@ final class HomePageChangetTopic extends HomePageEvent {
 
 final class HomePageGetWeatherInfomation extends HomePageEvent {
   final String lat;
-  final String lon;
+  final String long;
 
   const HomePageGetWeatherInfomation({
     required this.lat,
-    required this.lon,
+    required this.long,
   });
 
   @override
-  List<Object> get props => [lat, lon];
+  List<Object> get props => [lat, long];
 }
 
 final class HomePageDeterminePosition extends HomePageEvent {}
