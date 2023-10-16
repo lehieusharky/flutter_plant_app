@@ -342,7 +342,7 @@ abstract class AppLocalizations {
   /// No description provided for @leafy.
   ///
   /// In en, this message translates to:
-  /// **'leafy'**
+  /// **'Leafy'**
   String get leafy;
 
   /// No description provided for @diseases.
@@ -374,6 +374,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Start'**
   String get start;
+
+  /// No description provided for @addPhotos.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Photos'**
+  String get addPhotos;
+
+  /// No description provided for @description.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get description;
+
+  /// No description provided for @describeSomethingAboutThisStageOfThePlant.
+  ///
+  /// In en, this message translates to:
+  /// **'Describe something about this stage of the plant'**
+  String get describeSomethingAboutThisStageOfThePlant;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

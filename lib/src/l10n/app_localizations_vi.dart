@@ -144,4 +144,13 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get start => 'Bắt đầu';
+
+  @override
+  String get addPhotos => 'Thêm ảnh';
+
+  @override
+  String get description => 'Mô tả';
+
+  @override
+  String get describeSomethingAboutThisStageOfThePlant => 'Mô tả gì đó về giai đoạn này của cây';
 }

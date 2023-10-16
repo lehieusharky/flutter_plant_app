@@ -45,5 +45,8 @@
   "vegetables":"Rau Củ",
   "popularTopic": "Chủ Đề Phổ Biến",
   "seeAll": "Xem tất cả",
-  "start": "Bắt đầu"
+  "start": "Bắt đầu",
+  "addPhotos": "Thêm ảnh",
+  "description": "Mô tả",
+  "describeSomethingAboutThisStageOfThePlant": "Mô tả gì đó về giai đoạn này của cây"
 }

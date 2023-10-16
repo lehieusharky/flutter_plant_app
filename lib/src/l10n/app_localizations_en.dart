@@ -128,7 +128,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fruits => 'Fruits';
 
   @override
-  String get leafy => 'leafy';
+  String get leafy => 'Leafy';
 
   @override
   String get diseases => 'Diseases';
@@ -144,4 +144,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get start => 'Start';
+
+  @override
+  String get addPhotos => 'Add Photos';
+
+  @override
+  String get description => 'Description';
+
+  @override
+  String get describeSomethingAboutThisStageOfThePlant => 'Describe something about this stage of the plant';
 }

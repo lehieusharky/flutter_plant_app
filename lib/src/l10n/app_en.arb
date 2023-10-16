@@ -40,10 +40,13 @@
   "plants": "Plants",
   "flowers":"Flowers",
   "fruits":"Fruits",
-  "leafy":"leafy",
+  "leafy":"Leafy",
   "diseases":"Diseases",
   "vegetables":"Vegetables",
   "popularTopic": "Popular Topic",
   "seeAll": "See All",
-  "start": "Start"
+  "start": "Start",
+  "addPhotos": "Add Photos",
+  "description": "Description",
+  "describeSomethingAboutThisStageOfThePlant": "Describe something about this stage of the plant"
 }
