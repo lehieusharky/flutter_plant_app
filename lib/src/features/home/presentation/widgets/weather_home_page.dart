@@ -7,7 +7,6 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_shimmer
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
-import 'package:plant_market/src/features/home/presentation/widgets/weather_background.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/text_theme.dart';
 
@@ -40,12 +39,11 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
           return Stack(
             alignment: Alignment.center,
             children: [
-              const WeatherBackGround(),
               Padding(
-                padding: context.padding(horizontal: 5),
+                padding: context.padding(horizontal: 10, top: 20),
                 child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     _buildTemperature(weatherModel),
                     context.sizedBox(width: 10),
@@ -63,16 +61,17 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
   Widget _buildTemperature(WeatherModel weatherModel) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          '${(weatherModel.main!.temp! - 273).toInt()}°C',
-          style: theme(context).textTheme.displayMedium,
-        ),
         _buildRowItem(
           iconPath: imageConstant.locationSVG,
           value: weatherModel.name!,
           context: context,
           paddingTop: 0,
+        ),
+        Text(
+          '${(weatherModel.main!.temp! - 273).toInt()}°C',
+          style: theme(context).textTheme.displayMedium,
         ),
       ],
     );
