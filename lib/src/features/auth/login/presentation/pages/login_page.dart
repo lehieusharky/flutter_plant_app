@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_header_auth.dart';
 import 'package:plant_market/src/features/auth/login/presentation/bloc/login_bloc.dart';
@@ -12,7 +13,11 @@ import 'package:plant_market/src/features/auth/login/presentation/widgets/login_
 import 'package:plant_market/src/router/router_path.dart';
 
 class LoginPage extends BaseWidget {
-  const LoginPage({super.key});
+  final bool? isFromDashBoardRouter;
+  const LoginPage({
+    super.key,
+    this.isFromDashBoardRouter,
+  });
 
   @override
   BaseWidgetState createState() => _LoginPageState();
@@ -42,13 +47,14 @@ class _LoginPageState extends BaseWidgetState {
           },
           builder: (context, state) {
             return Stack(
-              alignment: Alignment.topRight,
+              alignment: Alignment.topLeft,
               children: [
                 Padding(
-                  padding: context.padding(top: 50),
+                  padding: context.padding(top: 45),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      context.sizedBox(height: 20),
                       //* header
                       CustomHeaderAuthentication(
                         title: translate(context).hello,
@@ -66,6 +72,9 @@ class _LoginPageState extends BaseWidgetState {
                     ],
                   ),
                 ),
+                ((widget as LoginPage).isFromDashBoardRouter ?? false)
+                    ? const CustomBackButton()
+                    : const SizedBox(),
                 if (state is LoginLoading) ...[super.loadingWidget()]
               ],
             );

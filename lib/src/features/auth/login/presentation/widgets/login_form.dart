@@ -82,16 +82,18 @@ class _FormLoginState extends State<FormLogin> {
   void _sendPhoneNumber(BuildContext context) {
     if (widget.keyForm.currentState?.validate() ?? false) {
       context.read<LoginBloc>().add(LoginSentOtp(
-              sentOtpParams: SentOtpParams(
-            phoneNumber: widget.phoneNumberController.text.trim(),
-            pushToOtp: (verificationId) =>
-                _nativateToOtpPage(context, verificationId),
-          )));
+            sentOtpParams: SentOtpParams(
+              phoneNumber: widget.phoneNumberController.text.trim(),
+              pushToOtp: (verificationId) =>
+                  _nativateToOtpPage(context, verificationId),
+            ),
+          ));
     }
   }
 
   void _nativateToOtpPage(BuildContext context, String verificationId) {
-    return context.go(RouterPath.otpPage,
-        extra: {AppConstant.verificationID: verificationId});
+    return context.go(RouterPath.otpPage, extra: {
+      AppConstant.verificationID: verificationId,
+    });
   }
 }

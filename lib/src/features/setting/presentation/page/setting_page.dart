@@ -19,40 +19,58 @@ class _SettingPageState extends BaseWidgetState
           listener: (context, state) {
             if (state is SettingLogOutSuccess) {
               log('log out state succes');
-              context.go(RouterPath.root);
+              context.go(RouterPath.loginPage);
             }
           },
           builder: (context, state) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CustomTitle(title: translate(context).system),
-                context.sizedBox(height: 12),
-                const ThemeLanguageButton(),
-                context.sizedBox(height: 25),
-                const CustomTitle(title: 'Account'),
-                context.sizedBox(height: 12),
-                const UserInfomationButton(),
-                context.sizedBox(height: 8),
-                const DeleteAccountButton(),
-                context.sizedBox(height: 25),
-                const CustomTitle(title: 'About'),
-                context.sizedBox(height: 12),
-                const PrivacyPolicyButton(),
-                const Expanded(child: SizedBox()),
-                Center(
-                    child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const ShareFriendButton(),
-                    context.sizedBox(height: 5),
-                    const LogoutButton(),
-                    const VersionText(),
-                    context.sizedBox(height: 5),
-                  ],
-                )),
-              ],
-            );
+            if (!sharePreference.isLoggedIn()) {
+              return Stack(
+                alignment: Alignment.center,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      CustomTitle(title: translate(context).system),
+                      context.sizedBox(height: 12),
+                      const ThemeLanguageButton(),
+                      context.sizedBox(height: 50),
+                    ],
+                  ),
+                  const NotLoggedInButton(),
+                ],
+              );
+            } else {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomTitle(title: translate(context).system),
+                  context.sizedBox(height: 12),
+                  const ThemeLanguageButton(),
+                  context.sizedBox(height: 25),
+                  CustomTitle(title: translate(context).account),
+                  context.sizedBox(height: 12),
+                  const UserInfomationButton(),
+                  context.sizedBox(height: 8),
+                  const DeleteAccountButton(),
+                  context.sizedBox(height: 25),
+                  CustomTitle(title: translate(context).about),
+                  context.sizedBox(height: 12),
+                  const PrivacyPolicyButton(),
+                  const Expanded(child: SizedBox()),
+                  Center(
+                      child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const ShareFriendButton(),
+                      context.sizedBox(height: 5),
+                      const LogoutButton(),
+                      const VersionText(),
+                      context.sizedBox(height: 5),
+                    ],
+                  )),
+                ],
+              );
+            }
           },
         ),
       ),

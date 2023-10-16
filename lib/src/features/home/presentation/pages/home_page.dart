@@ -12,7 +12,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
-    Logger().f('is logged in homePage: ${sharePreference.isLoggedIn()}');
+    Logger().w('is logged in home page: ${sharePreference.isLoggedIn()}');
   }
 
   @override
@@ -24,9 +24,11 @@ class _HomePageState extends State<HomePage>
         child: BlocConsumer<HomePageBloc, HomePageState>(
           listener: (context, state) {
             if (state is HomePageDeterminePositionSuccess) {
-              context.read<HomePageBloc>().add(HomePageGetWeatherInfomation(
-                  lat: state.position!.latitude.toString(),
-                  lon: state.position!.longitude.toString()));
+              _getWeatherInfomation(
+                context: context,
+                lat: state.position!.latitude.toString(),
+                long: state.position!.longitude.toString(),
+              );
             }
           },
           builder: (context, state) {
@@ -84,6 +86,15 @@ class _HomePageState extends State<HomePage>
         ),
       ),
     );
+  }
+
+  void _getWeatherInfomation(
+      {required String lat,
+      required String long,
+      required BuildContext context}) {
+    context
+        .read<HomePageBloc>()
+        .add(HomePageGetWeatherInfomation(lat: lat, long: long));
   }
 
   @override
