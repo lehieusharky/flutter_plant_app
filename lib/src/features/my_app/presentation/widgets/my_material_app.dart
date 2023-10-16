@@ -9,8 +9,6 @@ import 'package:plant_market/src/l10n/app_localizations.dart';
 import 'package:plant_market/src/router/app_router.dart';
 import 'package:plant_market/src/theme/theme.dart';
 
-ThemeMode themeMode = ThemeMode.light;
-
 class MyMaterialApp extends StatefulWidget {
   const MyMaterialApp({super.key});
 
@@ -20,11 +18,12 @@ class MyMaterialApp extends StatefulWidget {
 
 class _MyMaterialAppState extends State<MyMaterialApp> {
   String _languageCode = AppConstant.vi;
+  ThemeMode _themeMode = ThemeMode.light;
 
   @override
   void initState() {
     super.initState();
-    themeMode = sharePreference.getTheme() == SupportedTheme.light
+    _themeMode = sharePreference.getTheme() == SupportedTheme.light
         ? ThemeMode.light
         : ThemeMode.dark;
   }
@@ -40,13 +39,13 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
       child: BlocConsumer<MyAppBloc, MyAppState>(
         listener: (context, state) {
           if (state is MyAppGetSystemInfomationSuccess) {
-            themeMode = state.systemModel.themeMode;
+            _themeMode = state.systemModel.themeMode;
             _languageCode = state.systemModel.languageCode;
             sharePreference.setTheme(state.systemModel.themeMode.name);
             sharePreference.setLanguage(state.systemModel.languageCode);
           }
           if (state is MyAppToggleThemeSuccess) {
-            themeMode = state.themeMode;
+            _themeMode = state.themeMode;
             sharePreference.setTheme(state.themeMode.name);
           }
           if (state is MyAppToggleLanguageSuccess) {
@@ -67,7 +66,7 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
       routeInformationProvider: AppRouter.router.routeInformationProvider,
       routeInformationParser: AppRouter.router.routeInformationParser,
       debugShowCheckedModeBanner: false,
-      themeMode: themeMode,
+      themeMode: _themeMode,
       localizationsDelegates: const [
         AppLocalizations.delegate,
         GlobalMaterialLocalizations.delegate,

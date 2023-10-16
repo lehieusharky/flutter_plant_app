@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/auth/login/domain/use_cases/auth_database_usecase.dart';
 import 'package:plant_market/src/features/auth/login/domain/use_cases/login_google_usecase.dart';
@@ -37,6 +38,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     try {
       await phoneUseCase.verifyOTP(verityOtpParams: event.verityOtpParams);
       await _createUserDataBase(emit);
+
       emit(LoginSuccess());
     } catch (e) {
       emit(LoginVerifyOtpFailure(message: e.toString()));
@@ -59,6 +61,8 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
 
   Future<void> _createUserDataBase(Emitter<LoginState> emit) async {
     try {
+      await sharePreference.setIsLoggedIn(status: true);
+
       final isExist = await authenticationDataBaseUseCase.isExist();
       if (!isExist) {
         await authenticationDataBaseUseCase.createUserDataBase();

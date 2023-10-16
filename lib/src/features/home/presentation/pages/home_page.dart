@@ -10,6 +10,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   @override
+  void initState() {
+    super.initState();
+    Logger().f('is logged in homePage: ${sharePreference.isLoggedIn()}');
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.build(context);
     return SafeArea(

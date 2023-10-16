@@ -69,4 +69,15 @@ class SharePreferenceDataSouceImpl implements SharePreferenceDataSource {
   void setIsFirstTimeOpenApp() {
     _prefs.setBool(PreferencesKey.firstTimeOpenApp, true);
   }
+
+  @override
+  bool isLoggedIn() {
+    final isLoggedIn = _prefs.getBool(PreferencesKey.isLoggedIn);
+    return isLoggedIn ?? false;
+  }
+
+  @override
+  Future<void> setIsLoggedIn({required bool status}) async {
+    await _prefs.setBool(PreferencesKey.isLoggedIn, status);
+  }
 }

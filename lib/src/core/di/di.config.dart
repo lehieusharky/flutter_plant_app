@@ -17,9 +17,9 @@ import '../../features/auth/login/data/data_sources/remote/auth_database_datasou
     as _i4;
 import '../../features/auth/login/data/data_sources/remote/auth_database_datasource_impl.dart'
     as _i5;
-import '../../features/auth/login/data/data_sources/remote/login_google_datasource.dart'
-    as _i27;
 import '../../features/auth/login/data/data_sources/remote/login_google_datasource_impl.dart'
+    as _i27;
+import '../../features/auth/login/data/data_sources/remote/login_google_datasource.dart'
     as _i26;
 import '../../features/auth/login/data/data_sources/remote/phone_datasource.dart'
     as _i31;
