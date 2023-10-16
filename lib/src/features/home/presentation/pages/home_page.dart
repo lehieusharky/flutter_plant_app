@@ -49,7 +49,7 @@ class _HomePageState extends State<HomePage>
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             const HeaderHomePage(),
-                            context.sizedBox(height: 25),
+                            context.sizedBox(height: 15),
                             Padding(
                                 padding: context.padding(horizontal: 12),
                                 child: const SearchBarButton()),
