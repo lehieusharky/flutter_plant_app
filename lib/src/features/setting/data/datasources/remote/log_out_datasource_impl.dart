@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/features/setting/data/datasources/remote/log_out_datasource.dart';
 
@@ -9,6 +10,7 @@ class LogOutDataSourceImpl implements LogOutDataSource {
   @override
   Future<void> logOut() async {
     try {
+      await sharePreference.setIsLoggedIn(status: false);
       await FirebaseAuth.instance.signOut();
       await GoogleSignIn().signOut();
     } catch (e) {

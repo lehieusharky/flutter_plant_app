@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
-import 'package:plant_market/src/features/auth/login/data/data_sources/remote/login_google_datasource_impl.dart';
+import 'package:plant_market/src/features/auth/login/data/data_sources/remote/login_google_datasource.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/features/auth/login/domain/repositories/login_repository.dart';
 
