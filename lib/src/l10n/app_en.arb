@@ -48,5 +48,6 @@
   "start": "Start",
   "addPhotos": "Add Photos",
   "description": "Description",
-  "describeSomethingAboutThisStageOfThePlant": "Describe something about this stage of the plant"
+  "describeSomethingAboutThisStageOfThePlant": "Describe something about this stage of the plant",
+  "recordPlantProcess": "Record plant's process!"
 }

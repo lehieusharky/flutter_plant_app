@@ -23,18 +23,26 @@ class AddPhotosButton extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            Icons.camera_alt,
-            size: context.sizeWidth(40),
-            color: theme(context).textTheme.titleMedium!.color,
-          ),
+          _buildIcon(context),
           context.sizedBox(height: 5),
-          Text(
-            translate(context).addPhotos,
-            style: theme(context).textTheme.titleMedium,
-          ),
+          _buildTitle(context),
         ],
       ),
+    );
+  }
+
+  Widget _buildIcon(BuildContext context) {
+    return Icon(
+      Icons.camera_alt,
+      size: context.sizeWidth(40),
+      color: theme(context).textTheme.titleMedium!.color,
+    );
+  }
+
+  Widget _buildTitle(BuildContext context) {
+    return Text(
+      translate(context).addPhotos,
+      style: theme(context).textTheme.titleMedium,
     );
   }
 }

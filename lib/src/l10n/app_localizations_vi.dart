@@ -153,4 +153,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get describeSomethingAboutThisStageOfThePlant => 'Mô tả gì đó về giai đoạn này của cây';
+
+  @override
+  String get recordPlantProcess => 'Ghi lại giai đoạn của cây trồng';
 }

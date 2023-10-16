@@ -27,5 +27,13 @@ class MockUser {
       isLast: false,
       createAt: 'createAt2',
     ),
+    TimeLineModel(
+      title: 'title2',
+      description: 'description2',
+      image:
+          'https://scontent.fhan4-3.fna.fbcdn.net/v/t39.30808-6/387818688_284532651084308_5348479087952367709_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_ohc=M7XuMDAYcmEAX_CKmJj&_nc_ht=scontent.fhan4-3.fna&oh=00_AfDjjFMRSesYXYUGa-9Mt4lDTsazjBH7ZH5hdeo-ygCDMQ&oe=65313DE6',
+      isLast: false,
+      createAt: 'createAt2',
+    ),
   ];
 }

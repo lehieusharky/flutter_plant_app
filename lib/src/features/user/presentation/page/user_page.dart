@@ -12,8 +12,8 @@ class _UserPageState extends BaseWidgetState
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return BaseWidget(
-      child: BlocProvider(
+    return Scaffold(
+      body: BlocProvider(
         create: (context) => UserBloc(),
         child: BlocConsumer<UserBloc, UserState>(
           listener: (context, state) {
@@ -22,32 +22,38 @@ class _UserPageState extends BaseWidgetState
             }
           },
           builder: (context, state) {
-            return Column(
+            return Stack(
               children: [
-                CustomButton.send(
-                  title: 'Add post',
-                  context: context,
-                  onPressed: () => _showCreatePostModal(context),
-                ),
-                if (state is UserPickImageFromCameraSuccess)
-                  Image.file(state.image!),
-                Expanded(
-                  child: ListView.separated(
-                    itemCount: MockUser.timeLineArray.length,
-                    itemBuilder: (context, index) {
-                      return TimeLineItem(
-                        image: MockUser.timeLineArray[index].image,
-                        title: MockUser.timeLineArray[index].title,
-                        description: MockUser.timeLineArray[index].description,
-                      );
-                    },
-                    separatorBuilder: (BuildContext context, int index) {
-                      return Padding(
-                        padding: context.padding(horizontal: 40, vertical: 8),
-                        child: const MySeparator(),
-                      );
-                    },
-                  ),
+                const BackGroundContainer(),
+                Column(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: context.padding(horizontal: 12),
+                        child: ListView.separated(
+                          itemCount: MockUser.timeLineArray.length,
+                          itemBuilder: (context, index) {
+                            return TimeLineItem(
+                              image: MockUser.timeLineArray[index].image,
+                              title: MockUser.timeLineArray[index].title,
+                              description:
+                                  MockUser.timeLineArray[index].description,
+                            );
+                          },
+                          separatorBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding:
+                                  context.padding(horizontal: 40, vertical: 8),
+                              child: const MySeparator(),
+                            );
+                          },
+                        ),
+                      ),
+                    ),
+                    CreatePostButton(
+                      onPressed: () => _showCreatePostModal(context),
+                    ),
+                  ],
                 ),
               ],
             );
