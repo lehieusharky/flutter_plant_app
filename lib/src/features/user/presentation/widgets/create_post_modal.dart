@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/di/di_set_up.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_form_field.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
-import 'package:plant_market/src/theme/theme_manager.dart';
+import 'package:plant_market/src/features/user/presentation/widgets/add_photo_button.dart';
+import 'package:plant_market/src/features/user/presentation/widgets/cancel_button.dart';
+import 'package:plant_market/src/features/user/presentation/widgets/create_post_form.dart';
 
 class CreatePostModal extends StatefulWidget {
   const CreatePostModal({super.key});
@@ -27,66 +27,45 @@ class _CreatePostModalState extends State<CreatePostModal> {
               Stack(
                 alignment: Alignment.centerLeft,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '________',
-                        style: theme(context).textTheme.titleMedium,
-                      ),
-                    ],
-                  ),
+                  _buildSeperator(),
                   Padding(
-                    padding: context.padding(top: 10),
-                    child: TextButton(
-                      onPressed: () => Navigator.pop(context),
-                      child: Text(
-                        'Cancel',
-                        style: theme(context).textTheme.titleMedium,
-                      ),
-                    ),
+                    padding: context.padding(top: 5),
+                    child: const CancelButton(),
                   ),
                 ],
               ),
-              Divider(
-                color: theme(context)
-                    .textTheme
-                    .titleMedium!
-                    .color!
-                    .withOpacity(0.8),
-              ),
+              _buildDivider(),
               context.sizedBox(height: 5),
               Text(
-                'Description',
+                translate(context).description,
                 style: theme(context).textTheme.titleMedium,
               ),
               context.sizedBox(height: 12),
-              CustomTextFormField(
-                borderRadius: 5,
-                controller: _descriptionController,
-                maxLines: 10,
-                keyboardType: TextInputType.text,
-                hintText: 'Write something about your plant',
-                backgroundColor: colorTheme.get6A6F7D.withOpacity(0.3),
-              ),
+              CreatePostForm(descriptionController: _descriptionController),
               context.sizedBox(height: 20),
-              CustomButton(
-                  width: context.sizeWidth(125),
-                  height: context.sizeHeight(112),
-                  onPress: () {},
-                  backgroundColor: ThemeManager.backgroundButton(),
-                  borderRadius: 5,
-                  child: const Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.plus_one),
-                      Text('Add photos'),
-                    ],
-                  )),
+              AddPhotosButton(onPressed: () {}),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Widget _buildDivider() {
+    return Divider(
+      color: theme(context).textTheme.titleMedium!.color!.withOpacity(0.8),
+    );
+  }
+
+  Widget _buildSeperator() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          '________',
+          style: theme(context).textTheme.titleMedium,
+        ),
+      ],
     );
   }
 }

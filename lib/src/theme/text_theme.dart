@@ -38,7 +38,7 @@ class AppTextTheme {
         ),
         titleMedium: GoogleFonts.openSans(
           fontSize: context.sizeWidth(15),
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
           color: colorTheme.get36455A,
         ),
         titleSmall: GoogleFonts.openSans(
