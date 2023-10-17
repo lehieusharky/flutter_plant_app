@@ -1,3 +1,6 @@
+import 'package:json_annotation/json_annotation.dart';
+part 'weather_entity.g.dart';
+
 class WeatherEntity {
   List<Weather>? weather;
   String? base;
@@ -18,6 +21,7 @@ class WeatherEntity {
   });
 }
 
+@JsonSerializable(includeIfNull: false)
 class Weather {
   String? main;
   String? description;
@@ -27,12 +31,11 @@ class Weather {
     this.description,
   });
 
-  Weather.fromJson(Map<String, dynamic> json) {
-    main = json['main'];
-    description = json['description'];
-  }
+  factory Weather.fromJson(Map<String, dynamic> json) =>
+      _$WeatherFromJson(json);
 }
 
+@JsonSerializable(includeIfNull: false)
 class Main {
   double? temp;
   double? tempMin;
@@ -48,21 +51,14 @@ class Main {
     this.humidity,
   });
 
-  Main.fromJson(Map<String, dynamic> json) {
-    temp = json['temp'];
-    tempMin = json['temp_min'];
-    tempMax = json['temp_max'];
-    pressure = json['pressure'];
-    humidity = json['humidity'];
-  }
+  factory Main.fromJson(Map<String, dynamic> json) => _$MainFromJson(json);
 }
 
+@JsonSerializable(includeIfNull: false)
 class Wind {
   double? speed;
 
   Wind({this.speed});
 
-  Wind.fromJson(Map<String, dynamic> json) {
-    speed = json['speed'];
-  }
+  factory Wind.fromJson(Map<String, dynamic> json) => _$WindFromJson(json);
 }

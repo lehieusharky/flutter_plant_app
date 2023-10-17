@@ -9,10 +9,10 @@ class UserModel extends UserEntity {
   const UserModel({
     required super.userName,
     required super.email,
-    required super.createAt,                                    
+    required super.createAt,
     required super.id,
     required super.role,
-  });  
+  });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>
       _$UserModelFromJson(json);
