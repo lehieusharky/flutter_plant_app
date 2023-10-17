@@ -50,5 +50,8 @@
   "description": "Description",
   "describeSomethingAboutThisStageOfThePlant": "Describe something about this stage of the plant",
   "recordPlantProcess": "Record plant's process!",
-  "save": "Save"
+  "save": "Save",
+  "login": "Login",
+  "youAreNotLoggedIn": "You are not logged in",
+  "pleaseLoginToContinue": "Please login to continue "
 }

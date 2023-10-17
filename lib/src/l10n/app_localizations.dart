@@ -404,6 +404,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Save'**
   String get save;
+
+  /// No description provided for @login.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get login;
+
+  /// No description provided for @youAreNotLoggedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'You are not logged in'**
+  String get youAreNotLoggedIn;
+
+  /// No description provided for @pleaseLoginToContinue.
+  ///
+  /// In en, this message translates to:
+  /// **'Please login to continue '**
+  String get pleaseLoginToContinue;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

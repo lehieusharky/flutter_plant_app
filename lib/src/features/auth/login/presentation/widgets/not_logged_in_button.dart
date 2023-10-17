@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/di/di_set_up.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/router/router_path.dart';
@@ -15,34 +16,11 @@ class NotLoggedInButton extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Container(
-          alignment: Alignment.center,
-          width: context.sizeWidth(75),
-          height: context.sizeWidth(75),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color:
-                theme(context).textTheme.titleMedium!.color!.withOpacity(0.1),
-          ),
-          child: Icon(
-            Icons.person,
-            size: context.sizeWidth(55),
-            color: colorTheme.get2DDA93,
-          ),
-        ),
+        _buildPersonSymbol(context),
         context.sizedBox(height: 5),
-        Text(
-          'You are not logged in\nPlease login to continue 😳',
-          style: theme(context).textTheme.titleMedium!.copyWith(height: 1.4),
-          textAlign: TextAlign.center,
-        ),
+        _buildNotification(context),
         context.sizedBox(height: 15),
-        CustomButton.send(
-          width: context.sizeWidth(190),
-          title: 'Login',
-          context: context,
-          onPressed: () => _navigateToLoginpage(context),
-        ),
+        _buildLoginButton(context),
       ],
     );
   }
@@ -51,5 +29,39 @@ class NotLoggedInButton extends StatelessWidget {
     context.go(RouterPath.loginPageChild, extra: {
       AppConstant.isFromDashBoardRouter: true,
     });
+  }
+
+  Widget _buildLoginButton(BuildContext context) {
+    return CustomButton.send(
+      width: context.sizeWidth(190),
+      title: translate(context).login,
+      context: context,
+      onPressed: () => _navigateToLoginpage(context),
+    );
+  }
+
+  Widget _buildNotification(BuildContext context) {
+    return Text(
+      '${translate(context).youAreNotLoggedIn}\n${translate(context).pleaseLoginToContinue}',
+      style: theme(context).textTheme.titleMedium!.copyWith(height: 1.4),
+      textAlign: TextAlign.center,
+    );
+  }
+
+  Widget _buildPersonSymbol(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      width: context.sizeWidth(75),
+      height: context.sizeWidth(75),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: theme(context).textTheme.titleMedium!.color!.withOpacity(0.1),
+      ),
+      child: Icon(
+        Icons.person,
+        size: context.sizeWidth(55),
+        color: colorTheme.get2DDA93,
+      ),
+    );
   }
 }

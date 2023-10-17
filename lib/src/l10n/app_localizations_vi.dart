@@ -159,4 +159,13 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get save => 'Lưu';
+
+  @override
+  String get login => 'Đăng nhập';
+
+  @override
+  String get youAreNotLoggedIn => 'Bạn chưa đăng nhập';
+
+  @override
+  String get pleaseLoginToContinue => 'Hãy đăng nhập để tiếp tục ';
 }

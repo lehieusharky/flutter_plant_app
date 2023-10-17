@@ -23,22 +23,8 @@ class _SettingPageState extends BaseWidgetState
             }
           },
           builder: (context, state) {
-            if (!sharePreference.isLoggedIn()) {
-              return Stack(
-                alignment: Alignment.center,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      CustomTitle(title: translate(context).system),
-                      context.sizedBox(height: 12),
-                      const ThemeLanguageButton(),
-                      context.sizedBox(height: 50),
-                    ],
-                  ),
-                  const NotLoggedInButton(),
-                ],
-              );
+            if (super.isLoggedIn()) {
+              return const SettingPageNotLoggedIn();
             } else {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -58,16 +44,17 @@ class _SettingPageState extends BaseWidgetState
                   const PrivacyPolicyButton(),
                   const Expanded(child: SizedBox()),
                   Center(
-                      child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      const ShareFriendButton(),
-                      context.sizedBox(height: 5),
-                      const LogoutButton(),
-                      const VersionText(),
-                      context.sizedBox(height: 5),
-                    ],
-                  )),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const ShareFriendButton(),
+                        context.sizedBox(height: 5),
+                        const LogoutButton(),
+                        const VersionText(),
+                        context.sizedBox(height: 5),
+                      ],
+                    ),
+                  ),
                 ],
               );
             }
