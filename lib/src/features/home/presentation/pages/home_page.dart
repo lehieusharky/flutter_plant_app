@@ -10,12 +10,6 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   @override
-  void initState() {
-    super.initState();
-    Logger().w('is logged in home page: ${sharePreference.isLoggedIn()}');
-  }
-
-  @override
   Widget build(BuildContext context) {
     super.build(context);
     return SafeArea(
@@ -88,10 +82,13 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  void _getWeatherInfomation(
-      {required String lat,
-      required String long,
-      required BuildContext context}) {
+  void _getWeatherInfomation({
+    required String lat,
+    required String long,
+    required BuildContext context,
+  }) {
+
+
     context
         .read<HomePageBloc>()
         .add(HomePageGetWeatherInfomation(lat: lat, long: long));

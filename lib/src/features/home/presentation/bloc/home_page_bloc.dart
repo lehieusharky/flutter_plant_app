@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:hive/hive.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
@@ -26,17 +27,48 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     }
   }
 
+  Future<WeatherModel?> _getLocalWeatherData() async {
+    try {
+      final weatherBox = Hive.box('weather');
+      final weatherModel = weatherBox.get('weather');
+
+      return weatherModel;
+    } catch (e) {
+      return null;
+    }
+  }
+
   Future<void> _getWeatherInfomation(
     HomePageGetWeatherInfomation event,
     Emitter<HomePageState> emit,
   ) async {
     try {
-      final weatherModel = await getWeatherUseCase.call(GetWeatherParams(
-        lon: event.long,
-        lat: event.lat,
-      ));
+      final weatherData = await _getLocalWeatherData();
+      if (weatherData != null) {
+        final weatherDateTime = DateTime.parse(weatherData.dateTime ?? '');
 
-      emit(HomePageGetWeatherInfomationSuccess(weatherModel: weatherModel));
+        final currentTime = DateTime.now();
+
+        final isSooner = (weatherDateTime
+            .isBefore(currentTime.add(const Duration(hours: 3))));
+        if (isSooner) {
+          emit(HomePageGetWeatherInfomationSuccess(weatherModel: weatherData));
+        } else {
+          final weatherModel = await getWeatherUseCase.call(GetWeatherParams(
+            lon: event.long,
+            lat: event.lat,
+          ));
+
+          emit(HomePageGetWeatherInfomationSuccess(weatherModel: weatherModel));
+        }
+      } else {
+        final weatherModel = await getWeatherUseCase.call(GetWeatherParams(
+          lon: event.long,
+          lat: event.lat,
+        ));
+
+        emit(HomePageGetWeatherInfomationSuccess(weatherModel: weatherModel));
+      }
     } catch (e) {
       emit(HomePageFailure(message: e.toString()));
     }
