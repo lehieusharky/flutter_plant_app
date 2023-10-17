@@ -39,22 +39,26 @@ class _DashBoardPageState extends State<DashBoardPage> {
               curve: Curves.easeInOut,
             );
           },
-          items: [
-            itemBottomGreen(
-              icon: const Icon(Icons.person),
-              title: translate(context).user,
-            ),
-            itemBottomGreen(
-              icon: const Icon(Icons.home),
-              title: translate(context).home,
-            ),
-            itemBottomGreen(
-              icon: const Icon(Icons.settings),
-              title: translate(context).setting,
-            ),
-          ],
+          items: _buildItemBottom(),
         ),
       ),
     );
+  }
+
+  List<SalomonBottomBarItem> _buildItemBottom() {
+    return [
+      itemBottomGreen(
+        icon: const Icon(Icons.person),
+        title: translate(context).user,
+      ),
+      itemBottomGreen(
+        icon: const Icon(Icons.home),
+        title: translate(context).home,
+      ),
+      itemBottomGreen(
+        icon: const Icon(Icons.settings),
+        title: translate(context).setting,
+      ),
+    ];
   }
 }

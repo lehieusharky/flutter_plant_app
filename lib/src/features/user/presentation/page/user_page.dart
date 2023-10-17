@@ -12,7 +12,7 @@ class _UserPageState extends BaseWidgetState
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    if (!sharePreference.isLoggedIn()) {
+    if (super.isLoggedIn()) {
       return const NotLoggedInButton();
     } else {
       return Scaffold(
@@ -28,8 +28,8 @@ class _UserPageState extends BaseWidgetState
               return Stack(
                 children: [
                   const BackGroundContainer(),
-                  Column(
-                    children: [
+                Column(
+                  children: [
                       context.sizedBox(height: 50),
                       Expanded(
                         child: Padding(

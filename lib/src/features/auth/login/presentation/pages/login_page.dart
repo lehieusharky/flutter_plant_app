@@ -18,7 +18,6 @@ class LoginPage extends BaseWidget {
     super.key,
     this.isFromDashBoardRouter,
   });
-
   @override
   BaseWidgetState createState() => _LoginPageState();
 }

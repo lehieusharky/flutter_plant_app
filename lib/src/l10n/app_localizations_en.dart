@@ -159,4 +159,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get save => 'Save';
+
+  @override
+  String get login => 'Login';
+
+  @override
+  String get youAreNotLoggedIn => 'You are not logged in';
+
+  @override
+  String get pleaseLoginToContinue => 'Please login to continue ';
 }
