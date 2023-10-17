@@ -4,7 +4,7 @@ import 'package:plant_market/src/core/data/defines/constants/image_constant.dart
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
-import 'package:plant_market/src/features/home/presentation/widgets/topic_button.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/part_home_page_widget.dart';
 
 class RowTopicButton extends StatefulWidget {
   const RowTopicButton({super.key});

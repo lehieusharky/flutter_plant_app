@@ -19,4 +19,15 @@ class WeatherModel extends WeatherEntity {
 
   factory WeatherModel.fromJson(Map<String, dynamic> json) =>
       _$WeatherModelFromJson(json);
+
+  bool isSooner3HourThenNow() {
+    final weatherDateTime = DateTime.parse(dateTime ?? '');
+
+    final currentTime = DateTime.now();
+
+    final isSooner =
+        (weatherDateTime.isBefore(currentTime.add(const Duration(hours: 3))));
+
+    return isSooner;
+  }
 }

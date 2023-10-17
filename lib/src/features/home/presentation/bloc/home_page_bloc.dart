@@ -2,6 +2,8 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive/hive.dart';
+import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
+import 'package:plant_market/src/core/services/date_time_service.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
@@ -29,12 +31,32 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
 
   Future<WeatherModel?> _getLocalWeatherData() async {
     try {
-      final weatherBox = Hive.box('weather');
-      final weatherModel = weatherBox.get('weather');
-
+      final weatherBox = Hive.box(AppConstant.weatherBox);
+      final weatherModel = weatherBox.get(AppConstant.weatherKey);
       return weatherModel;
     } catch (e) {
       return null;
+    }
+  }
+
+  Future<WeatherModel> _fetchWeatherAPI(
+    HomePageGetWeatherInfomation event,
+  ) async {
+    try {
+      final weatherModel = await getWeatherUseCase.call(
+        GetWeatherParams(
+          lon: event.long,
+          lat: event.lat,
+        ),
+      );
+      weatherModel.setDateTime(DateTimeService.now());
+      // * write weather data to local
+      final weatherBox = Hive.box(AppConstant.weatherBox);
+      weatherBox.put(AppConstant.weatherKey, weatherModel);
+
+      return weatherModel;
+    } catch (e) {
+      throw Exception(e);
     }
   }
 
@@ -43,31 +65,16 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     Emitter<HomePageState> emit,
   ) async {
     try {
-      final weatherData = await _getLocalWeatherData();
-      if (weatherData != null) {
-        final weatherDateTime = DateTime.parse(weatherData.dateTime ?? '');
+      final localWeatherData = await _getLocalWeatherData();
 
-        final currentTime = DateTime.now();
-
-        final isSooner = (weatherDateTime
-            .isBefore(currentTime.add(const Duration(hours: 3))));
-        if (isSooner) {
-          emit(HomePageGetWeatherInfomationSuccess(weatherModel: weatherData));
-        } else {
-          final weatherModel = await getWeatherUseCase.call(GetWeatherParams(
-            lon: event.long,
-            lat: event.lat,
-          ));
-
-          emit(HomePageGetWeatherInfomationSuccess(weatherModel: weatherModel));
-        }
+      if (localWeatherData != null && localWeatherData.isSooner3HourThenNow()) {
+        emit(HomePageGetWeatherInfomationSuccess(
+            weatherModel: localWeatherData));
       } else {
-        final weatherModel = await getWeatherUseCase.call(GetWeatherParams(
-          lon: event.long,
-          lat: event.lat,
-        ));
+        final remoteWeatherData = await _fetchWeatherAPI(event);
 
-        emit(HomePageGetWeatherInfomationSuccess(weatherModel: weatherModel));
+        emit(HomePageGetWeatherInfomationSuccess(
+            weatherModel: remoteWeatherData));
       }
     } catch (e) {
       emit(HomePageFailure(message: e.toString()));
