@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
@@ -20,6 +21,7 @@ class WeatherHomeage extends StatefulWidget {
 
 class _WeatherHomeageState extends State<WeatherHomeage> {
   WeatherModel _weatherModel = WeatherModel();
+  final weatherBox = Hive.box('weather');
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +29,8 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
       selector: (state) {
         if (state is HomePageGetWeatherInfomationSuccess) {
           _weatherModel = state.weatherModel;
+          _weatherModel.setDateTime(DateTime.now().toString());
+          weatherBox.put('weather', _weatherModel);
         }
         return _weatherModel;
       },
