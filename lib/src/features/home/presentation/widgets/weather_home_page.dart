@@ -23,7 +23,7 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
         if (weatherModel.name == null) {
           return CustomShimmer(
             width: context.width,
-            height: context.sizeHeight(175),
+            height: context.sizeHeight(180),
           );
         } else {
           return Stack(
