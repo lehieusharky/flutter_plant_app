@@ -34,7 +34,11 @@ class _LoginPageState extends BaseWidgetState {
         child: BlocConsumer<LoginBloc, LoginState>(
           listener: (context, state) {
             if (state is LoginSuccess) {
-              Logger().d('login success');
+              context.read<LoginBloc>().add(LoginGetUserInfomation());
+            }
+            if (state is LoginGetUserInfomationSuccess) {
+              final userModel = state.userModel;
+
               context.go(RouterPath.dashBoard);
             }
             if (state is LoginWithGoogleFailure) {

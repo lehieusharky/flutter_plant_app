@@ -1,8 +1,8 @@
 import 'package:injectable/injectable.dart';
 import 'package:plant_market/src/core/data/defines/enum/role.dart';
+import 'package:plant_market/src/core/data/models/user_model.dart';
 import 'package:plant_market/src/core/di/di_set_up.dart';
 import 'package:plant_market/src/features/auth/login/data/data_sources/remote/auth_database_datasource.dart';
-import 'package:plant_market/src/features/auth/login/data/models/user_model.dart';
 
 @Injectable(as: AuthenticationDataBaseDataSource)
 class AuthenticationDataBaseDataSourceImpl

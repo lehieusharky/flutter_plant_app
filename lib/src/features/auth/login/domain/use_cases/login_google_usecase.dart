@@ -1,5 +1,5 @@
-import 'dart:developer';
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/exceptions/login_exception.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
@@ -23,10 +23,8 @@ class LoginWithGoogleUseCaseImpl extends UseCase<void, NoParams>
   Future<void> call(NoParams params) async {
     try {
       final result = await _loginWithGoogleRepository.loginWithGoogle();
-      return result.fold(
-        (failure) => LoginFailure(message: failure.toString()),
-        (success) => log('login success'),
-      );
+      return result.fold((failure) => LoginFailure(message: failure.toString()),
+          (success) => Logger().d('Login success'));
     } catch (e) {
       throw LoginException(message: e.toString());
     }

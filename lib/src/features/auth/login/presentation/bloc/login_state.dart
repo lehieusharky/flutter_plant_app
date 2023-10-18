@@ -21,6 +21,14 @@ final class LoginFailure extends LoginState {
   List<Object> get props => [message];
 }
 
+final class LoginGetUserInfomationSuccess extends LoginState {
+  final UserModel userModel;
+
+  const LoginGetUserInfomationSuccess({required this.userModel});
+  @override
+  List<Object> get props => [userModel];
+}
+
 final class LoginWithGoogleFailure extends LoginFailure {
   const LoginWithGoogleFailure({required super.message});
 }

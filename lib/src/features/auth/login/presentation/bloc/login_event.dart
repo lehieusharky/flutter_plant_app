@@ -25,4 +25,6 @@ final class LoginVerityOtp extends LoginEvent {
   List<Object> get props => [verityOtpParams];
 }
 
+final class LoginGetUserInfomation extends LoginEvent {}
+
 final class LoginSetNotLoggedIn extends LoginEvent {}

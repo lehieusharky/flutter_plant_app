@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:plant_market/src/core/data/defines/enum/role.dart';
-import 'package:plant_market/src/features/auth/login/domain/entities/user_entity.dart';
+import 'package:plant_market/src/core/domain/entities/user_entity.dart';
 
 part 'user_model.g.dart';
 
