@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/data/defines/enum/supported_theme.dart';
+import 'package:plant_market/src/core/data/models/user_model.dart';
 import 'package:plant_market/src/features/my_app/data/models/system_model.dart';
 import 'package:plant_market/src/features/my_app/domain/use_cases/system_use_case.dart';
 
@@ -14,7 +15,19 @@ class MyAppBloc extends Bloc<MyAppEvent, MyAppState> {
     on<MyAppToogleTheme>(_toggleTheme);
     on<MyAppToggleLanguage>(_toggleLanguage);
     on<MyAppGetSystemInfomation>(_getSystemInfomation);
+    on<MyAppGetUserInformation>(_getUserInformation);
     add(MyAppGetSystemInfomation());
+  }
+
+  Future<void> _getUserInformation(
+    MyAppGetUserInformation event,
+    Emitter<MyAppState> emit,
+  ) async {
+    try {
+      emit(MyAppGetUserInformationSuccess(userModel: event.userModel));
+    } catch (e) {
+      emit(MyAppFailure(message: e.toString()));
+    }
   }
 
   Future<void> _getSystemInfomation(
