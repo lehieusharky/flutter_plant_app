@@ -14,25 +14,22 @@ class _DashBoardPageState extends State<DashBoardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocListener<MyAppBloc, MyAppState>(
-        listener: (context, state) {
-          if (state is MyAppGetUserInformationSuccess) {
-            Logger().e('User info name: ${state.userModel.userName}');
-          }
+      body: BlocBuilder<MyAppBloc, MyAppState>(
+        builder: (context, state) {
+          return PageView(
+            controller: _pageController,
+            children: const [
+              UserPage(),
+              HomePage(),
+              SettingPage(),
+            ],
+            onPageChanged: (index) {
+              setState(() {
+                _currentIndex = index;
+              });
+            },
+          );
         },
-        child: PageView(
-          controller: _pageController,
-          children: const [
-            UserPage(),
-            HomePage(),
-            SettingPage(),
-          ],
-          onPageChanged: (index) {
-            setState(() {
-              _currentIndex = index;
-            });
-          },
-        ),
       ),
       bottomNavigationBar: Padding(
         padding: context.padding(horizontal: 40, vertical: 2.5),
