@@ -1,6 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
+import 'package:plant_market/src/core/data/models/user_model.dart';
+import 'package:plant_market/src/core/domain/user_cases/user_use_cases.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/auth/login/domain/use_cases/auth_database_usecase.dart';
 import 'package:plant_market/src/features/auth/login/domain/use_cases/login_google_usecase.dart';
@@ -15,8 +17,23 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<LoginSentOtp>(_sentOtp);
     on<LoginVerityOtp>(_verityOtp);
     on<LoginSetNotLoggedIn>(_setNotLoggedIn);
+    on<LoginGetUserInfomation>(_getUserInfomation);
 
     add(LoginSetNotLoggedIn());
+  }
+
+  Future<void> _getUserInfomation(
+    LoginGetUserInfomation event,
+    Emitter<LoginState> emit,
+  ) async {
+    try {
+      final userModel = await userUseCase.getUserInfomation();
+      if (userModel != null) {
+        emit(LoginGetUserInfomationSuccess(userModel: userModel));
+      }
+    } catch (e) {
+      emit(LoginFailure(message: e.toString()));
+    }
   }
 
   Future<void> _setNotLoggedIn(

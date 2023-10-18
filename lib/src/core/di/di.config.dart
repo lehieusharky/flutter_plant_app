@@ -45,19 +45,19 @@ import '../../features/auth/login/domain/use_cases/phone_usecase.dart' as _i35;
 import '../../features/home/data/datasources/location_datasouce_impl.dart'
     as _i17;
 import '../../features/home/data/datasources/location_datasource.dart' as _i16;
-import '../../features/home/data/datasources/weather_datasource.dart' as _i44;
+import '../../features/home/data/datasources/weather_datasource.dart' as _i49;
 import '../../features/home/data/datasources/weather_datasource_impl.dart'
-    as _i45;
+    as _i50;
 import '../../features/home/data/repositories_impl/location_repository_impl.dart'
     as _i19;
 import '../../features/home/data/repositories_impl/weather_repository_impl.dart'
-    as _i47;
+    as _i52;
 import '../../features/home/domain/repositories/location_repository.dart'
     as _i18;
 import '../../features/home/domain/repositories/weather_repository.dart'
-    as _i46;
+    as _i51;
 import '../../features/home/domain/use_cases/location_use_case.dart' as _i20;
-import '../../features/home/domain/use_cases/weather_use_case.dart' as _i48;
+import '../../features/home/domain/use_cases/weather_use_case.dart' as _i53;
 import '../../features/my_app/data/datasources/local/system_datasource.dart'
     as _i39;
 import '../../features/my_app/data/datasources/local/system_datasource_impl.dart'
@@ -89,9 +89,14 @@ import '../../features/user/domain/use_cases/image_picker_use_case.dart'
 import '../../theme/color_theme.dart' as _i9;
 import '../data/datasource/local/share_preference_datasource.dart' as _i36;
 import '../data/datasource/local/share_preference_datasource_impl.dart' as _i37;
+import '../data/datasource/remote/user_datasource.dart' as _i44;
+import '../data/datasource/remote/user_datasource_impl.dart' as _i45;
 import '../data/defines/constants/audio_constant.dart' as _i3;
 import '../data/defines/constants/image_constant.dart' as _i10;
-import 'di.dart' as _i49;
+import '../data/repositories_impl/user_repository_impl.dart' as _i47;
+import '../domain/repositories/user_repository.dart' as _i46;
+import '../domain/user_cases/user_use_cases.dart' as _i48;
+import 'di.dart' as _i54;
 
 // initializes the registration of main-scope dependencies inside of GetIt
 Future<_i1.GetIt> $initGetIt(
@@ -154,12 +159,17 @@ Future<_i1.GetIt> $initGetIt(
       () => _i42.SystemRepositoryImpl(gh<_i39.SystemDataSource>()));
   gh.factory<_i43.SystemUsecase>(
       () => _i43.SystemUsecaseImpl(gh<_i41.SystemRepository>()));
-  gh.factory<_i44.WeatherDataSource>(() => _i45.WeatherDataSourceImpl());
-  gh.factory<_i46.WeatherRepository>(
-      () => _i47.WeatherRepositoryImpl(gh<_i44.WeatherDataSource>()));
-  gh.singleton<_i48.GetWeatherUseCase>(
-      _i48.GetWeatherUseCaseImpl(gh<_i46.WeatherRepository>()));
+  gh.factory<_i44.UserDataSource>(() => _i45.UserDataSourceImpl());
+  gh.factory<_i46.UserRepository>(
+      () => _i47.UserRepositoryImpl(gh<_i44.UserDataSource>()));
+  gh.factory<_i48.UserUseCase>(
+      () => _i48.UserUseCaseImpl(gh<_i46.UserRepository>()));
+  gh.factory<_i49.WeatherDataSource>(() => _i50.WeatherDataSourceImpl());
+  gh.factory<_i51.WeatherRepository>(
+      () => _i52.WeatherRepositoryImpl(gh<_i49.WeatherDataSource>()));
+  gh.singleton<_i53.GetWeatherUseCase>(
+      _i53.GetWeatherUseCaseImpl(gh<_i51.WeatherRepository>()));
   return getIt;
 }
 
-class _$AppModule extends _i49.AppModule {}
+class _$AppModule extends _i54.AppModule {}

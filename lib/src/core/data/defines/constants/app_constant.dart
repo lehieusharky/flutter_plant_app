@@ -15,4 +15,7 @@ class AppConstant {
   static const String isFromDashBoardRouter = 'isFromDashBoardRouter';
   static const String weatherBox = 'weatherBox';
   static const String weatherKey = 'weatherKey';
+
+  // * firebase
+  static const String usersCollection = 'users';
 }
