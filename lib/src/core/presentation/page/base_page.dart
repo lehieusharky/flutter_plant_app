@@ -26,7 +26,7 @@ class BaseWidgetState extends State<BaseWidget> with TickerProviderStateMixin {
     );
   }
 
-  bool isLoggedIn() {
+  bool isNotLoggedIn() {
     return firebaseAuth.currentUser == null ? true : false;
   }
 
