@@ -12,58 +12,55 @@ class _SettingPageState extends BaseWidgetState
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    return BaseWidget(
-      child: BlocProvider(
-        create: (context) => SettingBloc(),
-        child: BlocListener<SettingBloc, SettingState>(
-          listener: (context, state) {
-            if (state is SettingLogOutSuccess) {
-              log('log out state succes');
-              context.go(RouterPath.loginPage);
-            }
-          },
-          child: BlocBuilder<MyAppBloc, MyAppState>(
-            builder: (context, state) {
-              if (state is MyAppGetUserInformationSuccess) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    CustomTitle(title: translate(context).system),
-                    context.sizedBox(height: 12),
-                    const ThemeLanguageButton(),
-                    context.sizedBox(height: 25),
-                    CustomTitle(title: translate(context).account),
-                    context.sizedBox(height: 12),
-                    const UserInfomationButton(),
-                    context.sizedBox(height: 8),
-                    const DeleteAccountButton(),
-                    context.sizedBox(height: 25),
-                    CustomTitle(title: translate(context).about),
-                    context.sizedBox(height: 12),
-                    const PrivacyPolicyButton(),
-                    const Expanded(child: SizedBox()),
-                    Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          const ShareFriendButton(),
-                          context.sizedBox(height: 5),
-                          const LogoutButton(),
-                          const VersionText(),
-                          context.sizedBox(height: 5),
-                        ],
-                      ),
-                    ),
-                  ],
-                );
-              } else {
-                return const SettingPageNotLoggedIn();
+    if (super.isNotLoggedIn()) {
+      return const SettingPageNotLoggedIn();
+    } else {
+      return BaseWidget(
+        child: BlocProvider(
+          create: (context) => SettingBloc(),
+          child: BlocConsumer<SettingBloc, SettingState>(
+            listener: (context, state) {
+              if (state is SettingLogOutSuccess) {
+                context.go(RouterPath.loginPage);
               }
+            },
+            builder: (context, state) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  CustomTitle(title: translate(context).system),
+                  context.sizedBox(height: 12),
+                  const ThemeLanguageButton(),
+                  context.sizedBox(height: 25),
+                  CustomTitle(title: translate(context).account),
+                  context.sizedBox(height: 12),
+                  const UserInfomationButton(),
+                  context.sizedBox(height: 8),
+                  const DeleteAccountButton(),
+                  context.sizedBox(height: 25),
+                  CustomTitle(title: translate(context).about),
+                  context.sizedBox(height: 12),
+                  const PrivacyPolicyButton(),
+                  const Expanded(child: SizedBox()),
+                  Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const ShareFriendButton(),
+                        context.sizedBox(height: 5),
+                        const LogoutButton(),
+                        const VersionText(),
+                        context.sizedBox(height: 5),
+                      ],
+                    ),
+                  ),
+                ],
+              );
             },
           ),
         ),
-      ),
-    );
+      );
+    }
   }
 
   @override
