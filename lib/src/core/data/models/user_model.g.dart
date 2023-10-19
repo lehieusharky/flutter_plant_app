@@ -12,6 +12,9 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       createAt: json['createAt'] as String,
       id: json['id'] as String,
       role: $enumDecodeNullable(_$RoleEnumMap, json['role']) ?? Role.regular,
+      listPostId: (json['listPostId'] as List<dynamic>)
+          .map((e) => e as String)
+          .toList(),
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -20,6 +23,7 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'email': instance.email,
       'createAt': instance.createAt,
       'role': _$RoleEnumMap[instance.role]!,
+      'listPostId': instance.listPostId,
     };
 
 const _$RoleEnumMap = {

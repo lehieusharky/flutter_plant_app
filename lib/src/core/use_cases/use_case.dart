@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:plant_market/src/features/user/data/models/time_line_model.dart';
 
 abstract class UseCase<Type, Params> {
   Future<Type> call(Params params);
@@ -7,6 +8,15 @@ abstract class UseCase<Type, Params> {
 class NoParams extends Equatable {
   @override
   List<Object> get props => [];
+}
+
+class TimeLineParams extends NoParams {
+  final TimeLineModel timeLineModel;
+
+  TimeLineParams({required this.timeLineModel});
+
+  @override
+  List<Object> get props => [timeLineModel];
 }
 
 class GetWeatherParams extends NoParams {

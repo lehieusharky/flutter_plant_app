@@ -1,20 +1,20 @@
 import 'package:equatable/equatable.dart';
 
 class TimeLineEntity extends Equatable {
-  final String title;
+  final String userId;
+  final String timeLineId;
   final String description;
   final String image;
   final String createAt;
-  final bool? isLast;
 
   const TimeLineEntity({
-    required this.title,
     required this.description,
     required this.image,
-    required this.isLast,
     required this.createAt,
+    required this.userId,
+    required this.timeLineId,
   });
 
   @override
-  List<Object?> get props => [title, description, image, createAt, isLast];
+  List<Object?> get props => [userId, timeLineId, description, image, createAt];
 }
