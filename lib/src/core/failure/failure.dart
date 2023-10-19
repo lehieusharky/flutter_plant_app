@@ -56,6 +56,14 @@ class SystemFailure extends Failure {
   List<Object> get props => [message];
 }
 
+class TimeLineFailure extends Failure {
+  final String message;
+
+  TimeLineFailure({required this.message});
+  @override
+  List<Object> get props => [message];
+}
+
 class UserFailure extends Failure {
   final String message;
 

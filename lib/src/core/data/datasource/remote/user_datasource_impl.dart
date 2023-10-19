@@ -2,7 +2,7 @@ import 'package:injectable/injectable.dart';
 import 'package:plant_market/src/core/data/datasource/remote/user_datasource.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/data/models/user_model.dart';
-import 'package:plant_market/src/core/di/di_set_up.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 
 @Injectable(as: UserDataSource)
 class UserDataSourceImpl implements UserDataSource {

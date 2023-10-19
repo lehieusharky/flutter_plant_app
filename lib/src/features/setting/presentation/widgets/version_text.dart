@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:plant_market/src/core/di/di_set_up.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 
 class VersionText extends StatelessWidget {

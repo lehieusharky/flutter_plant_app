@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:plant_market/src/core/data/defines/enum/role.dart';
 import 'package:plant_market/src/core/data/models/user_model.dart';
-import 'package:plant_market/src/core/di/di_set_up.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/features/auth/login/data/data_sources/remote/auth_database_datasource.dart';
 
 @Injectable(as: AuthenticationDataBaseDataSource)
@@ -41,6 +41,7 @@ class AuthenticationDataBaseDataSourceImpl
       createAt: DateTime.now().toString(),
       id: firebaseAuth.currentUser!.uid,
       role: Role.regular,
+      listPostId: const [],
     );
   }
 }

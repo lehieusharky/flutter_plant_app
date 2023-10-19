@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-import 'package:plant_market/src/core/di/di_set_up.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/features/auth/login/data/data_sources/remote/phone_datasource.dart';
 
 @Injectable(as: PhoneDataSource)

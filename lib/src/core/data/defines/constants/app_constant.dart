@@ -19,4 +19,5 @@ class AppConstant {
 
   // * firebase
   static const String usersCollection = 'users';
+  static const String timeLineCollection = 'timeLine';
 }

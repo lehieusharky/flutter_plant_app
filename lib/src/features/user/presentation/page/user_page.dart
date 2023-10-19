@@ -16,40 +16,51 @@ class _UserPageState extends BaseWidgetState
       return const UserPageNotLoggedIn();
     } else {
       return Scaffold(
-        body: Stack(
-          children: [
-            const BackGroundContainer(),
-            Column(
-              children: [
-                context.sizedBox(height: 50),
-                Expanded(
-                  child: Padding(
-                    padding: context.padding(horizontal: 12),
-                    child: ListView.separated(
-                      itemCount: MockUser.timeLineArray.length,
-                      itemBuilder: (context, index) {
-                        return TimeLineItem(
-                          image: MockUser.timeLineArray[index].image,
-                          title: MockUser.timeLineArray[index].title,
-                          description:
-                              MockUser.timeLineArray[index].description,
-                        );
-                      },
-                      separatorBuilder: (BuildContext context, int index) {
-                        return Padding(
-                          padding: context.padding(horizontal: 40, vertical: 8),
-                          child: const MySeparator(),
-                        );
-                      },
-                    ),
+        body: BlocProvider(
+          create: (context) => UserBloc(),
+          child: BlocConsumer<UserBloc, UserState>(
+            listener: (context, state) {},
+            builder: (context, state) {
+              return Stack(
+                children: [
+                  const BackGroundContainer(),
+                  Column(
+                    children: [
+                      context.sizedBox(height: 50),
+                      const Expanded(child: Text('aaa')),
+                      // Expanded(
+                      //   child: Padding(
+                      //     padding: context.padding(horizontal: 12),
+                      //     child: ListView.separated(
+                      //       itemCount: MockUser.timeLineArray.length,
+                      //       itemBuilder: (context, index) {
+                      //         return TimeLineItem(
+                      //           image: MockUser.timeLineArray[index].image,
+                      //           title: MockUser.timeLineArray[index].title,
+                      //           description:
+                      //               MockUser.timeLineArray[index].description,
+                      //         );
+                      //       },
+                      //       separatorBuilder:
+                      //           (BuildContext context, int index) {
+                      //         return Padding(
+                      //           padding: context.padding(
+                      //               horizontal: 40, vertical: 8),
+                      //           child: const MySeparator(),
+                      //         );
+                      //       },
+                      //     ),
+                      //   ),
+                      // ),
+                      CreatePostButton(
+                        onPressed: () => _showCreatePostModal(context),
+                      ),
+                    ],
                   ),
-                ),
-                CreatePostButton(
-                  onPressed: () => _showCreatePostModal(context),
-                ),
-              ],
-            ),
-          ],
+                ],
+              );
+            },
+          ),
         ),
       );
     }
