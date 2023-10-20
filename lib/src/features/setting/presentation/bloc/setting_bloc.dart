@@ -1,5 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
+import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/features/setting/domain/use_cases/log_out_use_cases.dart';
 
 part 'setting_event.dart';
@@ -16,6 +18,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
   ) async {
     try {
       await logOutUseCase.logOut();
+      await sharePreference.setUserId(userId: AppConstant.isNull);
       emit(SettingLogOutSuccess());
     } catch (e) {
       emit(SettingFailure(message: e.toString()));

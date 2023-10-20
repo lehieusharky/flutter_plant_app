@@ -37,7 +37,7 @@ class AppTextTheme {
           color: colorTheme.get36455A,
         ),
         titleMedium: GoogleFonts.lato(
-          fontSize: context.sizeWidth(15),
+          fontSize: context.sizeWidth(14),
           fontWeight: FontWeight.w500,
           color: colorTheme.get36455A,
         ),
@@ -87,7 +87,7 @@ class AppTextTheme {
           color: colorTheme.getFFFFFF,
         ),
         titleMedium: GoogleFonts.lato(
-          fontSize: context.sizeWidth(15),
+          fontSize: context.sizeWidth(14),
           fontWeight: FontWeight.w400,
           color: colorTheme.getFFFFFF,
         ),
