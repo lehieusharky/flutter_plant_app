@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
@@ -21,7 +22,6 @@ class CreatePostModal extends StatefulWidget {
 
 class _CreatePostModalState extends State<CreatePostModal> {
   final _descriptionController = TextEditingController();
-  String _imageTimeLine = '';
   late File _imageTimeLineFile;
   @override
   Widget build(BuildContext context) {
@@ -90,14 +90,13 @@ class _CreatePostModalState extends State<CreatePostModal> {
     required BuildContext context,
     required String imageUrl,
   }) {
-    final userId = firebaseAuth.currentUser!.uid;
     context.read<UserBloc>().add(
           UserCreateTimeLine(
             timeLineModel: TimeLineModel(
               description: _descriptionController.text.trim(),
               image: imageUrl,
               createAt: DateTime.now().toString(),
-              userId: userId,
+              userId: sharePreference.getUserId(),
               timeLineId: const Uuid().v4(),
             ),
           ),

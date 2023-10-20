@@ -16,6 +16,7 @@ class AppConstant {
   static const String userModel = 'userModel';
   static const String weatherBox = 'weatherBox';
   static const String weatherKey = 'weatherKey';
+  static const String isNull = 'isNull';
 
   // * firebase
   static const String usersCollection = 'users';

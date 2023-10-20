@@ -22,4 +22,8 @@ abstract class SharePreferenceDataSource {
   bool isLoggedIn();
 
   Future<void> setIsLoggedIn({required bool status});
+
+  Future<void> setUserId({required String userId});
+
+  String getUserId();
 }

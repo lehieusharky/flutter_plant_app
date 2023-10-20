@@ -1,4 +1,6 @@
 import 'package:injectable/injectable.dart';
+import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
+import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/data/defines/enum/role.dart';
 import 'package:plant_market/src/core/data/models/user_model.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
@@ -11,8 +13,8 @@ class AuthenticationDataBaseDataSourceImpl
   Future<bool> isExist() async {
     try {
       final isExist = (await firebaseFirestore
-              .collection('users')
-              .doc(firebaseAuth.currentUser!.uid)
+              .collection(AppConstant.usersCollection)
+              .doc(sharePreference.getUserId())
               .get())
           .exists;
       return isExist;
@@ -26,8 +28,8 @@ class AuthenticationDataBaseDataSourceImpl
     try {
       final user = _userInitial();
       await firebaseFirestore
-          .collection('users')
-          .doc(firebaseAuth.currentUser!.uid)
+          .collection(AppConstant.usersCollection)
+          .doc(sharePreference.getUserId())
           .set(user.toJson());
     } catch (e) {
       throw Exception(e);

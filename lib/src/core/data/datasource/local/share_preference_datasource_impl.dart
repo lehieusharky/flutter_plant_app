@@ -80,4 +80,19 @@ class SharePreferenceDataSouceImpl implements SharePreferenceDataSource {
   Future<void> setIsLoggedIn({required bool status}) async {
     await _prefs.setBool(PreferencesKey.isLoggedIn, status);
   }
+
+  @override
+  String getUserId() {
+    final userId = _prefs.getString(PreferencesKey.userId);
+    if (userId != null) {
+      return userId;
+    } else {
+      return AppConstant.isNull;
+    }
+  }
+
+  @override
+  Future<void> setUserId({required String userId}) async {
+    await _prefs.setString(PreferencesKey.userId, userId);
+  }
 }

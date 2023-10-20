@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/data/models/user_model.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/domain/user_cases/user_use_cases.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/auth/login/domain/use_cases/auth_database_usecase.dart';
@@ -93,6 +94,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
   Future<void> _createUserDataBase(Emitter<LoginState> emit) async {
     try {
       await sharePreference.setIsLoggedIn(status: true);
+      await sharePreference.setUserId(userId: firebaseAuth.currentUser!.uid);
       final isExist = await authenticationDataBaseUseCase.isExist();
       if (!isExist) {
         await authenticationDataBaseUseCase.createUserDataBase();
