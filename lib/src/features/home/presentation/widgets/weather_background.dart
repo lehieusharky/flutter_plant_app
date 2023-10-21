@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 
-class WeatherBacground extends StatelessWidget {
-  const WeatherBacground({super.key});
+class WeatherBackground extends StatelessWidget {
+  const WeatherBackground({super.key});
 
   @override
   Widget build(BuildContext context) {

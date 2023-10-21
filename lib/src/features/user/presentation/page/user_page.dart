@@ -9,6 +9,23 @@ class UserPage extends BaseWidget {
 
 class _UserPageState extends BaseWidgetState
     with AutomaticKeepAliveClientMixin {
+  late final TabController _tabController;
+
+  @override
+  void initState() {
+    super.initState();
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+    );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -24,31 +41,47 @@ class _UserPageState extends BaseWidgetState
                 Logger()
                     .d('list time lilne length: ${state.listTimeLine.length}');
               }
-
-              if (state is UserGetListTimeLineSuccess) {
-                Logger().d(
-                    'lengthhhhh list time line: ${state.listTimeLine.length}');
-              }
             },
             builder: (context, state) {
               return Stack(
                 children: [
                   const BackGroundContainer(),
                   Stack(
-                    alignment: Alignment.bottomCenter,
+                    alignment: Alignment.bottomLeft,
                     children: [
-                      Column(
-                        children: [
-                          context.sizedBox(height: 50),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              CustomTitle(
-                                title: 'Hoa hong',
+                      Padding(
+                        padding: context.padding(horizontal: 12),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            context.sizedBox(height: 50),
+                            Text(
+                              'Le Hieu have 5 plant',
+                              style: theme(context).textTheme.titleMedium,
+                            ),
+                            Text(
+                              'Hoa hong',
+                              style: theme(context).textTheme.headlineMedium,
+                            ),
+                            CustomTabBar(
+                              tabController: _tabController,
+                              tabs: const [
+                                CustomTabChild(title: 'Timelines'),
+                                CustomTabChild(title: 'Reminders'),
+                              ],
+                            ),
+                            Expanded(
+                              child: TabBarView(
+                                physics: const NeverScrollableScrollPhysics(),
+                                controller: _tabController,
+                                children: const [
+                                  TimeLineSection(),
+                                  ReminderSection(),
+                                ],
                               ),
-                            ],
-                          ),
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                       CreatePostButton(
                         onPressed: () => _showCreatePostModal(context),

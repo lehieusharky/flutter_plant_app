@@ -1,13 +1,13 @@
 part of 'part_home_page_widget.dart';
 
-class WeatherHomeage extends StatefulWidget {
-  const WeatherHomeage({super.key});
+class WeatherHomePage extends StatefulWidget {
+  const WeatherHomePage({super.key});
 
   @override
-  State<WeatherHomeage> createState() => _WeatherHomeageState();
+  State<WeatherHomePage> createState() => _WeatherHomePageState();
 }
 
-class _WeatherHomeageState extends State<WeatherHomeage> {
+class _WeatherHomePageState extends State<WeatherHomePage> {
   WeatherModel _weatherModel = WeatherModel();
 
   @override
@@ -28,7 +28,7 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
         } else {
           return Stack(
             children: [
-              const WeatherBacground(),
+              const WeatherBackground(),
               Padding(
                 padding: context.padding(horizontal: 10, top: 20),
                 child: Row(
@@ -111,7 +111,7 @@ class _WeatherHomeageState extends State<WeatherHomeage> {
         Text(
           value,
           style: AppTextTheme.darkTheme(context).titleLarge!.copyWith(
-                fontSize: context.sizeWidth(14),
+                fontSize: context.sizeWidth(16),
               ),
         ),
       ],
