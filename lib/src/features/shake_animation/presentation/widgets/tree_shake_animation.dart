@@ -1,6 +1,7 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_lottie.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
@@ -66,7 +67,11 @@ class _TreeShakeAnimationState extends State<TreeShakeAnimation> {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: colorTheme.getFFFFFF.withOpacity(0.6),
+                color: theme(context)
+                    .textTheme
+                    .titleMedium!
+                    .color!
+                    .withOpacity(0.3),
                 spreadRadius: 5,
                 blurRadius: 40,
                 offset: const Offset(0, 0),

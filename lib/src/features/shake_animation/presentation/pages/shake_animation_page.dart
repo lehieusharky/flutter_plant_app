@@ -2,8 +2,10 @@ import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/data/defines/constants/audio_constant.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/background_container.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_lottie.dart';
@@ -25,6 +27,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
   final _hourScrollController = FixedExtentScrollController();
   final _minuteScrollController = FixedExtentScrollController(initialItem: 5);
   final _countDownController = CountDownController();
+
   @override
   void initState() {
     super.initState();
@@ -40,16 +43,8 @@ class _ShakeAnimationPageState extends BaseWidgetState {
     return Scaffold(
       body: Stack(
         children: [
-          CustomLottie(
-            width: context.width,
-            height: context.height,
-            path: ThemeManager.backgroundJSon(),
-          ),
-          Container(
-            width: context.width,
-            height: context.height,
-            color: colorTheme.get36455A.withOpacity(0.3),
-          ),
+          // * shake background
+          const BackGroundContainer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -57,14 +52,14 @@ class _ShakeAnimationPageState extends BaseWidgetState {
               TreeShakeAnimation(
                 countDownController: _countDownController,
               ),
-              context.sizedBox(height: 15),
+              context.sizedBox(height: 20),
               CountDownWidget(
                 hourScrollController: _hourScrollController,
                 minuteScrollController: _minuteScrollController,
                 onSelectedHourItem: (hourValue) {},
                 onSelectedMinuteItem: (minuteValue) {},
               ),
-              context.sizedBox(height: 20),
+              context.sizedBox(height: 10),
               _buildSendButton(),
             ],
           ),
@@ -74,7 +69,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 CustomBackButton(
-                  color: colorTheme.getFFFFFF,
+                  color: theme(context).textTheme.titleMedium!.color,
                 ),
               ],
             ),
