@@ -16,6 +16,9 @@ class _CreatePostFormState extends State<CreatePostForm> {
   Widget build(BuildContext context) {
     return CustomTextFormField(
       borderRadius: 5,
+      onTapOutSide: (value) {
+        FocusManager.instance.primaryFocus!.unfocus();
+      },
       controller: widget.descriptionController,
       maxLines: 10,
       textStyle: theme(context).textTheme.titleMedium,

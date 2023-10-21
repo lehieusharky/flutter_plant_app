@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/list_wheel_select_time.dart';
 import 'package:plant_market/src/theme/text_theme.dart';
 
@@ -25,6 +26,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         CustomListWheelSelectTime(
           scrollController: widget.hourScrollController,
@@ -45,11 +47,13 @@ class _CountDownWidgetState extends State<CountDownWidget> {
     List<Widget> hourValue = [];
     for (var index = beginIndex ?? 0; index <= endIndex; index++) {
       hourValue.add(
-        Text(index <= 9 ? '0$index' : '$index',
-            style: AppTextTheme.darkTheme(context).headlineMedium!.copyWith(
-                  fontSize: 55,
-                  fontWeight: FontWeight.w100,
-                )),
+        Text(
+          index <= 9 ? '0$index' : '$index',
+          style: theme(context).textTheme.headlineMedium!.copyWith(
+                fontSize: 70,
+                fontWeight: FontWeight.w100,
+              ),
+        ),
       );
     }
     return hourValue;
@@ -58,9 +62,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   Widget _seperetorText() {
     return Text(
       ':',
-      style: AppTextTheme.darkTheme(context)
-          .headlineMedium!
-          .copyWith(fontSize: 55),
+      style: theme(context).textTheme.headlineMedium!.copyWith(fontSize: 70),
     );
   }
 }
