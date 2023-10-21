@@ -13,6 +13,12 @@ abstract class ImageConstant {
   String get nightJson;
   String get heartSvg;
   String get leavesSVG;
+  String get languageSVG;
+  String get themeSVG;
+  String get privacySVG;
+  String get deleteAccountSVG;
+  String get contactUsSVG;
+  String get userInformationSVG;
   String get appleSVG;
   String get googleSVG;
   String get communitySVG;
@@ -150,4 +156,22 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get landSVG => 'assets/svg/land.svg';
+
+  @override
+  String get languageSVG => 'assets/svg/language.svg';
+
+  @override
+  String get privacySVG => 'assets/svg/privacy.svg';
+
+  @override
+  String get themeSVG => 'assets/svg/theme.svg';
+
+  @override
+  String get contactUsSVG => 'assets/svg/contact_us.svg';
+
+  @override
+  String get deleteAccountSVG => 'assets/svg/delete_account.svg';
+
+  @override
+  String get userInformationSVG => 'assets/svg/user_information.svg';
 }

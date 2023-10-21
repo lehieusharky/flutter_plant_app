@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/theme/theme_manager.dart';
 
 import 'dart:math' as math;
@@ -9,6 +10,7 @@ import 'dart:math' as math;
 class SettingButton extends StatelessWidget {
   final String title;
   final String field;
+  final String iconTitlePath;
   final void Function() onPressed;
 
   const SettingButton({
@@ -16,6 +18,7 @@ class SettingButton extends StatelessWidget {
     required this.title,
     required this.field,
     required this.onPressed,
+    required this.iconTitlePath,
   });
 
   @override
@@ -38,12 +41,23 @@ class SettingButton extends StatelessWidget {
   }
 
   Widget _buildTitle(BuildContext context) {
-    return Text(
-      title,
-      style: theme(context)
-          .textTheme
-          .titleMedium!
-          .copyWith(fontSize: context.sizeWidth(14)),
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        CustomSvg(
+          path: iconTitlePath,
+          color: theme(context).textTheme.titleMedium!.color!.withOpacity(0.8),
+          width: context.sizeWidth(20),
+        ),
+        context.sizedBox(width: 5),
+        Text(
+          title,
+          style: theme(context)
+              .textTheme
+              .titleMedium!
+              .copyWith(fontSize: context.sizeWidth(14)),
+        ),
+      ],
     );
   }
 

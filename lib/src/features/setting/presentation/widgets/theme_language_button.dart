@@ -27,7 +27,7 @@ class _ThemeLanguageButtonState extends State<ThemeLanguageButton> {
           field: sharePreference.getLanguage() == AppConstant.en
               ? translate(context).english
               : translate(context).vietnamese,
-          onPressed: () => _showLanguageModal(),
+          onPressed: () => _showLanguageModal(), iconTitlePath: imageConstant.languageSVG,
         ),
         context.sizedBox(height: 8),
         SettingButton(
@@ -35,7 +35,7 @@ class _ThemeLanguageButtonState extends State<ThemeLanguageButton> {
           field: sharePreference.isDarkMode()
               ? translate(context).dark
               : translate(context).light,
-          onPressed: () => _showThemeModal(),
+          onPressed: () => _showThemeModal(), iconTitlePath: imageConstant.themeSVG,
         ),
       ],
     );

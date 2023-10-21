@@ -13,6 +13,7 @@ class DeleteAccountButton extends StatelessWidget {
       title: translate(context).deleteAccount,
       field: '',
       onPressed: () => _showDeleteAccountModal(context),
+      iconTitlePath: imageConstant.deleteAccountSVG,
     );
   }
 
