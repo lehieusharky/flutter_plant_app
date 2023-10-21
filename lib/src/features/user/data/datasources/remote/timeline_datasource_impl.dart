@@ -1,5 +1,7 @@
+import 'dart:async';
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
@@ -18,6 +20,8 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
           .collection(AppConstant.usersCollection)
           .doc(sharePreference.getUserId())
           .collection(AppConstant.timeLineCollection)
+          .doc('HoaHong')
+          .collection('list_time_line')
           .doc(timeLineModel.timeLineId)
           .set(timeLineModel.toJson());
     } catch (e) {
@@ -42,4 +46,35 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
       throw Exception(e);
     }
   }
+
+  StreamSubscription<QuerySnapshot<Map<String, dynamic>>>?
+      _listTimeLineSubscription;
+
+  final StreamController<List<TimeLineModel>> _listTimeLineController =
+      StreamController.broadcast();
+
+  TimeLineDataSourceImpl() {
+    _listTimeLineSubscription = firebaseFirestore
+        .collection(AppConstant.usersCollection)
+        .doc(sharePreference.getUserId())
+        .collection(AppConstant.timeLineCollection)
+        .doc('HoaHong')
+        .collection('list_time_line')
+        .snapshots()
+        .listen((timeLineSnapShot) {
+      final listTimeLineModel = timeLineSnapShot.docs
+          .map((data) => TimeLineModel.fromJson(data.data()))
+          .toList();
+
+      _listTimeLineController.add(listTimeLineModel);
+    });
+  }
+
+  void close() {
+    _listTimeLineSubscription?.cancel();
+  }
+
+  @override
+  Stream<List<TimeLineModel>> get listTimeLineStream =>
+      _listTimeLineController.stream;
 }

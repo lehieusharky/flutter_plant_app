@@ -19,39 +19,37 @@ class _UserPageState extends BaseWidgetState
         body: BlocProvider(
           create: (context) => UserBloc(),
           child: BlocConsumer<UserBloc, UserState>(
-            listener: (context, state) {},
+            listener: (context, state) {
+              if (state is UserGetListTimeLineSuccess) {
+                Logger()
+                    .d('list time lilne length: ${state.listTimeLine.length}');
+              }
+
+              if (state is UserGetListTimeLineSuccess) {
+                Logger().d(
+                    'lengthhhhh list time line: ${state.listTimeLine.length}');
+              }
+            },
             builder: (context, state) {
               return Stack(
                 children: [
                   const BackGroundContainer(),
-                  Column(
+                  Stack(
+                    alignment: Alignment.bottomCenter,
                     children: [
-                      context.sizedBox(height: 50),
-                      const Expanded(child: Text('aaa')),
-                      // Expanded(
-                      //   child: Padding(
-                      //     padding: context.padding(horizontal: 12),
-                      //     child: ListView.separated(
-                      //       itemCount: MockUser.timeLineArray.length,
-                      //       itemBuilder: (context, index) {
-                      //         return TimeLineItem(
-                      //           image: MockUser.timeLineArray[index].image,
-                      //           title: MockUser.timeLineArray[index].title,
-                      //           description:
-                      //               MockUser.timeLineArray[index].description,
-                      //         );
-                      //       },
-                      //       separatorBuilder:
-                      //           (BuildContext context, int index) {
-                      //         return Padding(
-                      //           padding: context.padding(
-                      //               horizontal: 40, vertical: 8),
-                      //           child: const MySeparator(),
-                      //         );
-                      //       },
-                      //     ),
-                      //   ),
-                      // ),
+                      Column(
+                        children: [
+                          context.sizedBox(height: 50),
+                          const Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              CustomTitle(
+                                title: 'Hoa hong',
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                       CreatePostButton(
                         onPressed: () => _showCreatePostModal(context),
                       ),

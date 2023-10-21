@@ -13,6 +13,7 @@ TimeLineUseCase get timeLineUseCase => injector.get<TimeLineUseCase>();
 abstract class TimeLineUseCase {
   Future<void> createTimeLine({required TimeLineModel timeLineModel});
   Future<String?> postImageOfTimeLine({required File image});
+  Stream<List<TimeLineModel>>? get listTimeLineStream;
 }
 
 @Injectable(as: TimeLineUseCase)
@@ -51,6 +52,22 @@ class TimeLineUseCaseImpl extends UseCase<void, TimeLineParams>
           return null;
         },
         (imageUrl) => imageUrl,
+      );
+    } catch (e) {
+      throw TimeLineFailure(message: e.toString());
+    }
+  }
+
+  @override
+  Stream<List<TimeLineModel>>? get listTimeLineStream {
+    try {
+      final result = _timeLineRepository.listTimeLineStream();
+      return result.fold(
+        (failure) {
+          Logger().e('Cannot get list time line ');
+          return null;
+        },
+        (listTimeLineModel) => listTimeLineModel,
       );
     } catch (e) {
       throw TimeLineFailure(message: e.toString());

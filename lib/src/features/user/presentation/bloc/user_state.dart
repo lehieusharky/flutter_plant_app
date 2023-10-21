@@ -29,6 +29,15 @@ final class UserPostTimeLineImageSuccess extends UserState {
 
 final class UserCreateTimeLineSuccess extends UserState {}
 
+final class UserGetListTimeLineSuccess extends UserState {
+  final List<TimeLineModel> listTimeLine;
+
+  const UserGetListTimeLineSuccess({required this.listTimeLine});
+
+  @override
+  List<Object> get props => [listTimeLine];
+}
+
 final class UserFailure extends UserState {
   final String message;
 

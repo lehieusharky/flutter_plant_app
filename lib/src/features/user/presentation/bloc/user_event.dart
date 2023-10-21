@@ -9,6 +9,15 @@ sealed class UserEvent extends Equatable {
 
 final class UserPickImageFromCamera extends UserEvent {}
 
+final class UserGetListTimeLine extends UserEvent {
+  final List<TimeLineModel> listTimeLineModel;
+
+  const UserGetListTimeLine({required this.listTimeLineModel});
+
+  @override
+  List<Object> get props => [listTimeLineModel];
+}
+
 final class UserPostTimeLineImage extends UserEvent {
   final File image;
 
