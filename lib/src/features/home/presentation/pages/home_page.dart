@@ -36,7 +36,7 @@ class _HomePageState extends State<HomePage>
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const WeatherHomeage(),
+                            const WeatherHomePage(),
                             context.sizedBox(height: 15),
                             Padding(
                                 padding: context.padding(horizontal: 12),
@@ -87,8 +87,6 @@ class _HomePageState extends State<HomePage>
     required String long,
     required BuildContext context,
   }) {
-
-
     context
         .read<HomePageBloc>()
         .add(HomePageGetWeatherInfomation(lat: lat, long: long));

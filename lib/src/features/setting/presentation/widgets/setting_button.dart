@@ -43,7 +43,7 @@ class SettingButton extends StatelessWidget {
       style: theme(context)
           .textTheme
           .titleMedium!
-          .copyWith(fontSize: context.sizeWidth(12)),
+          .copyWith(fontSize: context.sizeWidth(14)),
     );
   }
 

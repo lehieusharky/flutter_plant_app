@@ -11,7 +11,7 @@ class AppTextTheme {
           fontSize: 30,
         ),
         displayMedium: GoogleFonts.lato(
-          fontSize: context.sizeWidth(70),
+          fontSize: context.sizeWidth(85),
           fontWeight: FontWeight.w400,
           color: colorTheme.getFFFFFF,
         ),
@@ -37,12 +37,12 @@ class AppTextTheme {
           color: colorTheme.get36455A,
         ),
         titleMedium: GoogleFonts.lato(
-          fontSize: context.sizeWidth(14),
+          fontSize: context.sizeWidth(15),
           fontWeight: FontWeight.w500,
           color: colorTheme.get36455A,
         ),
         titleSmall: GoogleFonts.lato(
-          fontSize: context.sizeWidth(11),
+          fontSize: context.sizeWidth(13),
           fontWeight: FontWeight.w400,
           color: colorTheme.get36455A,
         ),
@@ -65,7 +65,7 @@ class AppTextTheme {
           fontSize: 20,
         ),
         displayMedium: GoogleFonts.lato(
-          fontSize: context.sizeWidth(70),
+          fontSize: context.sizeWidth(85),
           fontWeight: FontWeight.w400,
           color: colorTheme.getFFFFFF,
         ),
@@ -87,12 +87,12 @@ class AppTextTheme {
           color: colorTheme.getFFFFFF,
         ),
         titleMedium: GoogleFonts.lato(
-          fontSize: context.sizeWidth(14),
+          fontSize: context.sizeWidth(15),
           fontWeight: FontWeight.w400,
           color: colorTheme.getFFFFFF,
         ),
         titleSmall: GoogleFonts.lato(
-          fontSize: context.sizeWidth(11),
+          fontSize: context.sizeWidth(13),
           fontWeight: FontWeight.w400,
           color: colorTheme.getFFFFFF,
         ),

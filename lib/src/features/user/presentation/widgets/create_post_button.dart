@@ -28,7 +28,7 @@ class CreatePostButton extends StatelessWidget {
           borderRadius: context.sizeWidth(5),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               _buildTitle(context),
               _buildCameraIcon(context),

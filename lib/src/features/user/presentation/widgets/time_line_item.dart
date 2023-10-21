@@ -18,7 +18,7 @@ class TimeLineItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: context.padding(vertical: 2),
+      padding: context.padding(vertical: 5),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
@@ -38,7 +38,7 @@ class TimeLineItem extends StatelessWidget {
               context.sizedBox(height: 5),
               Container(
                 width: context.sizeWidth(4),
-                height: context.sizeHeight(190),
+                height: context.sizeHeight(180),
                 color: colorTheme.get2DDA93,
               ),
             ],
