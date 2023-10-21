@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:equatable/equatable.dart';
@@ -10,10 +11,29 @@ part 'user_event.dart';
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
+  StreamSubscription<List<TimeLineModel>>? _listTimeLineSubcription;
+
   UserBloc() : super(UserInitial()) {
     on<UserPickImageFromCamera>(_getImageFromCamera);
     on<UserCreateTimeLine>(_createTimeLine);
     on<UserPostTimeLineImage>(_postTimeLineImage);
+    on<UserGetListTimeLine>(_getListTimeLine);
+
+    _listTimeLineSubcription =
+        timeLineUseCase.listTimeLineStream?.listen((listTimeLineData) {
+      add(UserGetListTimeLine(listTimeLineModel: listTimeLineData));
+    });
+  }
+
+  Future<void> _getListTimeLine(
+    UserGetListTimeLine event,
+    Emitter<UserState> emit,
+  ) async {
+    try {
+      emit(UserGetListTimeLineSuccess(listTimeLine: event.listTimeLineModel));
+    } catch (e) {
+      emit(UserFailure(message: e.toString()));
+    }
   }
 
   Future<void> _postTimeLineImage(
@@ -52,5 +72,11 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     } catch (e) {
       emit(UserFailure(message: e.toString()));
     }
+  }
+
+  @override
+  Future<void> close() {
+    _listTimeLineSubcription?.cancel();
+    return super.close();
   }
 }

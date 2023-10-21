@@ -18,7 +18,7 @@ class TimeLineRepositoryImpl implements TimeLineRepository {
     try {
       final result = await _timeLineDataSource.createTimeLine(
           timeLineModel: timeLineModel);
-      return Right(result); 
+      return Right(result);
     } catch (e) {
       return Left(TimeLineFailure(message: e.toString()));
     }
@@ -31,6 +31,16 @@ class TimeLineRepositoryImpl implements TimeLineRepository {
       final result =
           await _timeLineDataSource.postImageOfTimeLine(image: image);
       return Right(result);
+    } catch (e) {
+      return Left(TimeLineFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Either<TimeLineFailure, Stream<List<TimeLineModel>>> listTimeLineStream() {
+    try {
+      final stream = _timeLineDataSource.listTimeLineStream;
+      return Right(stream);
     } catch (e) {
       return Left(TimeLineFailure(message: e.toString()));
     }

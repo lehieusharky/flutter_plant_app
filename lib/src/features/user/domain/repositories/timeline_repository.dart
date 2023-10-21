@@ -10,4 +10,6 @@ abstract class TimeLineRepository {
 
   Future<Either<TimeLineFailure, String?>> postImageOfTimeLine(
       {required File image});
+
+  Either<TimeLineFailure, Stream<List<TimeLineModel>>> listTimeLineStream();
 }
