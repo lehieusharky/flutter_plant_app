@@ -7,3 +7,10 @@ sealed class ShakeAnimationEvent extends Equatable {
   List<Object> get props => [];
 }
 
+final class ShakeAnimationGetMusicPlayList extends ShakeAnimationEvent {
+  final AudioPlayer audioPlayer;
+
+  const ShakeAnimationGetMusicPlayList({required this.audioPlayer});
+  @override
+  List<Object> get props => [audioPlayer];
+}

@@ -1,19 +1,17 @@
-import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:plant_market/src/core/data/defines/constants/audio_constant.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:just_audio/just_audio.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/background_container.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_lottie.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
+import 'package:plant_market/src/features/shake_animation/presentation/bloc/shake_animation_bloc.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/count_down.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/tree_shake_animation.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
-import 'package:plant_market/src/theme/theme_manager.dart';
 
 class ShakeAnimationPage extends BaseWidget {
   const ShakeAnimationPage({super.key});
@@ -23,58 +21,70 @@ class ShakeAnimationPage extends BaseWidget {
 }
 
 class _ShakeAnimationPageState extends BaseWidgetState {
-  final assetsAudioPlayer = AssetsAudioPlayer();
   final _hourScrollController = FixedExtentScrollController();
   final _minuteScrollController = FixedExtentScrollController(initialItem: 5);
   final _countDownController = CountDownController();
+  final player = AudioPlayer();
 
-  @override
-  void initState() {
-    super.initState();
-    assetsAudioPlayer.open(
-      Audio(audioConstant.chillMp3),
-      autoStart: true,
-      loopMode: LoopMode.single,
-    );
+  Future<void> _setMusicUrl({required String musicUrl}) async {
+    try {
+      await player.setUrl(musicUrl);
+      player.play();
+    } catch (e) {
+      throw Exception(e);
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          // * shake background
-          const BackGroundContainer(),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              context.sizedBox(height: 50),
-              TreeShakeAnimation(
-                countDownController: _countDownController,
-              ),
-              context.sizedBox(height: 20),
-              CountDownWidget(
-                hourScrollController: _hourScrollController,
-                minuteScrollController: _minuteScrollController,
-                onSelectedHourItem: (hourValue) {},
-                onSelectedMinuteItem: (minuteValue) {},
-              ),
-              context.sizedBox(height: 10),
-              _buildSendButton(),
-            ],
-          ),
-          Padding(
-            padding: context.padding(top: 60, horizontal: 12),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+      body: BlocProvider(
+        create: (context) => ShakeAnimationBloc()
+          ..add(ShakeAnimationGetMusicPlayList(audioPlayer: player)),
+        child: BlocConsumer<ShakeAnimationBloc, ShakeAnimationState>(
+          listener: (context, state) {
+            if (state is ShakeAnimationGetMusicPlayListSuccess) {
+              _setMusicUrl(musicUrl: state.musicPlayList[0]);
+            }
+          },
+          builder: (context, state) {
+            return Stack(
               children: [
-                CustomBackButton(
-                  color: theme(context).textTheme.titleMedium!.color,
+                // * shake background
+                const BackGroundContainer(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    context.sizedBox(height: 50),
+                    TreeShakeAnimation(
+                      countDownController: _countDownController,
+                    ),
+                    context.sizedBox(height: 20),
+                    CountDownWidget(
+                      hourScrollController: _hourScrollController,
+                      minuteScrollController: _minuteScrollController,
+                      onSelectedHourItem: (hourValue) {},
+                      onSelectedMinuteItem: (minuteValue) {},
+                    ),
+                    context.sizedBox(height: 10),
+                    _buildSendButton(),
+                  ],
+                ),
+                Padding(
+                  padding: context.padding(top: 60, horizontal: 12),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CustomBackButton(
+                        color: theme(context).textTheme.titleMedium!.color,
+                      ),
+                    ],
+                  ),
                 ),
               ],
-            ),
-          ),
-        ],
+            );
+          },
+        ),
       ),
     );
   }
@@ -124,7 +134,6 @@ class _ShakeAnimationPageState extends BaseWidgetState {
   @override
   void dispose() {
     super.dispose();
-    assetsAudioPlayer.dispose();
     _hourScrollController.dispose();
     _minuteScrollController.dispose();
   }

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/list_wheel_select_time.dart';
-import 'package:plant_market/src/theme/text_theme.dart';
 
 class CountDownWidget extends StatefulWidget {
   final ScrollController hourScrollController;
