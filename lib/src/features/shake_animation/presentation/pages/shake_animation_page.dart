@@ -2,6 +2,7 @@ import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
@@ -21,7 +22,7 @@ class ShakeAnimationPage extends BaseWidget {
 }
 
 class _ShakeAnimationPageState extends BaseWidgetState {
-  final _hourScrollController = FixedExtentScrollController();
+  final _hourScrollController = FixedExtentScrollController(initialItem: 0);
   final _minuteScrollController = FixedExtentScrollController(initialItem: 5);
   final _countDownController = CountDownController();
   final player = AudioPlayer();
@@ -34,6 +35,8 @@ class _ShakeAnimationPageState extends BaseWidgetState {
       throw Exception(e);
     }
   }
+
+  int minuteCount = 5;
 
   @override
   Widget build(BuildContext context) {
@@ -63,11 +66,25 @@ class _ShakeAnimationPageState extends BaseWidgetState {
                     CountDownWidget(
                       hourScrollController: _hourScrollController,
                       minuteScrollController: _minuteScrollController,
-                      onSelectedHourItem: (hourValue) {},
-                      onSelectedMinuteItem: (minuteValue) {},
+                      onMinuteSelected: (minute) {
+                        setState(() {
+                          minuteCount = minute;
+                        });
+                      },
                     ),
                     context.sizedBox(height: 10),
                     _buildSendButton(),
+                    CustomButton.send(
+                        context: context,
+                        title: 'end',
+                        width: context.sizeWidth(200),
+                        onPressed: () {
+                          _hourScrollController.removeListener(() {});
+                          _minuteScrollController.removeListener(() {});
+
+                          // _hourScrollController.dispose();
+                          // _minuteScrollController.dispose();
+                        }),
                   ],
                 ),
                 Padding(
@@ -99,27 +116,42 @@ class _ShakeAnimationPageState extends BaseWidgetState {
   }
 
   void _countDownHourMinute() {
-    Future.delayed(const Duration(seconds: 1), () {
-      _minuteScrollController.animateToItem(
-        _minuteScrollController.selectedItem - 1,
-        duration: const Duration(seconds: 1),
-        curve: Curves.easeInOut,
-      );
-      if (_minuteScrollController.selectedItem != 0) {
-        _countDownHourMinute();
-      } else {
-        Future.delayed(const Duration(seconds: 1), () {
-          _hourScrollController.animateToItem(
-            _hourScrollController.selectedItem - 1,
-            duration: const Duration(seconds: 1),
-            curve: Curves.easeInOut,
-          );
+    if (_hourScrollController.selectedItem != 0 ||
+        _minuteScrollController.selectedItem != 0) {
+      Future.delayed(const Duration(seconds: 1), () {
+        _minuteScrollController.animateToItem(
+          _minuteScrollController.selectedItem - 1,
+          duration: const Duration(seconds: 1),
+          curve: Curves.easeInOut,
+        );
+
+        if (minuteCount != 1) {
+          _countDownHourMinute();
+        } else {
           if (_hourScrollController.selectedItem != 0) {
-            _countDownHourMinute();
+            Future.delayed(const Duration(seconds: 1), () {
+              _hourScrollController.animateToItem(
+                _hourScrollController.selectedItem - 1,
+                duration: const Duration(seconds: 1),
+                curve: Curves.easeInOut,
+              );
+            });
+            Future.delayed(const Duration(seconds: 1), () {
+              _minuteScrollController.animateToItem(
+                _minuteScrollController.selectedItem - 1,
+                duration: const Duration(seconds: 1),
+                curve: Curves.easeInOut,
+              );
+            });
+            if (_hourScrollController.selectedItem != 0) {
+              _countDownHourMinute();
+            }
           }
-        });
-      }
-    });
+        }
+      });
+    } else {
+      Logger().f('stop');
+    }
   }
 
   Widget _buildSendButton() {
@@ -134,7 +166,9 @@ class _ShakeAnimationPageState extends BaseWidgetState {
   @override
   void dispose() {
     super.dispose();
-    _hourScrollController.dispose();
-    _minuteScrollController.dispose();
+    player.stop();
+    player.dispose();
+    // _hourScrollController.dispose();
+    // _minuteScrollController.dispose();
   }
 }
