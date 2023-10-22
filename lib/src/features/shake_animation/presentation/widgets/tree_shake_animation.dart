@@ -1,12 +1,11 @@
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
-import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_lottie.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/count_down_ring.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
+import 'package:plant_market/src/theme/theme_manager.dart';
 
 class TreeShakeAnimation extends StatefulWidget {
   final CountDownController countDownController;
@@ -67,11 +66,7 @@ class _TreeShakeAnimationState extends State<TreeShakeAnimation> {
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(
-                color: theme(context)
-                    .textTheme
-                    .titleMedium!
-                    .color!
-                    .withOpacity(0.3),
+                color: ThemeManager.shadowShakeAnimation(),
                 spreadRadius: 5,
                 blurRadius: 40,
                 offset: const Offset(0, 0),

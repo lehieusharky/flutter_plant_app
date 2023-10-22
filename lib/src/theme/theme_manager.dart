@@ -24,4 +24,12 @@ class ThemeManager {
     return colorTheme.getD2D2D2
         .withOpacity(sharePreference.isDarkMode() ? 0 : 0.4);
   }
+
+  static Color shadowShakeAnimation() {
+    if (sharePreference.isDarkMode()) {
+      return colorTheme.getFFFFFF.withOpacity(0.4);
+    } else {
+      return colorTheme.get6A6F7D.withOpacity(0.45);
+    }
+  }
 }

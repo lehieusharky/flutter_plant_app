@@ -64,6 +64,14 @@ class TimeLineFailure extends Failure {
   List<Object> get props => [message];
 }
 
+class RemoteMusicFailure extends Failure {
+  final String message;
+
+  RemoteMusicFailure({required this.message});
+  @override
+  List<Object> get props => [message];
+}
+
 class UserFailure extends Failure {
   final String message;
 

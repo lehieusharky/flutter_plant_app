@@ -46,7 +46,7 @@ dependencies:
   google_sign_in: ^6.1.5
 
   # media
-  assets_audio_player: ^3.1.1
+  just_audio: ^0.9.35
 
   #device
   image_picker: ^1.0.4
@@ -66,6 +66,9 @@ dependencies:
   flutter_svg: ^2.0.7
   flutter_spinkit: ^5.2.0
   circular_countdown_timer: ^0.2.3
+
+  # testing
+  mockito: ^5.4.2
 
 dev_dependencies:
   injectable_generator:
