@@ -5,15 +5,13 @@ import 'package:plant_market/src/features/shake_animation/presentation/widgets/l
 class CountDownWidget extends StatefulWidget {
   final ScrollController hourScrollController;
   final ScrollController minuteScrollController;
-  final void Function(int)? onSelectedHourItem;
-  final void Function(int)? onSelectedMinuteItem;
+  final void Function(int)? onMinuteSelected;
 
   const CountDownWidget({
     super.key,
     required this.hourScrollController,
     required this.minuteScrollController,
-    this.onSelectedHourItem,
-    this.onSelectedMinuteItem,
+    this.onMinuteSelected,
   });
 
   @override
@@ -21,6 +19,9 @@ class CountDownWidget extends StatefulWidget {
 }
 
 class _CountDownWidgetState extends State<CountDownWidget> {
+  int hourMax = 99;
+  int minuteMax = 59;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,14 +30,14 @@ class _CountDownWidgetState extends State<CountDownWidget> {
       children: [
         CustomListWheelSelectTime(
           scrollController: widget.hourScrollController,
-          onSelectedItem: widget.onSelectedHourItem,
-          children: _listTimeIndexValue(endIndex: 24),
+          onSelectedItem: (hourValue) {},
+          children: _listTimeIndexValue(endIndex: hourMax),
         ),
         _seperetorText(),
         CustomListWheelSelectTime(
           scrollController: widget.minuteScrollController,
-          onSelectedItem: widget.onSelectedMinuteItem,
-          children: _listTimeIndexValue(endIndex: 59),
+          onSelectedItem: widget.onMinuteSelected,
+          children: _listTimeIndexValue(endIndex: minuteMax),
         ),
       ],
     );

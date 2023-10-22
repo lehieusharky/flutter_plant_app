@@ -23,7 +23,7 @@ class _CustomListWheelSelectTimeState extends State<CustomListWheelSelectTime> {
     return SizedBox(
       height: context.sizeHeight(90),
       width: context.sizeWidth(100),
-      child: ListWheelScrollView(
+      child: ListWheelScrollView.useDelegate(
         itemExtent: context.sizeHeight(80),
         controller: widget.scrollController,
         scrollBehavior: const ScrollBehavior(),
@@ -32,7 +32,8 @@ class _CustomListWheelSelectTimeState extends State<CustomListWheelSelectTime> {
         clipBehavior: Clip.antiAlias,
         useMagnifier: true,
         onSelectedItemChanged: widget.onSelectedItem,
-        children: widget.children,
+        childDelegate:
+            ListWheelChildLoopingListDelegate(children: widget.children),
       ),
     );
   }
