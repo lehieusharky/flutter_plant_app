@@ -1,5 +1,6 @@
 import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/features/auth/login/presentation/pages/part_login_page.dart';
 import 'package:plant_market/src/features/auth/otp/presentation/page/otp_page.dart';
 import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
@@ -27,7 +28,14 @@ class AppRouter {
               ),
               GoRoute(
                 path: 'popular_topic_page',
-                builder: (context, state) => const PopularTopicPage(),
+                builder: (context, state) {
+                  final searchKeyWord =
+                      _params(state)[AppConstant.searchKeyWordRouter] ??
+                          translate(context).plant;
+                  return PopularTopicPage(
+                    searchKeyWord: searchKeyWord,
+                  );
+                },
               ),
               GoRoute(
                 path: 'shake_animation_page',

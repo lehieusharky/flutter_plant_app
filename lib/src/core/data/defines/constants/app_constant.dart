@@ -13,6 +13,7 @@ class AppConstant {
   static const String light = 'light';
   static const String dark = 'dark';
   static const String isFromDashBoardRouter = 'isFromDashBoardRouter';
+  static const String searchKeyWordRouter = 'searchKeyWordRouter';
   static const String userModel = 'userModel';
   static const String weatherBox = 'weatherBox';
   static const String weatherKey = 'weatherKey';
