@@ -5,10 +5,12 @@ import 'package:plant_market/src/core/extension/responsive.dart';
 class CustomTitle extends StatelessWidget {
   final String title;
   final double? horizontalPadding;
+  final Color? color;
   const CustomTitle({
     super.key,
     required this.title,
     this.horizontalPadding,
+    this.color,
   });
 
   @override
@@ -18,6 +20,7 @@ class CustomTitle extends StatelessWidget {
       child: Text(
         title,
         style: theme(context).textTheme.titleMedium!.copyWith(
+              color: color,
               fontSize: context.sizeWidth(15),
               fontWeight: FontWeight.w700,
             ),

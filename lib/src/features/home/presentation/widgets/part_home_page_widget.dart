@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
@@ -8,6 +9,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dar
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/weather_background.dart';
+import 'package:plant_market/src/router/router_path.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/text_theme.dart';
 import 'package:plant_market/src/core/extension/localization.dart';

@@ -18,8 +18,8 @@ class _PolularPlantsButtonState extends State<PolularPlantsButton> {
           Row(
             children: [
               _buildPopularPlantsItem(
-                  iconPath: imageConstant.plantSVG,
-                  title: translate(context).plants),
+                  iconPath: imageConstant.vegetableSVG,
+                  title: translate(context).vegetables),
               context.sizedBox(width: 10),
               _buildPopularPlantsItem(
                   iconPath: imageConstant.flowerSVG,
@@ -46,8 +46,8 @@ class _PolularPlantsButtonState extends State<PolularPlantsButton> {
                   title: translate(context).diseases),
               context.sizedBox(width: 10),
               _buildPopularPlantsItem(
-                  iconPath: imageConstant.vegetableSVG,
-                  title: translate(context).vegetables),
+                  iconPath: imageConstant.plantSVG,
+                  title: translate(context).plants),
             ],
           )
         ],
@@ -61,16 +61,20 @@ class _PolularPlantsButtonState extends State<PolularPlantsButton> {
   }) {
     return Expanded(
       child: InkWell(
-        onTap: () {},
+        onTap: () => context.go(RouterPath.popularTopicPage),
         child: Stack(
           alignment: Alignment.centerLeft,
           children: [
             _buildBackGround(iconPath: iconPath),
             Padding(
-              padding: context.padding(horizontal: 5),
+              padding: context.padding(
+                horizontal: 10,
+              ),
               child: Text(
                 title,
-                style: theme(context).textTheme.titleMedium,
+                style: theme(context).textTheme.titleMedium!.copyWith(
+                      fontSize: context.sizeWidth(17),
+                    ),
               ),
             ),
           ],
@@ -95,8 +99,8 @@ class _PolularPlantsButtonState extends State<PolularPlantsButton> {
           padding: context.padding(vertical: 10),
           child: CustomSvg(
             path: iconPath,
-            width: context.sizeWidth(100),
-            height: context.sizeHeight(100),
+            width: context.sizeWidth(90),
+            height: context.sizeHeight(90),
           ),
         ),
       ),
