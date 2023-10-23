@@ -74,17 +74,6 @@ class _ShakeAnimationPageState extends BaseWidgetState {
                     ),
                     context.sizedBox(height: 10),
                     _buildSendButton(),
-                    CustomButton.send(
-                        context: context,
-                        title: 'end',
-                        width: context.sizeWidth(200),
-                        onPressed: () {
-                          _hourScrollController.removeListener(() {});
-                          _minuteScrollController.removeListener(() {});
-
-                          // _hourScrollController.dispose();
-                          // _minuteScrollController.dispose();
-                        }),
                   ],
                 ),
                 Padding(
