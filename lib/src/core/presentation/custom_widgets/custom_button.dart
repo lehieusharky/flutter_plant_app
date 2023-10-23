@@ -15,6 +15,7 @@ class CustomButton extends StatelessWidget {
   final Color? boxShadowColor;
   final Color? foregroundColor;
   final BorderSide? borderSide;
+  final double? verticalPadding;
 
   const CustomButton({
     super.key,
@@ -27,6 +28,7 @@ class CustomButton extends StatelessWidget {
     this.boxShadowColor,
     this.foregroundColor,
     this.borderSide,
+    this.verticalPadding,
   });
 
   @override
@@ -47,7 +49,7 @@ class CustomButton extends StatelessWidget {
           ),
         ),
         child: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 10),
+          padding: EdgeInsets.symmetric(vertical: verticalPadding ?? 10),
           child: child,
         ),
       ),

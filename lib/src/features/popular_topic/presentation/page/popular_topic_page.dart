@@ -3,7 +3,8 @@ import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 
 class PopularTopicPage extends StatefulWidget {
-  const PopularTopicPage({super.key});
+  final String searchKeyWord;
+  const PopularTopicPage({super.key, required this.searchKeyWord});
 
   @override
   State<PopularTopicPage> createState() => _PopularTopicPageState();

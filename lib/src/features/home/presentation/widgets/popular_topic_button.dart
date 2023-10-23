@@ -55,13 +55,25 @@ class _PolularPlantsButtonState extends State<PolularPlantsButton> {
     );
   }
 
+  void _navigateToPopularPage({
+    required BuildContext context,
+    required String title,
+  }) {
+    context.go(
+      RouterPath.popularTopicPage,
+      extra: {
+        AppConstant.searchKeyWordRouter: title,
+      },
+    );
+  }
+
   Widget _buildPopularPlantsItem({
     required String iconPath,
     required String title,
   }) {
     return Expanded(
       child: InkWell(
-        onTap: () => context.go(RouterPath.popularTopicPage),
+        onTap: () => _navigateToPopularPage(context: context, title: title),
         child: Stack(
           alignment: Alignment.centerLeft,
           children: [
