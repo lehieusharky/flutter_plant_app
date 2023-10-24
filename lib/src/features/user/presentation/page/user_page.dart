@@ -36,7 +36,11 @@ class _UserPageState extends BaseWidgetState
         body: BlocProvider(
           create: (context) => UserBloc(),
           child: BlocConsumer<UserBloc, UserState>(
-            listener: (context, state) {},
+            listener: (context, state) {
+              if (state is UserCreatePlantSuccess) {
+                Logger().e('Create  plant success');
+              }
+            },
             builder: (context, state) {
               return Stack(
                 children: [
@@ -92,6 +96,10 @@ class _UserPageState extends BaseWidgetState
         ),
       );
     }
+  }
+
+  void _createPlant(BuildContext context) {
+    context.read<UserBloc>().add(const UserCreatePlant(plantName: "Tree_test"));
   }
 
   void _showCreatePostModal(BuildContext context) {

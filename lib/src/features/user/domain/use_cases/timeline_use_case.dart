@@ -12,6 +12,7 @@ TimeLineUseCase get timeLineUseCase => injector.get<TimeLineUseCase>();
 
 abstract class TimeLineUseCase {
   Future<void> createTimeLine({required TimeLineModel timeLineModel});
+  Future<void> createPlant({required String plantName});
   Future<String?> postImageOfTimeLine({required File image});
   Stream<List<TimeLineModel>>? get listTimeLineStream;
 }
@@ -35,6 +36,20 @@ class TimeLineUseCaseImpl extends UseCase<void, TimeLineParams>
       return result.fold(
         (failure) => Logger().e('Create timeline falure'),
         (success) => Logger().f('create timeline success'),
+      );
+    } catch (e) {
+      throw TimeLineFailure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> createPlant({required String plantName}) async {
+    try {
+      final result =
+          await _timeLineRepository.createPlant(plantName: plantName);
+      return result.fold(
+        (failure) => Logger().e('Create plant falure'),
+        (success) => Logger().f('create plant success'),
       );
     } catch (e) {
       throw TimeLineFailure(message: e.toString());

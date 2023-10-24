@@ -20,10 +20,25 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
           .collection(AppConstant.usersCollection)
           .doc(sharePreference.getUserId())
           .collection(AppConstant.timeLineCollection)
-          .doc('HoaHong')
+          .doc('Tree_test')
           .collection('list_time_line')
           .doc(timeLineModel.timeLineId)
           .set(timeLineModel.toJson());
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<void> createPlant({required String plantName}) async {
+    try {
+      final newListTimeLineRef = firebaseFirestore
+          .collection(AppConstant.usersCollection)
+          .doc(sharePreference.getUserId())
+          .collection(AppConstant.timeLineCollection)
+          .doc(plantName);
+
+      newListTimeLineRef.set({"name": plantName});
     } catch (e) {
       throw Exception(e);
     }
