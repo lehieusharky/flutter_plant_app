@@ -18,36 +18,48 @@ class _PolularPlantsButtonState extends State<PolularPlantsButton> {
           Row(
             children: [
               _buildPopularPlantsItem(
-                  iconPath: imageConstant.vegetableSVG,
-                  title: translate(context).vegetables),
+                iconPath: imageConstant.flowerSVG,
+                title: translate(context).flowers,
+                plantTopic: PlantTopic.flower,
+              ),
               context.sizedBox(width: 10),
               _buildPopularPlantsItem(
-                  iconPath: imageConstant.flowerSVG,
-                  title: translate(context).flowers),
+                iconPath: imageConstant.leafSVG,
+                title: translate(context).leafy,
+                plantTopic: PlantTopic.leaf,
+              ),
             ],
           ),
           context.sizedBox(height: 10),
           Row(
             children: [
-              _buildPopularPlantsItem(
-                  iconPath: imageConstant.fruitSVG,
-                  title: translate(context).fruits),
-              context.sizedBox(width: 10),
-              _buildPopularPlantsItem(
-                  iconPath: imageConstant.leafSVG,
-                  title: translate(context).leafy),
-            ],
-          ),
-          context.sizedBox(height: 10),
-          Row(
-            children: [
-              _buildPopularPlantsItem(
-                  iconPath: imageConstant.deseaseSVG,
-                  title: translate(context).diseases),
-              context.sizedBox(width: 10),
               _buildPopularPlantsItem(
                   iconPath: imageConstant.plantSVG,
-                  title: translate(context).plants),
+                  title: translate(context).plants,
+                  plantTopic: PlantTopic.plant),
+              context.sizedBox(width: 10),
+              _buildPopularPlantsItem(
+                iconPath: imageConstant.fruitSVG,
+                title: translate(context).fruits,
+                plantTopic: PlantTopic.fruit,
+              ),
+            ],
+          ),
+          context.sizedBox(height: 10),
+          Row(
+            children: [
+              const Text(''),
+              _buildPopularPlantsItem(
+                iconPath: imageConstant.deseaseSVG,
+                title: translate(context).diseases,
+                plantTopic: PlantTopic.disease,
+              ),
+              context.sizedBox(width: 10),
+              _buildPopularPlantsItem(
+                iconPath: imageConstant.deseaseSVG,
+                title: translate(context).diseases,
+                plantTopic: PlantTopic.disease,
+              ),
             ],
           )
         ],
@@ -57,12 +69,12 @@ class _PolularPlantsButtonState extends State<PolularPlantsButton> {
 
   void _navigateToPopularPage({
     required BuildContext context,
-    required String title,
+    required PlantTopic plantTopic,
   }) {
     context.go(
       RouterPath.popularTopicPage,
       extra: {
-        AppConstant.searchKeyWordRouter: title,
+        AppConstant.plantTopicRouter: plantTopic,
       },
     );
   }
@@ -70,18 +82,18 @@ class _PolularPlantsButtonState extends State<PolularPlantsButton> {
   Widget _buildPopularPlantsItem({
     required String iconPath,
     required String title,
+    required PlantTopic plantTopic,
   }) {
     return Expanded(
       child: InkWell(
-        onTap: () => _navigateToPopularPage(context: context, title: title),
+        onTap: () =>
+            _navigateToPopularPage(context: context, plantTopic: plantTopic),
         child: Stack(
           alignment: Alignment.centerLeft,
           children: [
             _buildBackGround(iconPath: iconPath),
             Padding(
-              padding: context.padding(
-                horizontal: 10,
-              ),
+              padding: context.padding(horizontal: 10),
               child: Text(
                 title,
                 style: theme(context).textTheme.titleMedium!.copyWith(
@@ -100,7 +112,7 @@ class _PolularPlantsButtonState extends State<PolularPlantsButton> {
       boxShadowColor: ThemeManager.shadowButton(),
       child: Container(
         alignment: Alignment.bottomRight,
-        width: context.width / 2,
+        width: context.width,
         height: context.sizeHeight(110),
         padding: context.padding(all: 2),
         decoration: BoxDecoration(

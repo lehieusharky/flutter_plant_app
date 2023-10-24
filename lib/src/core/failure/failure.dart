@@ -95,3 +95,11 @@ class AuthDataBaseFailure extends Failure {
   @override
   List<Object> get props => [message];
 }
+
+class PlantFailure extends Failure {
+  final String message;
+
+  PlantFailure({required this.message});
+  @override
+  List<Object> get props => [message];
+}

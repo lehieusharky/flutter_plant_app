@@ -43,7 +43,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     HomePageGetWeatherInfomation event,
   ) async {
     try {
-      final weatherModel = await getWeatherUseCase.call(
+      final weatherModel = await getWeatherUseCase.getWeatherInfo(
         GetWeatherParams(
           lon: event.long,
           lat: event.lat,

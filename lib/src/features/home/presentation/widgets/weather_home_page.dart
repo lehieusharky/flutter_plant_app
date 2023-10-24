@@ -8,16 +8,14 @@ class WeatherHomePage extends StatefulWidget {
 }
 
 class _WeatherHomePageState extends State<WeatherHomePage> {
-  WeatherModel _weatherModel = WeatherModel();
-
   @override
   Widget build(BuildContext context) {
     return BlocSelector<HomePageBloc, HomePageState, WeatherModel>(
       selector: (state) {
         if (state is HomePageGetWeatherInfomationSuccess) {
-          _weatherModel = state.weatherModel;
+          return state.weatherModel;
         }
-        return _weatherModel;
+        return WeatherModel();
       },
       builder: (context, weatherModel) {
         if (weatherModel.name == null) {
