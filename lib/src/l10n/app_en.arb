@@ -53,5 +53,7 @@
   "save": "Save",
   "login": "Login",
   "youAreNotLoggedIn": "You are not logged in",
-  "pleaseLoginToContinue": "Please login to continue "
+  "pleaseLoginToContinue": "Please login to continue ",
+  "timeLine": "Timeline",
+  "reminder": "Reminder"
 }

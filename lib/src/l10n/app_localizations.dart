@@ -422,6 +422,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please login to continue '**
   String get pleaseLoginToContinue;
+
+  /// No description provided for @timeLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline'**
+  String get timeLine;
+
+  /// No description provided for @reminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminder'**
+  String get reminder;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

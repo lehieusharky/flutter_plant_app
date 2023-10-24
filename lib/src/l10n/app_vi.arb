@@ -53,5 +53,7 @@
   "save": "Lưu",
   "login": "Đăng nhập",
   "youAreNotLoggedIn": "Bạn chưa đăng nhập",
-  "pleaseLoginToContinue": "Hãy đăng nhập để tiếp tục "
+  "pleaseLoginToContinue": "Hãy đăng nhập để tiếp tục ",
+  "timeLine": "Mốc thời gian",
+  "reminder": "Nhắc nhở"
 }

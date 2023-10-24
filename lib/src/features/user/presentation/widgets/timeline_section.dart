@@ -21,30 +21,35 @@ class _TimeLineSectionState extends State<TimeLineSection>
     super.build(context);
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: BlocConsumer<UserBloc, UserState>(
-        listener: (context, state) {
+      body: BlocSelector<UserBloc, UserState, List<TimeLineModel>>(
+        selector: (state) {
           if (state is UserGetListTimeLineSuccess) {
-            _listTimeLineModel = state.listTimeLine;
+            return state.listTimeLine;
           }
+          return [];
         },
         builder: (context, state) {
-          return Column(
-            children: [
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _listTimeLineModel.length,
-                  itemBuilder: (context, index) {
-                    return TimeLineItem(
-                      image: _listTimeLineModel[index].image,
-                      title: _listTimeLineModel[index].description,
-                      description: _listTimeLineModel[index].createAt,
-                    );
-                  },
+          if (state == []) {
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            return Column(
+              children: [
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: state.length,
+                    itemBuilder: (context, index) {
+                      return TimeLineItem(
+                        image: state[index].image,
+                        title: state[index].description,
+                        description: state[index].createAt,
+                      );
+                    },
+                  ),
                 ),
-              ),
-              context.sizedBox(height: 80),
-            ],
-          );
+                context.sizedBox(height: 60),
+              ],
+            );
+          }
         },
       ),
     );
