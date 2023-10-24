@@ -13,17 +13,26 @@ class WeatherDataSourceImpl implements WeatherDataSource {
     required String lon,
   }) async {
     try {
-      final String weatherApiKey =
-          dotenv.get('WEATHER_API_KEY', fallback: 'WEATHER_API_KEY_NOT_FOUND');
+      final String weatherApiKey = dotenv.get(
+        'WEATHER_API_KEY',
+        fallback: 'WEATHER_API_KEY_NOT_FOUND',
+      );
 
-      final String weatherUrl =
-          EndPoints.weather(lat: lat, lon: lon, weatherApiKey: weatherApiKey);
+      final weatherParams = {
+        "lat": lat,
+        "lon": lon,
+        "appid": weatherApiKey,
+      };
 
-      final response = await HttpUtil.get(weatherUrl);
+      final response = await HttpUtil.get(
+        EndPoints.weatherUrl,
+        queryParameters: weatherParams,
+      );
 
       if (HttpUtil.checkResponseStatusCode(response: response)) {
         return WeatherModel.fromJson(response.body);
       }
+
       return WeatherModel();
     } catch (e) {
       throw Exception(e);

@@ -7,7 +7,6 @@ import 'package:plant_market/src/features/home/domain/repositories/weather_repos
 
 @Injectable(as: WeatherRepository)
 class WeatherRepositoryImpl implements WeatherRepository {
-  // * lazy load datasource
   final WeatherDataSource _dataSource;
 
   WeatherRepositoryImpl(this._dataSource);

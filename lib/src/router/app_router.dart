@@ -29,11 +29,11 @@ class AppRouter {
               GoRoute(
                 path: 'popular_topic_page',
                 builder: (context, state) {
-                  final searchKeyWord =
-                      _params(state)[AppConstant.searchKeyWordRouter] ??
+                  final plantTopic =
+                      _params(state)[AppConstant.plantTopicRouter] ??
                           translate(context).plant;
                   return PopularTopicPage(
-                    searchKeyWord: searchKeyWord,
+                    plantTopic: plantTopic,
                   );
                 },
               ),

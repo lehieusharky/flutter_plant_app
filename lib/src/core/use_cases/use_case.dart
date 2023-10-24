@@ -19,6 +19,38 @@ class TimeLineParams extends NoParams {
   List<Object> get props => [timeLineModel];
 }
 
+class PlantSpecialListParams extends NoParams {
+  final String q;
+  final int? page;
+  final String? order;
+  final String? edible;
+
+  PlantSpecialListParams({
+    this.edible = '',
+    this.order = '',
+    this.page = 1,
+    required this.q,
+  });
+
+  @override
+  List<Object> get props => [q];
+}
+
+class PlantDiseaseListParams extends NoParams {
+  final String q;
+  final int? page;
+  final int? id;
+
+  PlantDiseaseListParams({
+    this.id,
+    this.page = 1,
+    required this.q,
+  });
+
+  @override
+  List<Object> get props => [q];
+}
+
 class GetWeatherParams extends NoParams {
   final String lat;
   final String lon;

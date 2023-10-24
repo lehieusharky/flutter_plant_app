@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
@@ -8,18 +9,18 @@ import 'package:plant_market/src/features/home/domain/repositories/weather_repos
 GetWeatherUseCase get getWeatherUseCase => injector.get<GetWeatherUseCase>();
 
 abstract class GetWeatherUseCase {
-  Future<WeatherModel> call(GetWeatherParams params);
+  Future<WeatherModel> getWeatherInfo(GetWeatherParams params);
 }
 
 @Singleton(as: GetWeatherUseCase)
-class GetWeatherUseCaseImpl extends UseCase<WeatherModel, GetWeatherParams>
+class GetWeatherUseCaseImpl extends UseCase<void, GetWeatherParams>
     implements GetWeatherUseCase {
   final WeatherRepository _getWeatherRepository;
 
   GetWeatherUseCaseImpl(this._getWeatherRepository);
 
   @override
-  Future<WeatherModel> call(GetWeatherParams params) async {
+  Future<WeatherModel> getWeatherInfo(GetWeatherParams params) async {
     try {
       final result = await _getWeatherRepository.getWeatherInfo(
         lat: params.lat,
@@ -27,6 +28,7 @@ class GetWeatherUseCaseImpl extends UseCase<WeatherModel, GetWeatherParams>
       );
       return result.fold(
         (failure) {
+          Logger().e("weather failed: ${failure.message}");
           return WeatherModel();
         },
         (weatherModel) {
@@ -36,5 +38,10 @@ class GetWeatherUseCaseImpl extends UseCase<WeatherModel, GetWeatherParams>
     } catch (e) {
       throw ServerFailure(message: e.toString());
     }
+  }
+
+  @override
+  Future<void> call(GetWeatherParams params) {
+    throw UnimplementedError();
   }
 }
