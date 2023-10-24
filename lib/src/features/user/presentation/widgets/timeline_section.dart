@@ -20,28 +20,24 @@ class _TimeLineSectionState extends State<TimeLineSection>
   Widget build(BuildContext context) {
     super.build(context);
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      body: BlocSelector<UserBloc, UserState, List<TimeLineModel>>(
-        selector: (state) {
-          if (state is UserGetListTimeLineSuccess) {
-            return state.listTimeLine;
-          }
-          return [];
-        },
-        builder: (context, state) {
-          if (state == []) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
+        backgroundColor: Colors.transparent,
+        body: BlocConsumer<UserBloc, UserState>(
+          listener: (context, state) {
+            if (state is UserGetListTimeLineSuccess) {
+              _listTimeLineModel = state.listTimeLine;
+            }
+          },
+          builder: (context, state) {
             return Column(
               children: [
                 Expanded(
                   child: ListView.builder(
-                    itemCount: state.length,
+                    itemCount: _listTimeLineModel.length,
                     itemBuilder: (context, index) {
                       return TimeLineItem(
-                        image: state[index].image,
-                        title: state[index].description,
-                        description: state[index].createAt,
+                        image: _listTimeLineModel[index].image,
+                        title: _listTimeLineModel[index].description,
+                        description: _listTimeLineModel[index].createAt,
                       );
                     },
                   ),
@@ -49,10 +45,8 @@ class _TimeLineSectionState extends State<TimeLineSection>
                 context.sizedBox(height: 60),
               ],
             );
-          }
-        },
-      ),
-    );
+          },
+        ));
   }
 
   @override

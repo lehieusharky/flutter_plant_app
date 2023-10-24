@@ -44,6 +44,7 @@ class AuthenticationDataBaseDataSourceImpl
       id: firebaseAuth.currentUser!.uid,
       role: Role.regular,
       listPostId: const [],
+      listPlantName: const [],
     );
   }
 }

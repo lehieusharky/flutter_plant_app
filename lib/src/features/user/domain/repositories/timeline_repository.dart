@@ -11,5 +11,8 @@ abstract class TimeLineRepository {
   Future<Either<TimeLineFailure, String?>> postImageOfTimeLine(
       {required File image});
 
+  Future<Either<TimeLineFailure, void>> createPlant(
+      {required String plantName});
+
   Either<TimeLineFailure, Stream<List<TimeLineModel>>> listTimeLineStream();
 }

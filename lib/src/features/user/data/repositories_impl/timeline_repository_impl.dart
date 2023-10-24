@@ -45,4 +45,15 @@ class TimeLineRepositoryImpl implements TimeLineRepository {
       return Left(TimeLineFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<TimeLineFailure, void>> createPlant(
+      {required String plantName}) async {
+    try {
+      final result = _timeLineDataSource.createPlant(plantName: plantName);
+      return Right(result);
+    } catch (e) {
+      return Left(TimeLineFailure(message: e.toString()));
+    }
+  }
 }

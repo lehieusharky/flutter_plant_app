@@ -46,3 +46,5 @@ final class UserFailure extends UserState {
   @override
   List<Object> get props => [message];
 }
+
+final class UserCreatePlantSuccess extends UserState {}
