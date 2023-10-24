@@ -33,7 +33,7 @@ class AppTextTheme {
         // * title
         titleLarge: GoogleFonts.lato(
           fontSize: context.sizeWidth(18),
-          fontWeight: FontWeight.w400,
+          fontWeight: FontWeight.w500,
           color: colorTheme.get36455A,
         ),
         titleMedium: GoogleFonts.lato(

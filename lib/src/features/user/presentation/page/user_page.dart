@@ -36,12 +36,7 @@ class _UserPageState extends BaseWidgetState
         body: BlocProvider(
           create: (context) => UserBloc(),
           child: BlocConsumer<UserBloc, UserState>(
-            listener: (context, state) {
-              if (state is UserGetListTimeLineSuccess) {
-                Logger()
-                    .d('list time lilne length: ${state.listTimeLine.length}');
-              }
-            },
+            listener: (context, state) {},
             builder: (context, state) {
               return Stack(
                 children: [
@@ -65,9 +60,11 @@ class _UserPageState extends BaseWidgetState
                             ),
                             CustomTabBar(
                               tabController: _tabController,
-                              tabs: const [
-                                CustomTabChild(title: 'Timelines'),
-                                CustomTabChild(title: 'Reminders'),
+                              tabs: [
+                                CustomTabChild(
+                                    title: translate(context).timeLine),
+                                CustomTabChild(
+                                    title: translate(context).reminder),
                               ],
                             ),
                             Expanded(

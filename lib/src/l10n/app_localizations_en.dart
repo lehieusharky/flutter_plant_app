@@ -168,4 +168,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseLoginToContinue => 'Please login to continue ';
+
+  @override
+  String get timeLine => 'Timeline';
+
+  @override
+  String get reminder => 'Reminder';
 }

@@ -168,4 +168,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get pleaseLoginToContinue => 'Hãy đăng nhập để tiếp tục ';
+
+  @override
+  String get timeLine => 'Mốc thời gian';
+
+  @override
+  String get reminder => 'Nhắc nhở';
 }

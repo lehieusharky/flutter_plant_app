@@ -18,59 +18,23 @@ class TimeLineItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: context.padding(vertical: 5),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.end,
+      padding: context.padding(vertical: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                height: context.sizeWidth(12),
-                width: context.sizeWidth(12),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: colorTheme.get2DDA93,
-                ),
-              ),
-              context.sizedBox(height: 5),
-              Container(
-                width: context.sizeWidth(4),
-                height: context.sizeHeight(180),
-                color: colorTheme.get2DDA93,
-              ),
-            ],
+          Text(
+            title,
+            maxLines: 2,
+            textAlign: TextAlign.start,
+            overflow: TextOverflow.ellipsis,
+            style: theme(context).textTheme.titleLarge,
           ),
-          context.sizedBox(width: 10),
-          Expanded(
-            child: Container(
-              width: context.width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                color: colorTheme.getFFFFFF.withOpacity(0.1),
-              ),
-              child: Column(
-                children: [
-                  context.sizedBox(height: 5),
-                  Text(
-                    title,
-                    maxLines: 2,
-                    style: theme(context).textTheme.titleLarge,
-                  ),
-                  Padding(
-                    padding: context.padding(all: 15),
-                    child: CustomCatchedNetWorkImage(
-                      width: context.sizeWidth(250),
-                      height: context.sizeHeight(150),
-                      imageUrl: image,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          )
+          context.sizedBox(height: 5),
+          CustomCatchedNetWorkImage(
+            width: context.width,
+            height: context.sizeHeight(180),
+            imageUrl: image,
+          ),
         ],
       ),
     );
