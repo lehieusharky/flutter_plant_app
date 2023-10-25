@@ -8,34 +8,74 @@ import 'package:plant_market/src/theme/theme_manager.dart';
 
 class CreatePostButton extends StatelessWidget {
   final void Function() onPressed;
+  final double? width;
+  final double? height;
+  final bool? isHaveTitle;
+  final double? opacity;
+  final double? iconSize;
+
   const CreatePostButton({
     super.key,
     required this.onPressed,
+    this.width,
+    this.height,
+    this.isHaveTitle,
+    this.opacity,
+    this.iconSize,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: Alignment.center,
-      children: [
-        _buildBackGround(context),
-        CustomButton(
-          borderSide: BorderSide(color: colorTheme.get2DDA93),
-          width: context.width * 0.85,
-          height: context.sizeHeight(50),
-          onPress: onPressed,
-          backgroundColor: ThemeManager.backgroundButton(),
-          borderRadius: context.sizeWidth(5),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              _buildTitle(context),
-              _buildCameraIcon(context),
-            ],
-          ),
-        ),
-      ],
+    return CustomButton(
+      borderSide:
+          BorderSide(color: colorTheme.get2DDA93.withOpacity(opacity ?? 1)),
+      width: width ?? context.width * 0.85,
+      height: height ?? context.sizeHeight(50),
+      onPress: onPressed,
+      backgroundColor:
+          ThemeManager.backgroundButton().withOpacity(opacity ?? 1),
+      borderRadius: context.sizeWidth(5),
+      child: isHaveTitle == true
+          ? Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                _buildTitle(context),
+                _buildCameraIcon(context: context),
+              ],
+            )
+          : _buildCameraIcon(
+              context: context, iconOpacity: opacity, iconSize: iconSize),
+    );
+  }
+
+  factory CreatePostButton.fullWidth({
+    required BuildContext context,
+    required void Function() onPressed,
+  }) {
+    return CreatePostButton(
+      onPressed: onPressed,
+      isHaveTitle: true,
+      width: context.width * 0.85,
+      height: context.sizeHeight(55),
+    );
+  }
+
+  factory CreatePostButton.customSize({
+    required BuildContext context,
+    required void Function() onPressed,
+    required double? width,
+    required double? height,
+    double? opacity,
+    double? iconSize,
+  }) {
+    return CreatePostButton(
+      onPressed: onPressed,
+      isHaveTitle: false,
+      width: width,
+      height: height,
+      iconSize: iconSize,
+      opacity: opacity,
     );
   }
 
@@ -49,19 +89,19 @@ class CreatePostButton extends StatelessWidget {
     );
   }
 
-  Widget _buildCameraIcon(BuildContext context) {
+  Widget _buildCameraIcon({
+    required BuildContext context,
+    double? iconOpacity,
+    double? iconSize,
+  }) {
     return Icon(
       Icons.camera_alt_outlined,
-      size: context.sizeWidth(25),
-      color: theme(context).textTheme.titleMedium!.color!.withOpacity(0.6),
-    );
-  }
-
-  Widget _buildBackGround(BuildContext context) {
-    return Container(
-      width: context.width,
-      height: context.sizeHeight(68),
-      decoration: BoxDecoration(color: colorTheme.get2DDA93.withOpacity(0.1)),
+      size: context.sizeWidth(iconSize ?? 25),
+      color: theme(context)
+          .textTheme
+          .titleMedium!
+          .color!
+          .withOpacity(iconOpacity ?? 0.6),
     );
   }
 }

@@ -11,6 +11,11 @@ class _UserPageState extends BaseWidgetState
     with AutomaticKeepAliveClientMixin {
   late final TabController _tabController;
 
+  final _nestedController = FixedExtentScrollController();
+  double _zoomOutCreateTimelineButtonOpacity = 0;
+  double _appbarBackgroundOpacity = 0;
+  Color? _colorLeadingAppBar;
+
   @override
   void initState() {
     super.initState();
@@ -18,12 +23,10 @@ class _UserPageState extends BaseWidgetState
       length: 2,
       vsync: this,
     );
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
+    _nestedController.addListener(() {
+      double offset = _nestedController.offset;
+      _setOpacityWhenScroll(offset: offset);
+    });
   }
 
   @override
@@ -45,49 +48,15 @@ class _UserPageState extends BaseWidgetState
               return Stack(
                 children: [
                   const BackGroundContainer(),
-                  Stack(
-                    alignment: Alignment.bottomLeft,
-                    children: [
-                      Padding(
-                        padding: context.padding(horizontal: 12),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            context.sizedBox(height: 50),
-                            Text(
-                              'Le Hieu have 5 plant',
-                              style: theme(context).textTheme.titleMedium,
-                            ),
-                            Text(
-                              'Hoa hong',
-                              style: theme(context).textTheme.headlineMedium,
-                            ),
-                            CustomTabBar(
-                              tabController: _tabController,
-                              tabs: [
-                                CustomTabChild(
-                                    title: translate(context).timeLine),
-                                CustomTabChild(
-                                    title: translate(context).reminder),
-                              ],
-                            ),
-                            Expanded(
-                              child: TabBarView(
-                                physics: const NeverScrollableScrollPhysics(),
-                                controller: _tabController,
-                                children: const [
-                                  TimeLineSection(),
-                                  ReminderSection(),
-                                ],
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                      CreatePostButton(
-                        onPressed: () => _showCreatePostModal(context),
-                      ),
-                    ],
+                  NestedScrollView(
+                    controller: _nestedController,
+                    headerSliverBuilder: (context, value) {
+                      return [
+                        _buildAppBar(),
+                        _buildTabBar(),
+                      ];
+                    },
+                    body: _buildTabBarView(),
                   ),
                 ],
               );
@@ -96,6 +65,57 @@ class _UserPageState extends BaseWidgetState
         ),
       );
     }
+  }
+
+  Widget _buildTabBarView() {
+    return TabBarView(
+      physics: const NeverScrollableScrollPhysics(),
+      controller: _tabController,
+      children: [
+        TimeLineSection(
+          onPressed: () => _showCreatePostModal(context),
+        ),
+        const ReminderSection(),
+      ],
+    );
+  }
+
+  Widget _buildTabBar() {
+    return SliverToBoxAdapter(
+      child: CustomTabBar(
+        tabController: _tabController,
+        tabs: [
+          CustomTabChild(title: translate(context).timeLine),
+          CustomTabChild(title: translate(context).reminder),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAppBar() {
+    return SliverAppBar(
+      pinned: true,
+      snap: true,
+      leadingWidth: context.sizeWidth(80),
+      floating: true,
+      backgroundColor: Theme.of(context)
+          .scaffoldBackgroundColor
+          .withOpacity(_appbarBackgroundOpacity),
+      expandedHeight: 90,
+      leading: LeadingAppBar(
+        color: _colorLeadingAppBar,
+        onPressed: () => _createPlant(context),
+      ),
+      flexibleSpace: const FlexibleSpaceBar(
+        title: PlantName(plantName: 'Rosé'),
+      ),
+      actions: [
+        ZoomOutCreateTimelineButton(
+          opacity: _zoomOutCreateTimelineButtonOpacity,
+          onPressed: () => _showCreatePostModal(context),
+        ),
+      ],
+    );
   }
 
   void _createPlant(BuildContext context) {
@@ -108,6 +128,31 @@ class _UserPageState extends BaseWidgetState
       height: context.height * 0.9,
       child: const CreatePostModal(),
     );
+  }
+
+  void _setOpacityWhenScroll({required double offset}) {
+    setState(() {
+      _zoomOutCreateTimelineButtonOpacity = (offset / 600).clamp(0.0, 1.0);
+
+      _appbarBackgroundOpacity = offset.clamp(0.0, 1.0);
+
+      _setColorLeadingAppBar(offset: offset);
+    });
+  }
+
+  void _setColorLeadingAppBar({required double offset}) {
+    double triggerOffset = 50.0;
+    if (offset > triggerOffset) {
+      _colorLeadingAppBar = colorTheme.get2DDA93;
+    } else {
+      _colorLeadingAppBar = theme(context).textTheme.titleMedium!.color!;
+    }
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   @override
