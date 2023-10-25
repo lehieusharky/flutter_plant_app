@@ -27,7 +27,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
       controller: widget.tabController,
       labelColor: theme(context).textTheme.titleMedium!.color,
       unselectedLabelColor: colorTheme.get6A6F7D,
-      indicatorPadding: context.padding(horizontal: 20),
+      indicatorPadding: context.padding(horizontal: 30),
       indicatorWeight: context.sizeWidth(2),
       indicatorSize: TabBarIndicatorSize.tab,
       indicatorColor: colorTheme.get2DDA93,

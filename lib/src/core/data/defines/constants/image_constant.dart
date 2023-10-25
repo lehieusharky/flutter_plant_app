@@ -12,6 +12,7 @@ abstract class ImageConstant {
   String get trainJson;
   String get nightJson;
   String get heartSvg;
+  String get leafPlusSvg;
   String get leavesSVG;
   String get languageSVG;
   String get themeSVG;
@@ -174,4 +175,7 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get userInformationSVG => 'assets/svg/user_information.svg';
+
+  @override
+  String get leafPlusSvg => 'assets/svg/leaf_plus.svg';
 }
