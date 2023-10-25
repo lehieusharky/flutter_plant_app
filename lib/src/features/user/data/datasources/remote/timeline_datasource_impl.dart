@@ -8,7 +8,7 @@ import 'package:plant_market/src/core/data/datasource/local/share_preference_dat
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/features/user/data/datasources/remote/timeline_datasource.dart';
-import 'package:plant_market/src/features/user/data/models/time_line_model.dart';
+import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:uuid/uuid.dart';
 
 @Injectable(as: TimeLineDataSource)
@@ -20,7 +20,7 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
           .collection(AppConstant.usersCollection)
           .doc(sharePreference.getUserId())
           .collection(AppConstant.timeLineCollection)
-          .doc('Tree_test')
+          .doc('HoaHong')
           .collection('list_time_line')
           .doc(timeLineModel.timeLineId)
           .set(timeLineModel.toJson());

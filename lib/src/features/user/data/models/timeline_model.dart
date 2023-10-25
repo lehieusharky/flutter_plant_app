@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:plant_market/src/features/user/domain/entities/time_line_entity.dart';
-part 'time_line_model.g.dart';
+import 'package:plant_market/src/features/user/domain/entities/timeline_entity.dart';
+part 'timeline_model.g.dart';
 
 @JsonSerializable()
 class TimeLineModel extends TimeLineEntity {

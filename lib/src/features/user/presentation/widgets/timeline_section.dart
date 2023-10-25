@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/features/user/data/models/time_line_model.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_shimmer.dart';
+import 'package:plant_market/src/core/presentation/page/base_page.dart';
+import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/presentation/bloc/user_bloc.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/create_post_button.dart';
-import 'package:plant_market/src/features/user/presentation/widgets/time_line_item.dart';
+import 'package:plant_market/src/features/user/presentation/widgets/timeline_item.dart';
 
-class TimeLineSection extends StatefulWidget {
+class TimeLineSection extends BaseWidget {
   final void Function() onPressed;
   const TimeLineSection({
     super.key,
@@ -14,10 +16,10 @@ class TimeLineSection extends StatefulWidget {
   });
 
   @override
-  State<TimeLineSection> createState() => _TimeLineSectionState();
+  BaseWidgetState createState() => _TimeLineSectionState();
 }
 
-class _TimeLineSectionState extends State<TimeLineSection>
+class _TimeLineSectionState extends BaseWidgetState
     with AutomaticKeepAliveClientMixin {
   List<TimeLineModel> _listTimeLineModel = [];
 
@@ -33,26 +35,30 @@ class _TimeLineSectionState extends State<TimeLineSection>
           }
         },
         builder: (context, state) {
-          return Column(
-            children: [
-              context.sizedBox(height: 15),
-              CreatePostButton.fullWidth(
-                context: context,
-                onPressed: widget.onPressed,
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: _listTimeLineModel.length,
-                  itemBuilder: (context, index) {
-                    return TimeLineItem(
-                      image: _listTimeLineModel[index].image,
-                      title: _listTimeLineModel[index].description,
-                      description: _listTimeLineModel[index].createAt,
-                    );
-                  },
+          return Padding(
+            padding: context.padding(horizontal: 12),
+            child: Column(
+              children: [
+                context.sizedBox(height: 15),
+                CreatePostButton.fullWidth(
+                  context: context,
+                  onPressed: (widget as TimeLineSection).onPressed,
                 ),
-              ),
-            ],
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: _listTimeLineModel.length,
+                    shrinkWrap: true,
+                    itemBuilder: (context, index) {
+                      return TimeLineItem(
+                        image: _listTimeLineModel[index].image,
+                        title: _listTimeLineModel[index].description,
+                        description: _listTimeLineModel[index].createAt,
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
           );
         },
       ),

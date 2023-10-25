@@ -7,7 +7,7 @@ import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
-import 'package:plant_market/src/features/user/data/models/time_line_model.dart';
+import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/presentation/bloc/user_bloc.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/add_photo_button.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/create_post_form.dart';

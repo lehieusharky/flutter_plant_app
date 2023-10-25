@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:injectable/injectable.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/features/user/data/datasources/remote/timeline_datasource.dart';
-import 'package:plant_market/src/features/user/data/models/time_line_model.dart';
+import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/domain/repositories/timeline_repository.dart';
 
 @Injectable(as: TimeLineRepository)

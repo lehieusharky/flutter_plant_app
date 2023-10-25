@@ -2,13 +2,12 @@
 
 A new Flutter project.
 
+# generate dependencies, json serialize , hive
+
+# !!! generate in pubspec.yaml must be false
+
 flutter pub run build_runner build --delete-conflicting-outputs
-// generate: false to run this command
 
-dart run build_runner build
+# build apk
 
-plant api key: sk-ULZG6518fe82815a42317
-
-weather api key:
-
-hive: flutter packages pub run build_runner build
+flutter build apk --split-per-abi

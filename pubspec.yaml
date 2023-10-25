@@ -13,6 +13,7 @@ dependencies:
   logger: ^2.0.2+1
   intl: any
   flutter_dotenv: ^5.1.0
+  after_layout: ^1.2.0
   go_router: ^11.0.0
   flutter_localizations:
     sdk: flutter
@@ -84,7 +85,7 @@ dev_dependencies:
 flutter:
   # true => generate multiple language => cannot run bunner command
   # false => can run bunner command =>  cannot generate
-  generate: false
+  generate: true
   uses-material-design: true
 
   assets:

@@ -104,7 +104,6 @@ class _UserPageState extends BaseWidgetState
       expandedHeight: 90,
       leading: LeadingAppBar(
         color: _colorLeadingAppBar,
-        onPressed: () => _createPlant(context),
       ),
       flexibleSpace: const FlexibleSpaceBar(
         title: PlantName(plantName: 'Rosé'),
@@ -118,10 +117,6 @@ class _UserPageState extends BaseWidgetState
     );
   }
 
-  void _createPlant(BuildContext context) {
-    context.read<UserBloc>().add(const UserCreatePlant(plantName: "Tree_test"));
-  }
-
   void _showCreatePostModal(BuildContext context) {
     CustomModal.baseModal(
       context: context,
@@ -132,7 +127,7 @@ class _UserPageState extends BaseWidgetState
 
   void _setOpacityWhenScroll({required double offset}) {
     setState(() {
-      _zoomOutCreateTimelineButtonOpacity = (offset / 600).clamp(0.0, 1.0);
+      _zoomOutCreateTimelineButtonOpacity = (offset / 200).clamp(0.0, 1.0);
 
       _appbarBackgroundOpacity = offset.clamp(0.0, 1.0);
 

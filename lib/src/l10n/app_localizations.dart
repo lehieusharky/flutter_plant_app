@@ -434,6 +434,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Reminder'**
   String get reminder;
+
+  /// No description provided for @garden.
+  ///
+  /// In en, this message translates to:
+  /// **'Garden'**
+  String get garden;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
