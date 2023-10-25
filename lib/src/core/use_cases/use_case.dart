@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:plant_market/src/features/user/data/models/time_line_model.dart';
+import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 
 abstract class UseCase<Type, Params> {
   Future<Type> call(Params params);

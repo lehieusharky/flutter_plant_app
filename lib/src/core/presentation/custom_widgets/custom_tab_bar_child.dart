@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:plant_market/src/core/extension/responsive.dart';
 
 class CustomTabChild extends StatelessWidget {
   final String title;
@@ -19,14 +18,11 @@ class CustomTabChild extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: context.padding(vertical: 10),
-      child: Tab(
-        icon: icon,
-        height: height,
-        text: title,
-        child: child,
-      ),
+    return Tab(
+      icon: icon,
+      height: height,
+      text: title,
+      child: child,
     );
   }
 }

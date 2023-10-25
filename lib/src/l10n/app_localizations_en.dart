@@ -174,4 +174,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get reminder => 'Reminder';
+
+  @override
+  String get garden => 'Garden';
 }

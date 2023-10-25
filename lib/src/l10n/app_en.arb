@@ -55,5 +55,6 @@
   "youAreNotLoggedIn": "You are not logged in",
   "pleaseLoginToContinue": "Please login to continue ",
   "timeLine": "Timeline",
-  "reminder": "Reminder"
+  "reminder": "Reminder",
+  "garden": "Garden"
 }

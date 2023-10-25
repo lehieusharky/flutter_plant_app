@@ -174,4 +174,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get reminder => 'Nhắc nhở';
+
+  @override
+  String get garden => 'Vường cây';
 }

@@ -5,7 +5,7 @@ import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
-import 'package:plant_market/src/features/user/data/models/time_line_model.dart';
+import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/domain/repositories/timeline_repository.dart';
 
 TimeLineUseCase get timeLineUseCase => injector.get<TimeLineUseCase>();

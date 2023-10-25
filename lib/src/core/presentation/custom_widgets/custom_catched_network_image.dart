@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_shimmer.dart';
 
 class CustomCatchedNetWorkImage extends StatelessWidget {
   final String imageUrl;
@@ -31,7 +32,10 @@ class CustomCatchedNetWorkImage extends StatelessWidget {
           ),
         ),
       ),
-      placeholder: (context, url) => const CircularProgressIndicator(),
+      placeholder: (context, url) => CustomShimmer(
+        width: width,
+        height: height,
+      ),
       errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }
