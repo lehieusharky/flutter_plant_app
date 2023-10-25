@@ -1,5 +1,7 @@
 part of 'part_dash_board_page.dart';
 
+UserModel? userInfo;
+
 class DashBoardPage extends StatefulWidget {
   const DashBoardPage({super.key});
 
@@ -16,18 +18,31 @@ class _DashBoardPageState extends State<DashBoardPage> {
     return Scaffold(
       body: BlocBuilder<MyAppBloc, MyAppState>(
         builder: (context, state) {
-          return PageView(
-            controller: _pageController,
-            children: const [
-              UserPage(),
-              HomePage(),
-              SettingPage(),
-            ],
-            onPageChanged: (index) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
+          return BlocProvider(
+            create: (context) => DashBoardBloc(),
+            child: BlocConsumer<DashBoardBloc, DashBoardState>(
+              listener: (context, state) {
+                if (state is DashBoardGetUserInfomationSuccess) {
+                  Logger().f('Get user infomation success');
+                  userInfo = state.userModel;
+                }
+              },
+              builder: (context, state) {
+                return PageView(
+                  controller: _pageController,
+                  children: const [
+                    UserPage(),
+                    HomePage(),
+                    SettingPage(),
+                  ],
+                  onPageChanged: (index) {
+                    setState(() {
+                      _currentIndex = index;
+                    });
+                  },
+                );
+              },
+            ),
           );
         },
       ),

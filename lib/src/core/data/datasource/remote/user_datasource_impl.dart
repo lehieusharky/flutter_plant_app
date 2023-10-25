@@ -1,3 +1,6 @@
+import 'dart:async';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:injectable/injectable.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/data/datasource/remote/user_datasource.dart';
@@ -7,6 +10,34 @@ import 'package:plant_market/src/core/di/part_di.dart';
 
 @Injectable(as: UserDataSource)
 class UserDataSourceImpl implements UserDataSource {
+  StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>?
+      _userInfomationSubscription;
+
+  final StreamController<UserModel> _userModelStreamController =
+      StreamController.broadcast();
+
+  UserDataSourceImpl() {
+    _userInfomationSubscription = firebaseFirestore
+        .collection(AppConstant.usersCollection)
+        .doc(sharePreference.getUserId())
+        .snapshots()
+        .listen((userInfoSnapShot) {
+      if (userInfoSnapShot.data() != null) {
+        final userModel = UserModel.fromJson(userInfoSnapShot.data()!);
+        _userModelStreamController.add(userModel);
+      }
+    });
+  }
+
+  void close() {
+    _userInfomationSubscription?.cancel();
+  }
+
+  @override
+  Stream<UserModel> get userInfomationStream =>
+      _userModelStreamController.stream;
+
+
   @override
   Future<UserModel?> getUserInfomation() async {
     try {

@@ -20,4 +20,14 @@ class UserRepositoryImpl implements UserRepository {
       return Left(UserFailure(message: e.toString()));
     }
   }
+
+  @override
+  Either<UserFailure, Stream<UserModel>> getUserInfomationStream() {
+    try {
+      final result = _userDataSource.userInfomationStream;
+      return Right(result);
+    } catch (e) {
+      return Left(UserFailure(message: e.toString()));
+    }
+  }
 }
