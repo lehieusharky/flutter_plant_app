@@ -62,7 +62,7 @@ class TimeLineItem extends StatelessWidget {
         height: context.sizeHeight(230),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(context.sizeWidth(5)),
-          color: colorTheme.get252A3D,
+          color: ThemeManager.backgroundButton(),
         ),
       ),
     );

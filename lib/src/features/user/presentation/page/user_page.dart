@@ -102,7 +102,7 @@ class _UserPageState extends BaseWidgetState
           .scaffoldBackgroundColor
           .withOpacity(_appbarBackgroundOpacity),
       expandedHeight: 90,
-      leading: LeadingAppBar(
+      leading: LeafPlusButton(
         color: _colorLeadingAppBar,
       ),
       flexibleSpace: const FlexibleSpaceBar(
