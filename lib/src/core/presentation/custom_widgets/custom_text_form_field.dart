@@ -130,6 +130,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       height: widget.height,
       boxShadowColor: widget.boxShadowColor ?? Colors.transparent,
       child: TextFormField(
+        
         controller: widget.controller,
         maxLines: widget.maxLines,
         focusNode: widget.focusNode,
