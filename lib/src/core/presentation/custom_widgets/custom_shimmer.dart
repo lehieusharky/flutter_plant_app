@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
-import 'package:plant_market/src/core/data/defines/enum/supported_theme.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:shimmer/shimmer.dart';

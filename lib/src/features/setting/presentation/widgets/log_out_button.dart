@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_dialog.dart';
 import 'package:plant_market/src/features/setting/presentation/bloc/setting_bloc.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
@@ -12,7 +13,7 @@ class LogoutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextButton(
-      onPressed: () => _logOut(context),
+      onPressed: () => _showLogOutDialog(context),
       child: Padding(
         padding: context.padding(vertical: 5),
         child: Row(
@@ -34,6 +35,16 @@ class LogoutButton extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  void _showLogOutDialog(BuildContext context) {
+    CustomDialog.baseDialog(
+      context: context,
+      title: 'Really log out?',
+      confirmText: 'Log out',
+      cancelText: 'Cancel',
+      onConfirm: () => _logOut(context),
     );
   }
 

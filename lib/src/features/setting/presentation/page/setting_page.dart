@@ -25,35 +25,40 @@ class _SettingPageState extends BaseWidgetState
               }
             },
             builder: (context, state) {
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              return Stack(
                 children: [
-                  TitleSettingField(title: translate(context).system),
-                  context.sizedBox(height: 12),
-                  const ThemeLanguageButton(),
-                  context.sizedBox(height: 25),
-                  TitleSettingField(title: translate(context).account),
-                  context.sizedBox(height: 12),
-                  const UserInfomationButton(),
-                  context.sizedBox(height: 8),
-                  const DeleteAccountButton(),
-                  context.sizedBox(height: 25),
-                  TitleSettingField(title: translate(context).about),
-                  context.sizedBox(height: 12),
-                  const PrivacyPolicyButton(),
-                  const Expanded(child: SizedBox()),
-                  Center(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const ShareFriendButton(),
-                        context.sizedBox(height: 5),
-                        const LogoutButton(),
-                        const VersionText(),
-                        context.sizedBox(height: 5),
-                      ],
-                    ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TitleSettingField(title: translate(context).system),
+                      context.sizedBox(height: 12),
+                      const ThemeLanguageButton(),
+                      context.sizedBox(height: 25),
+                      TitleSettingField(title: translate(context).account),
+                      context.sizedBox(height: 12),
+                      const UserInfomationButton(),
+                      context.sizedBox(height: 8),
+                      const DeleteAccountButton(),
+                      context.sizedBox(height: 25),
+                      TitleSettingField(title: translate(context).about),
+                      context.sizedBox(height: 12),
+                      const PrivacyPolicyButton(),
+                      const Expanded(child: SizedBox()),
+                      Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const ShareFriendButton(),
+                            context.sizedBox(height: 5),
+                            const LogoutButton(),
+                            const VersionText(),
+                            context.sizedBox(height: 5),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
+                  if (state is SettingLoading) const CustomLoading(),
                 ],
               );
             },

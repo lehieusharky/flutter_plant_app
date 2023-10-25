@@ -16,6 +16,7 @@ class SettingBloc extends Bloc<SettingEvent, SettingState> {
     SettingLogOut event,
     Emitter<SettingState> emit,
   ) async {
+    emit(SettingLoading());
     try {
       await logOutUseCase.logOut();
       await sharePreference.setUserId(userId: AppConstant.isNull);

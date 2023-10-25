@@ -9,6 +9,8 @@ sealed class SettingState extends Equatable {
 
 final class SettingInitial extends SettingState {}
 
+final class SettingLoading extends SettingState {}
+
 final class SettingLogOutSuccess extends SettingState {}
 
 final class SettingFailure extends SettingState {
