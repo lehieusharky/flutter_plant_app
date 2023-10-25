@@ -3,7 +3,6 @@ import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/theme_manager.dart';
 
 class TimeLineItem extends StatelessWidget {

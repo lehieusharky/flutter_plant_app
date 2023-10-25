@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/background_container.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
 
 class BaseWidget extends StatefulWidget {
   final Widget? child;
@@ -15,17 +13,6 @@ class BaseWidget extends StatefulWidget {
 }
 
 class BaseWidgetState extends State<BaseWidget> with TickerProviderStateMixin {
-  late AnimationController _loadingController;
-
-  @override
-  void initState() {
-    super.initState();
-    _loadingController = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 800),
-    );
-  }
-
   bool isNotLoggedIn() {
     return firebaseAuth.currentUser == null ? true : false;
   }
@@ -43,19 +30,5 @@ class BaseWidgetState extends State<BaseWidget> with TickerProviderStateMixin {
         ],
       ),
     );
-  }
-
-  Widget loadingWidget() {
-    return Center(
-      child: SpinKitSquareCircle(
-        color: colorTheme.get2DDA93,
-        size: context.sizeWidth(50),
-        controller: _loadingController,
-      ),
-    );
-  }
-
-  void exit() {
-    _loadingController.dispose();
   }
 }

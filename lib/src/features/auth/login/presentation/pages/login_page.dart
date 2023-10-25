@@ -68,18 +68,14 @@ class _LoginPageState extends BaseWidgetState {
                 ((widget as LoginPage).isFromDashBoardRouter ?? false)
                     ? const CustomBackButton()
                     : const SizedBox(),
-                if (state is LoginLoading) ...[super.loadingWidget()]
+                if (state is LoginLoading) ...[
+                  const CustomLoading(),
+                ]
               ],
             );
           },
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    super.exit();
-    super.dispose();
   }
 }
