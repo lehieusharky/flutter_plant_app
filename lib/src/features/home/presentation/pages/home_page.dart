@@ -59,6 +59,12 @@ class _HomePageState extends State<HomePage>
                                 padding: context.padding(horizontal: 12),
                                 child: RowTopicButton(
                                   pageScrollController: _pageScrollController,
+                                  onIndetifyPressed: () =>
+                                      _onIdentifyPressed(context: context),
+                                  onCommunityPressed: () =>
+                                      _onCommunityPressed(context: context),
+                                  onGalleryPressed: () =>
+                                      _onGalleryPressed(context: context),
                                 ),
                               ),
                               const Center(child: SharkeAnimationHomePage()),
@@ -120,7 +126,7 @@ class _HomePageState extends State<HomePage>
   }
 
   void _handleVisibleZoomOutButton(double offset) {
-    if (offset >= 300) {
+    if (offset >= 290) {
       if (_appBarTitle != const ZoomOutButtonHomePage()) {
         _openZoomOutButton();
       }
@@ -151,6 +157,44 @@ class _HomePageState extends State<HomePage>
     context
         .read<HomePageBloc>()
         .add(HomePageGetWeatherInfomation(lat: lat, long: long));
+  }
+
+  void _onIdentifyPressed({required BuildContext context}) {
+    _showTopicModal(
+      context: context,
+      child: const PlantIdentifyModal(),
+    );
+    _changeTopic(topicSymbol: TopicSymbol.identification, context: context);
+  }
+
+  void _onCommunityPressed({required BuildContext context}) {
+    _showTopicModal(
+      context: context,
+      child: const CreateCommunityPostModal(),
+    );
+    _changeTopic(topicSymbol: TopicSymbol.community, context: context);
+  }
+
+  void _onGalleryPressed({required BuildContext context}) {
+    _showTopicModal(context: context, child: const GalleryModal());
+    _changeTopic(topicSymbol: TopicSymbol.gallery, context: context);
+  }
+
+  void _showTopicModal({required BuildContext context, required Widget child}) {
+    CustomModal.baseModal(
+      context: context,
+      height: context.height * 0.8,
+      child: child,
+    );
+  }
+
+  void _changeTopic({
+    required TopicSymbol topicSymbol,
+    required BuildContext context,
+  }) {
+    context
+        .read<HomePageBloc>()
+        .add(HomePageChangetTopic(topicSymbol: topicSymbol));
   }
 
   @override
