@@ -114,9 +114,10 @@ class _UserPageState extends BaseWidgetState
         title: PlantName(plantName: 'Rosé'),
       ),
       actions: [
-        ZoomOutCreateTimelineButton(
+        ZoomOutButton(
           opacity: _zoomOutCreateTimelineButtonOpacity,
           onPressed: () => _showCreatePostModal(context),
+          iconPath: imageConstant.cameraSVG,
         ),
       ],
     );

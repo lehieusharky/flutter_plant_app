@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_form_field.dart';
 

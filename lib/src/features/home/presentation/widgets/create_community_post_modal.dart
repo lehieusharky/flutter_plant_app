@@ -5,7 +5,6 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_seperat
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/create_community_form.dart';
-import 'package:plant_market/src/features/user/presentation/widgets/create_timeline_button.dart';
 
 class CreateCommunityPostModal extends BaseWidget {
   const CreateCommunityPostModal({super.key});

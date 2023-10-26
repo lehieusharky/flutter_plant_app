@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
@@ -15,7 +14,7 @@ class CreateTimelineButton extends StatelessWidget {
   final double? opacity;
   final double? iconSize;
   final String title;
-
+  final String iconPath;
   const CreateTimelineButton({
     super.key,
     required this.onPressed,
@@ -25,6 +24,7 @@ class CreateTimelineButton extends StatelessWidget {
     this.opacity,
     this.iconSize,
     required this.title,
+    required this.iconPath,
   });
 
   @override
@@ -44,11 +44,14 @@ class CreateTimelineButton extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 _buildTitle(context),
-                _buildCameraIcon(context: context),
+                _buildCameraIcon(context: context, iconPath: iconPath),
               ],
             )
           : _buildCameraIcon(
-              context: context, iconOpacity: opacity, iconSize: iconSize),
+              context: context,
+              iconOpacity: opacity,
+              iconSize: iconSize,
+              iconPath: iconPath),
     );
   }
 
@@ -56,6 +59,7 @@ class CreateTimelineButton extends StatelessWidget {
     required BuildContext context,
     required void Function() onPressed,
     required String title,
+    required String iconPath,
   }) {
     return CreateTimelineButton(
       onPressed: onPressed,
@@ -63,6 +67,7 @@ class CreateTimelineButton extends StatelessWidget {
       width: context.width * 0.85,
       height: context.sizeHeight(55),
       title: title,
+      iconPath: iconPath,
     );
   }
 
@@ -72,12 +77,14 @@ class CreateTimelineButton extends StatelessWidget {
     required double? width,
     required double? height,
     double? opacity,
+    required String iconPath,
     double? iconSize,
     required String title,
   }) {
     return CreateTimelineButton(
       onPressed: onPressed,
       isHaveTitle: false,
+      iconPath: iconPath,
       width: width,
       height: height,
       iconSize: iconSize,
@@ -100,9 +107,10 @@ class CreateTimelineButton extends StatelessWidget {
     required BuildContext context,
     double? iconOpacity,
     double? iconSize,
+    required String iconPath,
   }) {
     return CustomSvg(
-      path: imageConstant.cameraSVG,
+      path: iconPath,
       width: context.sizeWidth(iconSize ?? 25),
       color: theme(context)
           .textTheme
