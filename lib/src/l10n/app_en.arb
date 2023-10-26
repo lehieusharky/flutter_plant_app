@@ -64,5 +64,7 @@
   "phoneNumberMustBe811DigitsLong": "Phone number must be 8-11 digits long",
   "sendOtpFailed": "Send OTP failed",
   "logOutSuccess": "Logged out",
-  "logOutFailed": "Logout failed"
+  "logOutFailed": "Logout failed",
+  "pleaseEnterATimelineDescription": "Please enter a timeline description",
+  "pleaseTakeImageForThisStateOfThePlant": "Please take image for this state of the plant"
 }

@@ -67,8 +67,8 @@ class _DashBoardPageState extends State<DashBoardPage> {
   List<SalomonBottomBarItem> _buildItemBottom() {
     return [
       itemBottomGreen(
-        icon: const Icon(Icons.person),
-        title: translate(context).user,
+        icon: const Icon(FontAwesomeIcons.tree),
+        title: translate(context).garden,
       ),
       itemBottomGreen(
         icon: const Icon(Icons.home),

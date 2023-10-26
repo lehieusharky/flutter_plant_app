@@ -11,9 +11,6 @@ class LoginPage extends BaseWidget {
 }
 
 class _LoginPageState extends BaseWidgetState {
-  final _phoneNumberController = TextEditingController();
-  final _keyForm = GlobalKey<FormState>();
-
   @override
   Widget build(BuildContext context) {
     return BaseWidget(
@@ -38,10 +35,7 @@ class _LoginPageState extends BaseWidgetState {
                       ),
                       context.sizedBox(height: 25),
                       //* form
-                      FormLogin(
-                        keyForm: _keyForm,
-                        phoneNumberController: _phoneNumberController,
-                      ),
+                      const FormLogin(),
                       context.sizedBox(height: 20),
                       //* brand button
                       const RowBrandLoginButton(),
@@ -86,11 +80,5 @@ class _LoginPageState extends BaseWidgetState {
         backgroundColor: colorTheme.getFF6262,
       );
     }
-  }
-
-  @override
-  void dispose() {
-    _phoneNumberController.dispose();
-    super.dispose();
   }
 }

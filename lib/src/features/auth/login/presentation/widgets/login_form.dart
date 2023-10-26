@@ -14,14 +14,7 @@ import 'package:plant_market/src/router/router_path.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class FormLogin extends StatefulWidget {
-  final GlobalKey<FormState> keyForm;
-  final TextEditingController phoneNumberController;
-
-  const FormLogin({
-    super.key,
-    required this.keyForm,
-    required this.phoneNumberController,
-  });
+  const FormLogin({super.key});
 
   @override
   State<FormLogin> createState() => _FormLoginState();
@@ -29,18 +22,20 @@ class FormLogin extends StatefulWidget {
 
 class _FormLoginState extends State<FormLogin> {
   Color _iconColor = colorTheme.getD2D2D2;
+  final _keyForm = GlobalKey<FormState>();
+  final _phoneNumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: widget.keyForm,
+      key: _keyForm,
       child: Column(
         children: [
           // * phone field
           CustomTextFormField.phone(
             prefixIcon: _prefixIcon(),
-            controller: widget.phoneNumberController,
-            autoValidateMode: AutovalidateMode.always,
+            controller: _phoneNumberController,
+            autoValidateMode: AutovalidateMode.onUserInteraction,
             onTap: () => _setIconColor(color: colorTheme.get2DDA93),
             context: context,
             validator: (phoneNumber) => _phoneNumberValidation(
@@ -103,7 +98,7 @@ class _FormLoginState extends State<FormLogin> {
     context.read<LoginBloc>().add(
           LoginSentOtp(
             sentOtpParams: SentOtpParams(
-              phoneNumber: widget.phoneNumberController.text.trim(),
+              phoneNumber: _phoneNumberController.text.trim(),
               pushToOtp: (verificationId) =>
                   _navigateToOtpPage(context, verificationId),
             ),
@@ -112,8 +107,14 @@ class _FormLoginState extends State<FormLogin> {
   }
 
   void _phoneNumberFormValidation(BuildContext context) {
-    if (widget.keyForm.currentState?.validate() ?? false) {
+    if (_keyForm.currentState?.validate() ?? false) {
       _sendOTP(context);
     }
+  }
+
+  @override
+  void dispose() {
+    _phoneNumberController.dispose();
+    super.dispose();
   }
 }

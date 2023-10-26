@@ -10,7 +10,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_tab_bar
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_tab_bar_child.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/features/user/presentation/bloc/user_bloc.dart';
-import 'package:plant_market/src/features/user/presentation/widgets/create_post_modal.dart';
+import 'package:plant_market/src/features/user/presentation/widgets/create_timeline_modal.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/leaf_plus_button.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/plant_name.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/reminder_section.dart';

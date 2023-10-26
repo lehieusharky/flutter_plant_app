@@ -39,7 +39,7 @@ class TimeLineItem extends StatelessWidget {
               Padding(
                 padding: context.padding(horizontal: 20),
                 child: Text(
-                  'Chúng tôi có đội ngũ nhân viên bao gồm các kỹ sư nông nghiệp và thợ làm vườn nhiều năm kinh nghiệm có khả năng xử lý các tình huống sự cố về cây xanh, đặc biệt là những dòng cây quý hiếm và trồng lâu năm',
+                  title,
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,

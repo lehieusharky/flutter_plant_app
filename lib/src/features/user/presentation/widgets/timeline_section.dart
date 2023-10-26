@@ -4,7 +4,7 @@ import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/presentation/bloc/user_bloc.dart';
-import 'package:plant_market/src/features/user/presentation/widgets/create_post_button.dart';
+import 'package:plant_market/src/features/user/presentation/widgets/create_timeline_button.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/timeline_item.dart';
 
 class TimeLineSection extends BaseWidget {
@@ -39,7 +39,7 @@ class _TimeLineSectionState extends BaseWidgetState
             child: Column(
               children: [
                 context.sizedBox(height: 15),
-                CreatePostButton.fullWidth(
+                CreateTimelineButton.fullWidth(
                   context: context,
                   onPressed: (widget as TimeLineSection).onPressed,
                 ),

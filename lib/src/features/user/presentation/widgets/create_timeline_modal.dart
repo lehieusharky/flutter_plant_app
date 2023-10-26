@@ -10,19 +10,20 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_bu
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/presentation/bloc/user_bloc.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/add_photo_button.dart';
-import 'package:plant_market/src/features/user/presentation/widgets/create_post_form.dart';
+import 'package:plant_market/src/features/user/presentation/widgets/create_timeline_form.dart';
 import 'package:uuid/uuid.dart';
 
-class CreatePostModal extends StatefulWidget {
-  const CreatePostModal({super.key});
+class CreateTimelineModal extends StatefulWidget {
+  const CreateTimelineModal({super.key});
 
   @override
-  State<CreatePostModal> createState() => _CreatePostModalState();
+  State<CreateTimelineModal> createState() => _CreateTimelineModalState();
 }
 
-class _CreatePostModalState extends State<CreatePostModal> {
+class _CreateTimelineModalState extends State<CreateTimelineModal> {
   final _descriptionController = TextEditingController();
-  late File _imageTimeLineFile;
+  final _keyForm = GlobalKey<FormState>();
+  File? _imageTimeLineFile;
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
@@ -56,11 +57,8 @@ class _CreatePostModalState extends State<CreatePostModal> {
                         _buildSeperator(),
                         CustomTextButton.save(
                             context: context,
-                            onPressed: () {
-                              context.read<UserBloc>().add(
-                                  UserPostTimeLineImage(
-                                      image: _imageTimeLineFile));
-                            })
+                            onPressed: () =>
+                                _createTimeLineValidation(context: context))
                       ],
                     ),
                     _buildDivider(),
@@ -69,9 +67,12 @@ class _CreatePostModalState extends State<CreatePostModal> {
                       translate(context).description,
                       style: theme(context).textTheme.titleMedium,
                     ),
-                    context.sizedBox(height: 12),
-                    CreatePostForm(
-                        descriptionController: _descriptionController),
+                    context.sizedBox(height: 5),
+                    CreateTimelineForm(
+                      descriptionController: _descriptionController,
+                      keyForm: _keyForm,
+                      imageFile: _imageTimeLineFile,
+                    ),
                     context.sizedBox(height: 20),
                     AddPhotosButton(onPressed: () => _pickPhoto(context)),
                     if (state is UserPickImageFromCameraSuccess)
@@ -84,6 +85,12 @@ class _CreatePostModalState extends State<CreatePostModal> {
         },
       ),
     );
+  }
+
+  void _createTimeLineValidation({required BuildContext context}) {
+    if (_keyForm.currentState?.validate() ?? false) {
+      _postTimeLineImages(context);
+    }
   }
 
   void _createTimeLine({
@@ -105,6 +112,12 @@ class _CreatePostModalState extends State<CreatePostModal> {
 
   void _pickPhoto(BuildContext context) {
     context.read<UserBloc>().add(UserPickImageFromCamera());
+  }
+
+  void _postTimeLineImages(BuildContext context) {
+    context
+        .read<UserBloc>()
+        .add(UserPostTimeLineImage(image: _imageTimeLineFile!));
   }
 
   Widget _buildDivider() {

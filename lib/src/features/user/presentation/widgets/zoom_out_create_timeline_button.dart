@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/features/user/presentation/widgets/create_post_button.dart';
+import 'package:plant_market/src/features/user/presentation/widgets/create_timeline_button.dart';
 
 class ZoomOutCreateTimelineButton extends StatelessWidget {
   final double? opacity;
@@ -16,7 +16,7 @@ class ZoomOutCreateTimelineButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: context.padding(vertical: 10, horizontal: 20),
-      child: CreatePostButton.customSize(
+      child: CreateTimelineButton.customSize(
         context: context,
         onPressed: onPressed,
         iconSize: context.sizeWidth(15),
