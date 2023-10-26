@@ -13,15 +13,17 @@ class NotLoggedInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _buildPersonSymbol(context),
-        context.sizedBox(height: 5),
-        _buildNotification(context),
-        context.sizedBox(height: 15),
-        _buildLoginButton(context),
-      ],
+    return Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          _buildPersonSymbol(context),
+          context.sizedBox(height: 5),
+          _buildNotification(context),
+          context.sizedBox(height: 15),
+          _buildLoginButton(context),
+        ],
+      ),
     );
   }
 

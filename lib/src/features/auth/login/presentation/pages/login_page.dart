@@ -11,8 +11,8 @@ class LoginPage extends BaseWidget {
 }
 
 class _LoginPageState extends BaseWidgetState {
-  final phoneNumberController = TextEditingController();
-  final keyForm = GlobalKey<FormState>();
+  final _phoneNumberController = TextEditingController();
+  final _keyForm = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,24 +20,7 @@ class _LoginPageState extends BaseWidgetState {
       child: BlocProvider(
         create: (context) => LoginBloc(),
         child: BlocConsumer<LoginBloc, LoginState>(
-          listener: (context, state) {
-            if (state is LoginSuccess) {
-              context.read<LoginBloc>().add(LoginGetUserInfomation());
-            }
-            if (state is LoginGetUserInfomationSuccess) {
-              final userModel = state.userModel;
-              BlocProvider.of<MyAppBloc>(context)
-                  .add(MyAppGetUserInformation(userModel: userModel));
-
-              context.go(RouterPath.dashBoard);
-            }
-            if (state is LoginWithGoogleFailure) {
-              Logger().e(state.message);
-            }
-            if (state is LoginSentOtpFailure) {
-              Logger().e('sendd otp failure');
-            }
-          },
+          listener: (context, state) => _loginStateListener(state, context),
           builder: (context, state) {
             return Stack(
               alignment: Alignment.topLeft,
@@ -56,8 +39,8 @@ class _LoginPageState extends BaseWidgetState {
                       context.sizedBox(height: 25),
                       //* form
                       FormLogin(
-                        keyForm: keyForm,
-                        phoneNumberController: phoneNumberController,
+                        keyForm: _keyForm,
+                        phoneNumberController: _phoneNumberController,
                       ),
                       context.sizedBox(height: 20),
                       //* brand button
@@ -77,5 +60,37 @@ class _LoginPageState extends BaseWidgetState {
         ),
       ),
     );
+  }
+
+  void _loginStateListener(LoginState state, BuildContext context) {
+    if (state is LoginSuccess) {
+      CustomSnakBar.showSnackbar(
+        context: context,
+        message: translate(context).loggedIn,
+        backgroundColor: colorTheme.get2DDA93,
+        onVisible: () => context.go(RouterPath.dashBoard),
+      );
+    }
+
+    if (state is LoginWithGoogleFailure) {
+      CustomSnakBar.showSnackbar(
+        context: context,
+        message: translate(context).loginFailed,
+        backgroundColor: colorTheme.getFF6262,
+      );
+    }
+    if (state is LoginSentOtpFailure) {
+      CustomSnakBar.showSnackbar(
+        context: context,
+        message: translate(context).loginFailed,
+        backgroundColor: colorTheme.getFF6262,
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    _phoneNumberController.dispose();
+    super.dispose();
   }
 }

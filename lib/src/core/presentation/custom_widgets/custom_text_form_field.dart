@@ -4,7 +4,6 @@ import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
-import 'package:plant_market/src/theme/text_theme.dart';
 import 'package:plant_market/src/theme/theme_manager.dart';
 
 class CustomTextFormField extends StatefulWidget {
@@ -108,6 +107,7 @@ class CustomTextFormField extends StatefulWidget {
       hintText: translate(context).enterYourPhoneNumber,
       backgroundColor: Colors.transparent,
       onTapOutSide: onTapOutSide,
+      validator: validator,
     );
   }
 
@@ -130,7 +130,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       height: widget.height,
       boxShadowColor: widget.boxShadowColor ?? Colors.transparent,
       child: TextFormField(
-        
         controller: widget.controller,
         maxLines: widget.maxLines,
         focusNode: widget.focusNode,
@@ -157,7 +156,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                 BorderSide(color: widget.focusBorderColo ?? Colors.transparent),
           ),
           prefixIcon: widget.prefixIcon,
-          errorStyle: AppTextTheme.lightTheme(context).bodyMedium,
+          errorStyle: theme(context).textTheme.titleMedium!.copyWith(
+                color: colorTheme.getFF6262,
+              ),
           suffixIcon: (widget.prefixIcon == const Icon(Icons.password))
               ? IconButton(
                   onPressed: () => _onPressed(),

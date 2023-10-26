@@ -11,18 +11,19 @@ class SettingPageNotLoggedIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget(
-      child: Stack(
-        alignment: Alignment.center,
+    return Scaffold(
+      body: Stack(
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              CustomTitle(title: translate(context).system),
-              context.sizedBox(height: 12),
-              const ThemeLanguageButton(),
-              context.sizedBox(height: 50),
-            ],
+          BaseWidget(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CustomTitle(title: translate(context).system),
+                context.sizedBox(height: 12),
+                const ThemeLanguageButton(),
+                context.sizedBox(height: 50),
+              ],
+            ),
           ),
           const NotLoggedInButton(),
         ],

@@ -25,22 +25,11 @@ class _CustomLoadingState extends State<CustomLoading>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        alignment: Alignment.center,
-        children: [
-          Container(
-              width: context.width,
-              height: context.height,
-              color: Colors.transparent),
-          Center(
-            child: SpinKitSquareCircle(
-              color: colorTheme.get2DDA93,
-              size: context.sizeWidth(50),
-              controller: _loadingController,
-            ),
-          ),
-        ],
+    return Center(
+      child: SpinKitSquareCircle(
+        color: colorTheme.get2DDA93,
+        size: context.sizeWidth(50),
+        controller: _loadingController,
       ),
     );
   }

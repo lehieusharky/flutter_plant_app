@@ -21,7 +21,12 @@ class _SettingPageState extends BaseWidgetState
           child: BlocConsumer<SettingBloc, SettingState>(
             listener: (context, state) {
               if (state is SettingLogOutSuccess) {
-                context.go(RouterPath.loginPage);
+                CustomSnakBar.showSnackbar(
+                  context: context,
+                  message: translate(context).loggedIn,
+                  backgroundColor: colorTheme.get2DDA93,
+                  onVisible: () => context.go(RouterPath.loginPage),
+                );
               }
             },
             builder: (context, state) {

@@ -56,5 +56,13 @@
   "pleaseLoginToContinue": "Hãy đăng nhập để tiếp tục ",
   "timeLine": "Mốc thời gian",
   "reminder": "Nhắc nhở",
-  "garden": "Vường cây"
+  "garden": "Vường cây",
+  "loggedIn": "Đăng nhập thành công",
+  "loginFailed": "Đăng nhập thất bại",
+  "invalidPhoneNumber": "Số điện thoại không hợp lệ",
+  "pleaseEnterYourPhoneNumber": "Hãy nhập số điện thoại của bạn",
+  "phoneNumberMustBe811DigitsLong": "Số điện thoại phải có độ dài từ 8-11 số",
+  "sendOtpFailed": "Gửi mã OTP thất bại",
+  "logOutSuccess": "Đăng xuất thành công",
+  "logOutFailed": "Đăng xuất thất bại"
 }

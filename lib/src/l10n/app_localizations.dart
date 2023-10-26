@@ -440,6 +440,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Garden'**
   String get garden;
+
+  /// No description provided for @loggedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged in'**
+  String get loggedIn;
+
+  /// No description provided for @loginFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Login failed'**
+  String get loginFailed;
+
+  /// No description provided for @invalidPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Invalid phone number'**
+  String get invalidPhoneNumber;
+
+  /// No description provided for @pleaseEnterYourPhoneNumber.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter your phone number'**
+  String get pleaseEnterYourPhoneNumber;
+
+  /// No description provided for @phoneNumberMustBe811DigitsLong.
+  ///
+  /// In en, this message translates to:
+  /// **'Phone number must be 8-11 digits long'**
+  String get phoneNumberMustBe811DigitsLong;
+
+  /// No description provided for @sendOtpFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Send OTP failed'**
+  String get sendOtpFailed;
+
+  /// No description provided for @logOutSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Logged out'**
+  String get logOutSuccess;
+
+  /// No description provided for @logOutFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout failed'**
+  String get logOutFailed;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

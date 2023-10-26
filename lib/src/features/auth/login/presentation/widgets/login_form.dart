@@ -3,7 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/extension/string_ext.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_form_field.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
@@ -28,18 +30,6 @@ class FormLogin extends StatefulWidget {
 class _FormLoginState extends State<FormLogin> {
   Color _iconColor = colorTheme.getD2D2D2;
 
-  void _setIconFocus() {
-    setState(() {
-      _iconColor = colorTheme.get2DDA93;
-    });
-  }
-
-  void _setIconUnFocus() {
-    setState(() {
-      _iconColor = colorTheme.getD2D2D2;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -48,22 +38,16 @@ class _FormLoginState extends State<FormLogin> {
         children: [
           // * phone field
           CustomTextFormField.phone(
-            prefixIcon: Icon(
-              FontAwesomeIcons.phone,
-              color: _iconColor,
-            ),
+            prefixIcon: _prefixIcon(),
             controller: widget.phoneNumberController,
             autoValidateMode: AutovalidateMode.always,
-            onTap: () => _setIconFocus(),
+            onTap: () => _setIconColor(color: colorTheme.get2DDA93),
             context: context,
-            validator: (value) {
-              return null;
-            },
-            onSubmit: (value) => {
-              _setIconUnFocus(),
-            },
+            validator: (phoneNumber) => _phoneNumberValidation(
+                phoneNumber: phoneNumber, context: context),
+            onSubmit: (value) => _setIconColor(color: colorTheme.getD2D2D2),
             onTapOutSide: (value) => {
-              _setIconUnFocus(),
+              _setIconColor(color: colorTheme.get6A6F7D),
               FocusManager.instance.primaryFocus!.unfocus()
             },
           ),
@@ -72,28 +56,64 @@ class _FormLoginState extends State<FormLogin> {
           // * send button
           CustomButton.send(
             context: context,
-            onPressed: () => _sendPhoneNumber(context),
+            onPressed: () => _phoneNumberFormValidation(context),
           ),
         ],
       ),
     );
   }
 
-  void _sendPhoneNumber(BuildContext context) {
-    if (widget.keyForm.currentState?.validate() ?? false) {
-      context.read<LoginBloc>().add(LoginSentOtp(
-            sentOtpParams: SentOtpParams(
-              phoneNumber: widget.phoneNumberController.text.trim(),
-              pushToOtp: (verificationId) =>
-                  _nativateToOtpPage(context, verificationId),
-            ),
-          ));
-    }
+  void _setIconColor({required Color color}) {
+    setState(() {
+      _iconColor = color;
+    });
   }
 
-  void _nativateToOtpPage(BuildContext context, String verificationId) {
+  Widget _prefixIcon() {
+    return Icon(
+      FontAwesomeIcons.phone,
+      color: _iconColor,
+    );
+  }
+
+  String? _phoneNumberValidation({
+    String? phoneNumber,
+    required BuildContext context,
+  }) {
+    String? errorValidation;
+    if (phoneNumber == "") {
+      errorValidation = translate(context).pleaseEnterYourPhoneNumber;
+    } else {
+      errorValidation = phoneNumber!.errorPhoneValidation(context);
+    }
+
+    if (errorValidation != null) {
+      _setIconColor(color: colorTheme.getFF6262);
+    }
+    return errorValidation;
+  }
+
+  void _navigateToOtpPage(BuildContext context, String verificationId) {
     return context.go(RouterPath.otpPage, extra: {
       AppConstant.verificationID: verificationId,
     });
+  }
+
+  void _sendOTP(BuildContext context) {
+    context.read<LoginBloc>().add(
+          LoginSentOtp(
+            sentOtpParams: SentOtpParams(
+              phoneNumber: widget.phoneNumberController.text.trim(),
+              pushToOtp: (verificationId) =>
+                  _navigateToOtpPage(context, verificationId),
+            ),
+          ),
+        );
+  }
+
+  void _phoneNumberFormValidation(BuildContext context) {
+    if (widget.keyForm.currentState?.validate() ?? false) {
+      _sendOTP(context);
+    }
   }
 }

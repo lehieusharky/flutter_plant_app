@@ -9,8 +9,9 @@ import 'package:plant_market/src/core/use_cases/use_case.dart';
 UserUseCase get userUseCase => injector.get<UserUseCase>();
 
 abstract class UserUseCase {
-  Future<UserModel?> getUserInfomation();
   Stream<UserModel?>? get userInformationStream;
+  Future<bool> isExist();
+  Future<void> createUserDataBase();
 }
 
 @Injectable(as: UserUseCase)
@@ -22,22 +23,6 @@ class UserUseCaseImpl extends UseCase<void, NoParams> implements UserUseCase {
   @override
   Future<void> call(NoParams params) {
     throw UnimplementedError();
-  }
-
-  @override
-  Future<UserModel?> getUserInfomation() async {
-    try {
-      final result = await _userRepository.getUserInfomation();
-      return result.fold(
-        (failure) {
-          Logger().e('Get user infomation failed');
-          return null;
-        },
-        (userModel) => userModel,
-      );
-    } catch (e) {
-      throw UserFailure(message: e.toString());
-    }
   }
 
   @override
@@ -53,6 +38,32 @@ class UserUseCaseImpl extends UseCase<void, NoParams> implements UserUseCase {
       );
     } catch (e) {
       throw UserFailure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> createUserDataBase() async {
+    try {
+      final result = await _userRepository.createUserDataBase();
+      return result.fold(
+        (failure) => Logger().e('Create new user db failed'),
+        (success) => Logger().f('Create user db success'),
+      );
+    } catch (e) {
+      throw AuthDataBaseFailure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<bool> isExist() async {
+    try {
+      final result = await _userRepository.isExist();
+      return result.fold(
+        (failure) => false,
+        (isExist) => isExist,
+      );
+    } catch (e) {
+      throw AuthDataBaseFailure(message: e.toString());
     }
   }
 }

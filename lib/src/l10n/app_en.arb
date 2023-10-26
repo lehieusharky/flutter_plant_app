@@ -56,5 +56,13 @@
   "pleaseLoginToContinue": "Please login to continue ",
   "timeLine": "Timeline",
   "reminder": "Reminder",
-  "garden": "Garden"
+  "garden": "Garden",
+  "loggedIn": "Logged in",
+  "loginFailed": "Login failed",
+  "invalidPhoneNumber": "Invalid phone number",
+  "pleaseEnterYourPhoneNumber": "Please enter your phone number",
+  "phoneNumberMustBe811DigitsLong": "Phone number must be 8-11 digits long",
+  "sendOtpFailed": "Send OTP failed",
+  "logOutSuccess": "Logged out",
+  "logOutFailed": "Logout failed"
 }

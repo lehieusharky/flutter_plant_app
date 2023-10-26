@@ -40,12 +40,3 @@ final class MyAppGetSystemInfomationSuccess extends MyAppState {
   @override
   List<Object> get props => [systemModel];
 }
-
-final class MyAppGetUserInformationSuccess extends MyAppState {
-  final UserModel userModel;
-
-  const MyAppGetUserInformationSuccess({required this.userModel});
-
-  @override
-  List<Object> get props => [userModel];
-}
