@@ -111,6 +111,29 @@ class CustomTextFormField extends StatefulWidget {
     );
   }
 
+  factory CustomTextFormField.modal({
+    required BuildContext context,
+    required TextEditingController controller,
+    String? Function(String?)? validator,
+    int? maxLine,
+  }) {
+    return CustomTextFormField(
+      borderRadius: 5,
+      onTapOutSide: (value) {
+        FocusManager.instance.primaryFocus!.unfocus();
+      },
+      controller: controller,
+      maxLines: maxLine,
+      autoValidateMode: AutovalidateMode.onUserInteraction,
+      validator: validator,
+      textStyle: theme(context).textTheme.titleMedium,
+      keyboardType: TextInputType.text,
+      hintText: translate(context).describeSomethingAboutThisStageOfThePlant,
+      backgroundColor:
+          theme(context).textTheme.titleMedium!.color!.withOpacity(0.1),
+    );
+  }
+
   @override
   State<CustomTextFormField> createState() => _CustomTextFormFieldState();
 }
