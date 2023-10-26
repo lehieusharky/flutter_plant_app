@@ -9,6 +9,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
+  final _pageScrollController = ScrollController();
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -33,6 +34,7 @@ class _HomePageState extends State<HomePage>
                     children: [
                       const BackGroundContainer(),
                       SingleChildScrollView(
+                        controller: _pageScrollController,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -44,7 +46,9 @@ class _HomePageState extends State<HomePage>
                             context.sizedBox(height: 15),
                             Padding(
                               padding: context.padding(horizontal: 12),
-                              child: const RowTopicButton(),
+                              child: RowTopicButton(
+                                pageScrollController: _pageScrollController,
+                              ),
                             ),
                             const Center(child: SharkeAnimationHomePage()),
                             context.sizedBox(height: 50),

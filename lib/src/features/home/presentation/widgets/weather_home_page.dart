@@ -8,17 +8,18 @@ class WeatherHomePage extends StatefulWidget {
 }
 
 class _WeatherHomePageState extends State<WeatherHomePage> {
+  WeatherModel _weatherModel = WeatherModel();
+
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<HomePageBloc, HomePageState, WeatherModel>(
-      selector: (state) {
+    return BlocConsumer<HomePageBloc, HomePageState>(
+      listener: (context, state) {
         if (state is HomePageGetWeatherInfomationSuccess) {
-          return state.weatherModel;
+          _weatherModel = state.weatherModel;
         }
-        return WeatherModel();
       },
       builder: (context, weatherModel) {
-        if (weatherModel.name == null) {
+        if (_weatherModel.name == null) {
           return CustomShimmer(
             width: context.width,
             height: context.sizeHeight(180),
@@ -33,9 +34,9 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    _buildTemperature(weatherModel),
+                    _buildTemperature(_weatherModel),
                     context.sizedBox(width: 10),
-                    _buildWeatherPart(weatherModel),
+                    _buildWeatherPart(_weatherModel),
                   ],
                 ),
               ),
