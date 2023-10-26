@@ -207,4 +207,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get pleaseTakeImageForThisStateOfThePlant => 'Please take image for this state of the plant';
+
+  @override
+  String get relaxWithMusic => 'Relax with music ♪ while taking care of     the tree 😆';
 }

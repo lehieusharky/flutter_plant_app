@@ -500,6 +500,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please take image for this state of the plant'**
   String get pleaseTakeImageForThisStateOfThePlant;
+
+  /// No description provided for @relaxWithMusic.
+  ///
+  /// In en, this message translates to:
+  /// **'Relax with music ♪ while taking care of     the tree 😆'**
+  String get relaxWithMusic;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

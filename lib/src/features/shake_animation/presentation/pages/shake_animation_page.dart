@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,10 +11,12 @@ import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/background_container.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_dialog.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/bloc/shake_animation_bloc.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/count_down.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/tree_shake_animation.dart';
+import 'package:plant_market/src/theme/color_theme.dart';
 
 class ShakeAnimationPage extends BaseWidget {
   const ShakeAnimationPage({super.key});
@@ -26,6 +30,8 @@ class _ShakeAnimationPageState extends BaseWidgetState {
   final _minuteScrollController = FixedExtentScrollController(initialItem: 5);
   final _countDownController = CountDownController();
   final player = AudioPlayer();
+  bool _isStart = false;
+  String _musicName = '';
 
   Future<void> _setMusicUrl({required String musicUrl}) async {
     try {
@@ -38,6 +44,14 @@ class _ShakeAnimationPageState extends BaseWidgetState {
 
   int minuteCount = 5;
 
+  String _getMusicNameFromUrl({required Uri musicUrl}) {
+    return musicUrl.pathSegments.last.split('/').last.split('.').first;
+  }
+
+  int _getRandomIndexMusicUrl({required List<String> musicPlayList}) {
+    return Random().nextInt(musicPlayList.length);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +61,13 @@ class _ShakeAnimationPageState extends BaseWidgetState {
         child: BlocConsumer<ShakeAnimationBloc, ShakeAnimationState>(
           listener: (context, state) {
             if (state is ShakeAnimationGetMusicPlayListSuccess) {
-              _setMusicUrl(musicUrl: state.musicPlayList[0]);
+              final indexMusic =
+                  _getRandomIndexMusicUrl(musicPlayList: state.musicPlayList);
+              Uri musicUrl = Uri.parse(state.musicPlayList[indexMusic]);
+              setState(() {
+                _musicName = _getMusicNameFromUrl(musicUrl: musicUrl);
+              });
+              _setMusicUrl(musicUrl: state.musicPlayList[indexMusic]);
             }
           },
           builder: (context, state) {
@@ -58,7 +78,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    context.sizedBox(height: 50),
+                    context.sizedBox(height: 60),
                     TreeShakeAnimation(
                       countDownController: _countDownController,
                     ),
@@ -74,16 +94,60 @@ class _ShakeAnimationPageState extends BaseWidgetState {
                     ),
                     context.sizedBox(height: 10),
                     _buildSendButton(),
+                    context.sizedBox(height: 10),
+                    _isStart
+                        ? const SizedBox()
+                        : Padding(
+                            padding: context.padding(horizontal: 50),
+                            child: Text(
+                              translate(context).relaxWithMusic,
+                              textAlign: TextAlign.center,
+                              style: theme(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .copyWith(
+                                      color: theme(context)
+                                          .textTheme
+                                          .titleMedium!
+                                          .color!
+                                          .withOpacity(0.6)),
+                            ),
+                          ),
                   ],
                 ),
                 Padding(
                   padding: context.padding(top: 60, horizontal: 12),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                  child: Stack(
+                    alignment: Alignment.center,
                     children: [
-                      CustomBackButton(
-                        color: theme(context).textTheme.titleMedium!.color,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          _isStart
+                              ? const SizedBox()
+                              : CustomBackButton(
+                                  color: theme(context)
+                                      .textTheme
+                                      .titleMedium!
+                                      .color,
+                                ),
+                        ],
                       ),
+                      _isStart
+                          ? const SizedBox()
+                          : Text(
+                              _musicName,
+                              style: theme(context)
+                                  .textTheme
+                                  .titleLarge!
+                                  .copyWith(
+                                      color: theme(context)
+                                          .textTheme
+                                          .titleLarge!
+                                          .color!
+                                          .withOpacity(0.8)),
+                            )
                     ],
                   ),
                 ),
@@ -138,18 +202,46 @@ class _ShakeAnimationPageState extends BaseWidgetState {
           }
         }
       });
-    } else {
-      Logger().f('stop');
     }
   }
 
   Widget _buildSendButton() {
     return CustomButton.send(
       context: context,
-      title: translate(context).start,
+      title: _isStart ? 'Bỏ cuộc' : translate(context).start,
       width: context.sizeWidth(200),
-      onPressed: () => _countDown(),
+      onPressed: () => _startButtonEvent(),
+      backgroundColor: _isStart ? colorTheme.get6A6F7D : colorTheme.get2DDA93,
     );
+  }
+
+  void _giveUp() {
+    _minuteScrollController
+        .animateToItem(
+      0,
+      duration: const Duration(seconds: 1),
+      curve: Curves.easeInOut,
+    )
+        .then((value) {
+      _hourScrollController.animateToItem(
+        0,
+        duration: const Duration(seconds: 1),
+        curve: Curves.easeInOut,
+      );
+    });
+
+    Logger().d('give up');
+  }
+
+  void _startButtonEvent() {
+    if (_isStart) {
+      _giveUp();
+    } else {
+      _countDown();
+    }
+    setState(() {
+      _isStart = !_isStart;
+    });
   }
 
   @override
@@ -157,7 +249,5 @@ class _ShakeAnimationPageState extends BaseWidgetState {
     super.dispose();
     player.stop();
     player.dispose();
-    // _hourScrollController.dispose();
-    // _minuteScrollController.dispose();
   }
 }

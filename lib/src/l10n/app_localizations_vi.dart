@@ -207,4 +207,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get pleaseTakeImageForThisStateOfThePlant => 'Hãy thêm ảnh để minh họa rõ hơn';
+
+  @override
+  String get relaxWithMusic => 'Thư giản cùng âm nhạc ♪ trong quá trình chăm sóc cây nhé 😆';
 }

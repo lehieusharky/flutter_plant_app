@@ -61,12 +61,13 @@ class CustomButton extends StatelessWidget {
     final double? width,
     required void Function() onPressed,
     String? title,
+    Color? backgroundColor,
   }) {
     return CustomButton(
       width: width ?? context.width,
       height: context.sizeHeight(55),
       onPress: onPressed,
-      backgroundColor: colorTheme.get2DDA93,
+      backgroundColor: backgroundColor,
       boxShadowColor: colorTheme.getD2D2D2.withOpacity(0.5),
       borderRadius: 5,
       child: Text(
