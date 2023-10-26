@@ -8,7 +8,7 @@ import 'http_response.dart';
 class HttpUtil {
   static Dio getDio() {
     Dio dio = Dio();
-    // * TODO add header
+    //  add header
     dio.interceptors.add(DioInterceptor());
     return dio;
   }

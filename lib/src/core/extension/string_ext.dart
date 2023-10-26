@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
+
 extension StringExt on String {
   String getUserNameFromEmail() {
     List<String> parts = split("@");
@@ -8,10 +11,14 @@ extension StringExt on String {
     return ((celsius * 9 / 5) + 32).toString();
   }
 
-  bool phoneNumberValidation({required String phoneNumber}) {
+  bool isValidPhoneNumber() {
     RegExp regex = RegExp(r'^\d+$');
-    return (regex.hasMatch(phoneNumber) &&
-        phoneNumber.length > 8 &&
-        phoneNumber.length < 11);
+    return (regex.hasMatch(this) && length > 9 && length <= 11);
+  }
+
+  String? errorPhoneValidation(BuildContext context) {
+    return isValidPhoneNumber()
+        ? null
+        : translate(context).phoneNumberMustBe811DigitsLong;
   }
 }

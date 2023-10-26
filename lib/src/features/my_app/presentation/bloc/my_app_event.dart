@@ -27,11 +27,3 @@ final class MyAppToggleLanguage extends MyAppEvent {
 
 final class MyAppGetSystemInfomation extends MyAppEvent {}
 
-final class MyAppGetUserInformation extends MyAppEvent {
-  final UserModel userModel;
-
-  const MyAppGetUserInformation({required this.userModel});
-
-  @override
-  List<Object> get props => [userModel];
-}

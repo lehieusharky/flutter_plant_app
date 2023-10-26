@@ -177,4 +177,28 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get garden => 'Vường cây';
+
+  @override
+  String get loggedIn => 'Đăng nhập thành công';
+
+  @override
+  String get loginFailed => 'Đăng nhập thất bại';
+
+  @override
+  String get invalidPhoneNumber => 'Số điện thoại không hợp lệ';
+
+  @override
+  String get pleaseEnterYourPhoneNumber => 'Hãy nhập số điện thoại của bạn';
+
+  @override
+  String get phoneNumberMustBe811DigitsLong => 'Số điện thoại phải có độ dài từ 8-11 số';
+
+  @override
+  String get sendOtpFailed => 'Gửi mã OTP thất bại';
+
+  @override
+  String get logOutSuccess => 'Đăng xuất thành công';
+
+  @override
+  String get logOutFailed => 'Đăng xuất thất bại';
 }

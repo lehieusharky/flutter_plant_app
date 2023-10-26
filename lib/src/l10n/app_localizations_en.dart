@@ -177,4 +177,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get garden => 'Garden';
+
+  @override
+  String get loggedIn => 'Logged in';
+
+  @override
+  String get loginFailed => 'Login failed';
+
+  @override
+  String get invalidPhoneNumber => 'Invalid phone number';
+
+  @override
+  String get pleaseEnterYourPhoneNumber => 'Please enter your phone number';
+
+  @override
+  String get phoneNumberMustBe811DigitsLong => 'Phone number must be 8-11 digits long';
+
+  @override
+  String get sendOtpFailed => 'Send OTP failed';
+
+  @override
+  String get logOutSuccess => 'Logged out';
+
+  @override
+  String get logOutFailed => 'Logout failed';
 }

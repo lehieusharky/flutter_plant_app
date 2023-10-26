@@ -12,22 +12,32 @@ class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl(this._userDataSource);
 
   @override
-  Future<Either<UserFailure, UserModel?>> getUserInfomation() async {
-    try {
-      final userModel = await _userDataSource.getUserInfomation();
-      return Right(userModel);
-    } catch (e) {
-      return Left(UserFailure(message: e.toString()));
-    }
-  }
-
-  @override
   Either<UserFailure, Stream<UserModel>> getUserInfomationStream() {
     try {
       final result = _userDataSource.userInfomationStream;
       return Right(result);
     } catch (e) {
       return Left(UserFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<AuthDataBaseFailure, void>> createUserDataBase() async {
+    try {
+      final result = await _userDataSource.createUserDataBase();
+      return Right(result);
+    } catch (e) {
+      return Left(AuthDataBaseFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<AuthDataBaseFailure, bool>> isExist() async {
+    try {
+      final result = await _userDataSource.isExist();
+      return Right(result);
+    } catch (e) {
+      return Left(AuthDataBaseFailure(message: e.toString()));
     }
   }
 }
