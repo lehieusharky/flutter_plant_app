@@ -23,6 +23,7 @@ class ZoomOutCreateTimelineButton extends StatelessWidget {
         opacity: opacity,
         width: context.sizeWidth(45),
         height: context.sizeWidth(45),
+        title: '',
       ),
     );
   }

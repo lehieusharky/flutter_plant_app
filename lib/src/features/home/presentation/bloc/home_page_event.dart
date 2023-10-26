@@ -29,3 +29,16 @@ final class HomePageGetWeatherInfomation extends HomePageEvent {
 }
 
 final class HomePageDeterminePosition extends HomePageEvent {}
+
+final class HomePagePickImageFromCamera extends HomePageEvent {}
+
+final class HomePageGetImageFromGallery extends HomePageEvent {}
+
+final class HomePagePostImageToPublicGallery extends HomePageEvent {
+  final File imageFile;
+
+  const HomePagePostImageToPublicGallery({required this.imageFile});
+
+  @override
+  List<Object> get props => [imageFile];
+}

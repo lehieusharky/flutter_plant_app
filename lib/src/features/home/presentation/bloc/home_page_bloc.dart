@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
@@ -7,8 +9,10 @@ import 'package:plant_market/src/core/services/date_time_service.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
+import 'package:plant_market/src/features/home/domain/use_cases/gallery_usecase.dart';
 import 'package:plant_market/src/features/home/domain/use_cases/location_use_case.dart';
 import 'package:plant_market/src/features/home/domain/use_cases/weather_use_case.dart';
+import 'package:plant_market/src/features/user/domain/use_cases/image_picker_use_case.dart';
 part 'home_page_event.dart';
 part 'home_page_state.dart';
 
@@ -17,7 +21,46 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     on<HomePageChangetTopic>(_changeTopic);
     on<HomePageGetWeatherInfomation>(_getWeatherInfomation);
     on<HomePageDeterminePosition>(_determinePosition);
+    on<HomePagePickImageFromCamera>(_pickImageFromCamera);
+    on<HomePagePostImageToPublicGallery>(_postImageToPublicGallery);
+    on<HomePageGetImageFromGallery>(_getImageFromGallery);
     add(HomePageDeterminePosition());
+  }
+
+  Future<void> _pickImageFromCamera(
+      HomePagePickImageFromCamera event, Emitter<HomePageState> emit) async {
+    try {
+      final imageFile = await imagePickerUseCase.getImageFromCamera();
+      if (imageFile != null) {
+        emit(HomePagePickImageFromCameraSuccess(imageFile: imageFile));
+      } else {
+        emit(const HomePagePickImageFailed(message: 'Take image failed'));
+      }
+    } catch (e) {
+      emit(HomePageFailure(message: e.toString()));
+    }
+  }
+
+  Future<void> _getImageFromGallery(
+      HomePageGetImageFromGallery event, Emitter<HomePageState> emit) async {
+    try {
+      final gallery = await galleryUseCase.getImageFromPublicGallery();
+      emit(HomePageGetImageFromGallerySuccess(gallery: gallery));
+    } catch (e) {
+      emit(HomePageFailure(message: e.toString()));
+    }
+  }
+
+  Future<void> _postImageToPublicGallery(HomePagePostImageToPublicGallery event,
+      Emitter<HomePageState> emit) async {
+    try {
+      await galleryUseCase.postImageToPublicGallery(
+          postImageToPublicGalleryParam:
+              PostImageToPublicGalleryParams(imageFile: event.imageFile));
+      emit(HomePagePostImageToPublicGallerySuccess());
+    } catch (e) {
+      emit(HomePageFailure(message: e.toString()));
+    }
   }
 
   Future<void> _changeTopic(

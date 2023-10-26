@@ -43,9 +43,10 @@ class CustomTextButton extends StatelessWidget {
   factory CustomTextButton.save({
     required BuildContext context,
     void Function()? onPressed,
+    required String saveText,
   }) {
     return CustomTextButton(
-      title: translate(context).save,
+      title: saveText,
       onPressed: onPressed,
       opacity: 1,
     );

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:equatable/equatable.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 
@@ -8,6 +10,15 @@ abstract class UseCase<Type, Params> {
 class NoParams extends Equatable {
   @override
   List<Object> get props => [];
+}
+
+class PostImageToPublicGalleryParams extends NoParams {
+  final File imageFile;
+
+  PostImageToPublicGalleryParams({required this.imageFile});
+
+  @override
+  List<Object> get props => [imageFile];
 }
 
 class TimeLineParams extends NoParams {

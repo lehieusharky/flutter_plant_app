@@ -35,7 +35,34 @@ final class HomePageGetWeatherInfomationSuccess extends HomePageState {
   List<Object> get props => [weatherModel];
 }
 
+final class HomePagePickImageFromCameraSuccess extends HomePageState {
+  final File imageFile;
+
+  const HomePagePickImageFromCameraSuccess({required this.imageFile});
+
+  @override
+  List<Object> get props => [imageFile];
+}
+
 final class HomePageDeterminePositionSuccess extends HomePageState {
   final Position? position;
   const HomePageDeterminePositionSuccess({required this.position});
 }
+
+final class HomePagePickImageFailed extends HomePageState {
+  final String message;
+
+  const HomePagePickImageFailed({required this.message});
+  @override
+  List<Object> get props => [message];
+}
+
+final class HomePageGetImageFromGallerySuccess extends HomePageState {
+  final List<String> gallery;
+
+  const HomePageGetImageFromGallerySuccess({required this.gallery});
+  @override
+  List<Object> get props => [gallery];
+}
+
+final class HomePagePostImageToPublicGallerySuccess extends HomePageState {}

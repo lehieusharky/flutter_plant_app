@@ -7,6 +7,8 @@ import 'package:plant_market/src/core/data/datasource/local/share_preference_dat
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_divider.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_seperator.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
@@ -69,14 +71,15 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CustomTextButton.cancel(context),
-                        _buildSeperator(),
+                        const CustomSeperator(),
                         CustomTextButton.save(
+                            saveText: translate(context).save,
                             context: context,
                             onPressed: () =>
                                 _createTimeLineValidation(context: context))
                       ],
                     ),
-                    _buildDivider(),
+                    const CustomDivider(),
                     context.sizedBox(height: 5),
                     Text(
                       translate(context).description,
@@ -133,18 +136,5 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
     context
         .read<UserBloc>()
         .add(UserPostTimeLineImage(image: _imageTimeLineFile!));
-  }
-
-  Widget _buildDivider() {
-    return Divider(
-      color: theme(context).textTheme.titleMedium!.color!.withOpacity(0.8),
-    );
-  }
-
-  Widget _buildSeperator() {
-    return Text(
-      '________',
-      style: theme(context).textTheme.titleMedium,
-    );
   }
 }

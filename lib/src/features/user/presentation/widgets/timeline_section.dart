@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
@@ -42,6 +43,7 @@ class _TimeLineSectionState extends BaseWidgetState
                 CreateTimelineButton.fullWidth(
                   context: context,
                   onPressed: (widget as TimeLineSection).onPressed,
+                  title: translate(context).recordPlantProcess,
                 ),
                 Expanded(
                   child: ListView.builder(

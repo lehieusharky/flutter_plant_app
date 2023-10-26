@@ -7,6 +7,7 @@ import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/gallery_modal.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/part_home_page_widget.dart';
 
 class RowTopicButton extends StatefulWidget {
@@ -74,10 +75,7 @@ class _RowTopicButtonState extends State<RowTopicButton> {
     CustomModal.baseModal(
       context: context,
       height: context.height * 0.8,
-      child: Text(
-        'Image galerry',
-        style: theme(context).textTheme.titleMedium,
-      ),
+      child: const GalleryModal(),
     );
   }
 

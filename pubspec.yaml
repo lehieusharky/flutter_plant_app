@@ -55,6 +55,7 @@ dependencies:
 
   #animation
   flutter_animate: ^4.2.0+1
+  flutter_staggered_animations: ^1.1.1
 
   # UI
   like_button: ^2.0.5
@@ -85,7 +86,7 @@ dev_dependencies:
 flutter:
   # true => generate multiple language => cannot run bunner command
   # false => can run bunner command =>  cannot generate
-  generate: true
+  generate: false
   uses-material-design: true
 
   assets:

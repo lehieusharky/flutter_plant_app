@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
-import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
@@ -15,6 +14,7 @@ class CreateTimelineButton extends StatelessWidget {
   final bool? isHaveTitle;
   final double? opacity;
   final double? iconSize;
+  final String title;
 
   const CreateTimelineButton({
     super.key,
@@ -24,6 +24,7 @@ class CreateTimelineButton extends StatelessWidget {
     this.isHaveTitle,
     this.opacity,
     this.iconSize,
+    required this.title,
   });
 
   @override
@@ -54,12 +55,14 @@ class CreateTimelineButton extends StatelessWidget {
   factory CreateTimelineButton.fullWidth({
     required BuildContext context,
     required void Function() onPressed,
+    required String title,
   }) {
     return CreateTimelineButton(
       onPressed: onPressed,
       isHaveTitle: true,
       width: context.width * 0.85,
       height: context.sizeHeight(55),
+      title: title,
     );
   }
 
@@ -70,6 +73,7 @@ class CreateTimelineButton extends StatelessWidget {
     required double? height,
     double? opacity,
     double? iconSize,
+    required String title,
   }) {
     return CreateTimelineButton(
       onPressed: onPressed,
@@ -78,12 +82,13 @@ class CreateTimelineButton extends StatelessWidget {
       height: height,
       iconSize: iconSize,
       opacity: opacity,
+      title: title,
     );
   }
 
   Widget _buildTitle(BuildContext context) {
     return Text(
-      translate(context).recordPlantProcess,
+      title,
       style: theme(context).textTheme.titleMedium!.copyWith(
             color:
                 theme(context).textTheme.titleMedium!.color!.withOpacity(0.6),
