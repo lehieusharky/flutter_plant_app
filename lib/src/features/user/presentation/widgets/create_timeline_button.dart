@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/theme_manager.dart';
 
@@ -94,9 +96,9 @@ class CreateTimelineButton extends StatelessWidget {
     double? iconOpacity,
     double? iconSize,
   }) {
-    return Icon(
-      Icons.camera_alt_outlined,
-      size: context.sizeWidth(iconSize ?? 25),
+    return CustomSvg(
+      path: imageConstant.cameraSVG,
+      width: context.sizeWidth(iconSize ?? 25),
       color: theme(context)
           .textTheme
           .titleMedium!

@@ -17,13 +17,16 @@ class CustomTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: context.padding(horizontal: horizontalPadding ?? 0),
-      child: Text(
-        title,
-        style: theme(context).textTheme.titleMedium!.copyWith(
-              color: color,
-              fontSize: context.sizeWidth(15),
-              fontWeight: FontWeight.w700,
-            ),
+      child: SizedBox(
+        height: context.sizeHeight(20),
+        child: Text(
+          title,
+          style: theme(context).textTheme.titleMedium!.copyWith(
+                color: color,
+                fontSize: context.sizeWidth(15),
+                fontWeight: FontWeight.w700,
+              ),
+        ),
       ),
     );
   }

@@ -17,7 +17,9 @@ abstract class ImageConstant {
   String get languageSVG;
   String get themeSVG;
   String get privacySVG;
+  String get gallerySVG;
   String get deleteAccountSVG;
+  String get cameraSVG;
   String get contactUsSVG;
   String get userInformationSVG;
   String get appleSVG;
@@ -178,4 +180,10 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get leafPlusSvg => 'assets/svg/leaf_plus.svg';
+
+  @override
+  String get cameraSVG => 'assets/svg/camera.svg';
+
+  @override
+  String get gallerySVG => 'assets/svg/gallery.svg';
 }

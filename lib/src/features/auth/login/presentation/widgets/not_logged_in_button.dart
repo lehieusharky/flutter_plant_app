@@ -38,6 +38,7 @@ class NotLoggedInButton extends StatelessWidget {
       width: context.sizeWidth(190),
       title: translate(context).login,
       context: context,
+      backgroundColor: colorTheme.get2DDA93,
       onPressed: () => _navigateToLoginpage(context),
     );
   }

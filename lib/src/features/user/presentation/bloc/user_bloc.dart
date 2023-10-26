@@ -45,7 +45,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   ) async {
     try {
       await timeLineUseCase.createPlant(plantName: event.plantName);
-      emit(UserCreateTimeLineSuccess());
+      emit(UserCreatePlantSuccess());
     } catch (e) {
       emit(UserFailure(message: e.toString()));
     }

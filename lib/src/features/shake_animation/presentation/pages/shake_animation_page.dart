@@ -11,7 +11,6 @@ import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/background_container.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_dialog.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/bloc/shake_animation_bloc.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/widgets/count_down.dart';

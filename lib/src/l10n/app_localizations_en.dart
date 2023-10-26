@@ -210,4 +210,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get relaxWithMusic => 'Relax with music ♪ while taking care of     the tree 😆';
+
+  @override
+  String get gallery => 'Gallery';
+
+  @override
+  String get identify => 'Identify';
 }

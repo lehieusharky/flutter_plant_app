@@ -47,6 +47,7 @@ class _TopicButtonState extends State<TopicButton> {
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              context.sizedBox(height: 5),
               _buildSymbol(),
               context.sizedBox(height: 5),
               Expanded(child: _buildTitle()),
@@ -60,7 +61,7 @@ class _TopicButtonState extends State<TopicButton> {
   Widget _buildSymbol() {
     return CustomSvg(
       path: widget.pathIcon,
-      width: context.sizeWidth(24),
+      width: context.sizeWidth(30),
       color: _isChoosed ? colorTheme.getFFFFFF : colorTheme.get2DDA93,
     );
   }

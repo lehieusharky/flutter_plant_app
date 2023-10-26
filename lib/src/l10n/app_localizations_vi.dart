@@ -210,4 +210,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get relaxWithMusic => 'Thư giản cùng âm nhạc ♪ trong quá trình chăm sóc cây nhé 😆';
+
+  @override
+  String get gallery => 'Kho ảnh';
+
+  @override
+  String get identify => 'Nhận Diện';
 }
