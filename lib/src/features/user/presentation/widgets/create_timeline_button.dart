@@ -6,7 +6,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/theme_manager.dart';
 
-class CreatePostButton extends StatelessWidget {
+class CreateTimelineButton extends StatelessWidget {
   final void Function() onPressed;
   final double? width;
   final double? height;
@@ -14,7 +14,7 @@ class CreatePostButton extends StatelessWidget {
   final double? opacity;
   final double? iconSize;
 
-  const CreatePostButton({
+  const CreateTimelineButton({
     super.key,
     required this.onPressed,
     this.width,
@@ -49,11 +49,11 @@ class CreatePostButton extends StatelessWidget {
     );
   }
 
-  factory CreatePostButton.fullWidth({
+  factory CreateTimelineButton.fullWidth({
     required BuildContext context,
     required void Function() onPressed,
   }) {
-    return CreatePostButton(
+    return CreateTimelineButton(
       onPressed: onPressed,
       isHaveTitle: true,
       width: context.width * 0.85,
@@ -61,7 +61,7 @@ class CreatePostButton extends StatelessWidget {
     );
   }
 
-  factory CreatePostButton.customSize({
+  factory CreateTimelineButton.customSize({
     required BuildContext context,
     required void Function() onPressed,
     required double? width,
@@ -69,7 +69,7 @@ class CreatePostButton extends StatelessWidget {
     double? opacity,
     double? iconSize,
   }) {
-    return CreatePostButton(
+    return CreateTimelineButton(
       onPressed: onPressed,
       isHaveTitle: false,
       width: width,

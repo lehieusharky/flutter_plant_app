@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
+import 'package:plant_market/src/core/extension/responsive.dart';
 
 class CustomTextButton extends StatelessWidget {
   final String title;
@@ -20,6 +21,7 @@ class CustomTextButton extends StatelessWidget {
       child: Text(
         title,
         style: theme(context).textTheme.titleMedium!.copyWith(
+              fontSize: context.sizeWidth(18),
               color: theme(context)
                   .textTheme
                   .titleMedium!

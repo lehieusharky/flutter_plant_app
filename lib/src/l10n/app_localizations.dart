@@ -488,6 +488,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Logout failed'**
   String get logOutFailed;
+
+  /// No description provided for @pleaseEnterATimelineDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a timeline description'**
+  String get pleaseEnterATimelineDescription;
+
+  /// No description provided for @pleaseTakeImageForThisStateOfThePlant.
+  ///
+  /// In en, this message translates to:
+  /// **'Please take image for this state of the plant'**
+  String get pleaseTakeImageForThisStateOfThePlant;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

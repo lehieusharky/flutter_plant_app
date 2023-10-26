@@ -121,7 +121,7 @@ class _UserPageState extends BaseWidgetState
     CustomModal.baseModal(
       context: context,
       height: context.height * 0.9,
-      child: const CreatePostModal(),
+      child: const CreateTimelineModal(),
     );
   }
 

@@ -201,4 +201,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get logOutFailed => 'Đăng xuất thất bại';
+
+  @override
+  String get pleaseEnterATimelineDescription => 'Hãy thêm thông tin mô tả cho giai đoạn';
+
+  @override
+  String get pleaseTakeImageForThisStateOfThePlant => 'Hãy thêm ảnh để minh họa rõ hơn';
 }

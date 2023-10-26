@@ -201,4 +201,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get logOutFailed => 'Logout failed';
+
+  @override
+  String get pleaseEnterATimelineDescription => 'Please enter a timeline description';
+
+  @override
+  String get pleaseTakeImageForThisStateOfThePlant => 'Please take image for this state of the plant';
 }
