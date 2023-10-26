@@ -2,15 +2,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/presentation/bloc/user_bloc.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/add_photo_button.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/create_timeline_form.dart';
+import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:uuid/uuid.dart';
 
 class CreateTimelineModal extends StatefulWidget {
@@ -36,9 +39,21 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
           if (state is UserPostTimeLineImageSuccess) {
             _createTimeLine(context: context, imageUrl: state.imageUrl);
           }
+          if (state is UserFailure) {
+            CustomSnakBar.showSnackbar(
+              context: context,
+              message: state.message,
+              backgroundColor: colorTheme.getFF6262,
+            );
+          }
 
           if (state is UserCreateTimeLineSuccess) {
-            Navigator.pop(context);
+            CustomSnakBar.showSnackbar(
+              context: context,
+              message: 'Create timeline success',
+              backgroundColor: colorTheme.get2DDA93,
+            );
+            context.pop(true);
           }
         },
         builder: (context, state) {

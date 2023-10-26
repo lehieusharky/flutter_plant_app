@@ -1,1 +1,1 @@
-enum TopicSymbol { general, community, map }
+enum TopicSymbol { init, identification, community, gallery }

@@ -41,7 +41,12 @@ class _UserPageState extends BaseWidgetState
           child: BlocConsumer<UserBloc, UserState>(
             listener: (context, state) {
               if (state is UserCreatePlantSuccess) {
-                Logger().e('Create  plant success');
+                CustomSnakBar.showSnackbar(
+                  context: context,
+                  message: 'Create new plant success',
+                  backgroundColor: colorTheme.get2DDA93,
+                );
+                Navigator.of(context).pop();
               }
             },
             builder: (context, state) {

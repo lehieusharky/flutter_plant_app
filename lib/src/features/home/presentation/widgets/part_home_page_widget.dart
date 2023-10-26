@@ -10,7 +10,6 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_shimmer
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
-import 'package:plant_market/src/features/home/presentation/pages/part_home_page.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/weather_background.dart';
 import 'package:plant_market/src/router/router_path.dart';
 import 'package:plant_market/src/theme/color_theme.dart';

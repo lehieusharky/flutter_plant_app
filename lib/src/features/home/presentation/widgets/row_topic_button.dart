@@ -18,7 +18,7 @@ class RowTopicButton extends StatefulWidget {
 }
 
 class _RowTopicButtonState extends State<RowTopicButton> {
-  TopicSymbol _isChoosedTopic = TopicSymbol.general;
+  TopicSymbol _isChoosedTopic = TopicSymbol.init;
 
   @override
   Widget build(BuildContext context) {
@@ -38,12 +38,12 @@ class _RowTopicButtonState extends State<RowTopicButton> {
             TopicButton(
                 onPressed: () {
                   _showPlantIdentify(context);
-                  _changeTopic(topicSymbol: TopicSymbol.general);
+                  _changeTopic(topicSymbol: TopicSymbol.identification);
                 },
-                title: translate(context).general,
-                pathIcon: imageConstant.leavesSVG,
+                title: translate(context).identify,
+                pathIcon: imageConstant.cameraSVG,
                 isChoosed: _isChoosedTopic,
-                topicSymbol: TopicSymbol.general),
+                topicSymbol: TopicSymbol.identification),
             TopicButton(
               onPressed: () {
                 _showCreateCommunityPost(context);
@@ -57,12 +57,12 @@ class _RowTopicButtonState extends State<RowTopicButton> {
             TopicButton(
               onPressed: () {
                 _showImageGalerry(context);
-                _changeTopic(topicSymbol: TopicSymbol.map);
+                _changeTopic(topicSymbol: TopicSymbol.gallery);
               },
-              title: translate(context).map,
-              pathIcon: imageConstant.mapSVG,
+              title: translate(context).gallery,
+              pathIcon: imageConstant.gallerySVG,
               isChoosed: _isChoosedTopic,
-              topicSymbol: TopicSymbol.map,
+              topicSymbol: TopicSymbol.gallery,
             ),
           ],
         );

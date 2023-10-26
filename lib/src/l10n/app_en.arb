@@ -67,5 +67,7 @@
   "logOutFailed": "Logout failed",
   "pleaseEnterATimelineDescription": "Please enter a timeline description",
   "pleaseTakeImageForThisStateOfThePlant": "Please take image for this state of the plant",
-  "relaxWithMusic": "Relax with music ♪ while taking care of     the tree 😆"
+  "relaxWithMusic": "Relax with music ♪ while taking care of     the tree 😆",
+  "gallery": "Gallery",
+  "identify": "Identify"
 }

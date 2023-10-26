@@ -506,6 +506,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Relax with music ♪ while taking care of     the tree 😆'**
   String get relaxWithMusic;
+
+  /// No description provided for @gallery.
+  ///
+  /// In en, this message translates to:
+  /// **'Gallery'**
+  String get gallery;
+
+  /// No description provided for @identify.
+  ///
+  /// In en, this message translates to:
+  /// **'Identify'**
+  String get identify;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
