@@ -26,7 +26,28 @@ class _CreateTimelineFormState extends State<CreateTimelineForm> {
   Widget build(BuildContext context) {
     return Form(
       key: widget.keyForm,
-      child: CustomTextFormField(
+      child: CustomTextFormField.modal(
+        context: context,
+        controller: widget.descriptionController,
+        maxLine: 10,
+        validator: (description) =>
+            _timelineDescriptionValidation(timelineDescription: description),
+      ),
+    );
+  }
+
+  String? _timelineDescriptionValidation({String? timelineDescription}) {
+    if (timelineDescription == '') {
+      return translate(context).describeSomethingAboutThisStageOfThePlant;
+    } else if (widget.imageFile == null) {
+      return translate(context).pleaseTakeImageForThisStateOfThePlant;
+    } else {
+      return null;
+    }
+  }
+}
+/*
+CustomTextFormField(
         borderRadius: 5,
         onTapOutSide: (value) {
           FocusManager.instance.primaryFocus!.unfocus();
@@ -42,16 +63,5 @@ class _CreateTimelineFormState extends State<CreateTimelineForm> {
         backgroundColor:
             theme(context).textTheme.titleMedium!.color!.withOpacity(0.1),
       ),
-    );
-  }
 
-  String? _timelineDescriptionValidation({String? timelineDescription}) {
-    if (timelineDescription == '') {
-      return translate(context).describeSomethingAboutThisStageOfThePlant;
-    } else if (widget.imageFile == null) {
-      return translate(context).pleaseTakeImageForThisStateOfThePlant;
-    } else {
-      return null;
-    }
-  }
-}
+*/

@@ -7,8 +7,10 @@ import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/create_community_post_modal.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/gallery_modal.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/part_home_page_widget.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/plant_identity_modal.dart';
 
 class RowTopicButton extends StatefulWidget {
   final ScrollController pageScrollController;
@@ -38,7 +40,10 @@ class _RowTopicButtonState extends State<RowTopicButton> {
           children: [
             TopicButton(
                 onPressed: () {
-                  _showPlantIdentify(context);
+                  _showTopicModal(
+                    context: context,
+                    child: const PlantIdentifyModal(),
+                  );
                   _changeTopic(topicSymbol: TopicSymbol.identification);
                 },
                 title: translate(context).identify,
@@ -47,7 +52,10 @@ class _RowTopicButtonState extends State<RowTopicButton> {
                 topicSymbol: TopicSymbol.identification),
             TopicButton(
               onPressed: () {
-                _showCreateCommunityPost(context);
+                _showTopicModal(
+                  context: context,
+                  child: const CreateCommunityPostModal(),
+                );
                 _changeTopic(topicSymbol: TopicSymbol.community);
               },
               title: translate(context).community,
@@ -57,7 +65,7 @@ class _RowTopicButtonState extends State<RowTopicButton> {
             ),
             TopicButton(
               onPressed: () {
-                _showImageGalerry(context);
+                _showTopicModal(context: context, child: const GalleryModal());
                 _changeTopic(topicSymbol: TopicSymbol.gallery);
               },
               title: translate(context).gallery,
@@ -71,33 +79,11 @@ class _RowTopicButtonState extends State<RowTopicButton> {
     );
   }
 
-  void _showImageGalerry(BuildContext context) {
+  void _showTopicModal({required BuildContext context, required Widget child}) {
     CustomModal.baseModal(
       context: context,
       height: context.height * 0.8,
-      child: const GalleryModal(),
-    );
-  }
-
-  void _showCreateCommunityPost(BuildContext context) {
-    CustomModal.baseModal(
-      context: context,
-      height: context.height * 0.8,
-      child: Text(
-        'Community post',
-        style: theme(context).textTheme.titleMedium,
-      ),
-    );
-  }
-
-  void _showPlantIdentify(BuildContext context) {
-    CustomModal.baseModal(
-      context: context,
-      height: context.height * 0.8,
-      child: Text(
-        'Community post',
-        style: theme(context).textTheme.titleMedium,
-      ),
+      child: child,
     );
   }
 
