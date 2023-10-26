@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_divider.dart';
@@ -95,6 +96,7 @@ class _GalleryModalState extends BaseWidgetState {
                                 context: context,
                                 onPressed: () => _pickImageFromCamera(context),
                                 title: 'Post beautiful nature pictures now',
+                                iconPath: imageConstant.cameraSVG,
                               ),
                             ),
                           ],

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
-import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
@@ -28,10 +27,7 @@ class _RowTopicButtonState extends State<RowTopicButton> {
     return BlocConsumer<HomePageBloc, HomePageState>(
       listener: (context, state) {
         if (state is HomePageChangeTopicSuccess) {
-          _isChoosedTopic = state.topicSymbol;
-          widget.pageScrollController.animateTo(240,
-              duration: const Duration(milliseconds: 500),
-              curve: Curves.easeInOut);
+          _handleOnChangeTopicSuccess(state);
         }
       },
       builder: (context, state) {
@@ -77,6 +73,13 @@ class _RowTopicButtonState extends State<RowTopicButton> {
         );
       },
     );
+  }
+
+  void _handleOnChangeTopicSuccess(HomePageChangeTopicSuccess state) {
+    _isChoosedTopic = state.topicSymbol;
+    widget.pageScrollController.animateTo(305,
+        duration: const Duration(milliseconds: 500),
+        curve: Curves.easeInOut);
   }
 
   void _showTopicModal({required BuildContext context, required Widget child}) {

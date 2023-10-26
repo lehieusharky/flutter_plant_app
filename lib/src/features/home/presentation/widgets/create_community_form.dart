@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_form_field.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/add_photo_button.dart';
-import 'package:plant_market/src/features/user/presentation/widgets/create_timeline_button.dart';
 
 class CreateCommunityPostForm extends StatefulWidget {
   const CreateCommunityPostForm({super.key});
