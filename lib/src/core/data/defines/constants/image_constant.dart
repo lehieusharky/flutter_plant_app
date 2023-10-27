@@ -107,6 +107,7 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get chickenSVG => 'assets/svg/chicken.svg';
+  
   @override
   String get humiditySVG => 'assets/svg/humidity.svg';
 

@@ -14,6 +14,7 @@ abstract class CommunityUseCase {
   Future<String?> postCommunityPostImage({required File imageFile});
   Future<void> createCommunityPost(
       {required CommunityPostModel communityPostModel});
+  Future<List<CommunityPostModel>> getListCommunityPost({required int num});
 }
 
 @Injectable(as: CommunityUseCase)
@@ -54,6 +55,23 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
       return result.fold(
         (failure) => Logger().e('Create post failed ${failure.message}'),
         (succcess) => Logger().d('Create post success'),
+      );
+    } catch (e) {
+      throw CommunityFailure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<List<CommunityPostModel>> getListCommunityPost(
+      {required int num}) async {
+    try {
+      final result = await _communityRepository.getListCommunityPost(num: num);
+      return result.fold(
+        (failure) {
+          Logger().e('get list post error: ${failure.message}');
+          return [];
+        },
+        (listCommunityPost) => listCommunityPost,
       );
     } catch (e) {
       throw CommunityFailure(message: e.toString());

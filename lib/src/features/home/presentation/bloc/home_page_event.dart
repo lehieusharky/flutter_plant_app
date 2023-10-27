@@ -60,3 +60,13 @@ final class HomePageCreateCommunityPost extends HomePageEvent {
   @override
   List<Object> get props => [communityPostModel];
 }
+
+final class HomePageGetListCommunityPost extends HomePageEvent {
+  final int num;
+
+  const HomePageGetListCommunityPost(
+      {required this.num});
+
+  @override
+  List<Object> get props => [ num];
+}

@@ -35,4 +35,15 @@ class CommunityRepositoryImpl implements CommunityRepository {
       return Left(CommunityFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<CommunityFailure, List<CommunityPostModel>>>
+      getListCommunityPost({required int num}) async {
+    try {
+      final result = await _communityDataSource.getListCommunityPost(num: num);
+      return Right(result);
+    } catch (e) {
+      return Left(CommunityFailure(message: e.toString()));
+    }
+  }
 }

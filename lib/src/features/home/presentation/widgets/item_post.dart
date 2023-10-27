@@ -3,9 +3,11 @@ import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_button.dart';
+import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 
 class ItemPost extends StatelessWidget {
-  const ItemPost({super.key});
+  final CommunityPostModel communityPostModel;
+  const ItemPost({super.key, required this.communityPostModel});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +23,7 @@ class ItemPost extends StatelessWidget {
                 CustomCatchedNetWorkImage(
                   width: context.sizeWidth(280),
                   height: context.sizeHeight(150),
-                  imageUrl:
-                      'https://scontent.fsgn5-3.fna.fbcdn.net/v/t1.6435-9/90779147_110839670557168_3505635285763358720_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=300f58&_nc_ohc=7JExTQNyDpUAX-MNRJX&_nc_ht=scontent.fsgn5-3.fna&oh=00_AfBeEigWAPEtuuWjTsDXc8tgfs-LG_NAkKZ5Dl8kVL1F6Q&oe=6555A6E5',
+                  imageUrl: communityPostModel.image,
                 ),
                 const CustomHeartButton(),
               ],
@@ -41,7 +42,7 @@ class ItemPost extends StatelessWidget {
 
   Widget _buildTitle(BuildContext context) {
     return Text(
-      'Cach trong cay trong nha',
+      communityPostModel.title,
       style: theme(context)
           .textTheme
           .titleMedium!
