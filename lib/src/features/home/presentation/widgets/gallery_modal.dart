@@ -1,9 +1,13 @@
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
+import 'package:logger/logger.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_divider.dart';
@@ -26,6 +30,7 @@ class GalleryModal extends BaseWidget {
 class _GalleryModalState extends BaseWidgetState {
   File? _imageFile;
   List<String> _gallery = [];
+  final dio = Dio();
 
   @override
   Widget build(BuildContext context) {
@@ -130,9 +135,45 @@ class _GalleryModalState extends BaseWidgetState {
                               curve: Curves.fastLinearToSlowEaseIn,
                               child: FadeInAnimation(
                                 child: Padding(
-                                    padding: context.padding(all: 3),
-                                    child: CustomCatchedNetWorkImage(
-                                        imageUrl: _gallery[index])),
+                                  padding: context.padding(all: 1),
+                                  child: Stack(
+                                    alignment: Alignment.topRight,
+                                    children: [
+                                      CustomCatchedNetWorkImage(
+                                        imageUrl: _gallery[index],
+                                      ),
+                                      IconButton(
+                                        onPressed: () async {
+                                          var tempDir =
+                                              await getApplicationDocumentsDirectory();
+                                          Logger().d(tempDir.path);
+                                          dio.download(_gallery[index],
+                                              '${tempDir.path}/${_gallery[index]}.jpg',
+                                              onReceiveProgress:
+                                                  (received, total) {
+                                            if (received == total) {
+                                              Logger().d('$received / $total');
+                                              CustomSnakBar.showSnackbar(
+                                                context: context,
+                                                message: 'tai thanh cong',
+                                                backgroundColor:
+                                                    colorTheme.get2DDA93,
+                                              );
+                                            }
+                                          });
+                                        },
+                                        icon: Icon(
+                                          Icons.cloud_download,
+                                          size: context.sizeWidth(25),
+                                          color: theme(context)
+                                              .textTheme
+                                              .titleMedium!
+                                              .color,
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
                           );

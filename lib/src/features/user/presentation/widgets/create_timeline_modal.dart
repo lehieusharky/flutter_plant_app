@@ -93,6 +93,7 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
                     ),
                     context.sizedBox(height: 20),
                     AddPhotosButton(onPressed: () => _pickPhoto(context)),
+                    context.sizedBox(height: 10),
                     if (state is UserPickImageFromCameraSuccess)
                       Image.file(state.image)
                   ],

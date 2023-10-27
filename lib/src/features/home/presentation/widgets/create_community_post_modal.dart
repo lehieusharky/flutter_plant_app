@@ -27,6 +27,7 @@ class CreateCommunityPostModal extends BaseWidget {
 class _CreateCommunityPostModalState extends BaseWidgetState {
   final _bodyController = TextEditingController();
   final _titleController = TextEditingController();
+  final _keyForm = GlobalKey<FormState>();
   File? _imageFile;
 
   @override
@@ -87,17 +88,13 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
                     CreateCommunityPostForm(
                       titleController: _titleController,
                       bodyController: _bodyController,
+                      keyForm: _keyForm,
                     ),
                     context.sizedBox(height: 20),
                     AddPhotosButton(
                         onPressed: () => _pickImageFromCamera(context)),
-                    if (_imageFile != null)
-                      Image.file(
-                        _imageFile!,
-                        width: context.width,
-                        fit: BoxFit.cover,
-                        height: context.sizeHeight(200),
-                      ),
+                    context.sizedBox(height: 10),
+                    if (_imageFile != null) Image.file(_imageFile!),
                   ],
                 ),
               ),
