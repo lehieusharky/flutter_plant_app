@@ -13,10 +13,12 @@ CommunityPostModel _$CommunityPostModelFromJson(Map<String, dynamic> json) =>
       tags: (json['tags'] as List<dynamic>).map((e) => e as String).toList(),
       image: json['image'] as String,
       authorId: json['authorId'] as String,
+      id: json['id'] as String,
     );
 
 Map<String, dynamic> _$CommunityPostModelToJson(CommunityPostModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'title': instance.title,
       'description': instance.description,
       'tags': instance.tags,

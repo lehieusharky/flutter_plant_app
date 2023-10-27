@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 class CommunityPostEntity extends Equatable {
+  final String id;
   final String title;
   final String description;
   final List<String> tags;
@@ -13,6 +14,7 @@ class CommunityPostEntity extends Equatable {
     required this.tags,
     required this.authorId,
     required this.image,
+    required this.id,
   });
   @override
   List<Object?> get props => [];

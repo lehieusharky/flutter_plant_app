@@ -15,6 +15,7 @@ import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.
 import 'package:plant_market/src/features/home/presentation/widgets/create_community_form.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/add_photo_button.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
+import 'package:uuid/uuid.dart';
 
 class CreateCommunityPostModal extends BaseWidget {
   const CreateCommunityPostModal({super.key});
@@ -136,6 +137,7 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
           tags: const [],
           image: imageUrl,
           authorId: sharePreference.getUserId(),
+          id: const Uuid().v4(),
         )));
   }
 }

@@ -39,6 +39,8 @@ class CommunityDataSourceImpl implements CommunityDataSource {
           .doc(selectedTime[0])
           .collection(AppConstant.postCollection)
           .doc(sharePreference.getUserId())
+          .collection('community_post')
+          .doc(communityPostModel.id)
           .set(communityPostModel.toJson());
     } catch (e) {
       throw Exception(e);
