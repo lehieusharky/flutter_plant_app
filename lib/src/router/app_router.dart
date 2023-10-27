@@ -7,6 +7,7 @@ import 'package:plant_market/src/features/dash_board/presentation/page/part_dash
 import 'package:plant_market/src/features/popular_topic/presentation/page/popular_topic_page.dart';
 import 'package:plant_market/src/features/search/presentation/pages/search_page.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/pages/shake_animation_page.dart';
+import 'package:plant_market/src/router/router_transition.dart';
 
 class AppRouter {
   static final router = GoRouter(
@@ -38,9 +39,13 @@ class AppRouter {
                 },
               ),
               GoRoute(
-                path: 'shake_animation_page',
-                builder: (context, state) => const ShakeAnimationPage(),
-              ),
+                  path: 'shake_animation_page',
+                  pageBuilder: (context, state) {
+                    return RouterTransition.slideTransition(
+                      state: state,
+                      page: const ShakeAnimationPage(),
+                    );
+                  }),
               GoRoute(
                   path: 'login_page_child',
                   builder: (context, state) {
@@ -73,6 +78,8 @@ class AppRouter {
       ),
     ],
   );
+
+  static get animation => null;
 
   static Map<String, dynamic> _params(GoRouterState state) {
     return state.extra! as Map<String, dynamic>;

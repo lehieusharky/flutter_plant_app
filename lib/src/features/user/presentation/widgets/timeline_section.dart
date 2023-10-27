@@ -50,6 +50,7 @@ class _TimeLineSectionState extends BaseWidgetState
                 Expanded(
                   child: ListView.builder(
                     itemCount: _listTimeLineModel.length,
+                    physics: const BouncingScrollPhysics(),
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       return TimeLineItem(

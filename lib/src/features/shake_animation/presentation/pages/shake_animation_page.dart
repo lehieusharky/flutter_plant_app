@@ -66,7 +66,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
               setState(() {
                 _musicName = _getMusicNameFromUrl(musicUrl: musicUrl);
               });
-              _setMusicUrl(musicUrl: state.musicPlayList[indexMusic]);
+              // _setMusicUrl(musicUrl: state.musicPlayList[indexMusic]);
             }
           },
           builder: (context, state) {

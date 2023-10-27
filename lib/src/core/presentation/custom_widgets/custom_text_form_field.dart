@@ -116,6 +116,7 @@ class CustomTextFormField extends StatefulWidget {
     required TextEditingController controller,
     String? Function(String?)? validator,
     int? maxLine,
+    required String hintText,
   }) {
     return CustomTextFormField(
       borderRadius: 5,
@@ -128,7 +129,7 @@ class CustomTextFormField extends StatefulWidget {
       validator: validator,
       textStyle: theme(context).textTheme.titleMedium,
       keyboardType: TextInputType.text,
-      hintText: translate(context).describeSomethingAboutThisStageOfThePlant,
+      hintText: hintText,
       backgroundColor:
           theme(context).textTheme.titleMedium!.color!.withOpacity(0.1),
     );

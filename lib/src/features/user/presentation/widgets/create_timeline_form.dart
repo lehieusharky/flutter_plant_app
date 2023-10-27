@@ -31,6 +31,7 @@ class _CreateTimelineFormState extends State<CreateTimelineForm> {
         maxLine: 10,
         validator: (description) =>
             _timelineDescriptionValidation(timelineDescription: description),
+        hintText: translate(context).describeSomethingAboutThisStageOfThePlant,
       ),
     );
   }
@@ -45,22 +46,3 @@ class _CreateTimelineFormState extends State<CreateTimelineForm> {
     }
   }
 }
-/*
-CustomTextFormField(
-        borderRadius: 5,
-        onTapOutSide: (value) {
-          FocusManager.instance.primaryFocus!.unfocus();
-        },
-        controller: widget.descriptionController,
-        maxLines: 10,
-        autoValidateMode: AutovalidateMode.onUserInteraction,
-        validator: (timelineDescription) => _timelineDescriptionValidation(
-            timelineDescription: timelineDescription),
-        textStyle: theme(context).textTheme.titleMedium,
-        keyboardType: TextInputType.text,
-        hintText: translate(context).describeSomethingAboutThisStageOfThePlant,
-        backgroundColor:
-            theme(context).textTheme.titleMedium!.color!.withOpacity(0.1),
-      ),
-
-*/
