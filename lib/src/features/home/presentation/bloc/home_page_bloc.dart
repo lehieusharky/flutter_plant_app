@@ -28,8 +28,24 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     on<HomePageGetImageFromGallery>(_getImageFromGallery);
     on<HomePageCreateCommunityPost>(_createCommunityPost);
     on<HomePagePostCommunityPostImage>(_postCommunityPostImage);
+    on<HomePageGetListCommunityPost>(_getListCommunityPost);
     add(HomePageDeterminePosition());
+    add(const HomePageGetListCommunityPost(num: 5));
   }
+
+  Future<void> _getListCommunityPost(
+      HomePageGetListCommunityPost event, Emitter<HomePageState> emit) async {
+    try {
+      final listCommunityPost =
+          await communityUseCase.getListCommunityPost(num: event.num);
+
+      emit(HomePageGetCommunityPostListSuccess(
+          listCommunityPost: listCommunityPost));
+    } catch (e) {
+      emit(HomePageFailure(message: e.toString()));
+    }
+  }
+
   Future<void> _createCommunityPost(
       HomePageCreateCommunityPost event, Emitter<HomePageState> emit) async {
     try {

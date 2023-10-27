@@ -21,19 +21,19 @@ class _CustomHeartButtonState extends State<CustomHeartButton> {
         mainAxisAlignment: MainAxisAlignment.end,
         size: context.sizeWidth(30),
         circleColor: CircleColor(
-          start: colorTheme.getFF6262,
-          end: colorTheme.getFF6262,
+          start: colorTheme.get2DDA93,
+          end: colorTheme.get2DDA93,
         ),
         bubblesColor: BubblesColor(
-          dotPrimaryColor: colorTheme.getFF6262.withOpacity(0.5),
-          dotSecondaryColor: colorTheme.getFF6262,
+          dotPrimaryColor: colorTheme.get2DDA93.withOpacity(0.5),
+          dotSecondaryColor: colorTheme.get2DDA93,
         ),
         likeBuilder: (bool isLiked) {
           return SvgPicture.asset(
-            imageConstant.heartSvg,
+            isLiked ? imageConstant.chickenSVG : imageConstant.heartSvg,
             // ignore: deprecated_member_use
             color: isLiked
-                ? colorTheme.getFF6262
+                ? colorTheme.get2DDA93.withOpacity(0.8)
                 : colorTheme.getFFFFFF.withOpacity(0.8),
           );
         },

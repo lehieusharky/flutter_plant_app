@@ -9,4 +9,7 @@ abstract class CommunityRepository {
       {required File imageFile});
   Future<Either<CommunityFailure, void>> createCommunityPost(
       {required CommunityPostModel communityPostModel});
+
+  Future<Either<CommunityFailure, List<CommunityPostModel>>>
+      getListCommunityPost({required int num});
 }
