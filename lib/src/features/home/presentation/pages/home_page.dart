@@ -134,10 +134,14 @@ class _HomePageState extends State<HomePage>
   }
 
   void _handleVisibleZoomOutButton(double offset) {
-    if (offset >= 270) {
-      if (_appBarTitle != const ZoomOutButtonHomePage()) {
-        _openZoomOutButton();
+    if (offset >= 255) {
+      if (_appBarTitle != ZoomOutButtonHomePage.scrollDown()) {
+        _openScrollDownButton();
       }
+    } else if (_pageScrollController.position.userScrollDirection ==
+            ScrollDirection.forward &&
+        _pageScrollController.offset < 255) {
+      _openScrollUpButton();
     } else {
       if (_appBarTitle != const SizedBox()) {
         _closeZoomOutButton();
@@ -145,9 +149,21 @@ class _HomePageState extends State<HomePage>
     }
   }
 
-  void _openZoomOutButton() {
+  void _openScrollUpButton() {
+    if (_appBarTitle != ZoomOutButtonHomePage.scrollUp()) {
+      setState(() {
+        _appBarTitle = ZoomOutButtonHomePage.scrollUp();
+      });
+    }
+  }
+
+  void _openScrollDownButton() {
     setState(() {
-      _appBarTitle = const ZoomOutButtonHomePage();
+      _appBarTitle = ZoomOutButtonHomePage.scrollDown();
+      // _appBarTitle = Text(
+      //   'eee',
+      //   style: theme(context).textTheme.titleMedium,
+      // );
     });
   }
 
