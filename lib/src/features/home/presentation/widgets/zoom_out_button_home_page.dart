@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
-import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/create_community_post_modal.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/gallery_modal.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/plant_identity_modal.dart';
+import 'package:plant_market/src/theme/color_theme.dart';
 
 class ZoomOutButtonHomePage extends StatelessWidget {
   const ZoomOutButtonHomePage({super.key});
@@ -55,10 +56,15 @@ class ZoomOutButtonHomePage extends StatelessWidget {
       onPressed: onPressed,
       icon: CustomSvg(
         path: iconPath,
-        color: theme(context).textTheme.titleMedium!.color,
-        width: context.sizeWidth(28),
+        color: colorTheme.get2DDA93,
+        width: context.sizeWidth(30),
       ),
-    );
+    ).animate().slide(
+          duration: 300.ms,
+          curve: Curves.easeInOut,
+          begin: const Offset(0, 0.5),
+          end: Offset.zero,
+        );
   }
 
   void _showTopicModal({required BuildContext context, required Widget child}) {

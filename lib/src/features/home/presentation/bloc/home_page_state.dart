@@ -66,3 +66,12 @@ final class HomePageGetImageFromGallerySuccess extends HomePageState {
 }
 
 final class HomePagePostImageToPublicGallerySuccess extends HomePageState {}
+
+final class HomePHomePagePostCommunityPostImageSuccess extends HomePageState {
+  final String imageUrl;
+
+  const HomePHomePagePostCommunityPostImageSuccess({required this.imageUrl});
+
+  @override
+  List<Object> get props => [imageUrl];
+}

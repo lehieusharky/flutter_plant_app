@@ -42,3 +42,12 @@ final class HomePagePostImageToPublicGallery extends HomePageEvent {
   @override
   List<Object> get props => [imageFile];
 }
+
+final class HomePagePostCommunityPostImage extends HomePageEvent {
+  final File imageFile;
+
+  const HomePagePostCommunityPostImage({required this.imageFile});
+
+  @override
+  List<Object> get props => [imageFile];
+}
