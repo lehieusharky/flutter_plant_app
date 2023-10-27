@@ -21,6 +21,14 @@ class GalleryFailure extends Failure {
   List<Object> get props => [message];
 }
 
+class CommunityFailure extends Failure {
+  final String message;
+
+  CommunityFailure({required this.message});
+  @override
+  List<Object> get props => [message];
+}
+
 class LogOutFailure extends Failure {
   final String message;
 

@@ -51,3 +51,12 @@ final class HomePagePostCommunityPostImage extends HomePageEvent {
   @override
   List<Object> get props => [imageFile];
 }
+
+final class HomePageCreateCommunityPost extends HomePageEvent {
+  final CommunityPostModel communityPostModel;
+
+  const HomePageCreateCommunityPost({required this.communityPostModel});
+
+  @override
+  List<Object> get props => [communityPostModel];
+}

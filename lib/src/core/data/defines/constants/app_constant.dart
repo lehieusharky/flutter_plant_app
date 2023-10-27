@@ -21,5 +21,7 @@ class AppConstant {
 
   // * firebase
   static const String usersCollection = 'users';
+  static const String communityPostsCollection = 'community_posts';
   static const String timeLineCollection = 'timeLine';
+  static const String postCollection = 'post';
 }

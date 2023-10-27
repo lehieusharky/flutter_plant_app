@@ -8,7 +8,9 @@ import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/services/date_time_service.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
+import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
+import 'package:plant_market/src/features/home/domain/use_cases/community_usecase.dart';
 import 'package:plant_market/src/features/home/domain/use_cases/gallery_usecase.dart';
 import 'package:plant_market/src/features/home/domain/use_cases/location_use_case.dart';
 import 'package:plant_market/src/features/home/domain/use_cases/weather_use_case.dart';
@@ -24,7 +26,19 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     on<HomePagePickImageFromCamera>(_pickImageFromCamera);
     on<HomePagePostImageToPublicGallery>(_postImageToPublicGallery);
     on<HomePageGetImageFromGallery>(_getImageFromGallery);
+    on<HomePageCreateCommunityPost>(_createCommunityPost);
+    on<HomePagePostCommunityPostImage>(_postCommunityPostImage);
     add(HomePageDeterminePosition());
+  }
+  Future<void> _createCommunityPost(
+      HomePageCreateCommunityPost event, Emitter<HomePageState> emit) async {
+    try {
+      await communityUseCase.createCommunityPost(
+          communityPostModel: event.communityPostModel);
+      emit(HomePageCreateCommunityPostSuccess());
+    } catch (e) {
+      emit(HomePageFailure(message: e.toString()));
+    }
   }
 
   Future<void> _pickImageFromCamera(
@@ -35,6 +49,22 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
         emit(HomePagePickImageFromCameraSuccess(imageFile: imageFile));
       } else {
         emit(const HomePagePickImageFailed(message: 'Take image failed'));
+      }
+    } catch (e) {
+      emit(HomePageFailure(message: e.toString()));
+    }
+  }
+
+  Future<void> _postCommunityPostImage(
+      HomePagePostCommunityPostImage event, Emitter<HomePageState> emit) async {
+    try {
+      final imageUrl = await communityUseCase.postCommunityPostImage(
+          imageFile: event.imageFile);
+
+      if (imageUrl != null) {
+        emit(HomePagePostCommunityPostImageSuccess(imageUrl: imageUrl));
+      } else {
+        emit(const HomePageFailure(message: 'post failed'));
       }
     } catch (e) {
       emit(HomePageFailure(message: e.toString()));

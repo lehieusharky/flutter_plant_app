@@ -5,11 +5,13 @@ class CommunityPostEntity extends Equatable {
   final String description;
   final List<String> tags;
   final String image;
+  final String authorId;
 
   const CommunityPostEntity({
     required this.title,
     required this.description,
     required this.tags,
+    required this.authorId,
     required this.image,
   });
   @override

@@ -10,7 +10,14 @@ import 'package:plant_market/src/features/home/presentation/widgets/plant_identi
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class ZoomOutButtonHomePage extends StatelessWidget {
-  const ZoomOutButtonHomePage({super.key});
+  final Offset begin;
+  final Offset end;
+
+  const ZoomOutButtonHomePage({
+    super.key,
+    required this.begin,
+    required this.end,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +54,20 @@ class ZoomOutButtonHomePage extends StatelessWidget {
     );
   }
 
+  factory ZoomOutButtonHomePage.scrollDown() {
+    return const ZoomOutButtonHomePage(
+      begin: Offset(0, 0.5),
+      end: Offset.zero,
+    );
+  }
+
+  factory ZoomOutButtonHomePage.scrollUp() {
+    return const ZoomOutButtonHomePage(
+      end: Offset(0, 1),
+      begin: Offset.zero,
+    );
+  }
+
   Widget _buildIconButton({
     required void Function() onPressed,
     required BuildContext context,
@@ -62,8 +83,8 @@ class ZoomOutButtonHomePage extends StatelessWidget {
     ).animate().slide(
           duration: 300.ms,
           curve: Curves.easeInOut,
-          begin: const Offset(0, 0.5),
-          end: Offset.zero,
+          begin: begin,
+          end: end,
         );
   }
 
