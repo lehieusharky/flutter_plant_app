@@ -64,11 +64,14 @@ class AppRouter {
             routes: [
               GoRoute(
                 path: 'otp_page',
-                builder: (context, state) {
+                pageBuilder: (context, state) {
                   final verificationid =
                       _params(state)[AppConstant.verificationID] ?? 'empty';
-                  return OTPPage(
-                    verificationId: verificationid,
+                  return RouterTransition.slideTransition(
+                    state: state,
+                    page: OTPPage(
+                      verificationId: verificationid,
+                    ),
                   );
                 },
               ),

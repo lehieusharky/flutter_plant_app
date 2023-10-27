@@ -53,6 +53,7 @@ class _OTPPageState extends BaseWidgetState {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const CustomBackButton(),
+                context.sizedBox(height: 25),
                 CustomHeaderAuthentication(
                   title: translate(context).otpVerification,
                   subTitle:

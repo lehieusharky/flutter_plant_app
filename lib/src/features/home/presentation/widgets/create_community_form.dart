@@ -7,11 +7,13 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_fo
 class CreateCommunityPostForm extends StatefulWidget {
   final TextEditingController titleController;
   final TextEditingController bodyController;
+  final GlobalKey<FormState> keyForm;
 
   const CreateCommunityPostForm({
     super.key,
     required this.titleController,
     required this.bodyController,
+    required this.keyForm,
   });
 
   @override
@@ -23,6 +25,7 @@ class _CreateCommunityPostFormState extends State<CreateCommunityPostForm> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: widget.keyForm,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -54,6 +57,4 @@ class _CreateCommunityPostFormState extends State<CreateCommunityPostForm> {
       return null;
     }
   }
-
-  
 }

@@ -51,6 +51,7 @@ class _FormLoginState extends State<FormLogin> {
           // * send button
           CustomButton.send(
             context: context,
+            backgroundColor: colorTheme.get2DDA93,
             onPressed: () => _phoneNumberFormValidation(context),
           ),
         ],

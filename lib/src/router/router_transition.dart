@@ -9,7 +9,7 @@ class RouterTransition {
     return CustomTransitionPage<void>(
       key: state.pageKey,
       child: page,
-      transitionDuration: const Duration(milliseconds: 150),
+      transitionDuration: const Duration(milliseconds: 300),
       transitionsBuilder: (BuildContext context, Animation<double> animation,
           Animation<double> secondaryAnimation, Widget child) {
         return SlideTransition(

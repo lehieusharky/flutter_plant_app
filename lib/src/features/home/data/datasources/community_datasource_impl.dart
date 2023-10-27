@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
@@ -48,13 +47,14 @@ class CommunityDataSourceImpl implements CommunityDataSource {
   }
 
   @override
-  Future<List<CommunityPostModel>> getListCommunityPost({required int num}) async {
+  Future<List<CommunityPostModel>> getListCommunityPost(
+      {required int num}) async {
     try {
       final today = DateTime.now().toString();
       List<String> selectedTime = today.split(' ');
       QuerySnapshot postsCollection = await firebaseFirestore
           .collection(AppConstant.communityPostsCollection)
-          .doc(selectedTime[0]) 
+          .doc(selectedTime[0])
           .collection('posts')
           .limit(num)
           .get();

@@ -25,7 +25,8 @@ class _SettingPageState extends BaseWidgetState
                   context: context,
                   message: translate(context).loggedIn,
                   backgroundColor: colorTheme.get2DDA93,
-                  onVisible: () => context.go(RouterPath.loginPage),
+                  onVisible: () =>
+                      context.pushReplacement(RouterPath.loginPage),
                 );
               }
             },
