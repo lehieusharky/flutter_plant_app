@@ -77,11 +77,12 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
       StreamController.broadcast();
 
   TimeLineDataSourceImpl() {
+    final plantName = userInfo!.selectedPlantName;
     _listTimeLineSubscription = firebaseFirestore
         .collection(AppConstant.usersCollection)
         .doc(sharePreference.getUserId())
         .collection(AppConstant.timeLineCollection)
-        .doc(userInfo!.selectedPlantName)
+        .doc(plantName)
         .collection('list_time_line')
         .snapshots()
         .listen((timeLineSnapShot) {
@@ -114,6 +115,4 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
       throw Exception(e);
     }
   }
-
-  
 }

@@ -53,7 +53,7 @@ class _UserPageState extends BaseWidgetState
               }
 
               if (state is UserToggleSelectPlantSuccess) {
-                context.read<UserBloc>().close();
+                
               }
             },
             builder: (context, state) {
