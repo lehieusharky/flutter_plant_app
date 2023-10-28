@@ -4,6 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/data/defines/enum/supported_theme.dart';
+import 'package:plant_market/src/features/dash_board/presentation/bloc/dash_board_bloc.dart';
 import 'package:plant_market/src/features/my_app/presentation/bloc/my_app_bloc.dart';
 import 'package:plant_market/src/l10n/app_localizations.dart';
 import 'package:plant_market/src/router/app_router.dart';
@@ -34,6 +35,9 @@ class _MyMaterialAppState extends State<MyMaterialApp> {
       providers: [
         BlocProvider(
           create: (context) => MyAppBloc(),
+        ),
+        BlocProvider(
+          create: (context) => DashBoardBloc(),
         ),
       ],
       child: BlocConsumer<MyAppBloc, MyAppState>(

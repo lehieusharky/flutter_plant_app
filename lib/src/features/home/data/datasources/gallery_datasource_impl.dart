@@ -12,9 +12,12 @@ class GalleryDataSourceImpl implements GalleryDataSource {
   Future<void> postImageToPublicGallery({required File imageFile}) async {
     try {
       final ext = imageFile.path.split('.').last;
+      final today = DateTime.now().toString();
+      List<String> selectedTime = today.split(' ');
 
-      final imageRef =
-          firebaseStorage.ref().child('gallery/${const Uuid().v4()}.$ext');
+      final imageRef = firebaseStorage
+          .ref()
+          .child('gallery/${selectedTime[0]}${const Uuid().v4()}.$ext');
 
       await imageRef.putFile(
           imageFile, SettableMetadata(contentType: 'image/$ext'));
@@ -26,7 +29,10 @@ class GalleryDataSourceImpl implements GalleryDataSource {
   @override
   Future<List<String>> getImageFromPublicGallery() async {
     try {
-      final galleryRef = firebaseStorage.ref().child('gallery');
+      final today = DateTime.now().toString();
+      List<String> selectedTime = today.split(' ');
+      final galleryRef =
+          firebaseStorage.ref().child('gallery/${selectedTime[0]}');
 
       final galleryResult = await galleryRef.listAll();
 

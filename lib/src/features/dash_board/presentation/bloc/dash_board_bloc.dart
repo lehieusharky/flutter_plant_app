@@ -12,6 +12,7 @@ class DashBoardBloc extends Bloc<DashBoardEvent, DashBoardState> {
 
   DashBoardBloc() : super(DashBoardInitial()) {
     on<DashBoardGetUserInfomation>(_listenUserInformation);
+    on<DashBoardGetLoggedInNotification>(_getLoggInNotification);
 
     _userInfomationSubscription =
         userUseCase.userInformationStream?.listen((userInfomation) {
@@ -25,6 +26,17 @@ class DashBoardBloc extends Bloc<DashBoardEvent, DashBoardState> {
   ) async {
     try {
       emit(DashBoardGetUserInfomationSuccess(userModel: event.userModel));
+    } catch (e) {
+      emit(DashBoardFailure(message: e.toString()));
+    }
+  }
+
+  Future<void> _getLoggInNotification(
+    DashBoardGetLoggedInNotification event,
+    Emitter<DashBoardState> emit,
+  ) async {
+    try {
+      emit(DashBoardGetLoggedInNotificationSuccess());
     } catch (e) {
       emit(DashBoardFailure(message: e.toString()));
     }

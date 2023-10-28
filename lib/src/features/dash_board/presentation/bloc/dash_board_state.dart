@@ -26,3 +26,5 @@ final class DashBoardFailure extends DashBoardState {
   @override
   List<Object> get props => [message];
 }
+
+final class DashBoardGetLoggedInNotificationSuccess extends DashBoardState {}
