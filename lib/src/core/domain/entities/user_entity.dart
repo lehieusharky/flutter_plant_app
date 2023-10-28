@@ -9,11 +9,13 @@ class UserEntity extends Equatable {
   final Role role;
   final List<String> listPostId;
   final List<String> listPlantName;
+  final String selectedPlantName;
 
   const UserEntity({
     required this.id,
     this.role = Role.regular,
     required this.createAt,
+    required this.selectedPlantName,
     this.userName,
     this.email,
     required this.listPostId,
@@ -21,5 +23,14 @@ class UserEntity extends Equatable {
   });
 
   @override
-  List<Object?> get props => [userName, email, createAt, role, id, listPostId];
+  List<Object?> get props => [
+        userName,
+        email,
+        createAt,
+        role,
+        id,
+        listPostId,
+        selectedPlantName,
+        listPlantName
+      ];
 }

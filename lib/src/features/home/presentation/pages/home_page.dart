@@ -17,7 +17,6 @@ class _HomePageState extends State<HomePage>
   void initState() {
     super.initState();
     _pageScrollController.addListener(() {
-      Logger().i(_pageScrollController.offset);
       _handleOpacity(_pageScrollController.offset);
 
       _handleVisibleZoomOutButton(_pageScrollController.offset);
@@ -96,6 +95,7 @@ class _HomePageState extends State<HomePage>
                                       appBarTitle: _appBarTitle,
                                     )
                                   : const SliverAppBar(
+                                      leading: SizedBox(),
                                       backgroundColor: Colors.transparent,
                                     )
                             ],
@@ -160,7 +160,6 @@ class _HomePageState extends State<HomePage>
       _appBarTitle = const SizedBox();
     });
   }
-
 
   void _onIdentifyPressed({required BuildContext context}) {
     _showTopicModal(

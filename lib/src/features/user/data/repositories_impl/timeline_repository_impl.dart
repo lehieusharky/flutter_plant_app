@@ -56,4 +56,16 @@ class TimeLineRepositoryImpl implements TimeLineRepository {
       return Left(TimeLineFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<TimeLineFailure, void>> toggleSelectedPlant(
+      {required String plantName}) async {
+    try {
+      final result =
+          _timeLineDataSource.toggleSelectedPlant(plantName: plantName);
+      return Right(result);
+    } catch (e) {
+      return Left(TimeLineFailure(message: e.toString()));
+    }
+  }
 }

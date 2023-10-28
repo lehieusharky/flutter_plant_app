@@ -43,10 +43,17 @@ class _UserPageState extends BaseWidgetState
               if (state is UserCreatePlantSuccess) {
                 CustomSnakBar.showSnackbar(
                   context: context,
-                  message: 'Create new plant success',
+                  message: translate(context).createNewPlantSuccess,
                   backgroundColor: colorTheme.get2DDA93,
                 );
-                Navigator.of(context).pop();
+
+                context
+                    .read<UserBloc>()
+                    .add(UserToggleSelectPlant(plantName: state.plantName));
+              }
+
+              if (state is UserToggleSelectPlantSuccess) {
+                
               }
             },
             builder: (context, state) {
@@ -98,28 +105,30 @@ class _UserPageState extends BaseWidgetState
   }
 
   Widget _buildAppBar() {
-    return SliverAppBar(
-      pinned: true,
-      snap: true,
-      leadingWidth: context.sizeWidth(80),
-      floating: true,
-      backgroundColor: Theme.of(context)
-          .scaffoldBackgroundColor
-          .withOpacity(_appbarBackgroundOpacity),
-      expandedHeight: 90,
-      leading: LeafPlusButton(
-        color: _colorLeadingAppBar,
-      ),
-      flexibleSpace: const FlexibleSpaceBar(
-        title: PlantName(plantName: 'Rosé'),
-      ),
-      actions: [
-        ZoomOutButton(
-          opacity: _zoomOutCreateTimelineButtonOpacity,
-          onPressed: () => _showCreatePostModal(context),
-          iconPath: imageConstant.cameraSVG,
-        ),
-      ],
+    return BlocBuilder<DashBoardBloc, DashBoardState>(
+      builder: (context, state) {
+        return SliverAppBar(
+          pinned: true,
+          snap: true,
+          leadingWidth: context.sizeWidth(80),
+          floating: true,
+          backgroundColor: Theme.of(context)
+              .scaffoldBackgroundColor
+              .withOpacity(_appbarBackgroundOpacity),
+          expandedHeight: 90,
+          leading: LeafPlusButton(color: _colorLeadingAppBar),
+          flexibleSpace: FlexibleSpaceBar(
+            title: PlantName(plantName: userInfo!.selectedPlantName),
+          ),
+          actions: [
+            ZoomOutButton(
+              opacity: _zoomOutCreateTimelineButtonOpacity,
+              onPressed: () => _showCreatePostModal(context),
+              iconPath: imageConstant.cameraSVG,
+            ),
+          ],
+        );
+      },
     );
   }
 

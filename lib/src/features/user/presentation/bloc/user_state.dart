@@ -49,4 +49,20 @@ final class UserFailure extends UserState {
   List<Object> get props => [message];
 }
 
-final class UserCreatePlantSuccess extends UserState {}
+final class UserCreatePlantSuccess extends UserState {
+  final String plantName;
+
+  const UserCreatePlantSuccess({required this.plantName});
+
+  @override
+  List<Object> get props => [plantName];
+}
+
+final class UserToggleSelectPlantSuccess extends UserState {
+  final String plantName;
+
+  const UserToggleSelectPlantSuccess({required this.plantName});
+
+  @override
+  List<Object> get props => [plantName];
+}

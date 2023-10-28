@@ -30,7 +30,9 @@ final class UserPostTimeLineImage extends UserEvent {
 final class UserCreateTimeLine extends UserEvent {
   final TimeLineModel timeLineModel;
 
-  const UserCreateTimeLine({required this.timeLineModel});
+  const UserCreateTimeLine({
+    required this.timeLineModel,
+  });
 
   @override
   List<Object> get props => [timeLineModel];
@@ -40,6 +42,15 @@ final class UserCreatePlant extends UserEvent {
   final String plantName;
 
   const UserCreatePlant({required this.plantName});
+
+  @override
+  List<Object> get props => [plantName];
+}
+
+final class UserToggleSelectPlant extends UserEvent {
+  final String plantName;
+
+  const UserToggleSelectPlant({required this.plantName});
 
   @override
   List<Object> get props => [plantName];

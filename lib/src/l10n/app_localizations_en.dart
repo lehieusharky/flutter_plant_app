@@ -216,4 +216,22 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get identify => 'Identify';
+
+  @override
+  String get createNewPlantSuccess => 'Create new plant success';
+
+  @override
+  String get enterPlantName => 'Enter plant name';
+
+  @override
+  String get roseExample => 'Ex: Rose';
+
+  @override
+  String get accept => 'Accept';
+
+  @override
+  String get createTimelineSuccess => 'Create timeline success';
+
+  @override
+  String get takeImageFromCameraSucccess => 'Take image from camera succcess';
 }

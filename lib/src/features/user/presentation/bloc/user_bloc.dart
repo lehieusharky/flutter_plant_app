@@ -19,6 +19,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserPostTimeLineImage>(_postTimeLineImage);
     on<UserGetListTimeLine>(_getListTimeLine);
     on<UserCreatePlant>(_createPlant);
+    on<UserToggleSelectPlant>(_togglePlant);
+    // on<UserSubscribeListTimeLine>(_subscribeListTimeLine);
 
     _listTimeLineSubcription =
         timeLineUseCase.listTimeLineStream?.listen((listTimeLineData) {
@@ -39,13 +41,27 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     }
   }
 
+  Future<void> _togglePlant(
+    UserToggleSelectPlant event,
+    Emitter<UserState> emit,
+  ) async {
+    try {
+      await timeLineUseCase.toggleSelectedPlant(plantName: event.plantName);
+      emit(UserInitial());
+      emit(UserToggleSelectPlantSuccess(plantName: event.plantName));
+    } catch (e) {
+      emit(UserFailure(message: e.toString()));
+    }
+  }
+
   Future<void> _createPlant(
     UserCreatePlant event,
     Emitter<UserState> emit,
   ) async {
     try {
       await timeLineUseCase.createPlant(plantName: event.plantName);
-      emit(UserCreatePlantSuccess());
+      emit(UserInitial());
+      emit(UserCreatePlantSuccess(plantName: event.plantName));
     } catch (e) {
       emit(UserFailure(message: e.toString()));
     }

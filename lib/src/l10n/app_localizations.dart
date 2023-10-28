@@ -518,6 +518,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Identify'**
   String get identify;
+
+  /// No description provided for @createNewPlantSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Create new plant success'**
+  String get createNewPlantSuccess;
+
+  /// No description provided for @enterPlantName.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter plant name'**
+  String get enterPlantName;
+
+  /// No description provided for @roseExample.
+  ///
+  /// In en, this message translates to:
+  /// **'Ex: Rose'**
+  String get roseExample;
+
+  /// No description provided for @accept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get accept;
+
+  /// No description provided for @createTimelineSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Create timeline success'**
+  String get createTimelineSuccess;
+
+  /// No description provided for @takeImageFromCameraSucccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Take image from camera succcess'**
+  String get takeImageFromCameraSucccess;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

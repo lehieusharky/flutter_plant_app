@@ -58,7 +58,7 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
           if (state is UserCreateTimeLineSuccess) {
             CustomSnakBar.showSnackbar(
               context: context,
-              message: 'Create timeline success',
+              message: translate(context).createTimelineSuccess,
               backgroundColor: colorTheme.get2DDA93,
             );
             context.pop(true);
@@ -103,8 +103,8 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
                         context.sizedBox(height: 20),
                         AddPhotosButton(onPressed: () => _pickPhoto(context)),
                         context.sizedBox(height: 10),
-                        if (state is UserPickImageFromCameraSuccess)
-                          Image.file(state.image)
+                        if (_imageTimeLineFile != null)
+                          Image.file(_imageTimeLineFile!)
                       ],
                     ),
                     if (state is UserLoading) const CustomLoading()

@@ -7,6 +7,7 @@ import 'package:injectable/injectable.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
+import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/user/data/datasources/remote/timeline_datasource.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:uuid/uuid.dart';
@@ -20,7 +21,7 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
           .collection(AppConstant.usersCollection)
           .doc(sharePreference.getUserId())
           .collection(AppConstant.timeLineCollection)
-          .doc('HoaHong')
+          .doc(userInfo!.selectedPlantName)
           .collection('list_time_line')
           .doc(timeLineModel.timeLineId)
           .set(timeLineModel.toJson());
@@ -38,6 +39,14 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
           .collection(AppConstant.timeLineCollection)
           .doc(plantName);
 
+      userInfo!.listPlantName.add(plantName);
+      final updateListPlantName = {"listPlantName": userInfo!.listPlantName};
+
+      firebaseFirestore
+          .collection(AppConstant.usersCollection)
+          .doc(sharePreference.getUserId())
+          .update(updateListPlantName);
+
       newListTimeLineRef.set({"name": plantName});
     } catch (e) {
       throw Exception(e);
@@ -48,10 +57,9 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
   Future<String?> postImageOfTimeLine({required File image}) async {
     try {
       final ext = image.path.split('.').last;
-      const plantName = 'HoaHong';
 
       final imageRef = firebaseStorage.ref().child(
-          'time_line/${sharePreference.getUserId()}/$plantName/${const Uuid().v4()}.$ext');
+          'time_line/${sharePreference.getUserId()}/${userInfo!.selectedPlantName}/${const Uuid().v4()}.$ext');
 
       await imageRef.putFile(
           image, SettableMetadata(contentType: 'image/$ext'));
@@ -69,11 +77,12 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
       StreamController.broadcast();
 
   TimeLineDataSourceImpl() {
+    final plantName = userInfo!.selectedPlantName;
     _listTimeLineSubscription = firebaseFirestore
         .collection(AppConstant.usersCollection)
         .doc(sharePreference.getUserId())
         .collection(AppConstant.timeLineCollection)
-        .doc('HoaHong')
+        .doc(plantName)
         .collection('list_time_line')
         .snapshots()
         .listen((timeLineSnapShot) {
@@ -87,9 +96,23 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
 
   void close() {
     _listTimeLineSubscription?.cancel();
+    _listTimeLineSubscription?.cancel();
   }
 
   @override
   Stream<List<TimeLineModel>> get listTimeLineStream =>
       _listTimeLineController.stream;
+
+  @override
+  Future<void> toggleSelectedPlant({required String plantName}) async {
+    try {
+      final updateSelectedPlantData = {"selectedPlantName": plantName};
+      await firebaseFirestore
+          .collection(AppConstant.usersCollection)
+          .doc(sharePreference.getUserId())
+          .update(updateSelectedPlantData);
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

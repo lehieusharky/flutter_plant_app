@@ -14,6 +14,7 @@ class UserModel extends UserEntity {
     required super.role,
     required super.listPostId,
     required super.listPlantName,
+    required super.selectedPlantName,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

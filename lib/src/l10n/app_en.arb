@@ -69,5 +69,11 @@
   "pleaseTakeImageForThisStateOfThePlant": "Please take image for this state of the plant",
   "relaxWithMusic": "Relax with music ♪ while taking care of     the tree 😆",
   "gallery": "Gallery",
-  "identify": "Identify"
+  "identify": "Identify",
+  "createNewPlantSuccess": "Create new plant success",
+  "enterPlantName": "Enter plant name",
+  "roseExample": "Ex: Rose",
+  "accept": "Accept",
+  "createTimelineSuccess": "Create timeline success",
+  "takeImageFromCameraSucccess": "Take image from camera succcess"
 }
