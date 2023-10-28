@@ -28,7 +28,7 @@ class NotLoggedInButton extends StatelessWidget {
   }
 
   void _navigateToLoginpage(BuildContext context) {
-    context.go(RouterPath.loginPageChild, extra: {
+    context.go(RouterPath.loginPage, extra: {
       AppConstant.isFromDashBoardRouter: true,
     });
   }

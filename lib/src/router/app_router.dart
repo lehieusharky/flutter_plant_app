@@ -46,16 +46,6 @@ class AppRouter {
                       page: const ShakeAnimationPage(),
                     );
                   }),
-              GoRoute(
-                  path: 'login_page_child',
-                  builder: (context, state) {
-                    final isFromDashBoardRouter =
-                        _params(state)[AppConstant.isFromDashBoardRouter] ??
-                            false;
-                    return LoginPage(
-                      isFromDashBoardRouter: isFromDashBoardRouter,
-                    );
-                  }),
             ],
           ),
           GoRoute(

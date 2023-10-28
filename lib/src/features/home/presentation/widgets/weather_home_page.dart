@@ -12,38 +12,63 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<HomePageBloc, HomePageState>(
-      listener: (context, state) {
-        if (state is HomePageGetWeatherInfomationSuccess) {
-          _weatherModel = state.weatherModel;
-        }
-      },
-      builder: (context, weatherModel) {
-        if (_weatherModel.name == null) {
-          return CustomShimmer(
-            width: context.width,
-            height: context.sizeHeight(180),
-          );
-        } else {
-          return Stack(
-            children: [
-              const WeatherBackground(),
-              Padding(
-                padding: context.padding(horizontal: 10, top: 20),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    _buildTemperature(_weatherModel),
-                    context.sizedBox(width: 10),
-                    _buildWeatherPart(_weatherModel),
-                  ],
+    return BlocProvider(
+      create: (context) => HomePageBloc(),
+      child: BlocConsumer<HomePageBloc, HomePageState>(
+        listener: (context, state) {
+          if (state is HomePageDeterminePositionSuccess) {
+            _handleWhenDeterminePosition(context, state);
+          }
+          if (state is HomePageGetWeatherInfomationSuccess) {
+            _weatherModel = state.weatherModel;
+          }
+        },
+        builder: (context, state) {
+          if (_weatherModel.name == null) {
+            return CustomShimmer(
+              width: context.width,
+              height: context.sizeHeight(180),
+            );
+          } else {
+            return Stack(
+              children: [
+                const WeatherBackground(),
+                Padding(
+                  padding: context.padding(horizontal: 10, top: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      _buildTemperature(_weatherModel),
+                      context.sizedBox(width: 10),
+                      _buildWeatherPart(_weatherModel),
+                    ],
+                  ),
                 ),
-              ),
-            ],
-          );
-        }
-      },
+              ],
+            );
+          }
+        },
+      ),
+    );
+  }
+
+  void _getWeatherInfomation({
+    required String lat,
+    required String long,
+    required BuildContext context,
+  }) {
+    context
+        .read<HomePageBloc>()
+        .add(HomePageGetWeatherInfomation(lat: lat, long: long));
+  }
+
+  void _handleWhenDeterminePosition(
+      BuildContext context, HomePageDeterminePositionSuccess state) {
+    _getWeatherInfomation(
+      context: context,
+      lat: state.position!.latitude.toString(),
+      long: state.position!.longitude.toString(),
     );
   }
 

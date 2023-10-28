@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_divider.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_loading.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_seperator.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
@@ -57,44 +58,49 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
             return SingleChildScrollView(
               child: Padding(
                 padding: context.padding(horizontal: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Stack(
+                  alignment: Alignment.center,
                   children: [
                     Column(
-                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.center,
+                        Column(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            CustomTextButton.cancel(context),
-                            const CustomSeperator(),
-                            _imageFile != null
-                                ? CustomTextButton.save(
-                                    context: context,
-                                    onPressed: () => _postPostImage(
-                                        context: context,
-                                        imageFile: _imageFile!),
-                                    saveText: 'Post',
-                                  )
-                                : const SizedBox(),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                CustomTextButton.cancel(context),
+                                const CustomSeperator(),
+                                CustomTextButton.save(
+                                  context: context,
+                                  onPressed: () => _post(
+                                      context: context, imageFile: _imageFile!),
+                                  saveText: 'Post',
+                                )
+                              ],
+                            ),
+                            const CustomDivider(),
+                            context.sizedBox(height: 5),
                           ],
                         ),
-                        const CustomDivider(),
-                        context.sizedBox(height: 5),
+                        context.sizedBox(
+                            height: super.isNotLoggedIn() ? 20 : 1),
+                        CreateCommunityPostForm(
+                          titleController: _titleController,
+                          bodyController: _bodyController,
+                          imageFile: _imageFile,
+                          keyForm: _keyForm,
+                        ),
+                        context.sizedBox(height: 20),
+                        AddPhotosButton(
+                            onPressed: () => _pickImageFromCamera(context)),
+                        context.sizedBox(height: 10),
+                        if (_imageFile != null) Image.file(_imageFile!),
                       ],
                     ),
-                    context.sizedBox(height: super.isNotLoggedIn() ? 20 : 1),
-                    CreateCommunityPostForm(
-                      titleController: _titleController,
-                      bodyController: _bodyController,
-                      keyForm: _keyForm,
-                    ),
-                    context.sizedBox(height: 20),
-                    AddPhotosButton(
-                        onPressed: () => _pickImageFromCamera(context)),
-                    context.sizedBox(height: 10),
-                    if (_imageFile != null) Image.file(_imageFile!),
+                    if (state is HomePageLoading) const CustomLoading()
                   ],
                 ),
               ),
@@ -110,6 +116,12 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
     _titleController.dispose();
     _bodyController.dispose();
     super.dispose();
+  }
+
+  void _post({required BuildContext context, required File imageFile}) {
+    if (_keyForm.currentState?.validate() ?? false) {
+      _postPostImage(context: context, imageFile: imageFile);
+    }
   }
 
   void _postPostImage(

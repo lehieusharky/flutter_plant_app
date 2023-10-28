@@ -99,6 +99,7 @@ class _OtpFormState extends State<OtpForm> {
           // * send button
           CustomButton.send(
             context: context,
+            backgroundColor: colorTheme.get2DDA93,
             onPressed: () => {
               focusNode.unfocus(),
               formKey.currentState!.validate(),

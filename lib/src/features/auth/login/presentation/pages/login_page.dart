@@ -64,6 +64,8 @@ class _LoginPageState extends BaseWidgetState {
         context: context,
         message: translate(context).loggedIn,
         backgroundColor: colorTheme.get2DDA93,
+        // ! Fix when login success => dashboard
+        // ! dash boad back => dashboard is not log in
         onVisible: () => context.go(RouterPath.dashBoard),
       );
     }

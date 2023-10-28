@@ -10,14 +10,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage>
     with AutomaticKeepAliveClientMixin {
   final _pageScrollController = ScrollController();
-  double _appBarBackGroundOpacity = 0;
-  double _actionWidgetOpacity = 0;
+  bool _isAppBarExist = false;
   Widget? _appBarTitle = const SizedBox();
 
   @override
   void initState() {
     super.initState();
     _pageScrollController.addListener(() {
+      Logger().i(_pageScrollController.offset);
       _handleOpacity(_pageScrollController.offset);
 
       _handleVisibleZoomOutButton(_pageScrollController.offset);
@@ -32,11 +32,7 @@ class _HomePageState extends State<HomePage>
         body: BlocProvider(
           create: (context) => HomePageBloc(),
           child: BlocConsumer<HomePageBloc, HomePageState>(
-            listener: (context, state) {
-              if (state is HomePageDeterminePositionSuccess) {
-                _handleWhenDeterminePosition(context, state);
-              }
-            },
+            listener: (context, state) {},
             builder: (context, state) {
               return BlocBuilder<MyAppBloc, MyAppState>(
                 builder: (context, state) {
@@ -95,12 +91,13 @@ class _HomePageState extends State<HomePage>
                                   context.sizedBox(height: 50),
                                 ],
                               ),
-                              AppBarHomePage(
-                                appBarTitle: _appBarTitle,
-                                appBarBackGroundOpacity:
-                                    _appBarBackGroundOpacity,
-                                actionWidgetOpacity: _actionWidgetOpacity,
-                              ),
+                              _isAppBarExist
+                                  ? AppBarHomePage(
+                                      appBarTitle: _appBarTitle,
+                                    )
+                                  : const SliverAppBar(
+                                      backgroundColor: Colors.transparent,
+                                    )
                             ],
                           )
                         ],
@@ -116,20 +113,16 @@ class _HomePageState extends State<HomePage>
     );
   }
 
-  void _handleWhenDeterminePosition(
-      BuildContext context, HomePageDeterminePositionSuccess state) {
-    _getWeatherInfomation(
-      context: context,
-      lat: state.position!.latitude.toString(),
-      long: state.position!.longitude.toString(),
-    );
-  }
-
   void _handleOpacity(double offset) {
-    setState(() {
-      _appBarBackGroundOpacity = (offset / 150).clamp(0.0, 1.0);
-      _actionWidgetOpacity = (offset / 300).clamp(0.0, 1.0);
-    });
+    if (offset >= 180 && !_isAppBarExist) {
+      setState(() {
+        _isAppBarExist = true;
+      });
+    } else if (offset < 180 && _isAppBarExist) {
+      setState(() {
+        _isAppBarExist = false;
+      });
+    }
   }
 
   void _handleVisibleZoomOutButton(double offset) {
@@ -139,7 +132,7 @@ class _HomePageState extends State<HomePage>
       }
     } else if (_pageScrollController.position.userScrollDirection ==
             ScrollDirection.forward &&
-        _pageScrollController.offset < 255) {
+        offset < 255) {
       _openScrollUpButton();
     } else {
       if (_appBarTitle != const SizedBox()) {
@@ -159,10 +152,6 @@ class _HomePageState extends State<HomePage>
   void _openScrollDownButton() {
     setState(() {
       _appBarTitle = ZoomOutButtonHomePage.scrollDown();
-      // _appBarTitle = Text(
-      //   'eee',
-      //   style: theme(context).textTheme.titleMedium,
-      // );
     });
   }
 
@@ -172,15 +161,6 @@ class _HomePageState extends State<HomePage>
     });
   }
 
-  void _getWeatherInfomation({
-    required String lat,
-    required String long,
-    required BuildContext context,
-  }) {
-    context
-        .read<HomePageBloc>()
-        .add(HomePageGetWeatherInfomation(lat: lat, long: long));
-  }
 
   void _onIdentifyPressed({required BuildContext context}) {
     _showTopicModal(

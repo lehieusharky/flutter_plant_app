@@ -72,7 +72,10 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   }
 
   Future<void> _postCommunityPostImage(
-      HomePagePostCommunityPostImage event, Emitter<HomePageState> emit) async {
+    HomePagePostCommunityPostImage event,
+    Emitter<HomePageState> emit,
+  ) async {
+    emit(HomePageLoading());
     try {
       final imageUrl = await communityUseCase.postCommunityPostImage(
           imageFile: event.imageFile);
@@ -112,6 +115,7 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
   Future<void> _changeTopic(
       HomePageChangetTopic event, Emitter<HomePageState> emit) async {
     try {
+      emit(HomePageInitial());
       emit(HomePageChangeTopicSuccess(topicSymbol: event.topicSymbol));
     } catch (e) {
       emit(HomePageFailure(message: e.toString()));

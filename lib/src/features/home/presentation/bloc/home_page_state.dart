@@ -9,6 +9,8 @@ sealed class HomePageState extends Equatable {
 
 final class HomePageInitial extends HomePageState {}
 
+final class HomePageLoading extends HomePageState {}
+
 final class HomePageChangeTopicSuccess extends HomePageState {
   final TopicSymbol topicSymbol;
 

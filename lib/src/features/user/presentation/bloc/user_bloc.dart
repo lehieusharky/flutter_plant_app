@@ -55,6 +55,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     UserPostTimeLineImage event,
     Emitter<UserState> emit,
   ) async {
+    emit(UserLoading());
     try {
       final imageUrl =
           await timeLineUseCase.postImageOfTimeLine(image: event.image);
