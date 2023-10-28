@@ -37,7 +37,7 @@ class _CreateTimelineFormState extends State<CreateTimelineForm> {
   }
 
   String? _timelineDescriptionValidation({String? timelineDescription}) {
-    if (timelineDescription == '') {
+    if (timelineDescription == '' || timelineDescription == null) {
       return translate(context).describeSomethingAboutThisStageOfThePlant;
     } else if (widget.imageFile == null) {
       return translate(context).pleaseTakeImageForThisStateOfThePlant;

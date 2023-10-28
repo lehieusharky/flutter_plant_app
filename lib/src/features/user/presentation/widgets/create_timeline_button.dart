@@ -116,7 +116,7 @@ class CreateTimelineButton extends StatelessWidget {
           .textTheme
           .titleMedium!
           .color!
-          .withOpacity(iconOpacity ?? 0.6),
+          .withOpacity(iconOpacity ?? 0.9),
     );
   }
 }

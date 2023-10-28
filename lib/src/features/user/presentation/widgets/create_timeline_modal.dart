@@ -8,6 +8,7 @@ import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_divider.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_loading.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_seperator.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
@@ -36,6 +37,11 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
       child: BlocConsumer<UserBloc, UserState>(
         listener: (context, state) {
           if (state is UserPickImageFromCameraSuccess) {
+            CustomSnakBar.showSnackbar(
+              context: context,
+              message: 'Take image from camera succcess',
+              backgroundColor: colorTheme.get2DDA93,
+            );
             _imageTimeLineFile = state.image;
           }
           if (state is UserPostTimeLineImageSuccess) {
@@ -63,39 +69,45 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
             body: SingleChildScrollView(
               child: Padding(
                 padding: context.padding(horizontal: 12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                child: Stack(
+                  alignment: Alignment.center,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomTextButton.cancel(context),
-                        const CustomSeperator(),
-                        CustomTextButton.save(
-                            saveText: translate(context).save,
-                            context: context,
-                            onPressed: () =>
-                                _createTimeLineValidation(context: context))
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            CustomTextButton.cancel(context),
+                            const CustomSeperator(),
+                            CustomTextButton.save(
+                                saveText: translate(context).save,
+                                context: context,
+                                onPressed: () =>
+                                    _createTimeLineValidation(context: context))
+                          ],
+                        ),
+                        const CustomDivider(),
+                        context.sizedBox(height: 5),
+                        Text(
+                          translate(context).description,
+                          style: theme(context).textTheme.titleMedium,
+                        ),
+                        context.sizedBox(height: 5),
+                        CreateTimelineForm(
+                          descriptionController: _descriptionController,
+                          keyForm: _keyForm,
+                          imageFile: _imageTimeLineFile,
+                        ),
+                        context.sizedBox(height: 20),
+                        AddPhotosButton(onPressed: () => _pickPhoto(context)),
+                        context.sizedBox(height: 10),
+                        if (state is UserPickImageFromCameraSuccess)
+                          Image.file(state.image)
                       ],
                     ),
-                    const CustomDivider(),
-                    context.sizedBox(height: 5),
-                    Text(
-                      translate(context).description,
-                      style: theme(context).textTheme.titleMedium,
-                    ),
-                    context.sizedBox(height: 5),
-                    CreateTimelineForm(
-                      descriptionController: _descriptionController,
-                      keyForm: _keyForm,
-                      imageFile: _imageTimeLineFile,
-                    ),
-                    context.sizedBox(height: 20),
-                    AddPhotosButton(onPressed: () => _pickPhoto(context)),
-                    context.sizedBox(height: 10),
-                    if (state is UserPickImageFromCameraSuccess)
-                      Image.file(state.image)
+                    if (state is UserLoading) const CustomLoading()
                   ],
                 ),
               ),

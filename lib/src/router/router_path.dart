@@ -7,5 +7,4 @@ class RouterPath {
   static const otpPage = '/login_page/otp_page';
   static const searchPage = '$dashBoard/search_page';
   static const popularTopicPage = '$dashBoard/popular_topic_page';
-  static const loginPageChild = '$dashBoard/login_page_child';
 }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
@@ -7,14 +8,10 @@ import 'package:plant_market/src/router/router_path.dart';
 
 class AppBarHomePage extends StatelessWidget {
   final Widget? appBarTitle;
-  final double appBarBackGroundOpacity;
-  final double actionWidgetOpacity;
 
   const AppBarHomePage({
     super.key,
     this.appBarTitle,
-    required this.appBarBackGroundOpacity,
-    required this.actionWidgetOpacity,
   });
 
   @override
@@ -25,18 +22,21 @@ class AppBarHomePage extends StatelessWidget {
       leadingWidth: context.sizeWidth(80),
       forceElevated: false,
       floating: true,
-      backgroundColor: Theme.of(context)
-          .scaffoldBackgroundColor
-          .withOpacity(appBarBackGroundOpacity),
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       expandedHeight: context.sizeHeight(60),
       leading: const SizedBox(),
       flexibleSpace: _appBarTitle(context),
       actions: [
         ZoomOutButton(
-          opacity: actionWidgetOpacity,
+          opacity: 1,
           onPressed: () => context.go(RouterPath.searchPage),
           iconPath: imageConstant.searchSVG,
-        ),
+        ).animate().slide(
+              duration: 300.ms,
+              curve: Curves.easeInOut,
+              end: Offset.zero,
+              begin: const Offset(0, 1),
+            ),
       ],
     );
   }
