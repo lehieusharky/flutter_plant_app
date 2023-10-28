@@ -15,3 +15,5 @@ final class DashBoardGetUserInfomation extends DashBoardEvent {
   @override
   List<Object> get props => [userModel];
 }
+
+final class DashBoardGetLoggedInNotification extends DashBoardEvent {}

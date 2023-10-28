@@ -58,6 +58,8 @@ class _LoginPageState extends BaseWidgetState {
 
   void _loginStateListener(LoginState state, BuildContext context) {
     if (state is LoginSuccess) {
+      BlocProvider.of<DashBoardBloc>(context)
+          .add(DashBoardGetLoggedInNotification());
       CustomSnakBar.showSnackbar(
         context: context,
         message: translate(context).loggedIn,

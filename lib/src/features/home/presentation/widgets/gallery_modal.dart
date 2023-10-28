@@ -136,42 +136,8 @@ class _GalleryModalState extends BaseWidgetState {
                               child: FadeInAnimation(
                                 child: Padding(
                                   padding: context.padding(all: 1),
-                                  child: Stack(
-                                    alignment: Alignment.topRight,
-                                    children: [
-                                      CustomCatchedNetWorkImage(
-                                        imageUrl: _gallery[index],
-                                      ),
-                                      IconButton(
-                                        onPressed: () async {
-                                          var tempDir =
-                                              await getApplicationDocumentsDirectory();
-                                          Logger().d(tempDir.path);
-                                          dio.download(_gallery[index],
-                                              '${tempDir.path}/${_gallery[index]}.jpg',
-                                              onReceiveProgress:
-                                                  (received, total) {
-                                            if (received == total) {
-                                              Logger().d('$received / $total');
-                                              CustomSnakBar.showSnackbar(
-                                                context: context,
-                                                message: 'tai thanh cong',
-                                                backgroundColor:
-                                                    colorTheme.get2DDA93,
-                                              );
-                                            }
-                                          });
-                                        },
-                                        icon: Icon(
-                                          Icons.cloud_download,
-                                          size: context.sizeWidth(25),
-                                          color: theme(context)
-                                              .textTheme
-                                              .titleMedium!
-                                              .color,
-                                        ),
-                                      )
-                                    ],
+                                  child: CustomCatchedNetWorkImage(
+                                    imageUrl: _gallery[index],
                                   ),
                                 ),
                               ),
