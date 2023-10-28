@@ -18,6 +18,7 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       listPlantName: (json['listPlantName'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
+      selectedPlantName: json['selectedPlantName'] as String,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -28,6 +29,7 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'role': _$RoleEnumMap[instance.role]!,
       'listPostId': instance.listPostId,
       'listPlantName': instance.listPlantName,
+      'selectedPlantName': instance.selectedPlantName,
     };
 
 const _$RoleEnumMap = {

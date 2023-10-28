@@ -216,4 +216,22 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get identify => 'Nhận Diện';
+
+  @override
+  String get createNewPlantSuccess => 'Tạo cây trồng mới thành công';
+
+  @override
+  String get enterPlantName => 'Nhập tên cây trồng';
+
+  @override
+  String get roseExample => 'Ví dụ: Hoa hồng';
+
+  @override
+  String get accept => 'Đồng ý';
+
+  @override
+  String get createTimelineSuccess => 'Tạo mốc thời gian thành công';
+
+  @override
+  String get takeImageFromCameraSucccess => 'Chụp ảnh thành công';
 }

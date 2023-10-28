@@ -14,6 +14,7 @@ abstract class TimeLineUseCase {
   Future<void> createTimeLine({required TimeLineModel timeLineModel});
   Future<void> createPlant({required String plantName});
   Future<String?> postImageOfTimeLine({required File image});
+  Future<void> toggleSelectedPlant({required String plantName});
   Stream<List<TimeLineModel>>? get listTimeLineStream;
 }
 
@@ -88,4 +89,32 @@ class TimeLineUseCaseImpl extends UseCase<void, TimeLineParams>
       throw TimeLineFailure(message: e.toString());
     }
   }
+
+  @override
+  Future<void> toggleSelectedPlant({required String plantName}) async {
+    try {
+      final result =
+          await _timeLineRepository.toggleSelectedPlant(plantName: plantName);
+      return result.fold(
+        (failure) => Logger().e('toggle plant name falure'),
+        (success) => Logger().e('toggle plant name success'),
+      );
+    } catch (e) {
+      throw TimeLineFailure(message: e.toString());
+    }
+  }
+
+  // @override
+  // Future<void> getListTimeLine({required String plantName}) async {
+  //   try {
+  //     final result =
+  //         await _timeLineRepository.getListTimeLine(plantName: plantName);
+  //     return result.fold(
+  //       (failure) => Logger().e('toggle plant name falure'),
+  //       (success) => Logger().e('toggle plant name success'),
+  //     );
+  //   } catch (e) {
+  //     throw TimeLineFailure(message: e.toString());
+  //   }
+  // }
 }

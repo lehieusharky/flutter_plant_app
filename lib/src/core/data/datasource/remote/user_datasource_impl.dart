@@ -73,7 +73,8 @@ class UserDataSourceImpl implements UserDataSource {
       id: firebaseAuth.currentUser!.uid,
       role: Role.regular,
       listPostId: const [],
-      listPlantName: const [],
+      listPlantName: const ["Example plant"],
+      selectedPlantName: 'Example plant',
     );
   }
 }

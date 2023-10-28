@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_dialog.dart';
@@ -48,7 +49,7 @@ class _LeafPlusButtonState extends State<LeafPlusButton> {
   void _showPlantNameInputDialog(BuildContext context) {
     CustomDialog.baseDialog(
       context: context,
-      title: 'Enter plant name',
+      title: translate(context).enterPlantName,
       content: SizedBox(
         width: context.width,
         child: CustomTextFormField(
@@ -60,13 +61,13 @@ class _LeafPlusButtonState extends State<LeafPlusButton> {
           maxLines: 1,
           textStyle: theme(context).textTheme.titleMedium,
           keyboardType: TextInputType.text,
-          hintText: 'Your plant name',
+          hintText: translate(context).roseExample,
           backgroundColor:
               theme(context).textTheme.titleMedium!.color!.withOpacity(0.1),
         ),
       ),
-      confirmText: 'Create',
-      cancelText: 'Cancel',
+      confirmText: translate(context).accept,
+      cancelText: translate(context).cancel,
       onConfirm: () => _createPlant(context),
     );
   }

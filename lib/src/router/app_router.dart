@@ -50,7 +50,11 @@ class AppRouter {
           ),
           GoRoute(
             path: 'login_page',
-            builder: (context, state) => const LoginPage(),
+            builder: (context, state) {
+              final isFromDashBoardRouter =
+                  _params(state)[AppConstant.isFromDashBoardRouter] ?? false;
+              return LoginPage(isFromDashBoardRouter: isFromDashBoardRouter);
+            },
             routes: [
               GoRoute(
                 path: 'otp_page',

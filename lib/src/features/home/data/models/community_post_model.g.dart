@@ -14,6 +14,7 @@ CommunityPostModel _$CommunityPostModelFromJson(Map<String, dynamic> json) =>
       image: json['image'] as String,
       authorId: json['authorId'] as String,
       id: json['id'] as String,
+      clap: json['clap'] as int,
     );
 
 Map<String, dynamic> _$CommunityPostModelToJson(CommunityPostModel instance) =>
@@ -24,4 +25,5 @@ Map<String, dynamic> _$CommunityPostModelToJson(CommunityPostModel instance) =>
       'tags': instance.tags,
       'image': instance.image,
       'authorId': instance.authorId,
+      'clap': instance.clap,
     };

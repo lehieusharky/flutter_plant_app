@@ -7,6 +7,7 @@ class CommunityPostEntity extends Equatable {
   final List<String> tags;
   final String image;
   final String authorId;
+  final int clap;
 
   const CommunityPostEntity({
     required this.title,
@@ -15,6 +16,7 @@ class CommunityPostEntity extends Equatable {
     required this.authorId,
     required this.image,
     required this.id,
+    required this.clap,
   });
   @override
   List<Object?> get props => [];

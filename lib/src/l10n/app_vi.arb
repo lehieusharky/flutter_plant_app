@@ -69,5 +69,11 @@
   "pleaseTakeImageForThisStateOfThePlant": "Hãy thêm ảnh để minh họa rõ hơn",
   "relaxWithMusic": "Thư giản cùng âm nhạc ♪ trong quá trình chăm sóc cây nhé 😆",
   "gallery": "Kho ảnh",
-  "identify": "Nhận Diện"
+  "identify": "Nhận Diện",
+  "createNewPlantSuccess": "Tạo cây trồng mới thành công",
+  "enterPlantName": "Nhập tên cây trồng",
+  "roseExample": "Ví dụ: Hoa hồng",
+  "accept": "Đồng ý",
+  "createTimelineSuccess": "Tạo mốc thời gian thành công",
+  "takeImageFromCameraSucccess": "Chụp ảnh thành công"
 }

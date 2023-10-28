@@ -139,14 +139,18 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
     required String imageUrl,
     required BuildContext context,
   }) {
-    context.read<HomePageBloc>().add(HomePageCreateCommunityPost(
+    context.read<HomePageBloc>().add(
+          HomePageCreateCommunityPost(
             communityPostModel: CommunityPostModel(
-          title: _titleController.text.trim(),
-          description: _bodyController.text.trim(),
-          tags: const [],
-          image: imageUrl,
-          authorId: sharePreference.getUserId(),
-          id: const Uuid().v4(),
-        )));
+              title: _titleController.text.trim(),
+              description: _bodyController.text.trim(),
+              tags: const [],
+              image: imageUrl,
+              authorId: sharePreference.getUserId(),
+              id: const Uuid().v4(),
+              clap: 0,
+            ),
+          ),
+        );
   }
 }
