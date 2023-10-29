@@ -29,6 +29,17 @@ final class UserCreateTimeLine extends UserEvent {
   List<Object> get props => [timeLineModel];
 }
 
+final class UserUpdateTimeLine extends UserEvent {
+  final TimeLineModel timeLineModel;
+
+  const UserUpdateTimeLine({
+    required this.timeLineModel,
+  });
+
+  @override
+  List<Object> get props => [timeLineModel];
+}
+
 final class UserCreatePlant extends UserEvent {
   final String plantName;
 
@@ -55,3 +66,4 @@ final class UserGetListTimeLine extends UserEvent {
   @override
   List<Object> get props => [plantName];
 }
+

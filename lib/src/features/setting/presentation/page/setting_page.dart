@@ -23,7 +23,7 @@ class _SettingPageState extends BaseWidgetState
               if (state is SettingLogOutSuccess) {
                 CustomSnakBar.showSnackbar(
                   context: context,
-                  message: translate(context).loggedIn,
+                  message: 'Logged out',
                   backgroundColor: colorTheme.get2DDA93,
                   onVisible: () => context.go(RouterPath.loginPage,
                       extra: {AppConstant.isFromDashBoardRouter: false}),

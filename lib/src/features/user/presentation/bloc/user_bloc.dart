@@ -18,6 +18,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserGetListTimeLine>(_getListTimeLine);
     on<UserCreatePlant>(_createPlant);
     on<UserToggleSelectPlant>(_togglePlant);
+    on<UserUpdateTimeLine>(_updateTimeLine);
   }
 
   Future<void> _getListTimeLine(
@@ -71,6 +72,17 @@ class UserBloc extends Bloc<UserEvent, UserState> {
           await timeLineUseCase.postImageOfTimeLine(image: event.image);
 
       emit(UserPostTimeLineImageSuccess(imageUrl: imageUrl ?? ''));
+    } catch (e) {
+      emit(UserFailure(message: e.toString()));
+    }
+  }
+
+  Future<void> _updateTimeLine(
+    UserUpdateTimeLine event,
+    Emitter<UserState> emit,
+  ) async {
+    try {
+      emit(UserUpdateTimeLineSuccess(timeLineModel: event.timeLineModel));
     } catch (e) {
       emit(UserFailure(message: e.toString()));
     }

@@ -15,6 +15,7 @@ class _UserPageState extends BaseWidgetState
   double _zoomOutCreateTimelineButtonOpacity = 0;
   double _appbarBackgroundOpacity = 0;
   Color? _colorLeadingAppBar;
+  List<TimeLineModel> _listTimeLineModel = [];
 
   @override
   void initState() {
@@ -62,6 +63,10 @@ class _UserPageState extends BaseWidgetState
               if (state is UserCreateTimeLineSuccess) {
                 Logger().e('okeeeee');
               }
+              
+              if (state is UserGetListTimeLineSuccess) {
+                _listTimeLineModel = state.listTimeLine;
+              }
             },
             builder: (context, state) {
               return Stack(
@@ -93,6 +98,7 @@ class _UserPageState extends BaseWidgetState
       children: [
         TimeLineSection(
           onPressed: () => _showCreatePostModal(context),
+          listTimeLineModel: _listTimeLineModel,
         ),
         const ReminderSection(),
       ],
@@ -143,7 +149,10 @@ class _UserPageState extends BaseWidgetState
     CustomModal.baseModal(
       context: context,
       height: context.height * 0.9,
-      child: const CreateTimelineModal(),
+      child: CreateTimelineModal(
+        updateTimeLine: (TimeLineModel timeLineModel) =>
+            _updateTimeLine(timeLineModel),
+      ),
     );
   }
 
@@ -170,6 +179,12 @@ class _UserPageState extends BaseWidgetState
   void dispose() {
     _tabController.dispose();
     super.dispose();
+  }
+
+  void _updateTimeLine(TimeLineModel timeLineModel) {
+    setState(() {
+      _listTimeLineModel.add(timeLineModel);
+    });
   }
 
   @override

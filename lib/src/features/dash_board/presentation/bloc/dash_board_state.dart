@@ -28,3 +28,4 @@ final class DashBoardFailure extends DashBoardState {
 }
 
 final class DashBoardGetLoggedInNotificationSuccess extends DashBoardState {}
+

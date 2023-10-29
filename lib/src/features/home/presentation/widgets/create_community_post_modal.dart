@@ -11,6 +11,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_seperat
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
+import 'package:plant_market/src/features/auth/login/presentation/widgets/not_logged_in_button.dart';
 import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
@@ -58,56 +59,64 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
             }
           },
           builder: (context, state) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: context.padding(horizontal: 12),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                CustomTextButton.cancel(context),
-                                const CustomSeperator(),
-                                CustomTextButton.save(
-                                  context: context,
-                                  onPressed: () => _post(
-                                      context: context, imageFile: _imageFile!),
-                                  saveText: 'Post',
-                                )
-                              ],
-                            ),
-                            const CustomDivider(),
-                            context.sizedBox(height: 5),
-                          ],
-                        ),
-                        context.sizedBox(
-                            height: super.isNotLoggedIn() ? 20 : 1),
-                        CreateCommunityPostForm(
-                          titleController: _titleController,
-                          bodyController: _bodyController,
-                          imageFile: _imageFile,
-                          keyForm: _keyForm,
-                        ),
-                        context.sizedBox(height: 20),
-                        AddPhotosButton(
-                            onPressed: () => _pickImageFromCamera(context)),
-                        context.sizedBox(height: 10),
-                        if (_imageFile != null) Image.file(_imageFile!),
-                      ],
-                    ),
-                    if (state is HomePageLoading) const CustomLoading()
-                  ],
+            if (super.isNotLoggedIn()) {
+              return const NotLoggedInButton();
+            } else {
+              return SingleChildScrollView(
+                child: Padding(
+                  padding: context.padding(horizontal: 12),
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  CustomTextButton.cancel(context),
+                                  const CustomSeperator(),
+                                  _imageFile != null
+                                      ? CustomTextButton.save(
+                                          context: context,
+                                          onPressed: () => _post(
+                                              context: context,
+                                              imageFile: _imageFile!),
+                                          saveText: 'Post',
+                                        )
+                                      : const SizedBox(),
+                                ],
+                              ),
+                              const CustomDivider(),
+                              context.sizedBox(height: 5),
+                            ],
+                          ),
+                          context.sizedBox(
+                              height: super.isNotLoggedIn() ? 20 : 1),
+                          CreateCommunityPostForm(
+                            titleController: _titleController,
+                            bodyController: _bodyController,
+                            imageFile: _imageFile,
+                            keyForm: _keyForm,
+                          ),
+                          context.sizedBox(height: 20),
+                          AddPhotosButton(
+                              onPressed: () => _pickImageFromCamera(context)),
+                          context.sizedBox(height: 10),
+                          if (_imageFile != null) Image.file(_imageFile!),
+                        ],
+                      ),
+                      if (state is HomePageLoading) const CustomLoading()
+                    ],
+                  ),
                 ),
-              ),
-            );
+              );
+            }
           },
         ),
       ),
