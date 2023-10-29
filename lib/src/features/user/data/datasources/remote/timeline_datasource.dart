@@ -7,5 +7,5 @@ abstract class TimeLineDataSource {
   Future<void> createPlant({required String plantName});
   Future<void> toggleSelectedPlant({required String plantName});
   Future<String?> postImageOfTimeLine({required File image});
-  Stream<List<TimeLineModel>> get listTimeLineStream;
+  Future<List<TimeLineModel>> getListTimeLine({required String plantName});
 }

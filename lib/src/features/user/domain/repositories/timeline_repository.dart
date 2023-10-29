@@ -17,5 +17,6 @@ abstract class TimeLineRepository {
   Future<Either<TimeLineFailure, void>> createPlant(
       {required String plantName});
 
-  Either<TimeLineFailure, Stream<List<TimeLineModel>>> listTimeLineStream();
+  Future<Either<TimeLineFailure, List<TimeLineModel>>> getListTimeLine(
+      {required String plantName});
 }

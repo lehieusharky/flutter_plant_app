@@ -12,6 +12,7 @@ class TimeLineRepositoryImpl implements TimeLineRepository {
   final TimeLineDataSource _timeLineDataSource;
 
   TimeLineRepositoryImpl(this._timeLineDataSource);
+
   @override
   Future<Either<TimeLineFailure, void>> createTimeLine(
       {required TimeLineModel timeLineModel}) async {
@@ -37,20 +38,11 @@ class TimeLineRepositoryImpl implements TimeLineRepository {
   }
 
   @override
-  Either<TimeLineFailure, Stream<List<TimeLineModel>>> listTimeLineStream() {
-    try {
-      final stream = _timeLineDataSource.listTimeLineStream;
-      return Right(stream);
-    } catch (e) {
-      return Left(TimeLineFailure(message: e.toString()));
-    }
-  }
-
-  @override
   Future<Either<TimeLineFailure, void>> createPlant(
       {required String plantName}) async {
     try {
-      final result = _timeLineDataSource.createPlant(plantName: plantName);
+      final result =
+          await _timeLineDataSource.createPlant(plantName: plantName);
       return Right(result);
     } catch (e) {
       return Left(TimeLineFailure(message: e.toString()));
@@ -62,8 +54,20 @@ class TimeLineRepositoryImpl implements TimeLineRepository {
       {required String plantName}) async {
     try {
       final result =
-          _timeLineDataSource.toggleSelectedPlant(plantName: plantName);
+          await _timeLineDataSource.toggleSelectedPlant(plantName: plantName);
       return Right(result);
+    } catch (e) {
+      return Left(TimeLineFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<TimeLineFailure, List<TimeLineModel>>> getListTimeLine(
+      {required String plantName}) async {
+    try {
+      final listTimeLine =
+          await _timeLineDataSource.getListTimeLine(plantName: plantName);
+      return Right(listTimeLine);
     } catch (e) {
       return Left(TimeLineFailure(message: e.toString()));
     }

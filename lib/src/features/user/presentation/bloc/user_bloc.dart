@@ -11,8 +11,6 @@ part 'user_event.dart';
 part 'user_state.dart';
 
 class UserBloc extends Bloc<UserEvent, UserState> {
-  StreamSubscription<List<TimeLineModel>>? _listTimeLineSubcription;
-
   UserBloc() : super(UserInitial()) {
     on<UserPickImageFromCamera>(_getImageFromCamera);
     on<UserCreateTimeLine>(_createTimeLine);
@@ -20,12 +18,6 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserGetListTimeLine>(_getListTimeLine);
     on<UserCreatePlant>(_createPlant);
     on<UserToggleSelectPlant>(_togglePlant);
-    // on<UserSubscribeListTimeLine>(_subscribeListTimeLine);
-
-    _listTimeLineSubcription =
-        timeLineUseCase.listTimeLineStream?.listen((listTimeLineData) {
-      add(UserGetListTimeLine(listTimeLineModel: listTimeLineData));
-    });
   }
 
   Future<void> _getListTimeLine(
@@ -35,7 +27,9 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     emit(UserLoading());
 
     try {
-      emit(UserGetListTimeLineSuccess(listTimeLine: event.listTimeLineModel));
+      final listTimeLine =
+          await timeLineUseCase.getListTimeLine(plantName: event.plantName);
+      emit(UserGetListTimeLineSuccess(listTimeLine: listTimeLine));
     } catch (e) {
       emit(UserFailure(message: e.toString()));
     }
@@ -88,7 +82,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
   ) async {
     try {
       await timeLineUseCase.createTimeLine(timeLineModel: event.timeLineModel);
-      emit(UserCreateTimeLineSuccess());
+      emit(UserCreateTimeLineSuccess(timeLineModel: event.timeLineModel));
     } catch (e) {
       emit(UserFailure(message: e.toString()));
     }
@@ -104,11 +98,5 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     } catch (e) {
       emit(UserFailure(message: e.toString()));
     }
-  }
-
-  @override
-  Future<void> close() {
-    _listTimeLineSubcription?.cancel();
-    return super.close();
   }
 }

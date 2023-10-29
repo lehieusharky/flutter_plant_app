@@ -27,7 +27,14 @@ final class UserPostTimeLineImageSuccess extends UserState {
   List<Object> get props => [imageUrl];
 }
 
-final class UserCreateTimeLineSuccess extends UserState {}
+final class UserCreateTimeLineSuccess extends UserState {
+  final TimeLineModel timeLineModel;
+
+  const UserCreateTimeLineSuccess({required this.timeLineModel});
+
+  @override
+  List<Object> get props => [timeLineModel];
+}
 
 final class UserLoading extends UserState {}
 
