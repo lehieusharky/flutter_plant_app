@@ -3,7 +3,9 @@ import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_button.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/community_post_details.dart';
 
 class ItemPost extends StatelessWidget {
   final CommunityPostModel communityPostModel;
@@ -11,30 +13,33 @@ class ItemPost extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: context.padding(right: 15),
-      child: SizedBox(
-        width: context.sizeWidth(280),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Stack(
-              children: [
-                CustomCatchedNetWorkImage(
-                  width: context.sizeWidth(280),
-                  height: context.sizeHeight(150),
-                  imageUrl: communityPostModel.image,
-                ),
-                const CustomHeartButton(),
-              ],
-            ),
-            context.sizedBox(height: 10),
-            _buildTitle(context),
-            context.sizedBox(height: 5),
-            _buildAuthorAndDateTime(context),
-            context.sizedBox(height: 5),
-            _buildTag(),
-          ],
+    return InkWell(
+      onTap: () => _showTopicModal(context: context),
+      child: Padding(
+        padding: context.padding(right: 15),
+        child: SizedBox(
+          width: context.sizeWidth(280),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Stack(
+                children: [
+                  CustomCatchedNetWorkImage(
+                    width: context.sizeWidth(280),
+                    height: context.sizeHeight(150),
+                    imageUrl: communityPostModel.image,
+                  ),
+                  const CustomHeartButton(),
+                ],
+              ),
+              context.sizedBox(height: 10),
+              _buildTitle(context),
+              context.sizedBox(height: 5),
+              _buildAuthorAndDateTime(context),
+              context.sizedBox(height: 5),
+              _buildTag(),
+            ],
+          ),
         ),
       ),
     );
@@ -87,6 +92,16 @@ class ItemPost extends StatelessWidget {
             ),
           );
         },
+      ),
+    );
+  }
+
+  void _showTopicModal({required BuildContext context}) {
+    CustomModal.baseModal(
+      context: context,
+      height: context.height * 0.9,
+      child: CommunityPostDetails(
+        communityPostModel: communityPostModel,
       ),
     );
   }
