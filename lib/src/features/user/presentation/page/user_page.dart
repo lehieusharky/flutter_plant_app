@@ -37,7 +37,8 @@ class _UserPageState extends BaseWidgetState
     } else {
       return Scaffold(
         body: BlocProvider(
-          create: (context) => UserBloc(),
+          create: (context) => UserBloc()
+            ..add(UserGetListTimeLine(plantName: userInfo!.selectedPlantName)),
           child: BlocConsumer<UserBloc, UserState>(
             listener: (context, state) {
               if (state is UserCreatePlantSuccess) {
@@ -53,7 +54,13 @@ class _UserPageState extends BaseWidgetState
               }
 
               if (state is UserToggleSelectPlantSuccess) {
-                
+                context
+                    .read<UserBloc>()
+                    .add(UserGetListTimeLine(plantName: state.plantName));
+              }
+
+              if (state is UserCreateTimeLineSuccess) {
+                Logger().e('okeeeee');
               }
             },
             builder: (context, state) {

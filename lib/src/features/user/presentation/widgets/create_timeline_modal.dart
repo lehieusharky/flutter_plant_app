@@ -30,6 +30,7 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
   final _descriptionController = TextEditingController();
   final _keyForm = GlobalKey<FormState>();
   File? _imageTimeLineFile;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

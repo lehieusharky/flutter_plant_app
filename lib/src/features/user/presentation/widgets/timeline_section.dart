@@ -25,6 +25,7 @@ class TimeLineSection extends BaseWidget {
 class _TimeLineSectionState extends BaseWidgetState
     with AutomaticKeepAliveClientMixin {
   List<TimeLineModel> _listTimeLineModel = [];
+  final userBloc = UserBloc();
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +36,10 @@ class _TimeLineSectionState extends BaseWidgetState
         listener: (context, state) {
           if (state is UserGetListTimeLineSuccess) {
             _listTimeLineModel = state.listTimeLine;
+          }
+
+          if (state is UserCreateTimeLineSuccess) {
+            _listTimeLineModel.add(state.timeLineModel);
           }
         },
         builder: (context, state) {

@@ -15,7 +15,7 @@ abstract class TimeLineUseCase {
   Future<void> createPlant({required String plantName});
   Future<String?> postImageOfTimeLine({required File image});
   Future<void> toggleSelectedPlant({required String plantName});
-  Stream<List<TimeLineModel>>? get listTimeLineStream;
+  Future<List<TimeLineModel>> getListTimeLine({required String plantName});
 }
 
 @Injectable(as: TimeLineUseCase)
@@ -75,22 +75,6 @@ class TimeLineUseCaseImpl extends UseCase<void, TimeLineParams>
   }
 
   @override
-  Stream<List<TimeLineModel>>? get listTimeLineStream {
-    try {
-      final result = _timeLineRepository.listTimeLineStream();
-      return result.fold(
-        (failure) {
-          Logger().e('Cannot get list time line ');
-          return null;
-        },
-        (listTimeLineModel) => listTimeLineModel,
-      );
-    } catch (e) {
-      throw TimeLineFailure(message: e.toString());
-    }
-  }
-
-  @override
   Future<void> toggleSelectedPlant({required String plantName}) async {
     try {
       final result =
@@ -104,17 +88,21 @@ class TimeLineUseCaseImpl extends UseCase<void, TimeLineParams>
     }
   }
 
-  // @override
-  // Future<void> getListTimeLine({required String plantName}) async {
-  //   try {
-  //     final result =
-  //         await _timeLineRepository.getListTimeLine(plantName: plantName);
-  //     return result.fold(
-  //       (failure) => Logger().e('toggle plant name falure'),
-  //       (success) => Logger().e('toggle plant name success'),
-  //     );
-  //   } catch (e) {
-  //     throw TimeLineFailure(message: e.toString());
-  //   }
-  // }
+  @override
+  Future<List<TimeLineModel>> getListTimeLine(
+      {required String plantName}) async {
+    try {
+      final result =
+          await _timeLineRepository.getListTimeLine(plantName: plantName);
+      return result.fold(
+        (failure) {
+          Logger().e('get list timeline failed, ${failure.message}');
+          return [];
+        },
+        (listTimeLine) => listTimeLine,
+      );
+    } catch (e) {
+      throw TimeLineFailure(message: e.toString());
+    }
+  }
 }

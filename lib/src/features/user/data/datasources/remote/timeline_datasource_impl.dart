@@ -70,38 +70,28 @@ class TimeLineDataSourceImpl implements TimeLineDataSource {
     }
   }
 
-  StreamSubscription<QuerySnapshot<Map<String, dynamic>>>?
-      _listTimeLineSubscription;
+  @override
+  Future<List<TimeLineModel>> getListTimeLine(
+      {required String plantName}) async {
+    try {
+      QuerySnapshot listTimeLineRef = await firebaseFirestore
+          .collection(AppConstant.usersCollection)
+          .doc(sharePreference.getUserId())
+          .collection(AppConstant.timeLineCollection)
+          .doc(plantName)
+          .collection('list_time_line')
+          .get();
 
-  final StreamController<List<TimeLineModel>> _listTimeLineController =
-      StreamController.broadcast();
-
-  TimeLineDataSourceImpl() {
-    final plantName = userInfo!.selectedPlantName;
-    _listTimeLineSubscription = firebaseFirestore
-        .collection(AppConstant.usersCollection)
-        .doc(sharePreference.getUserId())
-        .collection(AppConstant.timeLineCollection)
-        .doc(plantName)
-        .collection('list_time_line')
-        .snapshots()
-        .listen((timeLineSnapShot) {
-      final listTimeLineModel = timeLineSnapShot.docs
-          .map((data) => TimeLineModel.fromJson(data.data()))
+      final listTimeLine = listTimeLineRef.docs
+          .map((timeLineObject) => TimeLineModel.fromJson(
+              timeLineObject.data() as Map<String, dynamic>))
           .toList();
 
-      _listTimeLineController.add(listTimeLineModel);
-    });
+      return listTimeLine;
+    } catch (e) {
+      throw Exception(e);
+    }
   }
-
-  void close() {
-    _listTimeLineSubscription?.cancel();
-    _listTimeLineSubscription?.cancel();
-  }
-
-  @override
-  Stream<List<TimeLineModel>> get listTimeLineStream =>
-      _listTimeLineController.stream;
 
   @override
   Future<void> toggleSelectedPlant({required String plantName}) async {
