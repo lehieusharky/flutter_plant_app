@@ -30,6 +30,8 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
   final _titleController = TextEditingController();
   final _keyForm = GlobalKey<FormState>();
   File? _imageFile;
+  List<String> _listTag = [];
+  String _bodyContent = "";
 
   @override
   Widget build(BuildContext context) {
@@ -124,6 +126,18 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
     }
   }
 
+  void _formatDescriptionField() {
+    final contentOfBodyField = _bodyController.text.trim().split(' ');
+    for (String word in contentOfBodyField) {
+      if (word.startsWith('#')) {
+        _listTag.add(word);
+      } else {
+        
+        _bodyContent += "$word ";
+      }
+    }
+  }
+
   void _postPostImage(
       {required BuildContext context, required File imageFile}) {
     context
@@ -139,12 +153,13 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
     required String imageUrl,
     required BuildContext context,
   }) {
+    _formatDescriptionField();
     context.read<HomePageBloc>().add(
           HomePageCreateCommunityPost(
             communityPostModel: CommunityPostModel(
               title: _titleController.text.trim(),
-              description: _bodyController.text.trim(),
-              tags: const [],
+              description: _bodyContent,
+              tags: _listTag,
               image: imageUrl,
               authorId: sharePreference.getUserId(),
               id: const Uuid().v4(),
