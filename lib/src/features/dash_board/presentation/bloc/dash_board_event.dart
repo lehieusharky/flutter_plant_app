@@ -17,3 +17,4 @@ final class DashBoardGetUserInfomation extends DashBoardEvent {
 }
 
 final class DashBoardGetLoggedInNotification extends DashBoardEvent {}
+

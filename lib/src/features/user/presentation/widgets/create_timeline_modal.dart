@@ -20,7 +20,8 @@ import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:uuid/uuid.dart';
 
 class CreateTimelineModal extends StatefulWidget {
-  const CreateTimelineModal({super.key});
+  final void Function(TimeLineModel timeLineModel) updateTimeLine;
+  const CreateTimelineModal({super.key, required this.updateTimeLine});
 
   @override
   State<CreateTimelineModal> createState() => _CreateTimelineModalState();
@@ -33,41 +34,42 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => UserBloc(),
-      child: BlocConsumer<UserBloc, UserState>(
-        listener: (context, state) {
-          if (state is UserPickImageFromCameraSuccess) {
-            CustomSnakBar.showSnackbar(
-              context: context,
-              message: 'Take image from camera succcess',
-              backgroundColor: colorTheme.get2DDA93,
-            );
-            _imageTimeLineFile = state.image;
-          }
-          if (state is UserPostTimeLineImageSuccess) {
-            _createTimeLine(context: context, imageUrl: state.imageUrl);
-          }
-          if (state is UserFailure) {
-            CustomSnakBar.showSnackbar(
-              context: context,
-              message: state.message,
-              backgroundColor: colorTheme.getFF6262,
-            );
-          }
+    return Scaffold(
+      body: BlocProvider(
+        create: (context) => UserBloc(),
+        child: BlocConsumer<UserBloc, UserState>(
+          listener: (context, state) {
+            if (state is UserPickImageFromCameraSuccess) {
+              CustomSnakBar.showSnackbar(
+                context: context,
+                message: 'Take image from camera succcess',
+                backgroundColor: colorTheme.get2DDA93,
+              );
+              _imageTimeLineFile = state.image;
+            }
+            if (state is UserPostTimeLineImageSuccess) {
+              _createTimeLine(context: context, imageUrl: state.imageUrl);
+            }
+            if (state is UserFailure) {
+              CustomSnakBar.showSnackbar(
+                context: context,
+                message: state.message,
+                backgroundColor: colorTheme.getFF6262,
+              );
+            }
 
-          if (state is UserCreateTimeLineSuccess) {
-            CustomSnakBar.showSnackbar(
-              context: context,
-              message: translate(context).createTimelineSuccess,
-              backgroundColor: colorTheme.get2DDA93,
-            );
-            context.pop(true);
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            body: SingleChildScrollView(
+            if (state is UserCreateTimeLineSuccess) {
+              widget.updateTimeLine(state.timeLineModel);
+              CustomSnakBar.showSnackbar(
+                context: context,
+                message: translate(context).createTimelineSuccess,
+                backgroundColor: colorTheme.get2DDA93,
+              );
+              context.pop(true);
+            }
+          },
+          builder: (context, state) {
+            return SingleChildScrollView(
               child: Padding(
                 padding: context.padding(horizontal: 12),
                 child: Stack(
@@ -82,11 +84,13 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
                           children: [
                             CustomTextButton.cancel(context),
                             const CustomSeperator(),
-                            CustomTextButton.save(
-                                saveText: translate(context).save,
-                                context: context,
-                                onPressed: () =>
-                                    _createTimeLineValidation(context: context))
+                            _imageTimeLineFile != null
+                                ? CustomTextButton.save(
+                                    saveText: translate(context).save,
+                                    context: context,
+                                    onPressed: () => _createTimeLineValidation(
+                                        context: context))
+                                : const SizedBox(),
                           ],
                         ),
                         const CustomDivider(),
@@ -112,9 +116,9 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
                   ],
                 ),
               ),
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

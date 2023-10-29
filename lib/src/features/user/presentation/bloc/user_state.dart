@@ -73,3 +73,14 @@ final class UserToggleSelectPlantSuccess extends UserState {
   @override
   List<Object> get props => [plantName];
 }
+
+final class UserUpdateTimeLineSuccess extends UserState {
+  final TimeLineModel timeLineModel;
+
+  const UserUpdateTimeLineSuccess({
+    required this.timeLineModel,
+  });
+
+  @override
+  List<Object> get props => [timeLineModel];
+}
