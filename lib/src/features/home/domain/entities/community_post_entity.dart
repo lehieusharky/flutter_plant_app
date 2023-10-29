@@ -8,12 +8,14 @@ class CommunityPostEntity extends Equatable {
   final String image;
   final String authorId;
   final int clap;
+  final String authorName;
 
   const CommunityPostEntity({
     required this.title,
     required this.description,
     required this.tags,
     required this.authorId,
+    required this.authorName,
     required this.image,
     required this.id,
     required this.clap,

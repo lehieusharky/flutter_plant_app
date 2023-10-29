@@ -37,7 +37,7 @@ class _HomePageState extends State<HomePage>
                 builder: (context, state) {
                   return Stack(
                     children: [
-                      const BackGroundContainer(),
+                      // const BackGroundContainer(),
                       CustomScrollView(
                         controller: _pageScrollController,
                         slivers: [

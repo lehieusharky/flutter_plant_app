@@ -8,7 +8,6 @@ import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/background_container.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
@@ -73,7 +72,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
             return Stack(
               children: [
                 // * shake background
-                const BackGroundContainer(),
+                // const BackGroundContainer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [

@@ -13,6 +13,7 @@ class CommunityPostModel extends CommunityPostEntity {
     required super.authorId,
     required super.id,
     required super.clap,
+    required super.authorName,
   });
 
   factory CommunityPostModel.fromJson(Map<String, dynamic> json) =>

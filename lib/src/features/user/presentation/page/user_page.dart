@@ -66,7 +66,7 @@ class _UserPageState extends BaseWidgetState
             builder: (context, state) {
               return Stack(
                 children: [
-                  const BackGroundContainer(),
+                  // const BackGroundContainer(),
                   NestedScrollView(
                     controller: _nestedController,
                     headerSliverBuilder: (context, value) {

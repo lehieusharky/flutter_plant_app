@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
+import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/home/data/datasources/community_datasource.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:uuid/uuid.dart';
@@ -33,12 +34,15 @@ class CommunityDataSourceImpl implements CommunityDataSource {
   Future<void> createCommunityPost(
       {required CommunityPostModel communityPostModel}) async {
     try {
-      final today = DateTime.now().toString();
-      List<String> selectedTime = today.split(' ');
       await firebaseFirestore
           .collection(AppConstant.communityPostsCollection)
-          .doc(selectedTime[0])
-          .collection('posts')
+          .doc(communityPostModel.id)
+          .set(communityPostModel.toJson());
+
+      await firebaseFirestore
+          .collection(AppConstant.usersCollection)
+          .doc(userInfo!.id)
+          .collection('postsd')
           .doc(communityPostModel.id)
           .set(communityPostModel.toJson());
     } catch (e) {
@@ -50,15 +54,11 @@ class CommunityDataSourceImpl implements CommunityDataSource {
   Future<List<CommunityPostModel>> getListCommunityPost(
       {required int num}) async {
     try {
-      final today = DateTime.now().toString();
-      List<String> selectedTime = today.split(' ');
       QuerySnapshot postsCollection = await firebaseFirestore
           .collection(AppConstant.communityPostsCollection)
-          .doc(selectedTime[0])
-          .collection('posts')
           .limit(num)
           .get();
-          
+
       final listCommunityPost = postsCollection.docs.map((data) {
         return CommunityPostModel.fromJson(data.data() as Map<String, dynamic>);
       }).toList();

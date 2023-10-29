@@ -32,6 +32,7 @@ abstract class ImageConstant {
   String get sunnyImage;
   String get nightImage;
   String get minTempSVG;
+  String get backGroundSVG;
   String get maxTempSVG;
   String get windSVG;
   String get locationSVG;
@@ -195,4 +196,7 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get dropDownSVG => 'assets/svg/drop_down.svg';
+
+  @override
+  String get backGroundSVG => 'assets/svg/background.svg';
 }

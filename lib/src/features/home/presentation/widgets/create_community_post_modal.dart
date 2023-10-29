@@ -11,6 +11,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_seperat
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
+import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/create_community_form.dart';
@@ -30,6 +31,8 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
   final _titleController = TextEditingController();
   final _keyForm = GlobalKey<FormState>();
   File? _imageFile;
+  final List<String> _listTag = [];
+  String _bodyContent = "";
 
   @override
   Widget build(BuildContext context) {
@@ -124,6 +127,17 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
     }
   }
 
+  void _formatDescriptionField() {
+    final contentOfBodyField = _bodyController.text.trim().split(' ');
+    for (String word in contentOfBodyField) {
+      if (word.startsWith('#')) {
+        _listTag.add(word);
+      } else {
+        _bodyContent += "$word ";
+      }
+    }
+  }
+
   void _postPostImage(
       {required BuildContext context, required File imageFile}) {
     context
@@ -139,16 +153,18 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
     required String imageUrl,
     required BuildContext context,
   }) {
+    _formatDescriptionField();
     context.read<HomePageBloc>().add(
           HomePageCreateCommunityPost(
             communityPostModel: CommunityPostModel(
               title: _titleController.text.trim(),
-              description: _bodyController.text.trim(),
-              tags: const [],
+              description: _bodyContent,
+              tags: _listTag,
               image: imageUrl,
               authorId: sharePreference.getUserId(),
               id: const Uuid().v4(),
               clap: 0,
+              authorName: userInfo!.userName!,
             ),
           ),
         );
