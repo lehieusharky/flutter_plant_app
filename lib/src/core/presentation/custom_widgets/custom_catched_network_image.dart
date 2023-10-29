@@ -7,6 +7,7 @@ class CustomCatchedNetWorkImage extends StatelessWidget {
   final double? width;
   final double? height;
   final double? borderRadius;
+  final double? opacity;
 
   const CustomCatchedNetWorkImage({
     super.key,
@@ -14,6 +15,7 @@ class CustomCatchedNetWorkImage extends StatelessWidget {
     this.width,
     this.height,
     this.borderRadius,
+    this.opacity,
   });
 
   @override
@@ -29,9 +31,10 @@ class CustomCatchedNetWorkImage extends StatelessWidget {
           image: DecorationImage(
             image: imageProvider,
             fit: BoxFit.cover,
+            opacity: opacity ?? 1,
           ),
         ),
-      ),
+      ), 
       placeholder: (context, url) => CustomShimmer(
         width: width,
         height: height,

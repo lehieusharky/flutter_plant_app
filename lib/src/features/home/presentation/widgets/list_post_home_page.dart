@@ -32,7 +32,7 @@ class _PosstHomePageState extends State<ListPostHomePage> {
           return Padding(
             padding: context.padding(horizontal: 12),
             child: SizedBox(
-              height: context.sizeHeight(250),
+              height: context.sizeHeight(330),
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,

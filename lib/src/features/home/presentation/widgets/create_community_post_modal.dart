@@ -11,6 +11,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_seperat
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
+import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/create_community_form.dart';
@@ -30,7 +31,7 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
   final _titleController = TextEditingController();
   final _keyForm = GlobalKey<FormState>();
   File? _imageFile;
-  List<String> _listTag = [];
+  final List<String> _listTag = [];
   String _bodyContent = "";
 
   @override
@@ -132,7 +133,6 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
       if (word.startsWith('#')) {
         _listTag.add(word);
       } else {
-        
         _bodyContent += "$word ";
       }
     }
@@ -164,6 +164,7 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
               authorId: sharePreference.getUserId(),
               id: const Uuid().v4(),
               clap: 0,
+              authorName: userInfo!.userName!,
             ),
           ),
         );
