@@ -29,6 +29,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
               },
               builder: (context, state) {
                 return PageView(
+                  physics: const NeverScrollableScrollPhysics(),
                   controller: _pageController,
                   children: const [
                     UserPage(),

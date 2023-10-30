@@ -27,25 +27,29 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
           if (_weatherModel.name == null) {
             return CustomShimmer(
               width: context.width,
-              height: context.sizeHeight(180),
+              height: context.sizeHeight(150),
             );
           } else {
-            return Stack(
-              children: [
-                const WeatherBackground(),
-                Padding(
-                  padding: context.padding(horizontal: 10, top: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      _buildTemperature(_weatherModel),
-                      context.sizedBox(width: 10),
-                      _buildWeatherPart(_weatherModel),
-                    ],
+            return SizedBox(
+              width: context.width,
+              height: context.sizeHeight(150),
+              child: Stack(
+                children: [
+                  // const WeatherBackground(),
+                  Padding(
+                    padding: context.padding(horizontal: 10, top: 20),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        _buildTemperature(_weatherModel),
+                        context.sizedBox(width: 10),
+                        _buildWeatherPart(_weatherModel),
+                      ],
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             );
           }
         },
@@ -85,7 +89,10 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
         Text(
           '${(weatherModel.main!.temp! - 273).toInt()}°C',
           style: theme(context).textTheme.displayMedium,
-        ),
+        ).animate().fade(
+              duration: const Duration(milliseconds: 500),
+              curve: Curves.easeInOut,
+            ),
       ],
     );
   }
@@ -127,18 +134,21 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
       children: [
         CustomSvg(
           path: iconPath,
-          color: colorTheme.getFFFFFF,
+          color: theme(context).textTheme.titleLarge!.color,
           width: context.sizeWidth(20),
           height: context.sizeWidth(20),
         ),
         context.sizedBox(width: 5),
         Text(
           value,
-          style: AppTextTheme.darkTheme(context).titleLarge!.copyWith(
+          style: theme(context).textTheme.titleLarge!.copyWith(
                 fontSize: context.sizeWidth(16),
               ),
         ),
       ],
-    );
+    ).animate().fade(
+          duration: const Duration(milliseconds: 500),
+          curve: Curves.easeInOut,
+        );
   }
 }

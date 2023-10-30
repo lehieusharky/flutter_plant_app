@@ -63,14 +63,14 @@ class _UserPageState extends BaseWidgetState
               if (state is UserCreateTimeLineSuccess) {
                 Logger().e('okeeeee');
               }
-              
+
               if (state is UserGetListTimeLineSuccess) {
                 _listTimeLineModel = state.listTimeLine;
               }
             },
             builder: (context, state) {
               return Stack(
-                children: [
+                children: [ 
                   // const BackGroundContainer(),
                   NestedScrollView(
                     controller: _nestedController,
