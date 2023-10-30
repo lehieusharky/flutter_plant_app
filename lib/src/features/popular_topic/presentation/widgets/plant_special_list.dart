@@ -32,7 +32,7 @@ class _PlantSpecialListState extends State<PlantSpecialList> {
             shrinkWrap: true,
             itemBuilder: (context, index) {
               return PlantSpecialItem(
-                title: state.data![index].id.toString(),
+                title: state.data![index].commonName.toString(),
               );
             },
           );

@@ -16,15 +16,19 @@ class PlantSpecialEntity extends Equatable {
   List<Object?> get props => [data, total];
 }
 
-@JsonSerializable()
+@JsonSerializable(createFieldMap: true)
 class PlantSpecialItem {
   int? id;
+  @JsonKey(name: 'common_name')
   String? commonName;
+  @JsonKey(name: 'scientific_name')
   List<String>? scientificName;
+  @JsonKey(name: 'other_name')
   List<String>? otherName;
   String? cycle;
   String? watering;
   List<String>? sunlight;
+  @JsonKey(name: 'default_image')
   DefaultImage? defaultImage;
 
   PlantSpecialItem({
@@ -47,9 +51,13 @@ class PlantSpecialItem {
 @JsonSerializable()
 class DefaultImage {
   int? license;
+  @JsonKey(name: 'license_name')
   String? licenseName;
+  @JsonKey(name: 'license_url')
   String? licenseUrl;
+  @JsonKey(name: 'original_url')
   String? originalUrl;
+  @JsonKey(name: 'regular_url')
   String? regularUrl;
 
   DefaultImage({

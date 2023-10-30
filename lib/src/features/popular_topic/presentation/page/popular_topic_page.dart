@@ -32,16 +32,13 @@ class _PopularTopicPageState extends BaseWidgetState {
           ..add(
             PopularTopicChooseTopic(
                 plantSpecialListParams:
-                    PlantSpecialListParams(q: _plantTopic.getTopic),
+                    PlantSpecialListParams(q: _plantTopic.getTopic, page: 1),
                 plantDiseaseListParams:
                     PlantDiseaseListParams(q: _plantTopic.getTopic),
                 plantTopic: _plantTopic),
           ),
         child: BlocConsumer<PopularTopicBloc, PopularTopicState>(
           listener: (context, state) {
-            if (state is PopularTopicGetPlantSpecialListSuccess) {
-              Logger().d('success ');
-            }
             if (state is PopularTopicGetPlantDiseaseListSuccess) {
               Logger().d('success disease');
             }
