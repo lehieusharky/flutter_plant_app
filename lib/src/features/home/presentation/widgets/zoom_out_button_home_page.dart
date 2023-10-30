@@ -12,11 +12,13 @@ import 'package:plant_market/src/theme/color_theme.dart';
 class ZoomOutButtonHomePage extends StatelessWidget {
   final Offset begin;
   final Offset end;
+  final int lengthOfCommunityList;
 
   const ZoomOutButtonHomePage({
     super.key,
     required this.begin,
     required this.end,
+    required this.lengthOfCommunityList,
   });
 
   @override
@@ -38,7 +40,9 @@ class ZoomOutButtonHomePage extends StatelessWidget {
           iconPath: imageConstant.communitySVG,
           onPressed: () => _showTopicModal(
             context: context,
-            child: const CreateCommunityPostModal(),
+            child: CreateCommunityPostModal(
+              lengthOfCommunityList: lengthOfCommunityList,
+            ),
           ),
         ),
         context.sizedBox(width: 20),
@@ -54,17 +58,19 @@ class ZoomOutButtonHomePage extends StatelessWidget {
     );
   }
 
-  factory ZoomOutButtonHomePage.scrollDown() {
-    return const ZoomOutButtonHomePage(
-      begin: Offset(0, 0.5),
+  factory ZoomOutButtonHomePage.scrollDown(int lengthOfCommunityList) {
+    return ZoomOutButtonHomePage(
+      begin: const Offset(0, 0.5),
       end: Offset.zero,
+      lengthOfCommunityList: lengthOfCommunityList,
     );
   }
 
-  factory ZoomOutButtonHomePage.scrollUp() {
-    return const ZoomOutButtonHomePage(
-      end: Offset(0, 1),
+  factory ZoomOutButtonHomePage.scrollUp(int lengthOfCommunityList) {
+    return ZoomOutButtonHomePage(
+      end: const Offset(0, 1),
       begin: Offset.zero,
+      lengthOfCommunityList: lengthOfCommunityList,
     );
   }
 

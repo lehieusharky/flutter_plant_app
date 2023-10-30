@@ -66,4 +66,3 @@ final class UserGetListTimeLine extends UserEvent {
   @override
   List<Object> get props => [plantName];
 }
-

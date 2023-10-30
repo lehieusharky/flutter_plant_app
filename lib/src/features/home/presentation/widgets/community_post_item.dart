@@ -6,7 +6,6 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_b
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/community_post_details.dart';
-import 'package:plant_market/src/theme/text_theme.dart';
 
 class CommunityPostItem extends StatelessWidget {
   final CommunityPostModel communityPostModel;

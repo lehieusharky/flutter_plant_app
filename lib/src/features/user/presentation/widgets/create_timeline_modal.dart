@@ -21,7 +21,12 @@ import 'package:uuid/uuid.dart';
 
 class CreateTimelineModal extends StatefulWidget {
   final void Function(TimeLineModel timeLineModel) updateTimeLine;
-  const CreateTimelineModal({super.key, required this.updateTimeLine});
+  final int currentLengthOfListTimeLine;
+
+  const CreateTimelineModal(
+      {super.key,
+      required this.updateTimeLine,
+      required this.currentLengthOfListTimeLine});
 
   @override
   State<CreateTimelineModal> createState() => _CreateTimelineModalState();
@@ -139,8 +144,9 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
               description: _descriptionController.text.trim(),
               image: imageUrl,
               createAt: DateTime.now().toString(),
-              userId: sharePreference.getUserId(),
-              timeLineId: const Uuid().v4(),
+              userId: "${sharePreference.getUserId}",
+              timeLineId:
+                  "${widget.currentLengthOfListTimeLine + 1}_${const Uuid().v4()}",
             ),
           ),
         );

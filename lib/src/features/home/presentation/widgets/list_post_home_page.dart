@@ -20,7 +20,7 @@ class _PosstHomePageState extends State<ListPostHomePage> {
     return BlocConsumer<HomePageBloc, HomePageState>(
       listener: (context, state) {
         if (state is HomePageGetCommunityPostListSuccess) {
-          _listCommunityPost = state.listCommunityPost;
+          _listCommunityPost = state.listCommunityPost.reversed.toList();
         }
       },
       builder: (context, state) {

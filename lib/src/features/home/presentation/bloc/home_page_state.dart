@@ -83,8 +83,21 @@ final class HomePageCreateCommunityPostSuccess extends HomePageState {}
 final class HomePageGetCommunityPostListSuccess extends HomePageState {
   final List<CommunityPostModel> listCommunityPost;
 
-  const HomePageGetCommunityPostListSuccess({required this.listCommunityPost});
+  const HomePageGetCommunityPostListSuccess({
+    required this.listCommunityPost,
+  });
 
   @override
   List<Object> get props => [listCommunityPost];
+}
+
+final class HomePageGetCommunityInfoSuccess extends HomePageState {
+  final CommunityModel communityModel;
+
+  const HomePageGetCommunityInfoSuccess({
+    required this.communityModel,
+  });
+
+  @override
+  List<Object> get props => [communityModel];
 }

@@ -8,6 +8,7 @@ import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/home/data/datasources/community_datasource.dart';
+import 'package:plant_market/src/features/home/data/models/community_model.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:uuid/uuid.dart';
 
@@ -32,10 +33,13 @@ class CommunityDataSourceImpl implements CommunityDataSource {
 
   @override
   Future<void> createCommunityPost(
-      {required CommunityPostModel communityPostModel}) async {
+      {required CommunityPostModel communityPostModel,
+      required int number}) async {
     try {
       await firebaseFirestore
           .collection(AppConstant.communityPostsCollection)
+          .doc('posts')
+          .collection('list_posts')
           .doc(communityPostModel.id)
           .set(communityPostModel.toJson());
 
@@ -45,6 +49,11 @@ class CommunityDataSourceImpl implements CommunityDataSource {
           .collection('posts')
           .doc(communityPostModel.id)
           .set(communityPostModel.toJson());
+
+      await firebaseFirestore
+          .collection(AppConstant.communityPostsCollection)
+          .doc('info')
+          .update({"number": number});
     } catch (e) {
       throw Exception(e);
     }
@@ -56,6 +65,8 @@ class CommunityDataSourceImpl implements CommunityDataSource {
     try {
       QuerySnapshot postsCollection = await firebaseFirestore
           .collection(AppConstant.communityPostsCollection)
+          .doc('posts')
+          .collection('list_posts')
           .limit(num)
           .get();
 
@@ -64,6 +75,20 @@ class CommunityDataSourceImpl implements CommunityDataSource {
       }).toList();
 
       return listCommunityPost;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  @override
+  Future<CommunityModel> getCommunityInformation() async {
+    try {
+      final communitySnapShot = await firebaseFirestore
+          .collection(AppConstant.communityPostsCollection)
+          .doc('info')
+          .get();
+
+      return CommunityModel.fromJson(communitySnapShot.data()!);
     } catch (e) {
       throw Exception(e);
     }
