@@ -29,8 +29,6 @@ abstract class ImageConstant {
   String get mapSVG;
   String get vietNamFlagSVG;
   String get englandFlagSVG;
-  String get sunnyImage;
-  String get nightImage;
   String get minTempSVG;
   String get backGroundSVG;
   String get maxTempSVG;
@@ -43,16 +41,16 @@ abstract class ImageConstant {
   String get moonSVG;
   String get sadSVG;
   String get funSVG;
-  String get deseaseSVG;
   String get musicSVG;
-  String get flowerSVG;
-  String get fruitSVG;
-  String get leafSVG;
-  String get plantSVG;
-  String get vegetableSVG;
   String get cycleSVG;
   String get searchSVG;
   String get landSVG;
+
+  String get diseasePNG;
+  String get leafyPNG;
+  String get flowerPNG;
+  String get plantPNG;
+  String get fruitPNG;
 }
 
 @Injectable(as: ImageConstant)
@@ -103,12 +101,6 @@ class ImageConstantImpl implements ImageConstant {
   String get vietNamFlagSVG => 'assets/svg/viet_nam_flag.svg';
 
   @override
-  String get nightImage => 'assets/images/night.png';
-
-  @override
-  String get sunnyImage => 'assets/images/sun.png';
-
-  @override
   String get chickenSVG => 'assets/svg/chicken.svg';
 
   @override
@@ -140,24 +132,6 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get sadSVG => 'assets/svg/fun.svg';
-
-  @override
-  String get deseaseSVG => 'assets/svg/disease.svg';
-
-  @override
-  String get flowerSVG => 'assets/svg/flower.svg';
-
-  @override
-  String get fruitSVG => 'assets/svg/fruit.svg';
-
-  @override
-  String get leafSVG => 'assets/svg/leaf.svg';
-
-  @override
-  String get plantSVG => 'assets/svg/plant.svg';
-
-  @override
-  String get vegetableSVG => 'assets/svg/vegetable.svg';
 
   @override
   String get cycleSVG => 'assets/svg/cycle.svg';
@@ -203,4 +177,19 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get musicSVG => 'assets/svg/music.svg';
+
+  @override
+  String get diseasePNG => 'assets/images/disease.png';
+
+  @override
+  String get flowerPNG => 'assets/images/flower.png';
+
+  @override
+  String get fruitPNG => 'assets/images/fruit.png';
+
+  @override
+  String get leafyPNG => 'assets/images/leafy.png';
+
+  @override
+  String get plantPNG => 'assets/images/plant.png';
 }
