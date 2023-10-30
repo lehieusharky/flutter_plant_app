@@ -42,7 +42,7 @@ class CommunityDataSourceImpl implements CommunityDataSource {
       await firebaseFirestore
           .collection(AppConstant.usersCollection)
           .doc(userInfo!.id)
-          .collection('postsd')
+          .collection('posts')
           .doc(communityPostModel.id)
           .set(communityPostModel.toJson());
     } catch (e) {
