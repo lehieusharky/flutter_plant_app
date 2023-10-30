@@ -1,20 +1,4 @@
-import 'dart:math';
-
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:just_audio/just_audio.dart';
-import 'package:logger/logger.dart';
-import 'package:plant_market/src/core/di/part_di.dart';
-import 'package:plant_market/src/core/extension/localization.dart';
-import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
-import 'package:plant_market/src/core/presentation/page/base_page.dart';
-import 'package:plant_market/src/features/shake_animation/presentation/bloc/shake_animation_bloc.dart';
-import 'package:plant_market/src/features/shake_animation/presentation/widgets/count_down.dart';
-import 'package:plant_market/src/features/shake_animation/presentation/widgets/tree_shake_animation.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
+part of 'part_shake_animation_page.dart';
 
 class ShakeAnimationPage extends BaseWidget {
   const ShakeAnimationPage({super.key});
@@ -65,7 +49,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
               setState(() {
                 _musicName = _getMusicNameFromUrl(musicUrl: musicUrl);
               });
-              // _setMusicUrl(musicUrl: state.musicPlayList[indexMusic]);
+              _setMusicUrl(musicUrl: state.musicPlayList[indexMusic]);
             }
           },
           builder: (context, state) {
@@ -93,24 +77,19 @@ class _ShakeAnimationPageState extends BaseWidgetState {
                     context.sizedBox(height: 10),
                     _buildSendButton(),
                     context.sizedBox(height: 10),
-                    _isStart
-                        ? const SizedBox()
-                        : Padding(
-                            padding: context.padding(horizontal: 50),
-                            child: Text(
-                              translate(context).relaxWithMusic,
-                              textAlign: TextAlign.center,
-                              style: theme(context)
-                                  .textTheme
-                                  .titleMedium!
-                                  .copyWith(
-                                      color: theme(context)
-                                          .textTheme
-                                          .titleMedium!
-                                          .color!
-                                          .withOpacity(0.6)),
-                            ),
-                          ),
+                    Padding(
+                      padding: context.padding(horizontal: 50),
+                      child: Text(
+                        translate(context).relaxWithMusic,
+                        textAlign: TextAlign.center,
+                        style: theme(context).textTheme.titleMedium!.copyWith(
+                            color: theme(context)
+                                .textTheme
+                                .titleMedium!
+                                .color!
+                                .withOpacity(0.6)),
+                      ),
+                    ),
                   ],
                 ),
                 Padding(
@@ -132,20 +111,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
                                 ),
                         ],
                       ),
-                      _isStart
-                          ? const SizedBox()
-                          : Text(
-                              _musicName,
-                              style: theme(context)
-                                  .textTheme
-                                  .titleLarge!
-                                  .copyWith(
-                                      color: theme(context)
-                                          .textTheme
-                                          .titleLarge!
-                                          .color!
-                                          .withOpacity(0.8)),
-                            )
+                      MusicTitle(musicName: _musicName),
                     ],
                   ),
                 ),
@@ -209,7 +175,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
       title: _isStart ? 'Bỏ cuộc' : translate(context).start,
       width: context.sizeWidth(200),
       onPressed: () => _startButtonEvent(),
-      backgroundColor: _isStart ? colorTheme.get6A6F7D : colorTheme.get2DDA93,
+      backgroundColor: _isStart ? colorTheme.getFF6262 : colorTheme.get2DDA93,
     );
   }
 
@@ -227,8 +193,6 @@ class _ShakeAnimationPageState extends BaseWidgetState {
         curve: Curves.easeInOut,
       );
     });
-
-    Logger().d('give up');
   }
 
   void _startButtonEvent() {

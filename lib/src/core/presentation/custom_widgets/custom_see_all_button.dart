@@ -19,17 +19,20 @@ class CustomSeeAllButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomButton(
-      width: context.sizeWidth(280),
-      height: context.sizeHeight(40),
-      onPress: onPressed,
-      backgroundColor: ThemeManager.backgroundButton(),
-      borderRadius: 3,
-      borderSide: const BorderSide(
-        color: Color(0xffD8D8D8),
-        width: 1,
+    return Padding(
+      padding: context.padding(horizontal: 12),
+      child: CustomButton(
+        width: width,
+        height: context.sizeHeight(45),
+        onPress: onPressed,
+        backgroundColor: ThemeManager.backgroundButton(),
+        borderRadius: 3,
+        borderSide: const BorderSide(
+          color: Color(0xffD8D8D8),
+          width: 1,
+        ),
+        child: _buildTitle(context),
       ),
-      child: _buildTitle(context),
     );
   }
 
