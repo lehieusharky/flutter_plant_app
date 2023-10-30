@@ -11,5 +11,7 @@ class EndPoints {
 
   static String plantSpecialUrl = "$plantDomain/species-list";
 
-  static String plantDiseaseUrl = "$plantDomain/species-list";
+  static String plantDiseaseUrl = "$plantDomain/pest-disease-list";
+
+  static String plantSpecialDetailUrl = "$plantDomain/species/details/";
 }

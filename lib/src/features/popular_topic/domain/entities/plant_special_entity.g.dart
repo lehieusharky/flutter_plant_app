@@ -27,17 +27,6 @@ PlantSpecialItem _$PlantSpecialItemFromJson(Map<String, dynamic> json) =>
               json['default_image'] as Map<String, dynamic>),
     );
 
-const _$PlantSpecialItemFieldMap = <String, String>{
-  'id': 'id',
-  'commonName': 'common_name',
-  'scientificName': 'scientific_name',
-  'otherName': 'other_name',
-  'cycle': 'cycle',
-  'watering': 'watering',
-  'sunlight': 'sunlight',
-  'defaultImage': 'default_image',
-};
-
 Map<String, dynamic> _$PlantSpecialItemToJson(PlantSpecialItem instance) =>
     <String, dynamic>{
       'id': instance.id,

@@ -23,6 +23,7 @@ class CustomSvg extends StatelessWidget {
     return SvgPicture.asset(
       path,
       colorFilter: colorFilter,
+      
       // ignore: deprecated_member_use
       color: color,
       width: width,

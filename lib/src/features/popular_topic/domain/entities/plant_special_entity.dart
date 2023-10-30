@@ -16,7 +16,7 @@ class PlantSpecialEntity extends Equatable {
   List<Object?> get props => [data, total];
 }
 
-@JsonSerializable(createFieldMap: true)
+@JsonSerializable()
 class PlantSpecialItem {
   int? id;
   @JsonKey(name: 'common_name')

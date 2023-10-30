@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/data/defines/enum/plant_topic.dart';
+import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/popular_topic/presentation/bloc/popular_topic_bloc.dart';
