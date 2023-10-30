@@ -19,7 +19,7 @@ class _CustomHeartButtonState extends State<CustomHeartButton> {
       padding: context.padding(all: 3),
       child: LikeButton(
         mainAxisAlignment: MainAxisAlignment.end,
-        size: context.sizeWidth(30),
+        size: context.sizeWidth(40),
         circleColor: CircleColor(
           start: colorTheme.get2DDA93,
           end: colorTheme.get2DDA93,
@@ -30,7 +30,7 @@ class _CustomHeartButtonState extends State<CustomHeartButton> {
         ),
         likeBuilder: (bool isLiked) {
           return SvgPicture.asset(
-            isLiked ? imageConstant.chickenSVG : imageConstant.heartSvg,
+            imageConstant.heartSvg,
             // ignore: deprecated_member_use
             color: isLiked
                 ? colorTheme.get2DDA93.withOpacity(0.8)

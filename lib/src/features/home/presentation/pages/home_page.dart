@@ -13,6 +13,8 @@ class _HomePageState extends State<HomePage>
   bool _isAppBarExist = false;
   Widget? _appBarTitle = const SizedBox();
 
+  CommunityModel _communityModel = const CommunityModel();
+
   @override
   void initState() {
     super.initState();
@@ -31,7 +33,11 @@ class _HomePageState extends State<HomePage>
         body: BlocProvider(
           create: (context) => HomePageBloc(),
           child: BlocConsumer<HomePageBloc, HomePageState>(
-            listener: (context, state) {},
+            listener: (context, state) {
+              if (state is HomePageGetCommunityInfoSuccess) {
+                _communityModel = state.communityModel;
+              }
+            },
             builder: (context, state) {
               return BlocBuilder<MyAppBloc, MyAppState>(
                 builder: (context, state) {
@@ -127,7 +133,8 @@ class _HomePageState extends State<HomePage>
 
   void _handleVisibleZoomOutButton(double offset) {
     if (offset >= 255) {
-      if (_appBarTitle != ZoomOutButtonHomePage.scrollDown()) {
+      if (_appBarTitle !=
+          ZoomOutButtonHomePage.scrollDown(_communityModel.number ?? 0)) {
         _openScrollDownButton();
       }
     } else if (_pageScrollController.position.userScrollDirection ==
@@ -142,16 +149,19 @@ class _HomePageState extends State<HomePage>
   }
 
   void _openScrollUpButton() {
-    if (_appBarTitle != ZoomOutButtonHomePage.scrollUp()) {
+    if (_appBarTitle !=
+        ZoomOutButtonHomePage.scrollUp(_communityModel.number ?? 0)) {
       setState(() {
-        _appBarTitle = ZoomOutButtonHomePage.scrollUp();
+        _appBarTitle =
+            ZoomOutButtonHomePage.scrollUp(_communityModel.number ?? 0);
       });
     }
   }
 
   void _openScrollDownButton() {
     setState(() {
-      _appBarTitle = ZoomOutButtonHomePage.scrollDown();
+      _appBarTitle =
+          ZoomOutButtonHomePage.scrollDown(_communityModel.number ?? 0);
     });
   }
 
@@ -172,7 +182,9 @@ class _HomePageState extends State<HomePage>
   void _onCommunityPressed({required BuildContext context}) {
     _showTopicModal(
       context: context,
-      child: const CreateCommunityPostModal(),
+      child: CreateCommunityPostModal(
+        lengthOfCommunityList: _communityModel.number ?? 0,
+      ),
     );
     _changeTopic(topicSymbol: TopicSymbol.community, context: context);
   }

@@ -21,7 +21,10 @@ import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:uuid/uuid.dart';
 
 class CreateCommunityPostModal extends BaseWidget {
-  const CreateCommunityPostModal({super.key});
+  final int lengthOfCommunityList;
+
+  const CreateCommunityPostModal(
+      {super.key, super.child, required this.lengthOfCommunityList});
 
   @override
   BaseWidgetState createState() => _CreateCommunityPostModalState();
@@ -171,10 +174,12 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
               tags: _listTag,
               image: imageUrl,
               authorId: sharePreference.getUserId(),
-              id: const Uuid().v4(),
+              id: "${(widget as CreateCommunityPostModal).lengthOfCommunityList + 1}_${const Uuid().v4()}",
               clap: 0,
               authorName: userInfo!.userName!,
             ),
+            number:
+                (widget as CreateCommunityPostModal).lengthOfCommunityList + 1,
           ),
         );
   }

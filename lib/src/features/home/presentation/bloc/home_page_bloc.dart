@@ -8,6 +8,7 @@ import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/services/date_time_service.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
+import 'package:plant_market/src/features/home/data/models/community_model.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
 import 'package:plant_market/src/features/home/domain/use_cases/community_usecase.dart';
@@ -29,8 +30,21 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     on<HomePageCreateCommunityPost>(_createCommunityPost);
     on<HomePagePostCommunityPostImage>(_postCommunityPostImage);
     on<HomePageGetListCommunityPost>(_getListCommunityPost);
+    on<HomePageGetCommunityInformation>(_getCommunityInformation);
     add(HomePageDeterminePosition());
     add(const HomePageGetListCommunityPost(num: 5));
+    add(HomePageGetCommunityInformation());
+  }
+
+  Future<void> _getCommunityInformation(HomePageGetCommunityInformation event,
+      Emitter<HomePageState> emit) async {
+    try {
+      final communityModel = await communityUseCase.getCommunityInformation();
+
+      emit(HomePageGetCommunityInfoSuccess(communityModel: communityModel));
+    } catch (e) {
+      emit(HomePageFailure(message: e.toString()));
+    }
   }
 
   Future<void> _getListCommunityPost(
@@ -50,7 +64,9 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       HomePageCreateCommunityPost event, Emitter<HomePageState> emit) async {
     try {
       await communityUseCase.createCommunityPost(
-          communityPostModel: event.communityPostModel);
+        communityPostModel: event.communityPostModel,
+        number: event.number,
+      );
       emit(HomePageCreateCommunityPostSuccess());
     } catch (e) {
       emit(HomePageFailure(message: e.toString()));

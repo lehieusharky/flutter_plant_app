@@ -54,19 +54,26 @@ final class HomePagePostCommunityPostImage extends HomePageEvent {
 
 final class HomePageCreateCommunityPost extends HomePageEvent {
   final CommunityPostModel communityPostModel;
+  final int number;
 
-  const HomePageCreateCommunityPost({required this.communityPostModel});
+  const HomePageCreateCommunityPost({
+    required this.communityPostModel,
+    required this.number,
+  });
 
   @override
-  List<Object> get props => [communityPostModel];
+  List<Object> get props => [communityPostModel, number];
 }
 
 final class HomePageGetListCommunityPost extends HomePageEvent {
   final int num;
 
-  const HomePageGetListCommunityPost(
-      {required this.num});
+  const HomePageGetListCommunityPost({required this.num});
 
   @override
-  List<Object> get props => [ num];
+  List<Object> get props => [num];
+}
+
+final class HomePageGetCommunityInformation extends HomePageEvent {
+  
 }

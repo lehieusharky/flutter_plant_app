@@ -70,7 +70,7 @@ class _UserPageState extends BaseWidgetState
             },
             builder: (context, state) {
               return Stack(
-                children: [ 
+                children: [
                   // const BackGroundContainer(),
                   NestedScrollView(
                     controller: _nestedController,
@@ -152,6 +152,7 @@ class _UserPageState extends BaseWidgetState
       child: CreateTimelineModal(
         updateTimeLine: (TimeLineModel timeLineModel) =>
             _updateTimeLine(timeLineModel),
+        currentLengthOfListTimeLine: _listTimeLineModel.length,
       ),
     );
   }

@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_divider.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_seperator.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
+import 'package:plant_market/src/theme/color_theme.dart';
 
 class CommunityPostDetails extends StatelessWidget {
   final CommunityPostModel communityPostModel;
@@ -35,11 +38,16 @@ class CommunityPostDetails extends StatelessWidget {
             ),
             const CustomDivider(),
             context.sizedBox(height: 5),
-            CustomCatchedNetWorkImage(
-              imageUrl: communityPostModel.image,
-              width: context.width,
-              height: context.sizeHeight(400),
-              borderRadius: context.sizeWidth(20),
+            Stack(
+              children: [
+                CustomCatchedNetWorkImage(
+                  imageUrl: communityPostModel.image,
+                  width: context.width,
+                  height: context.sizeHeight(400),
+                  borderRadius: context.sizeWidth(10),
+                ),
+                const CustomHeartButton(),
+              ],
             ),
             context.sizedBox(height: 5),
             SizedBox(
@@ -68,6 +76,14 @@ class CommunityPostDetails extends StatelessWidget {
               communityPostModel.description,
               style: theme(context).textTheme.titleMedium,
             ),
+            context.sizedBox(height: 10),
+            CustomButton.send(
+              context: context,
+              onPressed: () {},
+              title: 'Luu bai viet',
+              backgroundColor: colorTheme.get2DDA93,
+            ),
+            context.sizedBox(height: 10),
           ],
         ),
       ),

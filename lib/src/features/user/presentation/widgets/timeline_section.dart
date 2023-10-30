@@ -61,13 +61,19 @@ class _TimeLineSectionState extends BaseWidgetState
                           duration: const Duration(milliseconds: 2500),
                           child: TimeLineItem(
                             image: (widget as TimeLineSection)
-                                .listTimeLineModel[index]
+                                .listTimeLineModel
+                                .reversed
+                                .toList()[index]
                                 .image,
                             title: (widget as TimeLineSection)
-                                .listTimeLineModel[index]
+                                .listTimeLineModel
+                                .reversed
+                                .toList()[index]
                                 .description,
                             description: (widget as TimeLineSection)
-                                .listTimeLineModel[index]
+                                .listTimeLineModel
+                                .reversed
+                                .toList()[index]
                                 .createAt,
                           ),
                         ),

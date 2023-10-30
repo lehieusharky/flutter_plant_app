@@ -5,6 +5,7 @@ import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
+import 'package:plant_market/src/features/home/data/models/community_model.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/domain/repositories/community_repository.dart';
 
@@ -13,8 +14,9 @@ CommunityUseCase get communityUseCase => injector.get<CommunityUseCase>();
 abstract class CommunityUseCase {
   Future<String?> postCommunityPostImage({required File imageFile});
   Future<void> createCommunityPost(
-      {required CommunityPostModel communityPostModel});
+      {required CommunityPostModel communityPostModel, required int number});
   Future<List<CommunityPostModel>> getListCommunityPost({required int num});
+  Future<CommunityModel> getCommunityInformation();
 }
 
 @Injectable(as: CommunityUseCase)
@@ -48,10 +50,11 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
 
   @override
   Future<void> createCommunityPost(
-      {required CommunityPostModel communityPostModel}) async {
+      {required CommunityPostModel communityPostModel,
+      required int number}) async {
     try {
       final result = await _communityRepository.createCommunityPost(
-          communityPostModel: communityPostModel);
+          communityPostModel: communityPostModel, number: number);
       return result.fold(
         (failure) => Logger().e('Create post failed ${failure.message}'),
         (succcess) => Logger().d('Create post success'),
@@ -72,6 +75,22 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
           return [];
         },
         (listCommunityPost) => listCommunityPost,
+      );
+    } catch (e) {
+      throw CommunityFailure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<CommunityModel> getCommunityInformation() async {
+    try {
+      final result = await _communityRepository.getCommunityInformation();
+      return result.fold(
+        (failure) {
+          Logger().e('get community info failed: ${failure.message}');
+          return const CommunityModel();
+        },
+        (communityModel) => communityModel,
       );
     } catch (e) {
       throw CommunityFailure(message: e.toString());

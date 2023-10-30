@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/community_post_details.dart';
-import 'package:plant_market/src/theme/text_theme.dart';
 
 class CommunityPostItem extends StatelessWidget {
   final CommunityPostModel communityPostModel;
@@ -25,28 +26,44 @@ class CommunityPostItem extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Stack(
-                alignment: Alignment.bottomLeft,
+                alignment: Alignment.bottomCenter,
                 children: [
-                  CustomCatchedNetWorkImage(
-                    width: context.sizeWidth(250),
-                    height: context.sizeHeight(320),
-                    opacity: 0.7,
-                    imageUrl: communityPostModel.image,
+                  Stack(
+                    alignment: Alignment.topRight,
+                    children: [
+                      CustomCatchedNetWorkImage(
+                        width: context.sizeWidth(250),
+                        height: context.sizeHeight(320),
+                        imageUrl: communityPostModel.image,
+                      ),
+                      const CustomHeartButton(),
+                    ],
                   ),
                   Padding(
-                    padding: context.padding(horizontal: 5),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildTitle(context),
-                        context.sizedBox(height: 3),
-                        context.sizedBox(height: 3),
-                        _buildDateTime(context),
-                        _buildAuthor(context),
-                        context.sizedBox(height: 3),
-                        _buildTag(context),
-                      ],
+                    padding: context.padding(horizontal: 5, vertical: 5),
+                    child: Container(
+                      padding: context.padding(all: 5),
+                      width: context.sizeWidth(240),
+                      height: context.sizeHeight(140),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(5),
+                        color: Theme.of(context)
+                            .scaffoldBackgroundColor
+                            .withOpacity(0.7),
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          _buildTitle(context),
+                          context.sizedBox(height: 5),
+                          _buildDateTime(context),
+                          context.sizedBox(height: 3),
+                          _buildAuthor(context),
+                          context.sizedBox(height: 3),
+                          _buildTag(context),
+                        ],
+                      ),
                     ),
                   )
                 ],
@@ -58,13 +75,12 @@ class CommunityPostItem extends StatelessWidget {
     );
   }
 
-  
-
   Widget _buildTitle(BuildContext context) {
     return Text(
       communityPostModel.title,
       maxLines: 2,
-      style: AppTextTheme.darkTheme(context)
+      style: theme(context)
+          .textTheme
           .titleMedium!
           .copyWith(fontWeight: FontWeight.w600, fontSize: 18),
       overflow: TextOverflow.ellipsis,
@@ -74,7 +90,7 @@ class CommunityPostItem extends StatelessWidget {
   Widget _buildAuthor(BuildContext context) {
     return Text(
       communityPostModel.authorName,
-      style: AppTextTheme.darkTheme(context).titleSmall!.copyWith(),
+      style: theme(context).textTheme.titleSmall!.copyWith(),
       overflow: TextOverflow.ellipsis,
     );
   }
@@ -87,12 +103,12 @@ class CommunityPostItem extends StatelessWidget {
         Icon(
           Icons.watch_later_outlined,
           size: context.sizeWidth(15),
-          color: AppTextTheme.darkTheme(context).titleSmall!.color,
+          color: theme(context).textTheme.titleSmall!.color,
         ),
         context.sizedBox(width: 3),
         Text(
           '01/10/2023',
-          style: AppTextTheme.darkTheme(context).titleSmall!.copyWith(),
+          style: theme(context).textTheme.titleSmall!.copyWith(),
           overflow: TextOverflow.ellipsis,
         ),
       ],
@@ -110,7 +126,7 @@ class CommunityPostItem extends StatelessWidget {
           itemBuilder: (context, index) {
             return Text(
               communityPostModel.tags[index],
-              style: AppTextTheme.darkTheme(context).titleSmall,
+              style: theme(context).textTheme.titleSmall,
             );
           }),
     );
