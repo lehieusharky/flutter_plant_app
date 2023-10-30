@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/community_post_details.dart';
+import 'package:plant_market/src/theme/text_theme.dart';
 
 class CommunityPostItem extends StatelessWidget {
   final CommunityPostModel communityPostModel;
@@ -27,10 +29,16 @@ class CommunityPostItem extends StatelessWidget {
               Stack(
                 alignment: Alignment.bottomCenter,
                 children: [
-                  CustomCatchedNetWorkImage(
-                    width: context.sizeWidth(250),
-                    height: context.sizeHeight(320),
-                    imageUrl: communityPostModel.image,
+                  Stack(
+                    alignment: Alignment.topRight,
+                    children: [
+                      CustomCatchedNetWorkImage(
+                        width: context.sizeWidth(250),
+                        height: context.sizeHeight(320),
+                        imageUrl: communityPostModel.image,
+                      ),
+                      const CustomHeartButton(),
+                    ],
                   ),
                   Padding(
                     padding: context.padding(horizontal: 5, vertical: 5),
@@ -49,7 +57,7 @@ class CommunityPostItem extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           _buildTitle(context),
-                          context.sizedBox(height: 3),
+                          context.sizedBox(height: 5),
                           _buildDateTime(context),
                           context.sizedBox(height: 3),
                           _buildAuthor(context),

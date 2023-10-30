@@ -42,15 +42,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
           ..add(ShakeAnimationGetMusicPlayList(audioPlayer: player)),
         child: BlocConsumer<ShakeAnimationBloc, ShakeAnimationState>(
           listener: (context, state) {
-            if (state is ShakeAnimationGetMusicPlayListSuccess) {
-              final indexMusic =
-                  _getRandomIndexMusicUrl(musicPlayList: state.musicPlayList);
-              Uri musicUrl = Uri.parse(state.musicPlayList[indexMusic]);
-              setState(() {
-                _musicName = _getMusicNameFromUrl(musicUrl: musicUrl);
-              });
-              _setMusicUrl(musicUrl: state.musicPlayList[indexMusic]);
-            }
+            _handleGetMusicPlayListState(state);
           },
           builder: (context, state) {
             return Stack(
@@ -121,6 +113,18 @@ class _ShakeAnimationPageState extends BaseWidgetState {
         ),
       ),
     );
+  }
+
+  void _handleGetMusicPlayListState(ShakeAnimationState state) {
+    if (state is ShakeAnimationGetMusicPlayListSuccess) {
+      final indexMusic =
+          _getRandomIndexMusicUrl(musicPlayList: state.musicPlayList);
+      Uri musicUrl = Uri.parse(state.musicPlayList[indexMusic]);
+      setState(() {
+        _musicName = _getMusicNameFromUrl(musicUrl: musicUrl);
+      });
+      _setMusicUrl(musicUrl: state.musicPlayList[indexMusic]);
+    }
   }
 
   void _countDown() {
