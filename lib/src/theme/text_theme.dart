@@ -13,7 +13,7 @@ class AppTextTheme {
         displayMedium: GoogleFonts.lato(
           fontSize: context.sizeWidth(85),
           fontWeight: FontWeight.w400,
-          color: colorTheme.getFFFFFF,
+          color: colorTheme.get495566,
         ),
         displaySmall: GoogleFonts.lato(
           fontSize: context.sizeWidth(50),
