@@ -15,4 +15,10 @@ abstract class CommunityRepository {
       getListCommunityPost({required int num});
 
   Future<Either<CommunityFailure, CommunityModel>> getCommunityInformation();
+
+  Future<Either<CommunityFailure, void>> addToFavoritePost(
+      {required String communityPostId});
+
+  Future<Either<CommunityFailure, void>> removeFromFavoritePost(
+      {required String communityPostId});
 }

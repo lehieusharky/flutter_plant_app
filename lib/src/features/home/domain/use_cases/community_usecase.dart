@@ -13,10 +13,17 @@ CommunityUseCase get communityUseCase => injector.get<CommunityUseCase>();
 
 abstract class CommunityUseCase {
   Future<String?> postCommunityPostImage({required File imageFile});
+
   Future<void> createCommunityPost(
       {required CommunityPostModel communityPostModel, required int number});
+
   Future<List<CommunityPostModel>> getListCommunityPost({required int num});
+
   Future<CommunityModel> getCommunityInformation();
+
+  Future<void> addToFavoritePost({required String communityPostId});
+
+  Future<void> removeFromFavoritePost({required String communityPostId});
 }
 
 @Injectable(as: CommunityUseCase)
@@ -91,6 +98,36 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
           return const CommunityModel();
         },
         (communityModel) => communityModel,
+      );
+    } catch (e) {
+      throw CommunityFailure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> addToFavoritePost({required String communityPostId}) async {
+    try {
+      final result = await _communityRepository.addToFavoritePost(
+          communityPostId: communityPostId);
+      return result.fold(
+        (failure) => Logger()
+            .e('add favorite community post  failed: ${failure.message}'),
+        (success) => Logger().e('add favorite community post  success: '),
+      );
+    } catch (e) {
+      throw CommunityFailure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> removeFromFavoritePost({required String communityPostId}) async {
+    try {
+      final result = await _communityRepository.removeFromFavoritePost(
+          communityPostId: communityPostId);
+      return result.fold(
+        (failure) => Logger()
+            .e('remove favorite community post  failed: ${failure.message}'),
+        (success) => Logger().e('remove favorite community post  success: '),
       );
     } catch (e) {
       throw CommunityFailure(message: e.toString());

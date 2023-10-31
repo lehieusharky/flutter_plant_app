@@ -75,6 +75,7 @@ class UserDataSourceImpl implements UserDataSource {
       listPostId: const [],
       listPlantName: const ["Example plant"],
       selectedPlantName: 'Example plant',
+      listFavoriteCommunityPost: const [],
     );
   }
 }

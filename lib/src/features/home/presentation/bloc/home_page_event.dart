@@ -74,6 +74,20 @@ final class HomePageGetListCommunityPost extends HomePageEvent {
   List<Object> get props => [num];
 }
 
-final class HomePageGetCommunityInformation extends HomePageEvent {
-  
+final class HomePageGetCommunityInformation extends HomePageEvent {}
+
+final class HomePageAddFavoriteCommunityPost extends HomePageEvent {
+  final String communityPostId;
+
+  const HomePageAddFavoriteCommunityPost({required this.communityPostId});
+  @override
+  List<Object> get props => [communityPostId];
+}
+
+final class HomePageRemoveFavoriteCommunityPost extends HomePageEvent {
+  final String communityPostId;
+
+  const HomePageRemoveFavoriteCommunityPost({required this.communityPostId});
+  @override
+  List<Object> get props => [communityPostId];
 }

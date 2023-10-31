@@ -9,12 +9,15 @@ class UserEntity extends Equatable {
   final Role role;
   final List<String> listPostId;
   final List<String> listPlantName;
+  final List<String> listFavoriteCommunityPost;
+
   final String selectedPlantName;
 
   const UserEntity({
     required this.id,
     this.role = Role.regular,
     required this.createAt,
+    required this.listFavoriteCommunityPost,
     required this.selectedPlantName,
     this.userName,
     this.email,
