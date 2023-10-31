@@ -9,6 +9,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_b
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_title.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
 import 'package:plant_market/src/features/home/data/models/community_model.dart';
+import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/app_bar_home_page.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/create_community_post_modal.dart';

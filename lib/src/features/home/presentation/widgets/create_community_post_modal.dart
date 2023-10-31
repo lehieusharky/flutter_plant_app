@@ -23,9 +23,15 @@ import 'package:uuid/uuid.dart';
 
 class CreateCommunityPostModal extends BaseWidget {
   final int lengthOfCommunityList;
+  final void Function(CommunityPostModel communityPostModel)
+      updateListCommunityPostModel;
 
-  const CreateCommunityPostModal(
-      {super.key, super.child, required this.lengthOfCommunityList});
+  const CreateCommunityPostModal({
+    super.key,
+    super.child,
+    required this.lengthOfCommunityList,
+    required this.updateListCommunityPostModel,
+  });
 
   @override
   BaseWidgetState createState() => _CreateCommunityPostModalState();
@@ -54,6 +60,7 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
             }
 
             if (state is HomePageCreateCommunityPostSuccess) {
+              (widget as CreateCommunityPostModal).updateListCommunityPostModel(state.communityPostModel);
               CustomSnakBar.showSnackbar(
                 context: context,
                 message: 'Create community post success',

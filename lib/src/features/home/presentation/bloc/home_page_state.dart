@@ -78,7 +78,13 @@ final class HomePagePostCommunityPostImageSuccess extends HomePageState {
   List<Object> get props => [imageUrl];
 }
 
-final class HomePageCreateCommunityPostSuccess extends HomePageState {}
+final class HomePageCreateCommunityPostSuccess extends HomePageState {
+  final CommunityPostModel communityPostModel;
+
+  const HomePageCreateCommunityPostSuccess({required this.communityPostModel});
+  @override
+  List<Object> get props => [communityPostModel];
+}
 
 final class HomePageGetCommunityPostListSuccess extends HomePageState {
   final List<CommunityPostModel> listCommunityPost;
@@ -103,4 +109,5 @@ final class HomePageGetCommunityInfoSuccess extends HomePageState {
 }
 
 final class HomePageAddFavoriteCommunityPostSuccess extends HomePageState {}
+
 final class HomePageRemoveFavoriteCommunityPostSuccess extends HomePageState {}

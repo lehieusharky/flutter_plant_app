@@ -4,6 +4,7 @@ import 'package:plant_market/src/core/data/defines/constants/image_constant.dart
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
+import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/create_community_post_modal.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/gallery_modal.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/plant_identity_modal.dart';
@@ -13,12 +14,15 @@ class ZoomOutButtonHomePage extends StatelessWidget {
   final Offset begin;
   final Offset end;
   final int lengthOfCommunityList;
+  final void Function(CommunityPostModel communityPostModel)
+      updateListCommunityPostModel;
 
   const ZoomOutButtonHomePage({
     super.key,
     required this.begin,
     required this.end,
     required this.lengthOfCommunityList,
+    required this.updateListCommunityPostModel,
   });
 
   @override
@@ -42,6 +46,7 @@ class ZoomOutButtonHomePage extends StatelessWidget {
             context: context,
             child: CreateCommunityPostModal(
               lengthOfCommunityList: lengthOfCommunityList,
+              updateListCommunityPostModel: updateListCommunityPostModel,
             ),
           ),
         ),
@@ -58,19 +63,27 @@ class ZoomOutButtonHomePage extends StatelessWidget {
     );
   }
 
-  factory ZoomOutButtonHomePage.scrollDown(int lengthOfCommunityList) {
+  factory ZoomOutButtonHomePage.scrollDown(
+      int lengthOfCommunityList,
+      final void Function(CommunityPostModel communityPostModel)
+          updateListCommunityPostModel) {
     return ZoomOutButtonHomePage(
       begin: const Offset(0, 0.5),
       end: Offset.zero,
       lengthOfCommunityList: lengthOfCommunityList,
+      updateListCommunityPostModel: updateListCommunityPostModel,
     );
   }
 
-  factory ZoomOutButtonHomePage.scrollUp(int lengthOfCommunityList) {
+  factory ZoomOutButtonHomePage.scrollUp(
+      int lengthOfCommunityList,
+      final void Function(CommunityPostModel communityPostModel)
+          updateListCommunityPostModel) {
     return ZoomOutButtonHomePage(
       end: const Offset(0, 1),
       begin: Offset.zero,
       lengthOfCommunityList: lengthOfCommunityList,
+      updateListCommunityPostModel: updateListCommunityPostModel,
     );
   }
 
