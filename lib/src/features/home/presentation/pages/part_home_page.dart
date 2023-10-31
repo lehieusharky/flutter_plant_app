@@ -5,6 +5,7 @@ import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_see_all_button.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_title.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
 import 'package:plant_market/src/features/home/data/models/community_model.dart';
@@ -20,6 +21,7 @@ import 'package:plant_market/src/features/home/presentation/widgets/shake_animat
 import 'package:plant_market/src/features/home/presentation/widgets/row_topic_button.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/zoom_out_button_home_page.dart';
 import 'package:plant_market/src/features/my_app/presentation/bloc/my_app_bloc.dart';
+import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:sliver_tools/sliver_tools.dart';
 
 part 'home_page.dart';

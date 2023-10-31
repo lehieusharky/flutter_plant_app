@@ -31,6 +31,8 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     on<HomePagePostCommunityPostImage>(_postCommunityPostImage);
     on<HomePageGetListCommunityPost>(_getListCommunityPost);
     on<HomePageGetCommunityInformation>(_getCommunityInformation);
+    on<HomePageAddFavoriteCommunityPost>(_addFavoriteCommunityPost);
+    on<HomePageRemoveFavoriteCommunityPost>(_removeFavoriteCommunityPost);
     add(HomePageDeterminePosition());
     add(const HomePageGetListCommunityPost(num: 5));
     add(HomePageGetCommunityInformation());
@@ -40,8 +42,34 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       Emitter<HomePageState> emit) async {
     try {
       final communityModel = await communityUseCase.getCommunityInformation();
+      emit(HomePageInitial());
 
       emit(HomePageGetCommunityInfoSuccess(communityModel: communityModel));
+    } catch (e) {
+      emit(HomePageFailure(message: e.toString()));
+    }
+  }
+
+  Future<void> _addFavoriteCommunityPost(HomePageAddFavoriteCommunityPost event,
+      Emitter<HomePageState> emit) async {
+    try {
+      await communityUseCase.addToFavoritePost(
+          communityPostId: event.communityPostId);
+      emit(HomePageInitial());
+      emit(HomePageAddFavoriteCommunityPostSuccess());
+    } catch (e) {
+      emit(HomePageFailure(message: e.toString()));
+    }
+  }
+
+  Future<void> _removeFavoriteCommunityPost(
+      HomePageRemoveFavoriteCommunityPost event,
+      Emitter<HomePageState> emit) async {
+    try {
+      await communityUseCase.removeFromFavoritePost(
+          communityPostId: event.communityPostId);
+
+      emit(HomePageRemoveFavoriteCommunityPostSuccess());
     } catch (e) {
       emit(HomePageFailure(message: e.toString()));
     }

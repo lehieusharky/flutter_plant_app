@@ -59,4 +59,28 @@ class CommunityRepositoryImpl implements CommunityRepository {
       return Left(CommunityFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<CommunityFailure, void>> addToFavoritePost(
+      {required String communityPostId}) async {
+    try {
+      final result = await _communityDataSource.addToFavoritePost(
+          communityPostId: communityPostId);
+      return Right(result);
+    } catch (e) {
+      return Left(CommunityFailure(message: e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<CommunityFailure, void>> removeFromFavoritePost(
+      {required String communityPostId}) async {
+    try {
+      final result = await _communityDataSource.removeFromFavoritePost(
+          communityPostId: communityPostId);
+      return Right(result);
+    } catch (e) {
+      return Left(CommunityFailure(message: e.toString()));
+    }
+  }
 }

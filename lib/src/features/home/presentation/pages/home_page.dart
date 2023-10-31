@@ -37,6 +37,20 @@ class _HomePageState extends State<HomePage>
               if (state is HomePageGetCommunityInfoSuccess) {
                 _communityModel = state.communityModel;
               }
+              if (state is HomePageAddFavoriteCommunityPostSuccess) {
+                CustomSnakBar.showSnackbar(
+                  context: context,
+                  message: 'Add to favorite success',
+                  backgroundColor: colorTheme.get2DDA93,
+                );
+              }
+              if (state is HomePageRemoveFavoriteCommunityPostSuccess) {
+                CustomSnakBar.showSnackbar(
+                  context: context,
+                  message: 'Remove from favorite success',
+                  backgroundColor: colorTheme.get2DDA93,
+                );
+              }
             },
             builder: (context, state) {
               return BlocBuilder<MyAppBloc, MyAppState>(

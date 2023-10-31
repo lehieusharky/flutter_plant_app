@@ -101,3 +101,6 @@ final class HomePageGetCommunityInfoSuccess extends HomePageState {
   @override
   List<Object> get props => [communityModel];
 }
+
+final class HomePageAddFavoriteCommunityPostSuccess extends HomePageState {}
+final class HomePageRemoveFavoriteCommunityPostSuccess extends HomePageState {}

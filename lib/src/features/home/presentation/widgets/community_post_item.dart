@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
+import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
+import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/community_post_details.dart';
 
 class CommunityPostItem extends StatelessWidget {
@@ -36,7 +39,17 @@ class CommunityPostItem extends StatelessWidget {
                         height: context.sizeHeight(320),
                         imageUrl: communityPostModel.image,
                       ),
-                      const CustomHeartButton(),
+                      CustomHeartButton(
+                        isLiked: _isLiked(),
+                        onPressed: (status) async {
+                          if (status) {
+                            _removeFavoriteCommunityPost(context);
+                          } else {
+                            _addFavoriteCommunityPost(context);
+                          }
+                          return !status;
+                        },
+                      ),
                     ],
                   ),
                   Padding(
@@ -73,6 +86,20 @@ class CommunityPostItem extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  bool _isLiked() {
+    return userInfo!.listFavoriteCommunityPost.contains(communityPostModel.id);
+  }
+
+  void _addFavoriteCommunityPost(BuildContext context) {
+    context.read<HomePageBloc>().add(HomePageAddFavoriteCommunityPost(
+        communityPostId: communityPostModel.id));
+  }
+
+  void _removeFavoriteCommunityPost(BuildContext context) {
+    context.read<HomePageBloc>().add(HomePageRemoveFavoriteCommunityPost(
+        communityPostId: communityPostModel.id));
   }
 
   Widget _buildTitle(BuildContext context) {
@@ -138,6 +165,7 @@ class CommunityPostItem extends StatelessWidget {
       height: context.height * 0.9,
       child: CommunityPostDetails(
         communityPostModel: communityPostModel,
+        addFavoriteCommunityPost: () => _addFavoriteCommunityPost(context),
       ),
     );
   }
