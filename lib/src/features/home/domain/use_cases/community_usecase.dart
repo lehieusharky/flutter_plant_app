@@ -24,6 +24,11 @@ abstract class CommunityUseCase {
   Future<void> addToFavoritePost({required String communityPostId});
 
   Future<void> removeFromFavoritePost({required String communityPostId});
+
+  Future<List<CommunityPostModel>> getListCommunitySearchResult({
+    required GetListCommunitySearchResultParam
+        getListCommunitySearchResultParam,
+  });
 }
 
 @Injectable(as: CommunityUseCase)
@@ -128,6 +133,30 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
         (failure) => Logger()
             .e('remove favorite community post  failed: ${failure.message}'),
         (success) => Logger().e('remove favorite community post  success: '),
+      );
+    } catch (e) {
+      throw CommunityFailure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<List<CommunityPostModel>> getListCommunitySearchResult({
+    required GetListCommunitySearchResultParam
+        getListCommunitySearchResultParam,
+  }) async {
+    try {
+      final result = await _communityRepository.getListCommunitySearchResult(
+        limit: getListCommunitySearchResultParam.limit,
+        keyWord: getListCommunitySearchResultParam.keyWord,
+        startAt: getListCommunitySearchResultParam.startAt,
+      );
+      return result.fold(
+        (failure) {
+          Logger().e('get list search community  failed: ${failure.message}');
+
+          return [];
+        },
+        (listCommunityResult) => listCommunityResult,
       );
     } catch (e) {
       throw CommunityFailure(message: e.toString());

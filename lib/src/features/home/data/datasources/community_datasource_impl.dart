@@ -134,4 +134,29 @@ class CommunityDataSourceImpl implements CommunityDataSource {
       throw Exception(e);
     }
   }
+
+  @override
+  Future<List<CommunityPostModel>> getListCommunitySearchResult({
+    required int limit,
+    String? keyWord,
+    int? startAt,
+  }) async {
+    try {
+      QuerySnapshot postsCollection = await firebaseFirestore
+          .collection(AppConstant.communityPostsCollection)
+          .doc('posts')
+          .collection('list_posts')
+          .limit(limit)
+          .where("title", isGreaterThanOrEqualTo: keyWord)
+          .get();
+
+      final listCommunityPost = postsCollection.docs.map((data) {
+        return CommunityPostModel.fromJson(data.data() as Map<String, dynamic>);
+      }).toList();
+
+      return listCommunityPost;
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }

@@ -21,4 +21,11 @@ abstract class CommunityRepository {
 
   Future<Either<CommunityFailure, void>> removeFromFavoritePost(
       {required String communityPostId});
+
+  Future<Either<CommunityFailure, List<CommunityPostModel>>>
+      getListCommunitySearchResult({
+    required int limit,
+    String? keyWord,
+    int? startAt,
+  });
 }

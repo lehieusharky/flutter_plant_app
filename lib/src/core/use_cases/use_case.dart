@@ -21,6 +21,21 @@ class PostImageToPublicGalleryParams extends NoParams {
   List<Object> get props => [imageFile];
 }
 
+class GetListCommunitySearchResultParam extends NoParams {
+  final int limit;
+  final String? keyWord;
+  final int? startAt;
+
+  GetListCommunitySearchResultParam({
+    required this.limit,
+    this.keyWord,
+    this.startAt,
+  });
+
+  @override
+  List<Object> get props => [limit];
+}
+
 class TimeLineParams extends NoParams {
   final TimeLineModel timeLineModel;
 

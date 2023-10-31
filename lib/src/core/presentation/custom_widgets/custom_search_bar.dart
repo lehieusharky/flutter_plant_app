@@ -1,75 +1,51 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_form_field.dart';
-import 'package:plant_market/src/router/router_path.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
+import 'package:plant_market/src/theme/theme_manager.dart';
 
-class CustomSearchBar extends StatefulWidget {
-  final TextEditingController searchController;
+class CustomSearchbar extends StatefulWidget {
+  final TextEditingController controller;
   final String hintText;
-  final bool? autoFocus;
-
-  const CustomSearchBar({
+  const CustomSearchbar({
     super.key,
-    required this.searchController,
+    required this.controller,
     required this.hintText,
-    this.autoFocus,
   });
 
   @override
-  State<CustomSearchBar> createState() => _CustomSearchBarState();
+  State<CustomSearchbar> createState() => _CustomSearchbarState();
 }
 
-class _CustomSearchBarState extends State<CustomSearchBar> {
-  Color _iconColor = colorTheme.getD2D2D2;
-
-  void _setIconFocus() {
-    setState(() {
-      _showSendButton = true;
-      _iconColor = colorTheme.get2DDA93;
-    });
-  }
-
-  void _setIconUnFocus() {
-    setState(() {
-      _showSendButton = false;
-      _iconColor = colorTheme.getD2D2D2;
-    });
-  }
-
-  bool _showSendButton = false;
-
+class _CustomSearchbarState extends State<CustomSearchbar> {
   @override
   Widget build(BuildContext context) {
-    return CustomTextFormField.search(
-      autoFocus: widget.autoFocus ?? true,
-      suffixIcon: _showSendButton ? _buildSuffixIcon() : const SizedBox(),
-      prefixIcon: Icon(
+    return SearchBar(
+      leading: Icon(
         Icons.search,
         size: context.sizeWidth(25),
-        color: _iconColor,
+        color: theme(context).textTheme.titleMedium!.color,
       ),
-      onSubmit: (value) {},
-      onTap: () => _setIconFocus(),
-      onTapOutSide: (value) {
-        _setIconUnFocus();
-        FocusManager.instance.primaryFocus!.unfocus();
-      },
-      searchController: widget.searchController,
-      context: context,
       hintText: widget.hintText,
-    );
-  }
-
-  Widget _buildSuffixIcon() {
-    return InkWell(
-      onTap: () => context.go(RouterPath.searchPage),
-      child: Icon(
-        Icons.send_rounded,
-        size: context.sizeWidth(25),
-        color: _iconColor,
-      ),
+      hintStyle: MaterialStateProperty.all(theme(context)
+          .textTheme
+          .titleMedium!
+          .copyWith(
+              color: theme(context)
+                  .textTheme
+                  .titleMedium!
+                  .color!
+                  .withOpacity(0.7))),
+      shadowColor: MaterialStateProperty.all(ThemeManager.shadowButton()),
+      shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+      controller: widget.controller,
+      backgroundColor: MaterialStateProperty.resolveWith((states) {
+        if (states.contains(MaterialState.pressed)) {
+          return ThemeManager.backgroundButton().withOpacity(0.9);
+        }
+        return ThemeManager.backgroundButton();
+      }),
+      textStyle: MaterialStateProperty.all(theme(context).textTheme.titleLarge),
     );
   }
 }

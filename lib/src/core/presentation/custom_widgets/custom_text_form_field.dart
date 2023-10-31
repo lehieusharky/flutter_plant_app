@@ -71,7 +71,7 @@ class CustomTextFormField extends StatefulWidget {
   }) {
     return CustomTextFormField(
       autoFocus: autoFocus,
-      height: context.sizeHeight(80),
+      // height: context.sizeHeight(80),
       borderRadius: context.sizeWidth(10),
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,

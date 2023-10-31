@@ -18,4 +18,10 @@ abstract class CommunityDataSource {
   Future<void> addToFavoritePost({required String communityPostId});
 
   Future<void> removeFromFavoritePost({required String communityPostId});
+
+  Future<List<CommunityPostModel>> getListCommunitySearchResult({
+    required int limit,
+    String? keyWord,
+    int? startAt,
+  });
 }

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/data/defines/enum/plant_topic.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_search_bar.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/popular_topic/presentation/bloc/popular_topic_bloc.dart';
@@ -46,14 +45,10 @@ class _PopularTopicPageState extends BaseWidgetState {
             }
           },
           builder: (context, state) {
-            return Column(
+            return const Column(
               children: [
-                CustomSearchBar(
-                  searchController: _searchController,
-                  autoFocus: false,
-                  hintText: 'Tim tai lieu bang tieng anh',
-                ),
-                const Expanded(
+                Text('123'),
+                Expanded(
                   child: PlantSpecialList(),
                 ),
               ],

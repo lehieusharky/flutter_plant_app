@@ -3,9 +3,9 @@ import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/features/auth/login/presentation/pages/part_login_page.dart';
 import 'package:plant_market/src/features/auth/otp/presentation/page/otp_page.dart';
+import 'package:plant_market/src/features/community_search/presentation/pages/community_search_page.dart';
 import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/popular_topic/presentation/page/popular_topic_page.dart';
-import 'package:plant_market/src/features/search/presentation/pages/search_page.dart';
 import 'package:plant_market/src/features/shake_animation/presentation/pages/part_shake_animation_page.dart';
 import 'package:plant_market/src/router/router_transition.dart';
 
@@ -25,7 +25,7 @@ class AppRouter {
             routes: [
               GoRoute(
                 path: 'search_page',
-                builder: (context, state) => const SearchPage(),
+                builder: (context, state) => const CommunitySearchPage(),
               ),
               GoRoute(
                 path: 'popular_topic_page',
