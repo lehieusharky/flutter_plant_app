@@ -49,7 +49,7 @@ class CommunityPostItem extends StatelessWidget {
                         borderRadius: BorderRadius.circular(5),
                         color: Theme.of(context)
                             .scaffoldBackgroundColor
-                            .withOpacity(0.7),
+                            .withOpacity(0.8),
                       ),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,

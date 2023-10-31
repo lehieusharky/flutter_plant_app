@@ -22,7 +22,7 @@ class PlantDataSourceImpl implements PlantDataSource {
       final plantSpecialListParams = {
         "key": plantApiKey,
         "q": q,
-        "page": 1,
+        "page": page,
       };
 
       final response = await HttpUtil.get(

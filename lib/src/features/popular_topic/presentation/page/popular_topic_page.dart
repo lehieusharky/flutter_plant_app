@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/data/defines/enum/plant_topic.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_search_bar.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
 import 'package:plant_market/src/features/popular_topic/presentation/bloc/popular_topic_bloc.dart';
@@ -17,6 +18,7 @@ class PopularTopicPage extends BaseWidget {
 
 class _PopularTopicPageState extends BaseWidgetState {
   late PlantTopic _plantTopic;
+  final _searchController = TextEditingController();
 
   @override
   void initState() {
@@ -32,25 +34,26 @@ class _PopularTopicPageState extends BaseWidgetState {
           ..add(
             PopularTopicChooseTopic(
                 plantSpecialListParams:
-                    PlantSpecialListParams(q: _plantTopic.getTopic),
+                    PlantSpecialListParams(q: _plantTopic.getTopic, page: 1),
                 plantDiseaseListParams:
                     PlantDiseaseListParams(q: _plantTopic.getTopic),
                 plantTopic: _plantTopic),
           ),
         child: BlocConsumer<PopularTopicBloc, PopularTopicState>(
           listener: (context, state) {
-            if (state is PopularTopicGetPlantSpecialListSuccess) {
-              Logger().d('success ');
-            }
             if (state is PopularTopicGetPlantDiseaseListSuccess) {
               Logger().d('success disease');
             }
           },
           builder: (context, state) {
-            return const Column(
+            return Column(
               children: [
-                Text('abc'),
-                Expanded(
+                CustomSearchBar(
+                  searchController: _searchController,
+                  autoFocus: false,
+                  hintText: 'Tim tai lieu bang tieng anh',
+                ),
+                const Expanded(
                   child: PlantSpecialList(),
                 ),
               ],

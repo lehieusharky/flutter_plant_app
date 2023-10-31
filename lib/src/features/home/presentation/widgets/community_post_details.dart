@@ -19,74 +19,112 @@ class CommunityPostDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-      child: Padding(
-        padding: context.padding(horizontal: 12),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                CustomTextButton.cancel(context),
-                const CustomSeperator(),
-                CustomTextButton.save(
-                    saveText: translate(context).save,
-                    context: context,
-                    onPressed: () {})
-              ],
-            ),
-            const CustomDivider(),
-            context.sizedBox(height: 5),
-            Stack(
-              children: [
-                CustomCatchedNetWorkImage(
-                  imageUrl: communityPostModel.image,
-                  width: context.width,
-                  height: context.sizeHeight(400),
-                  borderRadius: context.sizeWidth(10),
-                ),
-                const CustomHeartButton(),
-              ],
-            ),
-            context.sizedBox(height: 5),
-            SizedBox(
-              height: context.sizeHeight(30),
-              child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemCount: communityPostModel.tags.length,
-                  separatorBuilder: (context, index) =>
-                      context.sizedBox(width: 5),
-                  itemBuilder: (context, index) {
-                    return Text(
-                      communityPostModel.tags[index],
-                      style: theme(context).textTheme.titleSmall,
-                    );
-                  }),
-            ),
-            Text(
-              communityPostModel.title,
-              style: theme(context).textTheme.titleLarge!.copyWith(
-                    fontSize: context.sizeWidth(30),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              CustomTextButton.cancel(context),
+              const CustomSeperator(),
+              CustomTextButton.save(
+                  saveText: translate(context).save,
+                  context: context,
+                  onPressed: () {})
+            ],
+          ),
+          const CustomDivider(),
+          Stack(
+            children: [
+              _buildImage(context),
+              Column(
+                children: [
+                  context.sizedBox(height: 390),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: colorTheme.getFFFFFF.withOpacity(0.9),
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      ),
+                    ),
+                    child: _buildBody(context),
                   ),
-            ),
-            context.sizedBox(height: 5),
-            Text(
-              communityPostModel.description,
-              style: theme(context).textTheme.titleMedium,
-            ),
-            context.sizedBox(height: 10),
-            CustomButton.send(
+                ],
+              )
+            ],
+          ),
+          context.sizedBox(height: 20),
+          Padding(
+            padding: context.padding(horizontal: 12),
+            child: CustomButton.send(
               context: context,
               onPressed: () {},
               title: 'Luu bai viet',
               backgroundColor: colorTheme.get2DDA93,
             ),
-            context.sizedBox(height: 10),
-          ],
-        ),
+          ),
+          context.sizedBox(height: 10),
+        ],
       ),
     ));
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return Padding(
+      padding: context.padding(horizontal: 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          context.sizedBox(height: 10),
+          _buildTags(context),
+          Text(
+            communityPostModel.title,
+            style: theme(context).textTheme.titleLarge!.copyWith(
+                  fontSize: context.sizeWidth(30),
+                ),
+          ),
+          context.sizedBox(height: 5),
+          Text(
+            communityPostModel.description,
+            style: theme(context).textTheme.titleMedium,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildTags(BuildContext context) {
+    return SizedBox(
+      height: context.sizeHeight(20),
+      child: ListView.separated(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          itemCount: communityPostModel.tags.length,
+          separatorBuilder: (context, index) => context.sizedBox(width: 5),
+          itemBuilder: (context, index) {
+            return Text(
+              communityPostModel.tags[index],
+              style: theme(context).textTheme.titleSmall!.copyWith(
+                    fontSize: 16,
+                  ),
+            );
+          }),
+    );
+  }
+
+  Widget _buildImage(BuildContext context) {
+    return Stack(
+      children: [
+        CustomCatchedNetWorkImage(
+          imageUrl: communityPostModel.image,
+          width: context.width,
+          height: context.sizeHeight(450),
+          borderRadius: context.sizeWidth(5),
+        ),
+        const CustomHeartButton(),
+      ],
+    );
   }
 }

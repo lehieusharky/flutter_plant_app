@@ -24,7 +24,7 @@ class TimeLineItem extends StatelessWidget {
         children: [
           _buildBackground(context),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
                 padding: context.padding(horizontal: 8, top: 8, bottom: 5),
@@ -37,13 +37,13 @@ class TimeLineItem extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: context.padding(horizontal: 20),
+                padding: context.padding(horizontal: 20, vertical: 5),
                 child: Text(
                   title,
                   maxLines: 2,
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
-                  style: theme(context).textTheme.titleLarge,
+                  style: theme(context).textTheme.titleLarge!.copyWith(),
                 ),
               ),
             ],

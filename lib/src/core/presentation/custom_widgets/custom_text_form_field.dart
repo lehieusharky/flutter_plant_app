@@ -67,6 +67,7 @@ class CustomTextFormField extends StatefulWidget {
     void Function()? onTap,
     Widget? prefixIcon,
     bool? autoFocus,
+    required String hintText,
   }) {
     return CustomTextFormField(
       autoFocus: autoFocus,
@@ -80,7 +81,7 @@ class CustomTextFormField extends StatefulWidget {
       onTapOutSide: onTapOutSide,
       keyboardType: TextInputType.text,
       onSubmit: onSubmit,
-      hintText: translate(context).search,
+      hintText: hintText,
       backgroundColor: ThemeManager.backgroundButton(),
     );
   }
