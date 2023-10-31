@@ -27,6 +27,7 @@ dependencies:
   json_serializable: ^6.7.1
   json_annotation: ^4.8.1
   uuid: ^3.0.5
+  url_launcher: ^6.2.1
 
   # state management
   flutter_bloc: ^8.1.3
