@@ -13,6 +13,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_seperat
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
 import 'package:plant_market/src/core/utils/date_time_util.dart';
+import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/presentation/bloc/user_bloc.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/add_photo_button.dart';
@@ -145,7 +146,7 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
               description: _descriptionController.text.trim(),
               image: imageUrl,
               createAt: DateTimeUtil.yearMonthDayNow(),
-              userId: "${sharePreference.getUserId}",
+              userId: userInfo!.id,
               timeLineId:
                   "${widget.currentLengthOfListTimeLine + 1}_${const Uuid().v4()}",
             ),

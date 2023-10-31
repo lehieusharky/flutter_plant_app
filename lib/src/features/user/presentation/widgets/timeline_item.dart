@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/time_line_milestone.dart';
+import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/theme_manager.dart';
 
 class TimeLineItem extends StatelessWidget {
@@ -25,30 +27,52 @@ class TimeLineItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        TimeLineMineStone(
-          index: index,
-          isFirstItem: isFirstItem,
-          lengthOfListTimeLine: lengthOfListTimeLine,
-        ),
-        context.sizedBox(width: 5),
-        Expanded(
-          child: Stack(
-            children: [
-              _buildBackground(context),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildImage(context),
-                  _buildDesciption(context),
-                ],
-              ),
-            ],
+    return Slidable(
+      key: const ValueKey(0),
+      endActionPane: ActionPane(
+        motion: const ScrollMotion(),
+        children: [
+          SlidableAction(
+            onPressed: (context) {},
+            backgroundColor: colorTheme.get2DDA93,
+            foregroundColor: Colors.white,
+            icon: Icons.save,
+            label: 'Edit',
           ),
-        ),
-      ],
+          SlidableAction(
+            onPressed: (context) {},
+            backgroundColor: colorTheme.getFF6262,
+            foregroundColor: Colors.white,
+            icon: Icons.archive,
+            label: 'Delete',
+          ),
+        ],
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          TimeLineMineStone(
+            index: index,
+            isFirstItem: isFirstItem,
+            lengthOfListTimeLine: lengthOfListTimeLine,
+          ),
+          context.sizedBox(width: 5),
+          Expanded(
+            child: Stack(
+              children: [
+                _buildBackground(context),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _buildImage(context),
+                    _buildDesciption(context),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
