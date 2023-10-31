@@ -10,8 +10,12 @@ UserUseCase get userUseCase => injector.get<UserUseCase>();
 
 abstract class UserUseCase {
   Stream<UserModel?>? get userInformationStream;
+
   Future<bool> isExist();
+
   Future<void> createUserDataBase();
+
+  Future<void> deleteUserDataBase();
 }
 
 @Injectable(as: UserUseCase)
@@ -61,6 +65,19 @@ class UserUseCaseImpl extends UseCase<void, NoParams> implements UserUseCase {
       return result.fold(
         (failure) => false,
         (isExist) => isExist,
+      );
+    } catch (e) {
+      throw AuthDataBaseFailure(message: e.toString());
+    }
+  }
+
+  @override
+  Future<void> deleteUserDataBase() async {
+    try {
+      final result = await _userRepository.deleteUserDataBase();
+      return result.fold(
+        (failure) => Logger().e('delete account failed: ${failure.message}'),
+        (success) => Logger().e('delete account success'),
       );
     } catch (e) {
       throw AuthDataBaseFailure(message: e.toString());

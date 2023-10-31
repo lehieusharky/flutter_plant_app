@@ -78,4 +78,36 @@ class UserDataSourceImpl implements UserDataSource {
       listFavoriteCommunityPost: const [],
     );
   }
+
+  @override
+  Future<void> deleteUserDataBase() async {
+    try {
+      final userRef = firebaseFirestore
+          .collection(AppConstant.usersCollection)
+          .doc(sharePreference.getUserId());
+
+      userRef.delete();
+
+      await _deleteCollectionOfUser(collectionName: 'posts');
+
+      await _deleteCollectionOfUser(collectionName: 'timeLine');
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
+
+  Future<void> _deleteCollectionOfUser({required String collectionName}) async {
+    try {
+      var postCollection = firebaseFirestore
+          .collection(AppConstant.usersCollection)
+          .doc(sharePreference.getUserId())
+          .collection(collectionName);
+      var postSnapShots = await postCollection.get();
+      for (var doc in postSnapShots.docs) {
+        await doc.reference.delete();
+      }
+    } catch (e) {
+      throw Exception(e);
+    }
+  }
 }
