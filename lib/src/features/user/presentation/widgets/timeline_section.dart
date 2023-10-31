@@ -75,6 +75,14 @@ class _TimeLineSectionState extends BaseWidgetState
                                 .reversed
                                 .toList()[index]
                                 .createAt,
+                            index: index,
+                            isFirstItem: (widget as TimeLineSection)
+                                    .listTimeLineModel
+                                    .length ==
+                                index + 1,
+                            lengthOfListTimeLine: (widget as TimeLineSection)
+                                .listTimeLineModel
+                                .length,
                           ),
                         ),
                       ),

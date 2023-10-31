@@ -89,7 +89,12 @@ class CommunityPostItem extends StatelessWidget {
   }
 
   bool _isLiked() {
-    return userInfo!.listFavoriteCommunityPost.contains(communityPostModel.id);
+    try {
+      return userInfo!.listFavoriteCommunityPost
+          .contains(communityPostModel.id);
+    } catch (e) {
+      return false;
+    }
   }
 
   void _addFavoriteCommunityPost(BuildContext context) {

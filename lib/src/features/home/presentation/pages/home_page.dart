@@ -18,6 +18,7 @@ class _HomePageState extends State<HomePage>
   @override
   void initState() {
     super.initState();
+
     _pageScrollController.addListener(() {
       _handleOpacity(_pageScrollController.offset);
 
