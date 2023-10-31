@@ -18,7 +18,7 @@ class SearchItem extends StatelessWidget {
             height: context.sizeWidth(80),
             borderRadius: 10,
             imageUrl:
-                'https://scontent-hkg4-1.xx.fbcdn.net/v/t39.30808-6/387120876_122128939034025791_3285515382313764214_n.jpg?_nc_cat=1&ccb=1-7&_nc_sid=5f2048&_nc_ohc=kSPBpghYo9kAX8akm3q&_nc_ht=scontent-hkg4-1.xx&oh=00_AfDC80T-8pJXJpKY98oOoexPVF5B2VHnQLl37CfTPO92mw&oe=652D688C',
+                'https://scontent-hkg4-1.xx.fbcdn.net/v/t39.30808-6/379603375_122133954656002310_7008112289286133793_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeG7tg8JUz89gLcOohRPTCcsB0DVtcbxoPcHQNW1xvGg95XJjWwuxjGtoGYh1EeWBlI3h1FY8zBI3QB64PUnifzT&_nc_ohc=8UI71TbbBzEAX-KkOe_&_nc_ht=scontent-hkg4-1.xx&oh=00_AfDx6WbpmLVou_jFfsnxHU3Ima5xYXMJCxCAE5jagZn6Tg&oe=654438EE',
           ),
           context.sizedBox(width: 10),
           Expanded(

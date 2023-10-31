@@ -7,9 +7,14 @@ import 'package:plant_market/src/theme/color_theme.dart';
 
 class CustomSearchBar extends StatefulWidget {
   final TextEditingController searchController;
+  final String hintText;
+  final bool? autoFocus;
+
   const CustomSearchBar({
     super.key,
     required this.searchController,
+    required this.hintText,
+    this.autoFocus,
   });
 
   @override
@@ -38,7 +43,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField.search(
-      autoFocus: true,
+      autoFocus: widget.autoFocus ?? true,
       suffixIcon: _showSendButton ? _buildSuffixIcon() : const SizedBox(),
       prefixIcon: Icon(
         Icons.search,
@@ -53,6 +58,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
       },
       searchController: widget.searchController,
       context: context,
+      hintText: widget.hintText,
     );
   }
 

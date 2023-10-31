@@ -24,7 +24,10 @@ class _SearchPageState extends BaseWidgetState {
           Column(
             children: [
               context.sizedBox(height: 60),
-              CustomSearchBar(searchController: _searchController),
+              CustomSearchBar(
+                searchController: _searchController,
+                hintText: 'Tim kiem cac bai viet cong dong',
+              ),
               const Expanded(
                 child: ListSearchResult(),
               )
