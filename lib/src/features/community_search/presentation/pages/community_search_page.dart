@@ -27,9 +27,7 @@ class _SearchPageState extends State<CommunitySearchPage> {
               getListCommunitySearchResultParam:
                   GetListCommunitySearchResultParam(limit: 10))),
         child: BlocConsumer<CommunitySearchBloc, CommunitySearchState>(
-          listener: (context, state) {
-            // TODO: implement listener
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             return Stack(
               children: [

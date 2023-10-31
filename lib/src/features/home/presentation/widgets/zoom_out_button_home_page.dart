@@ -110,7 +110,7 @@ class ZoomOutButtonHomePage extends StatelessWidget {
   void _showTopicModal({required BuildContext context, required Widget child}) {
     CustomModal.baseModal(
       context: context,
-      height: context.height * 0.8,
+      height: context.height * 0.85,
       child: child,
     );
   }
