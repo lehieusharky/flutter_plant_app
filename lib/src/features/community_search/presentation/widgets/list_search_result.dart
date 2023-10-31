@@ -34,7 +34,7 @@ class _ListCommunitySearchResultState extends State<ListCommunitySearchResult> {
             itemCount: _listCommunityPost.length,
             itemBuilder: (context, index) {
               return SearchItem(
-                communityPostModel: _listCommunityPost[index],
+                communityPostModel: _listCommunityPost.reversed.toList()[index],
               );
             },
           );
