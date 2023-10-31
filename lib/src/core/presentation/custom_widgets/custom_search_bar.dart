@@ -6,10 +6,12 @@ import 'package:plant_market/src/theme/theme_manager.dart';
 class CustomSearchbar extends StatefulWidget {
   final TextEditingController controller;
   final String hintText;
+  final void Function() onSubmit;
   const CustomSearchbar({
     super.key,
     required this.controller,
     required this.hintText,
+    required this.onSubmit,
   });
 
   @override
@@ -26,6 +28,16 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
         color: theme(context).textTheme.titleMedium!.color,
       ),
       hintText: widget.hintText,
+      trailing: [
+        IconButton(
+          onPressed: widget.onSubmit,
+          icon: Icon(
+            Icons.send,
+            size: context.sizeWidth(25),
+            color: theme(context).textTheme.titleMedium!.color,
+          ),
+        )
+      ],
       hintStyle: MaterialStateProperty.all(theme(context)
           .textTheme
           .titleMedium!

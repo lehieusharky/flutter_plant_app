@@ -147,7 +147,8 @@ class CommunityDataSourceImpl implements CommunityDataSource {
           .doc('posts')
           .collection('list_posts')
           .limit(limit)
-          .where("title", isGreaterThanOrEqualTo: keyWord)
+          .where('title', isGreaterThanOrEqualTo: keyWord)
+          .where('title', isLessThan: '${keyWord}z')
           .get();
 
       final listCommunityPost = postsCollection.docs.map((data) {

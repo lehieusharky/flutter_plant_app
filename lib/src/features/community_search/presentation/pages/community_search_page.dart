@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_search_bar.dart';
@@ -13,38 +12,64 @@ class CommunitySearchPage extends BaseWidget {
   const CommunitySearchPage({super.key});
 
   @override
-  BaseWidgetState createState() => _SearchPageState();
+  State<CommunitySearchPage> createState() => _SearchPageState();
 }
 
-class _SearchPageState extends BaseWidgetState {
+class _SearchPageState extends State<CommunitySearchPage> {
   final _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return BaseWidget(
-      child: BlocProvider(
+    return Scaffold(
+      body: BlocProvider(
         create: (context) => CommunitySearchBloc()
           ..add(CommunitySearchGetListResult(
               getListCommunitySearchResultParam:
                   GetListCommunitySearchResultParam(limit: 10))),
-        child: Stack(
-          children: [
-            const CustomBackButton(),
-            Column(
+        child: BlocConsumer<CommunitySearchBloc, CommunitySearchState>(
+          listener: (context, state) {
+            // TODO: implement listener
+          },
+          builder: (context, state) {
+            return Stack(
               children: [
-                context.sizedBox(height: 60),
-                CustomSearchbar(
-                  controller: _searchController,
-                  hintText: 'Tim kiem cac bai viet cong dong',
+                const CustomBackButton(),
+                Column(
+                  children: [
+                    context.sizedBox(height: 60),
+                    CustomSearchbar(
+                      controller: _searchController,
+                      hintText: 'Tim kiem cac bai viet cong dong',
+                      onSubmit: () => _search(context),
+                    ),
+                    const Expanded(
+                      child: ListCommunitySearchResult(),
+                    )
+                  ],
                 ),
-                const Expanded(
-                  child: ListCommunitySearchResult(),
-                )
               ],
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
+  }
+
+  void _search(BuildContext context) {
+    // BlocProvider.of<CommunitySearchBloc>(context).add(
+    //     CommunitySearchGetListResult(
+    //         getListCommunitySearchResultParam:
+    //             GetListCommunitySearchResultParam(
+    //                 limit: 100, keyWord: _searchController.text.trim())));
+
+    context.read<CommunitySearchBloc>().add(
+          CommunitySearchGetListResult(
+            getListCommunitySearchResultParam:
+                GetListCommunitySearchResultParam(
+              limit: 100,
+              keyWord: _searchController.text.trim(),
+            ),
+          ),
+        );
   }
 }
