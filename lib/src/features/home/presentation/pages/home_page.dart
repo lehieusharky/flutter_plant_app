@@ -14,6 +14,7 @@ class _HomePageState extends State<HomePage>
   Widget? _appBarTitle = const SizedBox();
 
   CommunityModel _communityModel = const CommunityModel();
+  List<CommunityPostModel> _listCommunityPost = [];
 
   @override
   void initState() {
@@ -51,6 +52,9 @@ class _HomePageState extends State<HomePage>
                   message: 'Remove from favorite success',
                   backgroundColor: colorTheme.get2DDA93,
                 );
+              }
+              if (state is HomePageGetCommunityPostListSuccess) {
+                _listCommunityPost = state.listCommunityPost.reversed.toList();
               }
             },
             builder: (context, state) {
@@ -94,7 +98,9 @@ class _HomePageState extends State<HomePage>
                                     horizontalPadding: 12,
                                   ),
                                   context.sizedBox(height: 10),
-                                  const ListPostHomePage(),
+                                  ListPostHomePage(
+                                    listCommunityPost: _listCommunityPost,
+                                  ),
                                   context.sizedBox(height: 5),
                                   Center(
                                     child: CustomSeeAllButton(
@@ -149,7 +155,12 @@ class _HomePageState extends State<HomePage>
   void _handleVisibleZoomOutButton(double offset) {
     if (offset >= 255) {
       if (_appBarTitle !=
-          ZoomOutButtonHomePage.scrollDown(_communityModel.number ?? 0)) {
+          ZoomOutButtonHomePage.scrollDown(_communityModel.number ?? 0,
+              (communityPostModel) {
+            setState(() {
+              _listCommunityPost.insert(0, communityPostModel);
+            });
+          })) {
         _openScrollDownButton();
       }
     } else if (_pageScrollController.position.userScrollDirection ==
@@ -165,18 +176,31 @@ class _HomePageState extends State<HomePage>
 
   void _openScrollUpButton() {
     if (_appBarTitle !=
-        ZoomOutButtonHomePage.scrollUp(_communityModel.number ?? 0)) {
+        ZoomOutButtonHomePage.scrollUp(_communityModel.number ?? 0,
+            (communityPostModel) {
+          setState(() {
+            _listCommunityPost.insert(0, communityPostModel);
+          });
+        })) {
       setState(() {
-        _appBarTitle =
-            ZoomOutButtonHomePage.scrollUp(_communityModel.number ?? 0);
+        _appBarTitle = ZoomOutButtonHomePage.scrollUp(
+            _communityModel.number ?? 0, (communityPostModel) {
+          setState(() {
+            _listCommunityPost.insert(0, communityPostModel);
+          });
+        });
       });
     }
   }
 
   void _openScrollDownButton() {
     setState(() {
-      _appBarTitle =
-          ZoomOutButtonHomePage.scrollDown(_communityModel.number ?? 0);
+      _appBarTitle = ZoomOutButtonHomePage.scrollDown(
+          _communityModel.number ?? 0, (communityPostModel) {
+        setState(() {
+          _listCommunityPost.insert(0, communityPostModel);
+        });
+      });
     });
   }
 
@@ -199,6 +223,11 @@ class _HomePageState extends State<HomePage>
       context: context,
       child: CreateCommunityPostModal(
         lengthOfCommunityList: _communityModel.number ?? 0,
+        updateListCommunityPostModel: (CommunityPostModel communityPostModel) {
+          setState(() {
+            _listCommunityPost.insert(0, communityPostModel);
+          });
+        },
       ),
     );
     _changeTopic(topicSymbol: TopicSymbol.community, context: context);

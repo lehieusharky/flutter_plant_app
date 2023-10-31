@@ -95,7 +95,8 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
         communityPostModel: event.communityPostModel,
         number: event.number,
       );
-      emit(HomePageCreateCommunityPostSuccess());
+      emit(HomePageCreateCommunityPostSuccess(
+          communityPostModel: event.communityPostModel));
     } catch (e) {
       emit(HomePageFailure(message: e.toString()));
     }

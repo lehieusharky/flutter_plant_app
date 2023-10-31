@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
@@ -13,6 +12,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_seperat
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
 import 'package:plant_market/src/core/utils/date_time_util.dart';
+import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/presentation/bloc/user_bloc.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/add_photo_button.dart';
@@ -145,7 +145,7 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
               description: _descriptionController.text.trim(),
               image: imageUrl,
               createAt: DateTimeUtil.yearMonthDayNow(),
-              userId: "${sharePreference.getUserId}",
+              userId: userInfo!.id,
               timeLineId:
                   "${widget.currentLengthOfListTimeLine + 1}_${const Uuid().v4()}",
             ),
