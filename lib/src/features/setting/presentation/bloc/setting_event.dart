@@ -8,3 +8,5 @@ sealed class SettingEvent extends Equatable {
 }
 
 final class SettingLogOut extends SettingEvent {}
+
+final class SettingDeleteAccount extends SettingEvent {}

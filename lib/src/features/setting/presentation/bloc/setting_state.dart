@@ -21,3 +21,7 @@ final class SettingFailure extends SettingState {
   @override
   List<Object> get props => [message];
 }
+
+final class SettingDeleteAccountSuccess extends SettingState {
+  
+}

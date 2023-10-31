@@ -4,6 +4,10 @@ import 'package:plant_market/src/core/failure/failure.dart';
 
 abstract class UserRepository {
   Either<UserFailure, Stream<UserModel>> getUserInfomationStream();
+
   Future<Either<AuthDataBaseFailure, bool>> isExist();
+
   Future<Either<AuthDataBaseFailure, void>> createUserDataBase();
+
+  Future<Either<AuthDataBaseFailure, void>> deleteUserDataBase();
 }

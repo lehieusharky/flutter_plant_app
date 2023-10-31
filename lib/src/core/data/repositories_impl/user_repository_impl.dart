@@ -40,4 +40,14 @@ class UserRepositoryImpl implements UserRepository {
       return Left(AuthDataBaseFailure(message: e.toString()));
     }
   }
+
+  @override
+  Future<Either<AuthDataBaseFailure, void>> deleteUserDataBase() async {
+    try {
+      final result = await _userDataSource.deleteUserDataBase();
+      return Right(result);
+    } catch (e) {
+      return Left(AuthDataBaseFailure(message: e.toString()));
+    }
+  }
 }

@@ -29,6 +29,16 @@ class _SettingPageState extends BaseWidgetState
                       extra: {AppConstant.isFromDashBoardRouter: false}),
                 );
               }
+
+              if (state is SettingDeleteAccountSuccess) {
+                CustomSnakBar.showSnackbar(
+                  context: context,
+                  message: 'Delete account success',
+                  backgroundColor: colorTheme.get2DDA93,
+                  onVisible: () => context.go(RouterPath.loginPage,
+                      extra: {AppConstant.isFromDashBoardRouter: false}),
+                );
+              }
             },
             builder: (context, state) {
               return Stack(
