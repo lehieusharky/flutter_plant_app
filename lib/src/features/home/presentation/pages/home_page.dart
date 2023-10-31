@@ -89,10 +89,10 @@ class _HomePageState extends State<HomePage>
                                           _onGalleryPressed(context: context),
                                     ),
                                   ),
-                                  const Center(
-                                    child: SharkeAnimationHomePage(),
-                                  ),
-                                  context.sizedBox(height: 80),
+                                  // const Center(
+                                  //   child: SharkeAnimationHomePage(),
+                                  // ),
+                                  // context.sizedBox(height: 80),
                                   CustomTitle(
                                     title: translate(context).today,
                                     horizontalPadding: 12,
@@ -234,7 +234,7 @@ class _HomePageState extends State<HomePage>
   }
 
   void _onGalleryPressed({required BuildContext context}) {
-    _showTopicModal(context: context, child: const GalleryModal());
+    _showTopicModal(context: context, child: const ShakeAnimationPage());
     _changeTopic(topicSymbol: TopicSymbol.gallery, context: context);
   }
 

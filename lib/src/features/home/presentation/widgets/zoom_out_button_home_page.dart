@@ -6,8 +6,8 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.d
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/create_community_post_modal.dart';
-import 'package:plant_market/src/features/home/presentation/widgets/gallery_modal.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/plant_identity_modal.dart';
+import 'package:plant_market/src/features/shake_animation/presentation/pages/part_shake_animation_page.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class ZoomOutButtonHomePage extends StatelessWidget {
@@ -56,7 +56,7 @@ class ZoomOutButtonHomePage extends StatelessWidget {
           iconPath: imageConstant.gallerySVG,
           onPressed: () => _showTopicModal(
             context: context,
-            child: const GalleryModal(),
+            child: const ShakeAnimationPage(),
           ),
         ),
       ],

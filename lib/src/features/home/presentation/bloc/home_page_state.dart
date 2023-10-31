@@ -58,17 +58,6 @@ final class HomePagePickImageFailed extends HomePageState {
   @override
   List<Object> get props => [message];
 }
-
-final class HomePageGetImageFromGallerySuccess extends HomePageState {
-  final List<String> gallery;
-
-  const HomePageGetImageFromGallerySuccess({required this.gallery});
-  @override
-  List<Object> get props => [gallery];
-}
-
-final class HomePagePostImageToPublicGallerySuccess extends HomePageState {}
-
 final class HomePagePostCommunityPostImageSuccess extends HomePageState {
   final String imageUrl;
 

@@ -26,7 +26,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomListWheelSelectTime(
           scrollController: widget.hourScrollController,
@@ -50,7 +50,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
         Text(
           index <= 9 ? '0$index' : '$index',
           style: theme(context).textTheme.headlineMedium!.copyWith(
-                fontSize: 70,
+                fontSize: 60,
                 fontWeight: FontWeight.w100,
               ),
         ),
@@ -62,7 +62,10 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   Widget _seperetorText() {
     return Text(
       ':',
-      style: theme(context).textTheme.headlineMedium!.copyWith(fontSize: 70),
+      style: theme(context).textTheme.headlineMedium!.copyWith(
+            fontSize: 60,
+            fontWeight: FontWeight.w100,
+          ),
     );
   }
 }
