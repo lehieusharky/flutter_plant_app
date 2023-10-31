@@ -11,6 +11,7 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_seperat
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_button.dart';
 import 'package:plant_market/src/core/presentation/page/base_page.dart';
+import 'package:plant_market/src/core/utils/date_time_util.dart';
 import 'package:plant_market/src/features/auth/login/presentation/widgets/not_logged_in_button.dart';
 import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
@@ -177,6 +178,7 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
               id: "${(widget as CreateCommunityPostModal).lengthOfCommunityList + 1}_${const Uuid().v4()}",
               clap: 0,
               authorName: userInfo!.userName!,
+              createAt: DateTimeUtil.yearMonthDayNow(),
             ),
             number:
                 (widget as CreateCommunityPostModal).lengthOfCommunityList + 1,
