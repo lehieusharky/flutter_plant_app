@@ -7,8 +7,10 @@ import 'package:plant_market/src/theme/color_theme.dart';
 
 class CustomHeartButton extends StatefulWidget {
   final Future<bool?> Function(bool)? onPressed;
+  final double? size;
   final bool? isLiked;
-  const CustomHeartButton({super.key, required this.onPressed, this.isLiked});
+  const CustomHeartButton(
+      {super.key, required this.onPressed, this.isLiked, this.size});
 
   @override
   State<CustomHeartButton> createState() => _CustomHeartButtonState();
@@ -21,7 +23,7 @@ class _CustomHeartButtonState extends State<CustomHeartButton> {
       padding: context.padding(all: 3),
       child: LikeButton(
         mainAxisAlignment: MainAxisAlignment.end,
-        size: context.sizeWidth(40),
+        size: context.sizeWidth(widget.size ?? 40),
         isLiked: widget.isLiked,
         onTap: widget.onPressed,
         circleColor: CircleColor(

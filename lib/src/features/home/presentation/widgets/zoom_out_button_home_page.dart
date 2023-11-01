@@ -44,7 +44,21 @@ class ZoomOutButtonHomePage extends StatelessWidget {
                   context: context,
                   child: const PlantIdentifyModal(),
                 ),
-              ),
+              )
+                  .animate()
+                  .slide(
+                    duration: 300.ms,
+                    curve: Curves.easeInOut,
+                    begin: begin,
+                    end: end,
+                  )
+                  .animate()
+                  .slide(
+                    duration: 300.ms,
+                    curve: Curves.easeInOut,
+                    begin: const Offset(0, 0),
+                    end: const Offset(0.5, 0),
+                  ),
               context.sizedBox(width: 20),
               _buildIconButton(
                 context: context,
@@ -56,7 +70,12 @@ class ZoomOutButtonHomePage extends StatelessWidget {
                     updateListCommunityPostModel: updateListCommunityPostModel,
                   ),
                 ),
-              ),
+              ).animate().slide(
+                    duration: 300.ms,
+                    curve: Curves.easeInOut,
+                    begin: begin,
+                    end: end,
+                  ),
               context.sizedBox(width: 20),
               _buildIconButton(
                 context: context,
@@ -65,7 +84,21 @@ class ZoomOutButtonHomePage extends StatelessWidget {
                   context: context,
                   child: const ShakeAnimationPage(),
                 ),
-              ),
+              )
+                  .animate()
+                  .slide(
+                    duration: 300.ms,
+                    curve: Curves.easeInOut,
+                    begin: begin,
+                    end: end,
+                  )
+                  .animate()
+                  .slide(
+                    duration: 300.ms,
+                    curve: Curves.easeInOut,
+                    begin: const Offset(0, 0),
+                    end: const Offset(-0.5, 0),
+                  ),
             ],
           ),
         ),
@@ -109,12 +142,7 @@ class ZoomOutButtonHomePage extends StatelessWidget {
         color: colorTheme.get2DDA93,
         width: context.sizeWidth(30),
       ),
-    ).animate().slide(
-          duration: 300.ms,
-          curve: Curves.easeInOut,
-          begin: begin,
-          end: end,
-        );
+    );
   }
 
   void _showTopicModal({required BuildContext context, required Widget child}) {

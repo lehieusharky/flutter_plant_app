@@ -17,7 +17,6 @@ import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/text_theme.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
 import 'package:plant_market/src/theme/theme_manager.dart';
-import 'dart:developer';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/data/defines/enum/supported_theme.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
