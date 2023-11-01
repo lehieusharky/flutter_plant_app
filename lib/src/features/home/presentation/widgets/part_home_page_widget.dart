@@ -8,7 +8,6 @@ import 'package:plant_market/src/core/data/defines/enum/plant_topic.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_shimmer.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/home/data/enum/popular_topic.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';

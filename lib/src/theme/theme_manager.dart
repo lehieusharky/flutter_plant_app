@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
-import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class ThemeManager {
@@ -12,11 +11,11 @@ class ThemeManager {
     }
   }
 
-  static String backgroundJSon() {
+  static Color shadowTopicButton() {
     if (sharePreference.isDarkMode()) {
-      return imageConstant.nightJson;
+      return colorTheme.getFFFFFF.withOpacity(0.08);
     } else {
-      return imageConstant.trainJson;
+      return colorTheme.get6A6F7D.withOpacity(0.1);
     }
   }
 

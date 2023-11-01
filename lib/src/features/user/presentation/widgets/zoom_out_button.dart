@@ -17,14 +17,14 @@ class ZoomOutButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: context.padding(vertical: 10, horizontal: 20),
+      padding: context.padding(vertical: 10, horizontal: 10),
       child: CreateTimelineButton.customSize(
         context: context,
         onPressed: onPressed,
         iconSize: context.sizeWidth(15),
         opacity: opacity,
-        width: context.sizeWidth(45),
-        height: context.sizeWidth(45),
+        width: context.sizeWidth(35),
+        height: context.sizeWidth(35),
         title: '',
         iconPath: iconPath,
       ),

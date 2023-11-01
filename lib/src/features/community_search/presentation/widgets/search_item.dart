@@ -16,7 +16,7 @@ class SearchItem extends StatelessWidget {
     return InkWell(
       onTap: () => _showCommunityPostDetailModel(context),
       child: Padding(
-        padding: context.padding(vertical: 10, horizontal: 6),
+        padding: context.padding(vertical: 10),
         child: Container(
           width: context.width,
           height: context.sizeHeight(110),

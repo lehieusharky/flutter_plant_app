@@ -30,7 +30,7 @@ abstract class ImageConstant {
   String get vietNamFlagSVG;
   String get englandFlagSVG;
   String get minTempSVG;
-  String get backGroundSVG;
+  String get backGroundPNG;
   String get maxTempSVG;
   String get windSVG;
   String get locationSVG;
@@ -173,9 +173,6 @@ class ImageConstantImpl implements ImageConstant {
   String get dropDownSVG => 'assets/svg/drop_down.svg';
 
   @override
-  String get backGroundSVG => 'assets/svg/background.svg';
-
-  @override
   String get musicSVG => 'assets/svg/music.svg';
 
   @override
@@ -192,4 +189,7 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get plantPNG => 'assets/images/plant.png';
+
+  @override
+  String get backGroundPNG => 'assets/images/background.png';
 }

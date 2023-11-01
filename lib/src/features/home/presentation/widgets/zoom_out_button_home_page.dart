@@ -27,39 +27,49 @@ class ZoomOutButtonHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _buildIconButton(
-          context: context,
-          iconPath: imageConstant.cameraSVG,
-          onPressed: () => _showTopicModal(
-            context: context,
-            child: const PlantIdentifyModal(),
+    return Padding(
+      padding: context.padding(horizontal: 50),
+      child: SizedBox(
+        width: context.width,
+        child: Padding(
+          padding: context.padding(horizontal: 24),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _buildIconButton(
+                context: context,
+                iconPath: imageConstant.cameraSVG,
+                onPressed: () => _showTopicModal(
+                  context: context,
+                  child: const PlantIdentifyModal(),
+                ),
+              ),
+              context.sizedBox(width: 20),
+              _buildIconButton(
+                context: context,
+                iconPath: imageConstant.communitySVG,
+                onPressed: () => _showTopicModal(
+                  context: context,
+                  child: CreateCommunityPostModal(
+                    lengthOfCommunityList: lengthOfCommunityList,
+                    updateListCommunityPostModel: updateListCommunityPostModel,
+                  ),
+                ),
+              ),
+              context.sizedBox(width: 20),
+              _buildIconButton(
+                context: context,
+                iconPath: imageConstant.gallerySVG,
+                onPressed: () => _showTopicModal(
+                  context: context,
+                  child: const ShakeAnimationPage(),
+                ),
+              ),
+            ],
           ),
         ),
-        context.sizedBox(width: 20),
-        _buildIconButton(
-          context: context,
-          iconPath: imageConstant.communitySVG,
-          onPressed: () => _showTopicModal(
-            context: context,
-            child: CreateCommunityPostModal(
-              lengthOfCommunityList: lengthOfCommunityList,
-              updateListCommunityPostModel: updateListCommunityPostModel,
-            ),
-          ),
-        ),
-        context.sizedBox(width: 20),
-        _buildIconButton(
-          context: context,
-          iconPath: imageConstant.gallerySVG,
-          onPressed: () => _showTopicModal(
-            context: context,
-            child: const ShakeAnimationPage(),
-          ),
-        ),
-      ],
+      ),
     );
   }
 

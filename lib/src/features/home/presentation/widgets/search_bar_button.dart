@@ -5,6 +5,7 @@ import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/router/router_path.dart';
+import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/theme_manager.dart';
 
 class SearchBarButton extends StatelessWidget {
@@ -14,11 +15,12 @@ class SearchBarButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomButton(
       boxShadowColor: ThemeManager.shadowButton(),
-      width: context.width,
+      width: context.sizeWidth(270),
       height: context.sizeHeight(52),
+      borderSide: BorderSide(color: colorTheme.getFFFFFF, width: 0.5),
       onPress: () => context.go(RouterPath.searchPage),
-      backgroundColor: ThemeManager.backgroundButton(),
-      borderRadius: context.sizeWidth(5),
+      backgroundColor: ThemeManager.backgroundButton().withOpacity(0.7),
+      borderRadius: context.sizeWidth(18),
       child: Row(
         children: [
           _buildSearchIcon(context),

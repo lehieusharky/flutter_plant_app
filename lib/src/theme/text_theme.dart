@@ -44,7 +44,7 @@ class AppTextTheme {
         titleSmall: GoogleFonts.lato(
           fontSize: context.sizeWidth(14),
           fontWeight: FontWeight.w400,
-          color: colorTheme.get36455A,
+          color: colorTheme.get6A6F7D,
         ),
 
         // * label

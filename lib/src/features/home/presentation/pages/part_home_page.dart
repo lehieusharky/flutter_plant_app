@@ -13,7 +13,9 @@ import 'package:plant_market/src/features/home/data/models/community_post_model.
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/app_bar_home_page.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/create_community_post_modal.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/image_background.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/list_post_home_page.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/notification_button.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/part_home_page_widget.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/plant_identity_modal.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/search_bar_button.dart';

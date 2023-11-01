@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
+import 'package:plant_market/src/core/extension/responsive.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_background.dart';
 import 'package:plant_market/src/features/home/data/enum/topic_symbol.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/part_home_page_widget.dart';
@@ -36,30 +38,40 @@ class _RowTopicButtonState extends State<RowTopicButton> {
         }
       },
       builder: (context, state) {
-        return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            TopicButton(
-                onPressed: widget.onIndetifyPressed,
-                title: translate(context).identify,
-                pathIcon: imageConstant.cameraSVG,
-                isChoosed: _isChoosedTopic,
-                topicSymbol: TopicSymbol.identification),
-            TopicButton(
-              onPressed: widget.onCommunityPressed,
-              title: translate(context).community,
-              pathIcon: imageConstant.communitySVG,
-              isChoosed: _isChoosedTopic,
-              topicSymbol: TopicSymbol.community,
+        return Padding(
+          padding: context.padding(horizontal: 50),
+          child: Custombackground(
+            width: context.width,
+            height: context.sizeHeight(100),
+            child: Padding(
+              padding: context.padding(horizontal: 24, vertical: 6),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  TopicButton(
+                      onPressed: widget.onIndetifyPressed,
+                      title: translate(context).identify,
+                      pathIcon: imageConstant.cameraSVG,
+                      isChoosed: _isChoosedTopic,
+                      topicSymbol: TopicSymbol.identification),
+                  TopicButton(
+                    onPressed: widget.onCommunityPressed,
+                    title: translate(context).community,
+                    pathIcon: imageConstant.communitySVG,
+                    isChoosed: _isChoosedTopic,
+                    topicSymbol: TopicSymbol.community,
+                  ),
+                  TopicButton(
+                    onPressed: widget.onGalleryPressed,
+                    title: translate(context).gallery,
+                    pathIcon: imageConstant.gallerySVG,
+                    isChoosed: _isChoosedTopic,
+                    topicSymbol: TopicSymbol.gallery,
+                  ),
+                ],
+              ),
             ),
-            TopicButton(
-              onPressed: widget.onGalleryPressed,
-              title: translate(context).gallery,
-              pathIcon: imageConstant.gallerySVG,
-              isChoosed: _isChoosedTopic,
-              topicSymbol: TopicSymbol.gallery,
-            ),
-          ],
+          ),
         );
       },
     );
