@@ -69,7 +69,7 @@ class CustomButton extends StatelessWidget {
       onPress: onPressed,
       backgroundColor: backgroundColor,
       boxShadowColor: colorTheme.getD2D2D2.withOpacity(0.5),
-      borderRadius: 5,
+      borderRadius: context.sizeWidth(24),
       child: Text(
         title ?? translate(context).send,
         style: AppTextTheme.darkTheme(context).titleLarge,

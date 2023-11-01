@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_button.dart';
@@ -136,9 +135,6 @@ class CommunityPostItem extends StatelessWidget {
     );
   }
 
-  /*
-
-  */
   bool _isLiked() {
     try {
       return userInfo!.listFavoriteCommunityPost

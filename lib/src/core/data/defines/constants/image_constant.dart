@@ -45,7 +45,7 @@ abstract class ImageConstant {
   String get cycleSVG;
   String get searchSVG;
   String get landSVG;
-
+  String get exitSVG;
   String get diseasePNG;
   String get leafyPNG;
   String get flowerPNG;
@@ -192,4 +192,7 @@ class ImageConstantImpl implements ImageConstant {
 
   @override
   String get backGroundPNG => 'assets/images/background.png';
+
+  @override
+  String get exitSVG => 'assets/svg/exit.svg';
 }
