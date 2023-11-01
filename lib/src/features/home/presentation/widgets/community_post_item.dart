@@ -9,9 +9,12 @@ import 'package:plant_market/src/features/dash_board/presentation/page/part_dash
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/presentation/bloc/home_page_bloc.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/community_post_details.dart';
+import 'package:plant_market/src/theme/text_theme.dart';
+import 'package:plant_market/src/theme/theme_manager.dart';
 
 class CommunityPostItem extends StatelessWidget {
   final CommunityPostModel communityPostModel;
+
   const CommunityPostItem({
     super.key,
     required this.communityPostModel,
@@ -22,64 +25,68 @@ class CommunityPostItem extends StatelessWidget {
     return InkWell(
       onTap: () => _showTopicModal(context: context),
       child: Padding(
-        padding: context.padding(right: 15),
-        child: SizedBox(
-          width: context.sizeWidth(230),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Stack(
-                alignment: Alignment.bottomCenter,
-                children: [
-                  Stack(
-                    alignment: Alignment.topRight,
+        padding: context.padding(horizontal: 5),
+        child: Stack(
+          alignment: Alignment.topRight,
+          children: [
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
+                _buildBackground(context),
+                _buildMark(context),
+                Padding(
+                  padding: context.padding(horizontal: 20),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      CustomCatchedNetWorkImage(
-                        width: context.sizeWidth(250),
-                        height: context.sizeHeight(320),
-                        imageUrl: communityPostModel.image,
-                      ),
-                      CustomHeartButton(
-                        isLiked: _isLiked(),
-                        onPressed: (status) async {
-                          if (status) {
-                            _removeFavoriteCommunityPost(context);
-                          } else {
-                            _addFavoriteCommunityPost(context);
-                          }
-                          return !status;
-                        },
-                      ),
+                      _buildTitle(context),
+                      context.sizedBox(height: 10),
+                      _buildDescription(context),
+                      context.sizedBox(height: 30),
                     ],
                   ),
-                  Padding(
-                    padding: context.padding(horizontal: 5, vertical: 5),
-                    child: Container(
-                      padding: context.padding(all: 5),
-                      width: context.sizeWidth(240),
-                      height: context.sizeHeight(140),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(5),
-                        color: Theme.of(context)
-                            .scaffoldBackgroundColor
-                            .withOpacity(0.8),
-                      ),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          _buildTitle(context),
-                          context.sizedBox(height: 5),
-                          _buildDateTime(context),
-                          context.sizedBox(height: 3),
-                          _buildAuthor(context),
-                          context.sizedBox(height: 3),
-                          _buildTag(context),
-                        ],
-                      ),
-                    ),
-                  )
-                ],
+                )
+              ],
+            ),
+            _buildLeafPlusButton(context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildLeafPlusButton(BuildContext context) {
+    return InkWell(
+      child: Padding(
+        padding: context.padding(all: 10),
+        child: Container(
+          alignment: Alignment.center,
+          width: context.sizeWidth(70),
+          height: context.sizeHeight(30),
+          decoration: BoxDecoration(
+            color: ThemeManager.backgroundButton().withOpacity(0.7),
+            borderRadius: BorderRadius.circular(context.sizeWidth(8)),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                '20',
+                style: AppTextTheme.darkTheme(context).titleSmall,
+              ),
+              CustomHeartButton(
+                size: context.sizeWidth(20),
+                isLiked: _isLiked(),
+                onPressed: (status) async {
+                  if (status) {
+                    _removeFavoriteCommunityPost(context);
+                  } else {
+                    _addFavoriteCommunityPost(context);
+                  }
+                  return !status;
+                },
               ),
             ],
           ),
@@ -88,6 +95,50 @@ class CommunityPostItem extends StatelessWidget {
     );
   }
 
+  Widget _buildMark(BuildContext context) {
+    return Container(
+      width: context.sizeWidth(270),
+      height: context.sizeHeight(350 / 2),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(context.sizeWidth(24)),
+        gradient: const LinearGradient(
+            begin: Alignment.bottomCenter,
+            end: Alignment.topCenter,
+            colors: [
+              Color(0xcc000000),
+              Color(0x000d0d0d),
+            ]),
+      ),
+    );
+  }
+
+  Widget _buildBackground(BuildContext context) {
+    return Container(
+      alignment: Alignment.center,
+      width: context.sizeWidth(270),
+      height: context.sizeHeight(350),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(context.sizeWidth(24)),
+          boxShadow: [
+            BoxShadow(
+              color: ThemeManager.shadowTopicButton(),
+              spreadRadius: 3,
+              blurRadius: 15,
+              offset: const Offset(0, 10),
+            ),
+          ]),
+      child: CustomCatchedNetWorkImage(
+        width: context.sizeWidth(270),
+        height: context.sizeHeight(360),
+        borderRadius: context.sizeWidth(24),
+        imageUrl: communityPostModel.image,
+      ),
+    );
+  }
+
+  /*
+
+  */
   bool _isLiked() {
     try {
       return userInfo!.listFavoriteCommunityPost
@@ -111,56 +162,22 @@ class CommunityPostItem extends StatelessWidget {
     return Text(
       communityPostModel.title,
       maxLines: 2,
-      style: theme(context)
-          .textTheme
-          .titleMedium!
-          .copyWith(fontWeight: FontWeight.w600, fontSize: 18),
+      textAlign: TextAlign.center,
+      style: AppTextTheme.darkTheme(context)
+          .titleLarge!
+          .copyWith(fontWeight: FontWeight.w600, fontSize: 20),
       overflow: TextOverflow.ellipsis,
     );
   }
 
-  Widget _buildAuthor(BuildContext context) {
+  Widget _buildDescription(BuildContext context) {
     return Text(
-      communityPostModel.authorName,
-      style: theme(context).textTheme.titleSmall!.copyWith(),
+      communityPostModel.description,
+      maxLines: 3,
+      textAlign: TextAlign.center,
+      style:
+          AppTextTheme.darkTheme(context).titleMedium!.copyWith(fontSize: 12),
       overflow: TextOverflow.ellipsis,
-    );
-  }
-
-  Widget _buildDateTime(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(
-          Icons.watch_later_outlined,
-          size: context.sizeWidth(15),
-          color: theme(context).textTheme.titleSmall!.color,
-        ),
-        context.sizedBox(width: 3),
-        Text(
-          '01/10/2023',
-          style: theme(context).textTheme.titleSmall!.copyWith(),
-          overflow: TextOverflow.ellipsis,
-        ),
-      ],
-    );
-  }
-
-  Widget _buildTag(BuildContext context) {
-    return SizedBox(
-      height: context.sizeHeight(30),
-      child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemCount: communityPostModel.tags.length,
-          separatorBuilder: (context, index) => context.sizedBox(width: 5),
-          itemBuilder: (context, index) {
-            return Text(
-              communityPostModel.tags[index],
-              style: theme(context).textTheme.titleSmall,
-            );
-          }),
     );
   }
 
