@@ -19,25 +19,22 @@ class AppBarHomePage extends StatelessWidget {
     return SliverAppBar(
       pinned: true,
       snap: true,
-      leadingWidth: context.sizeWidth(80),
       forceElevated: false,
       floating: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       expandedHeight: context.sizeHeight(60),
-      leading: const SizedBox(),
+      leadingWidth: context.sizeWidth(65),
+      leading: ZoomOutButton(
+        opacity: 1,
+        onPressed: () => context.go(RouterPath.searchPage),
+        iconPath: imageConstant.searchSVG,
+      ).animate().slide(
+            duration: 300.ms,
+            curve: Curves.easeInOut,
+            end: Offset.zero,
+            begin: const Offset(0, 1),
+          ),
       flexibleSpace: _appBarTitle(context),
-      actions: [
-        ZoomOutButton(
-          opacity: 1,
-          onPressed: () => context.go(RouterPath.searchPage),
-          iconPath: imageConstant.searchSVG,
-        ).animate().slide(
-              duration: 300.ms,
-              curve: Curves.easeInOut,
-              end: Offset.zero,
-              begin: const Offset(0, 1),
-            ),
-      ],
     );
   }
 

@@ -12,40 +12,41 @@ class CommunitySearchPage extends BaseWidget {
   const CommunitySearchPage({super.key});
 
   @override
-  State<CommunitySearchPage> createState() => _SearchPageState();
+  BaseWidgetState createState() => _SearchPageState();
 }
 
-class _SearchPageState extends State<CommunitySearchPage> {
+class _SearchPageState extends BaseWidgetState {
   final _searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: BlocProvider(
+    return BaseWidget(
+      child: BlocProvider(
         create: (context) => CommunitySearchBloc()
           ..add(CommunitySearchGetListResult(
               getListCommunitySearchResultParam:
                   GetListCommunitySearchResultParam(limit: 10))),
         child: BlocConsumer<CommunitySearchBloc, CommunitySearchState>(
-          listener: (context, state) {
-            // TODO: implement listener
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             return Stack(
               children: [
                 const CustomBackButton(),
-                Column(
-                  children: [
-                    context.sizedBox(height: 60),
-                    CustomSearchbar(
-                      controller: _searchController,
-                      hintText: 'Tim kiem cac bai viet cong dong',
-                      onSubmit: () => _search(context),
-                    ),
-                    const Expanded(
-                      child: ListCommunitySearchResult(),
-                    )
-                  ],
+                Padding(
+                  padding: context.padding(horizontal: 12),
+                  child: Column(
+                    children: [
+                      context.sizedBox(height: 60),
+                      CustomSearchbar(
+                        controller: _searchController,
+                        hintText: 'Tim kiem cac bai viet cong dong',
+                        onSubmit: () => _search(context),
+                      ),
+                      const Expanded(
+                        child: ListCommunitySearchResult(),
+                      )
+                    ],
+                  ),
                 ),
               ],
             );

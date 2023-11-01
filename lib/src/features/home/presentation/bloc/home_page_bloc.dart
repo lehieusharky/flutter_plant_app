@@ -12,7 +12,6 @@ import 'package:plant_market/src/features/home/data/models/community_model.dart'
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/data/models/weather_model.dart';
 import 'package:plant_market/src/features/home/domain/use_cases/community_usecase.dart';
-import 'package:plant_market/src/features/home/domain/use_cases/gallery_usecase.dart';
 import 'package:plant_market/src/features/home/domain/use_cases/location_use_case.dart';
 import 'package:plant_market/src/features/home/domain/use_cases/weather_use_case.dart';
 import 'package:plant_market/src/features/user/domain/use_cases/image_picker_use_case.dart';
@@ -25,8 +24,6 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     on<HomePageGetWeatherInfomation>(_getWeatherInfomation);
     on<HomePageDeterminePosition>(_determinePosition);
     on<HomePagePickImageFromCamera>(_pickImageFromCamera);
-    on<HomePagePostImageToPublicGallery>(_postImageToPublicGallery);
-    on<HomePageGetImageFromGallery>(_getImageFromGallery);
     on<HomePageCreateCommunityPost>(_createCommunityPost);
     on<HomePagePostCommunityPostImage>(_postCommunityPostImage);
     on<HomePageGetListCommunityPost>(_getListCommunityPost);
@@ -135,27 +132,6 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     }
   }
 
-  Future<void> _getImageFromGallery(
-      HomePageGetImageFromGallery event, Emitter<HomePageState> emit) async {
-    try {
-      final gallery = await galleryUseCase.getImageFromPublicGallery();
-      emit(HomePageGetImageFromGallerySuccess(gallery: gallery));
-    } catch (e) {
-      emit(HomePageFailure(message: e.toString()));
-    }
-  }
-
-  Future<void> _postImageToPublicGallery(HomePagePostImageToPublicGallery event,
-      Emitter<HomePageState> emit) async {
-    try {
-      await galleryUseCase.postImageToPublicGallery(
-          postImageToPublicGalleryParam:
-              PostImageToPublicGalleryParams(imageFile: event.imageFile));
-      emit(HomePagePostImageToPublicGallerySuccess());
-    } catch (e) {
-      emit(HomePageFailure(message: e.toString()));
-    }
-  }
 
   Future<void> _changeTopic(
       HomePageChangetTopic event, Emitter<HomePageState> emit) async {

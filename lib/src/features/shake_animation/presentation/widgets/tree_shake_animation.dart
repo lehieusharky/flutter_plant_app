@@ -37,8 +37,9 @@ class _TreeShakeAnimationState extends State<TreeShakeAnimation> {
       children: [
         CustomLottie(
           path: imageConstant.tree2Json,
+          height: context.sizeHeight(360),
         ),
-        context.sizedBox(height: 55),
+        context.sizedBox(height: 40),
       ],
     );
   }
@@ -49,6 +50,7 @@ class _TreeShakeAnimationState extends State<TreeShakeAnimation> {
       children: [
         CustomSvg(
           path: imageConstant.landSVG,
+          width: context.sizeWidth(250),
         ),
         context.sizedBox(height: 15),
       ],
@@ -61,8 +63,8 @@ class _TreeShakeAnimationState extends State<TreeShakeAnimation> {
       children: [
         CountDownRingWidget(countDownController: widget.countDownController),
         Container(
-          width: context.sizeWidth(300),
-          height: context.sizeHeight(300),
+          width: context.sizeWidth(250),
+          height: context.sizeHeight(250),
           decoration: BoxDecoration(
             boxShadow: [
               BoxShadow(

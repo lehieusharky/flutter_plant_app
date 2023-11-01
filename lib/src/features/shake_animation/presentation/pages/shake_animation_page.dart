@@ -47,16 +47,14 @@ class _ShakeAnimationPageState extends BaseWidgetState {
           builder: (context, state) {
             return Stack(
               children: [
-                // * shake background
-                // const BackGroundContainer(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    context.sizedBox(height: 60),
+                    context.sizedBox(height: 10),
                     TreeShakeAnimation(
                       countDownController: _countDownController,
                     ),
-                    context.sizedBox(height: 20),
+                    context.sizedBox(height: 10),
                     CountDownWidget(
                       hourScrollController: _hourScrollController,
                       minuteScrollController: _minuteScrollController,
@@ -66,7 +64,6 @@ class _ShakeAnimationPageState extends BaseWidgetState {
                         });
                       },
                     ),
-                    context.sizedBox(height: 10),
                     _buildSendButton(),
                     context.sizedBox(height: 10),
                     Padding(
@@ -85,7 +82,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
                   ],
                 ),
                 Padding(
-                  padding: context.padding(top: 60, horizontal: 12),
+                  padding: context.padding(top: 10, horizontal: 12),
                   child: Stack(
                     alignment: Alignment.center,
                     children: [

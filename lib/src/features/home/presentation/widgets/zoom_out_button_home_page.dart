@@ -6,8 +6,8 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.d
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/create_community_post_modal.dart';
-import 'package:plant_market/src/features/home/presentation/widgets/gallery_modal.dart';
 import 'package:plant_market/src/features/home/presentation/widgets/plant_identity_modal.dart';
+import 'package:plant_market/src/features/shake_animation/presentation/pages/part_shake_animation_page.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class ZoomOutButtonHomePage extends StatelessWidget {
@@ -27,39 +27,49 @@ class ZoomOutButtonHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        _buildIconButton(
-          context: context,
-          iconPath: imageConstant.cameraSVG,
-          onPressed: () => _showTopicModal(
-            context: context,
-            child: const PlantIdentifyModal(),
+    return Padding(
+      padding: context.padding(horizontal: 50),
+      child: SizedBox(
+        width: context.width,
+        child: Padding(
+          padding: context.padding(horizontal: 24),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              _buildIconButton(
+                context: context,
+                iconPath: imageConstant.cameraSVG,
+                onPressed: () => _showTopicModal(
+                  context: context,
+                  child: const PlantIdentifyModal(),
+                ),
+              ),
+              context.sizedBox(width: 20),
+              _buildIconButton(
+                context: context,
+                iconPath: imageConstant.communitySVG,
+                onPressed: () => _showTopicModal(
+                  context: context,
+                  child: CreateCommunityPostModal(
+                    lengthOfCommunityList: lengthOfCommunityList,
+                    updateListCommunityPostModel: updateListCommunityPostModel,
+                  ),
+                ),
+              ),
+              context.sizedBox(width: 20),
+              _buildIconButton(
+                context: context,
+                iconPath: imageConstant.gallerySVG,
+                onPressed: () => _showTopicModal(
+                  context: context,
+                  child: const ShakeAnimationPage(),
+                ),
+              ),
+            ],
           ),
         ),
-        context.sizedBox(width: 20),
-        _buildIconButton(
-          context: context,
-          iconPath: imageConstant.communitySVG,
-          onPressed: () => _showTopicModal(
-            context: context,
-            child: CreateCommunityPostModal(
-              lengthOfCommunityList: lengthOfCommunityList,
-              updateListCommunityPostModel: updateListCommunityPostModel,
-            ),
-          ),
-        ),
-        context.sizedBox(width: 20),
-        _buildIconButton(
-          context: context,
-          iconPath: imageConstant.gallerySVG,
-          onPressed: () => _showTopicModal(
-            context: context,
-            child: const GalleryModal(),
-          ),
-        ),
-      ],
+      ),
     );
   }
 
@@ -110,7 +120,7 @@ class ZoomOutButtonHomePage extends StatelessWidget {
   void _showTopicModal({required BuildContext context, required Widget child}) {
     CustomModal.baseModal(
       context: context,
-      height: context.height * 0.8,
+      height: context.height * 0.85,
       child: child,
     );
   }

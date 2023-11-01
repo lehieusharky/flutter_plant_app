@@ -26,33 +26,30 @@ class _TopicButtonState extends State<TopicButton> {
   Widget build(BuildContext context) {
     // * compare default index with indexOfButton which is choosed
     _isChoosed = _checkIschoosed();
-    log('theme: ${sharePreference.getTheme().name}');
 
     return BlocBuilder<MyAppBloc, MyAppState>(
       builder: (context, state) {
-        return CustomButton(
-          boxShadowColor: colorTheme.get6A6F7D.withOpacity(0.1),
-          width: context.sizeWidth(105),
-          height: context.sizeHeight(80),
-          borderRadius: 3,
-          onPress: widget.onPressed,
-          backgroundColor: _color(
-            isChoosed: _isChoosed,
-            lightFocus: colorTheme.get2DDA93,
-            darkFocus: colorTheme.get2DDA93,
-            lightUnFocus: colorTheme.getFFFFFF,
-            darkUnFocus: colorTheme.get252A3D,
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              context.sizedBox(height: 5),
-              _buildSymbol(),
-              context.sizedBox(height: 5),
-              Expanded(child: _buildTitle()),
-            ],
-          ),
+        return Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            CustomButton(
+              boxShadowColor: ThemeManager.shadowTopicButton(),
+              width: context.sizeWidth(50),
+              height: context.sizeHeight(50),
+              borderRadius: context.sizeWidth(10),
+              onPress: widget.onPressed,
+              backgroundColor: _color(
+                isChoosed: _isChoosed,
+                lightFocus: colorTheme.get2DDA93,
+                darkFocus: colorTheme.get2DDA93,
+                lightUnFocus: colorTheme.getFFFFFF,
+                darkUnFocus: colorTheme.get252A3D,
+              ),
+              child: _buildSymbol(),
+            ),
+            context.sizedBox(height: 5),
+            _buildTitle(),
+          ],
         );
       },
     );
@@ -72,11 +69,11 @@ class _TopicButtonState extends State<TopicButton> {
       style: _isChoosed
           ? theme(context).textTheme.titleSmall!.copyWith(
               color: sharePreference.isDarkMode()
-                  ? AppTextTheme.lightTheme(context).titleSmall!.color
+                  ? AppTextTheme.darkTheme(context).titleSmall!.color
                   : AppTextTheme.darkTheme(context).titleSmall!.color)
           : theme(context).textTheme.titleSmall!.copyWith(
               color: sharePreference.isDarkMode()
-                  ? AppTextTheme.darkTheme(context).titleSmall!.color
+                  ? AppTextTheme.lightTheme(context).titleSmall!.color
                   : AppTextTheme.lightTheme(context).titleSmall!.color),
     );
   }

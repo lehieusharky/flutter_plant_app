@@ -25,7 +25,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
         },
         builder: (context, state) {
           if (_weatherModel.name == null) {
-            return CustomShimmer(
+            return SizedBox(
               width: context.width,
               height: context.sizeHeight(150),
             );
@@ -88,7 +88,7 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
         ),
         Text(
           '${(weatherModel.main!.temp! - 273).toInt()}°C',
-          style: theme(context).textTheme.displayMedium,
+          style: AppTextTheme.darkTheme(context).displayMedium,
         ).animate().fade(
               duration: const Duration(milliseconds: 500),
               curve: Curves.easeInOut,
@@ -134,14 +134,14 @@ class _WeatherHomePageState extends State<WeatherHomePage> {
       children: [
         CustomSvg(
           path: iconPath,
-          color: theme(context).textTheme.titleLarge!.color,
+          color: AppTextTheme.darkTheme(context).titleLarge!.color,
           width: context.sizeWidth(20),
           height: context.sizeWidth(20),
         ),
         context.sizedBox(width: 5),
         Text(
           value,
-          style: theme(context).textTheme.titleLarge!.copyWith(
+          style: AppTextTheme.darkTheme(context).titleLarge!.copyWith(
                 fontSize: context.sizeWidth(16),
               ),
         ),
