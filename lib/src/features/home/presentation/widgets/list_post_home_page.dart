@@ -17,7 +17,7 @@ class _ListPostHomePageState extends State<ListPostHomePage> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.sizeHeight(400),
+      height: context.sizeHeight(380),
       child: RotatedBox(
         quarterTurns: -1,
         child: ListWheelScrollView.useDelegate(
@@ -29,7 +29,8 @@ class _ListPostHomePageState extends State<ListPostHomePage> {
           clipBehavior: Clip.antiAlias,
           onSelectedItemChanged: (index) {},
           childDelegate: ListWheelChildLoopingListDelegate(
-              children: widget.listCommunityPost
+              children: widget.listCommunityPost.reversed
+                  .toList()
                   .asMap()
                   .entries
                   .map((entry) => RotatedBox(

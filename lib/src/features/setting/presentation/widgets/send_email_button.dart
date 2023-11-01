@@ -12,12 +12,11 @@ class SendEmailButton extends StatefulWidget {
 }
 
 class _SendEmailButtonState extends State<SendEmailButton> {
-  
   final Email email = Email(
     body: 'noi dung can bo sung',
     subject: 'Gop y bo sung cho app',
     recipients: [],
-    cc: ['lehieultt@gmail.com'],
+    cc: ['lehieultt@gmail.com', 'myytb20095511@gmail.com'],
     attachmentPaths: [],
     isHTML: false,
   );

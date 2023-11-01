@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:plant_market/src/core/di/part_di.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_button.dart';
-import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/app_bar_community_post.dart';
+import 'package:plant_market/src/features/home/presentation/widgets/body_community_post.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
-class CommunityPostDetails extends StatelessWidget {
+class CommunityPostDetails extends StatefulWidget {
   final CommunityPostModel communityPostModel;
   final void Function() addFavoriteCommunityPost;
 
@@ -20,125 +20,99 @@ class CommunityPostDetails extends StatelessWidget {
   });
 
   @override
+  State<CommunityPostDetails> createState() => _CommunityPostDetailsState();
+}
+
+class _CommunityPostDetailsState extends State<CommunityPostDetails> {
+  final _pageScrollController = ScrollController();
+  bool _showSaveButton = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _pageScrollController.addListener(() {
+      _handelShowSaveButton();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: Stack(
+        alignment: Alignment.bottomCenter,
         children: [
-          Stack(
-            children: [
-              _buildImage(context),
-              Column(
-                children: [
-                  context.sizedBox(height: 400),
-                  Container(
-                    width: context.width,
-                    decoration: BoxDecoration(
-                      color: colorTheme.getFFFFFF.withOpacity(0.9),
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                      ),
-                    ),
-                    child: _buildBody(context),
-                  ),
-                ],
-              )
-            ],
-          ),
-          context.sizedBox(height: 10),
-          Padding(
-            padding: context.padding(horizontal: 12),
-            child: CustomButton.send(
-              context: context,
-              onPressed: addFavoriteCommunityPost,
-              title: 'Luu bai viet',
-              backgroundColor: colorTheme.get2DDA93,
+          SizedBox(
+            width: context.width,
+            height: context.height * 0.9,
+            child: CustomScrollView(
+              controller: _pageScrollController,
+              physics: const BouncingScrollPhysics(),
+              slivers: [
+                AppBarCommunityPost(
+                  imageUrl: widget.communityPostModel.image,
+                  title: widget.communityPostModel.title,
+                  id: widget.communityPostModel.id,
+                ),
+                BodyCommunityPostDetail(
+                  description: widget.communityPostModel.description,
+                  tags: widget.communityPostModel.tags,
+                ),
+              ],
             ),
           ),
-          context.sizedBox(height: 10),
-        ],
-      ),
-    ));
-  }
-
-  Widget _buildBody(BuildContext context) {
-    return Padding(
-      padding: context.padding(horizontal: 12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          context.sizedBox(height: 10),
-          _buildTags(context),
-          Text(
-            communityPostModel.title,
-            style: theme(context).textTheme.titleLarge!.copyWith(
-                  fontSize: context.sizeWidth(30),
-                ),
-          ),
-          context.sizedBox(height: 5),
-          Text(
-            communityPostModel.description,
-            style: theme(context).textTheme.titleMedium,
-          ),
-          context.sizedBox(height: 10),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildTags(BuildContext context) {
-    return SizedBox(
-      height: context.sizeHeight(20),
-      child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemCount: communityPostModel.tags.length,
-          separatorBuilder: (context, index) => context.sizedBox(width: 5),
-          itemBuilder: (context, index) {
-            return Text(
-              communityPostModel.tags[index],
-              style: theme(context).textTheme.titleSmall!.copyWith(
-                    fontSize: 16,
+          _showSaveButton
+              ? Padding(
+                  padding: context.padding(all: 12),
+                  child: CustomButton.send(
+                    title: translate(context).save,
+                    backgroundColor: colorTheme.get2DDA93,
+                    context: context,
+                    onPressed: widget.addFavoriteCommunityPost,
                   ),
-            );
-          }),
+                ).animate().slide(
+                    duration: 300.ms,
+                    curve: Curves.easeInOut,
+                    begin: const Offset(0, 0.5),
+                    end: const Offset(0, -0.2),
+                  )
+              : Padding(
+                  padding: context.padding(all: 12),
+                  child: CustomButton.send(
+                      title: translate(context).save,
+                      backgroundColor: colorTheme.get2DDA93,
+                      context: context,
+                      onPressed: () {}),
+                ).animate().slide(
+                    duration: 500.ms,
+                    curve: Curves.easeInOut,
+                    begin: const Offset(0, -0.2),
+                    end: const Offset(0, 2),
+                  ),
+        ],
+      ),
     );
   }
 
-  Widget _buildImage(BuildContext context) {
-    return Stack(
-      children: [
-        CustomCatchedNetWorkImage(
-          imageUrl: communityPostModel.image,
-          width: context.width,
-          height: context.sizeHeight(450),
-          borderRadius: context.sizeWidth(0),
-        ),
-        Padding(
-          padding: context.padding(horizontal: 5, vertical: 5),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              CustomBackButton(
-                color: colorTheme.getFFFFFF,
-              ),
-              CustomHeartButton(
-                isLiked: _isLiked(),
-                onPressed: (status) async {
-                  return status;
-                },
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
+  void _handelShowSaveButton() {
+    if (_pageScrollController.position.userScrollDirection ==
+            ScrollDirection.reverse &&
+        _showSaveButton != false) {
+      setState(() {
+        _showSaveButton = false;
+      });
+    } else if (_pageScrollController.position.userScrollDirection ==
+            ScrollDirection.forward &&
+        _showSaveButton != true) {
+      setState(() {
+        _showSaveButton = true;
+      });
+    }
   }
 
-  bool _isLiked() {
-    return userInfo!.listFavoriteCommunityPost.contains(communityPostModel.id);
+  @override
+  void dispose() {
+    _pageScrollController.dispose();
+    super.dispose();
   }
 }

@@ -131,7 +131,7 @@ class _PolularPlantsButtonState extends State<PolularPlantsButton> {
         padding: context.padding(all: 2),
         decoration: BoxDecoration(
           color: ThemeManager.backgroundButton(),
-          borderRadius: BorderRadius.circular(context.sizeWidth(24)),
+          borderRadius: BorderRadius.circular(context.sizeWidth(16)),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,

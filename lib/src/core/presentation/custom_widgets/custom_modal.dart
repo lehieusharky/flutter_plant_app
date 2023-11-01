@@ -14,16 +14,18 @@ class CustomModal {
     showModalBottomSheet<void>(
       context: context,
       backgroundColor: Colors.transparent,
+      shape: RoundedRectangleBorder(
+        borderRadius:
+            BorderRadius.vertical(top: Radius.circular(context.sizeWidth(24))),
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
       isScrollControlled: true,
       builder: (BuildContext context) {
         return Container(
           height: height,
           decoration: BoxDecoration(
             color: ThemeManager.backgroundButton(),
-            borderRadius: const BorderRadius.only(
-              topLeft: Radius.circular(10),
-              topRight: Radius.circular(10),
-            ),
+            // borderRadius: BorderRadius.circular(50),
           ),
           child: child,
         );
