@@ -42,52 +42,51 @@ class _UserPageState extends BaseWidgetState
             ..add(UserGetListTimeLine(plantName: userInfo!.selectedPlantName)),
           child: BlocConsumer<UserBloc, UserState>(
             listener: (context, state) {
-              if (state is UserCreatePlantSuccess) {
-                CustomSnakBar.showSnackbar(
-                  context: context,
-                  message: translate(context).createNewPlantSuccess,
-                  backgroundColor: colorTheme.get2DDA93,
-                );
-
-                context
-                    .read<UserBloc>()
-                    .add(UserToggleSelectPlant(plantName: state.plantName));
-              }
-
-              if (state is UserToggleSelectPlantSuccess) {
-                context
-                    .read<UserBloc>()
-                    .add(UserGetListTimeLine(plantName: state.plantName));
-              }
-
-              if (state is UserCreateTimeLineSuccess) {
-                Logger().e('okeeeee');
-              }
-
-              if (state is UserGetListTimeLineSuccess) {
-                _listTimeLineModel = state.listTimeLine;
-              }
+              _handleState(state, context);
             },
             builder: (context, state) {
-              return Stack(
-                children: [
-                  // const BackGroundContainer(),
-                  NestedScrollView(
-                    controller: _nestedController,
-                    headerSliverBuilder: (context, value) {
-                      return [
-                        _buildAppBar(),
-                        _buildTabBar(),
-                      ];
-                    },
-                    body: _buildTabBarView(),
-                  ),
-                ],
+              return NestedScrollView(
+                controller: _nestedController,
+                headerSliverBuilder: (context, value) {
+                  return [
+                    _buildAppBar(),
+                    _buildTabBar(),
+                  ];
+                },
+                body: _buildTabBarView(),
               );
             },
           ),
         ),
       );
+    }
+  }
+
+  void _handleState(UserState state, BuildContext context) {
+    if (state is UserCreatePlantSuccess) {
+      CustomSnakBar.showSnackbar(
+        context: context,
+        message: translate(context).createNewPlantSuccess,
+        backgroundColor: colorTheme.get2DDA93,
+      );
+
+      context
+          .read<UserBloc>()
+          .add(UserToggleSelectPlant(plantName: state.plantName));
+    }
+
+    if (state is UserToggleSelectPlantSuccess) {
+      context
+          .read<UserBloc>()
+          .add(UserGetListTimeLine(plantName: state.plantName));
+    }
+
+    if (state is UserCreateTimeLineSuccess) {
+      Logger().e('okeeeee');
+    }
+
+    if (state is UserGetListTimeLineSuccess) {
+      _listTimeLineModel = state.listTimeLine;
     }
   }
 
@@ -118,30 +117,16 @@ class _UserPageState extends BaseWidgetState
   }
 
   Widget _buildAppBar() {
-    return BlocBuilder<DashBoardBloc, DashBoardState>(
-      builder: (context, state) {
-        return SliverAppBar(
-          pinned: true,
-          snap: true,
-          leadingWidth: context.sizeWidth(80),
-          floating: true,
-          backgroundColor: Theme.of(context)
-              .scaffoldBackgroundColor
-              .withOpacity(_appbarBackgroundOpacity),
-          expandedHeight: 90,
-          leading: LeafPlusButton(color: _colorLeadingAppBar),
-          flexibleSpace: FlexibleSpaceBar(
-            title: PlantName(plantName: userInfo!.selectedPlantName),
-          ),
-          actions: [
-            ZoomOutButton(
-              opacity: _zoomOutCreateTimelineButtonOpacity,
-              onPressed: () => _showCreatePostModal(context),
-              iconPath: imageConstant.cameraSVG,
-            ),
-          ],
-        );
-      },
+    return AppBarUserPage(
+      appbarBackgroundOpacity: _appbarBackgroundOpacity,
+      colorLeadingAppBar: _colorLeadingAppBar,
+      zoomOutCreateTimelineButtonOpacity: _zoomOutCreateTimelineButtonOpacity,
+      updateTimeLine: (timeLineModel) => _updateTimeLine(timeLineModel),
+      listTimeLineIsEmpty: _listTimeLineModel.isEmpty,
+      backgroundImage: _listTimeLineModel.isNotEmpty
+          ? _listTimeLineModel.reversed.toList()[0].image
+          : '',
+      lengthOfListTimeLine: _listTimeLineModel.length,
     );
   }
 

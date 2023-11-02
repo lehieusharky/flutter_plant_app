@@ -32,7 +32,7 @@ class BrandLoginButton extends StatelessWidget {
           boxShadowColor: colorTheme.getD2D2D2
               .withOpacity(sharePreference.isDarkMode() ? 0 : 0.4),
           backgroundColor: ThemeManager.backgroundButton(),
-          borderRadius: 5,
+          borderRadius: context.sizeWidth(24),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [

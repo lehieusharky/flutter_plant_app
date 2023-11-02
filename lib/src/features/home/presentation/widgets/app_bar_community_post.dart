@@ -7,12 +7,12 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_heart_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
 
 class AppBarCommunityPost extends StatefulWidget {
   final String imageUrl;
   final String title;
   final String id;
+
   const AppBarCommunityPost({
     super.key,
     required this.imageUrl,
@@ -108,15 +108,17 @@ class _AppBarCommunityPostState extends State<AppBarCommunityPost> {
             width: context.width,
             height: context.sizeHeight(460 / 2),
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                  colorTheme.getFFFFFF,
-                  colorTheme.getFFFFFF.withOpacity(0.7),
-                  colorTheme.getFFFFFF.withOpacity(0.1),
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  Theme.of(context).scaffoldBackgroundColor,
+                  Theme.of(context).scaffoldBackgroundColor.withOpacity(0.7),
+                  Theme.of(context).scaffoldBackgroundColor.withOpacity(0.1),
                   Colors.transparent,
-                ])),
+                ],
+              ),
+            ),
           )),
     );
   }

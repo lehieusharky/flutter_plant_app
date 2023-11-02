@@ -36,7 +36,7 @@ class _LoginPageState extends BaseWidgetState {
                       context.sizedBox(height: 25),
                       //* form
                       const FormLogin(),
-                      context.sizedBox(height: 20),
+                      context.sizedBox(height: 10),
                       //* brand button
                       const RowBrandLoginButton(),
                     ],

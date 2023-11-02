@@ -18,24 +18,9 @@ class TimeLineMineStone extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        index != 0
-            ? _buildLine(
-                context: context,
-                color: colorTheme.get2DDA93,
-              )
-            : const SizedBox(),
-        context.sizedBox(height: 2),
-        Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            _buildCircle(context),
-            context.sizedBox(height: 2),
-            _buildLine(
-              context: context,
-              color: !isFirstItem ? colorTheme.get2DDA93 : Colors.transparent,
-            )
-          ],
-        ),
+        _buildCircle(context),
+        context.sizedBox(height: 5),
+        _buildLine(context: context, color: colorTheme.get2DDA93),
       ],
     );
   }
@@ -43,22 +28,24 @@ class TimeLineMineStone extends StatelessWidget {
   Widget _buildLine({required BuildContext context, required Color color}) {
     return Container(
       width: 4,
-      height: context.sizeHeight(230 / 2),
+      height: context.sizeHeight(240),
       decoration: BoxDecoration(
         color: color,
+        borderRadius: BorderRadius.circular(
+          context.sizeWidth(20),
+        ),
       ),
     );
   }
 
   Widget _buildCircle(BuildContext context) {
     return Container(
-      width: context.sizeWidth(12),
-      height: context.sizeWidth(12),
+      width: context.sizeWidth(15),
+      height: context.sizeWidth(15),
       decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: lengthOfListTimeLine == 1
-              ? Colors.transparent
-              : colorTheme.get2DDA93),
+        shape: BoxShape.circle,
+        color: colorTheme.get2DDA93,
+      ),
     );
   }
 }

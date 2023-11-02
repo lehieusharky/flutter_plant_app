@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_border.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/time_line_milestone.dart';
-import 'package:plant_market/src/theme/color_theme.dart';
+
 import 'package:plant_market/src/theme/theme_manager.dart';
 
 class TimeLineItem extends StatelessWidget {
@@ -15,6 +14,7 @@ class TimeLineItem extends StatelessWidget {
   final int index;
   final bool isFirstItem;
   final int lengthOfListTimeLine;
+  final String createAt;
   const TimeLineItem({
     super.key,
     required this.image,
@@ -23,31 +23,13 @@ class TimeLineItem extends StatelessWidget {
     required this.index,
     required this.isFirstItem,
     required this.lengthOfListTimeLine,
+    required this.createAt,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Slidable(
-      key: const ValueKey(0),
-      endActionPane: ActionPane(
-        motion: const ScrollMotion(),
-        children: [
-          SlidableAction(
-            onPressed: (context) {},
-            backgroundColor: colorTheme.get2DDA93,
-            foregroundColor: Colors.white,
-            icon: Icons.save,
-            label: 'Edit',
-          ),
-          SlidableAction(
-            onPressed: (context) {},
-            backgroundColor: colorTheme.getFF6262,
-            foregroundColor: Colors.white,
-            icon: Icons.archive,
-            label: 'Delete',
-          ),
-        ],
-      ),
+    return Padding(
+      padding: context.padding(vertical: 6),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
@@ -56,23 +38,34 @@ class TimeLineItem extends StatelessWidget {
             isFirstItem: isFirstItem,
             lengthOfListTimeLine: lengthOfListTimeLine,
           ),
-          context.sizedBox(width: 5),
+          context.sizedBox(width: 8),
           Expanded(
-            child: Stack(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: [
-                _buildBackground(context),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _buildImage(context),
-                    _buildDesciption(context),
-                  ],
-                ),
+                _buildDataTime(context),
+                context.sizedBox(height: 5),
+                _buildImage(context),
               ],
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildDataTime(BuildContext context) {
+    return Text(
+      createAt,
+      maxLines: 2,
+      textAlign: TextAlign.center,
+      overflow: TextOverflow.ellipsis,
+      style: theme(context).textTheme.titleLarge!.copyWith(
+            fontSize: context.sizeWidth(15),
+            fontWeight: FontWeight.w700,
+            color: theme(context).textTheme.titleLarge!.color!.withOpacity(0.5),
+          ),
     );
   }
 
@@ -84,35 +77,53 @@ class TimeLineItem extends StatelessWidget {
         maxLines: 2,
         textAlign: TextAlign.center,
         overflow: TextOverflow.ellipsis,
-        style: theme(context).textTheme.titleLarge!.copyWith(),
+        style: theme(context).textTheme.titleLarge!.copyWith(
+              fontSize: context.sizeWidth(22),
+              fontWeight: FontWeight.w500,
+            ),
       ),
     );
   }
 
   Widget _buildImage(BuildContext context) {
-    return Padding(
-      padding: context.padding(horizontal: 8, top: 8, bottom: 5),
-      child: Center(
-        child: CustomCatchedNetWorkImage(
-          width: context.width * 0.9,
-          height: context.sizeHeight(160),
-          imageUrl: image,
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        CustomShadow.button(
+          boxShadowColor: ThemeManager.shadowButton(),
+          child: CustomCatchedNetWorkImage(
+            width: context.width * 0.9,
+            height: context.sizeHeight(240),
+            borderRadius: context.sizeWidth(24),
+            imageUrl: image,
+          ),
         ),
-      ),
+        _buildMark(context),
+        _buildDesciption(context),
+      ],
     );
   }
 
-  Widget _buildBackground(BuildContext context) {
-    return CustomShadow.button(
-      boxShadowColor: ThemeManager.shadowButton(),
-      child: Container(
-        width: context.width,
-        height: context.sizeHeight(230),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(context.sizeWidth(5)),
-          color: ThemeManager.backgroundButton(),
-        ),
-      ),
+  Widget _buildMark(BuildContext context) {
+    return Positioned.fill(
+      child: Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            width: context.width,
+            height: context.sizeHeight(120),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(context.sizeWidth(23)),
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [
+                  ThemeManager.backgroundButton(),
+                  ThemeManager.backgroundButton().withOpacity(0.5),
+                  Colors.transparent,
+                ],
+              ),
+            ),
+          )),
     );
   }
 }

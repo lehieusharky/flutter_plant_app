@@ -77,13 +77,13 @@ class _HomePageState extends State<HomePage>
                                 ListPostHomePage(
                                   listCommunityPost: _listCommunityPost,
                                 ),
-                                context.sizedBox(height: 30),
+                                context.sizedBox(height: 10),
                                 Center(
                                   child: CustomSeeAllButton(
                                     onPressed: () {},
                                   ),
                                 ),
-                                context.sizedBox(height: 50),
+                                context.sizedBox(height: 30),
                                 CustomTitle(
                                   title: translate(context).popularTopic,
                                   horizontalPadding: 12,

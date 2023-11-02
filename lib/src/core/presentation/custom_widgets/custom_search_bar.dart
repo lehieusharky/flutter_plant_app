@@ -48,8 +48,8 @@ class _CustomSearchbarState extends State<CustomSearchbar> {
                   .color!
                   .withOpacity(0.7))),
       shadowColor: MaterialStateProperty.all(ThemeManager.shadowButton()),
-      shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(5))),
+      shape: MaterialStateProperty.all(RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(context.sizeWidth(24)))),
       controller: widget.controller,
       backgroundColor: MaterialStateProperty.resolveWith((states) {
         if (states.contains(MaterialState.pressed)) {

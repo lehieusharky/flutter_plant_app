@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/extension/responsive.dart';
 
 class CustomShadow extends StatelessWidget {
   final Widget child;
@@ -26,6 +27,7 @@ class CustomShadow extends StatelessWidget {
       width: width,
       height: height,
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(context.sizeWidth(22)),
         boxShadow: [
           BoxShadow(
             color: boxShadowColor,
