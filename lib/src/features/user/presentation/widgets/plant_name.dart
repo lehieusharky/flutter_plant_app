@@ -54,8 +54,7 @@ class _PlantNameState extends State<PlantName> {
             context.sizedBox(width: 5),
             CustomSvg(
               path: imageConstant.dropDownSVG,
-              color:
-                  theme(context).textTheme.titleMedium!.color!.withOpacity(0.5),
+              color: theme(context).textTheme.titleMedium!.color!,
               width: context.sizeWidth(10),
             ),
           ],

@@ -15,7 +15,8 @@ class CreateTimelineButton extends StatelessWidget {
   final double? iconSize;
   final String title;
   final String iconPath;
-  
+  final double? borderRadius;
+
   const CreateTimelineButton({
     super.key,
     required this.onPressed,
@@ -26,6 +27,7 @@ class CreateTimelineButton extends StatelessWidget {
     this.iconSize,
     required this.title,
     required this.iconPath,
+    this.borderRadius,
   });
 
   @override
@@ -38,7 +40,7 @@ class CreateTimelineButton extends StatelessWidget {
       onPress: onPressed,
       backgroundColor:
           ThemeManager.backgroundButton().withOpacity(opacity ?? 1),
-      borderRadius: context.sizeWidth(5),
+      borderRadius: context.sizeWidth(borderRadius ?? 24),
       child: isHaveTitle == true
           ? Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,10 +83,12 @@ class CreateTimelineButton extends StatelessWidget {
     required String iconPath,
     double? iconSize,
     required String title,
+    required double? borderRadius,
   }) {
     return CreateTimelineButton(
       onPressed: onPressed,
       isHaveTitle: false,
+      borderRadius: borderRadius,
       iconPath: iconPath,
       width: width,
       height: height,

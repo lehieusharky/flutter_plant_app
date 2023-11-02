@@ -34,12 +34,15 @@ class CustomCatchedNetWorkImage extends StatelessWidget {
             opacity: opacity ?? 1,
           ),
         ),
-      ), 
+      ),
       placeholder: (context, url) => CustomShimmer(
         width: width,
         height: height,
       ),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
+      errorWidget: (context, url, error) => CustomShimmer(
+        width: width,
+        height: height,
+      ),
     );
   }
 }

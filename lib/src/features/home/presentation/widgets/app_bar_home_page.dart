@@ -23,9 +23,10 @@ class AppBarHomePage extends StatelessWidget {
       floating: true,
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       expandedHeight: context.sizeHeight(60),
-      leadingWidth: context.sizeWidth(65),
+      leadingWidth: context.sizeWidth(60),
       leading: ZoomOutButton(
         opacity: 1,
+        borderRadius: context.sizeWidth(10),
         onPressed: () => context.go(RouterPath.searchPage),
         iconPath: imageConstant.searchSVG,
       ).animate().slide(

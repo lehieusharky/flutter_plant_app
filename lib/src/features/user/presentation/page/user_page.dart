@@ -42,52 +42,51 @@ class _UserPageState extends BaseWidgetState
             ..add(UserGetListTimeLine(plantName: userInfo!.selectedPlantName)),
           child: BlocConsumer<UserBloc, UserState>(
             listener: (context, state) {
-              if (state is UserCreatePlantSuccess) {
-                CustomSnakBar.showSnackbar(
-                  context: context,
-                  message: translate(context).createNewPlantSuccess,
-                  backgroundColor: colorTheme.get2DDA93,
-                );
-
-                context
-                    .read<UserBloc>()
-                    .add(UserToggleSelectPlant(plantName: state.plantName));
-              }
-
-              if (state is UserToggleSelectPlantSuccess) {
-                context
-                    .read<UserBloc>()
-                    .add(UserGetListTimeLine(plantName: state.plantName));
-              }
-
-              if (state is UserCreateTimeLineSuccess) {
-                Logger().e('okeeeee');
-              }
-
-              if (state is UserGetListTimeLineSuccess) {
-                _listTimeLineModel = state.listTimeLine;
-              }
+              _handleState(state, context);
             },
             builder: (context, state) {
-              return Stack(
-                children: [
-                  // const BackGroundContainer(),
-                  NestedScrollView(
-                    controller: _nestedController,
-                    headerSliverBuilder: (context, value) {
-                      return [
-                        _buildAppBar(),
-                        _buildTabBar(),
-                      ];
-                    },
-                    body: _buildTabBarView(),
-                  ),
-                ],
+              return NestedScrollView(
+                controller: _nestedController,
+                headerSliverBuilder: (context, value) {
+                  return [
+                    _buildAppBar(),
+                    _buildTabBar(),
+                  ];
+                },
+                body: _buildTabBarView(),
               );
             },
           ),
         ),
       );
+    }
+  }
+
+  void _handleState(UserState state, BuildContext context) {
+    if (state is UserCreatePlantSuccess) {
+      CustomSnakBar.showSnackbar(
+        context: context,
+        message: translate(context).createNewPlantSuccess,
+        backgroundColor: colorTheme.get2DDA93,
+      );
+
+      context
+          .read<UserBloc>()
+          .add(UserToggleSelectPlant(plantName: state.plantName));
+    }
+
+    if (state is UserToggleSelectPlantSuccess) {
+      context
+          .read<UserBloc>()
+          .add(UserGetListTimeLine(plantName: state.plantName));
+    }
+
+    if (state is UserCreateTimeLineSuccess) {
+      Logger().e('okeeeee');
+    }
+
+    if (state is UserGetListTimeLineSuccess) {
+      _listTimeLineModel = state.listTimeLine;
     }
   }
 
@@ -128,13 +127,27 @@ class _UserPageState extends BaseWidgetState
           backgroundColor: Theme.of(context)
               .scaffoldBackgroundColor
               .withOpacity(_appbarBackgroundOpacity),
-          expandedHeight: 90,
+          expandedHeight: context.sizeHeight(100),
           leading: LeafPlusButton(color: _colorLeadingAppBar),
           flexibleSpace: FlexibleSpaceBar(
+            background: ClipRRect(
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                child: _listTimeLineModel.isEmpty
+                    ? Image.asset(
+                        imageConstant.backGroundPNG,
+                        fit: BoxFit.cover,
+                      )
+                    : CustomCatchedNetWorkImage(
+                        imageUrl:
+                            _listTimeLineModel.reversed.toList()[0].image),
+              ),
+            ),
             title: PlantName(plantName: userInfo!.selectedPlantName),
           ),
           actions: [
             ZoomOutButton(
+              borderRadius: context.sizeWidth(10),
               opacity: _zoomOutCreateTimelineButtonOpacity,
               onPressed: () => _showCreatePostModal(context),
               iconPath: imageConstant.cameraSVG,

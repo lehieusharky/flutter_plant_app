@@ -6,12 +6,14 @@ class ZoomOutButton extends StatelessWidget {
   final double? opacity;
   final void Function() onPressed;
   final String iconPath;
+  final double? borderRadius;
 
   const ZoomOutButton({
     super.key,
     this.opacity,
     required this.onPressed,
     required this.iconPath,
+    this.borderRadius,
   });
 
   @override
@@ -23,10 +25,11 @@ class ZoomOutButton extends StatelessWidget {
         onPressed: onPressed,
         iconSize: context.sizeWidth(15),
         opacity: opacity,
-        width: context.sizeWidth(35),
-        height: context.sizeWidth(35),
+        width: context.sizeWidth(40),
+        height: context.sizeWidth(40),
         title: '',
         iconPath: iconPath,
+        borderRadius: borderRadius,
       ),
     );
   }

@@ -62,36 +62,42 @@ class _CommunityPostDetailsState extends State<CommunityPostDetails> {
             ),
           ),
           _showSaveButton
-              ? Padding(
-                  padding: context.padding(all: 12),
-                  child: CustomButton.send(
-                    title: translate(context).save,
-                    backgroundColor: colorTheme.get2DDA93,
-                    context: context,
-                    onPressed: widget.addFavoriteCommunityPost,
-                  ),
-                ).animate().slide(
-                    duration: 300.ms,
-                    curve: Curves.easeInOut,
-                    begin: const Offset(0, 0.5),
-                    end: const Offset(0, -0.2),
-                  )
-              : Padding(
-                  padding: context.padding(all: 12),
-                  child: CustomButton.send(
-                      title: translate(context).save,
-                      backgroundColor: colorTheme.get2DDA93,
-                      context: context,
-                      onPressed: () {}),
-                ).animate().slide(
-                    duration: 500.ms,
-                    curve: Curves.easeInOut,
-                    begin: const Offset(0, -0.2),
-                    end: const Offset(0, 2),
-                  ),
+              ? _buildSaveButton(
+                  onPressed: widget.addFavoriteCommunityPost,
+                  begin: const Offset(0, 0.5),
+                  end: const Offset(0, -0.2),
+                  duration: 300.ms,
+                )
+              : _buildSaveButton(
+                  onPressed: () {},
+                  begin: const Offset(0, -0.2),
+                  end: const Offset(0, 2),
+                  duration: 500.ms,
+                )
         ],
       ),
     );
+  }
+
+  Widget _buildSaveButton(
+      {required void Function() onPressed,
+      Offset? begin,
+      Offset? end,
+      Duration? duration}) {
+    return Padding(
+      padding: context.padding(all: 12),
+      child: CustomButton.send(
+        title: translate(context).save,
+        backgroundColor: colorTheme.get2DDA93,
+        context: context,
+        onPressed: onPressed,
+      ),
+    ).animate().slide(
+          duration: duration,
+          curve: Curves.easeInOut,
+          begin: begin,
+          end: end,
+        );
   }
 
   void _handelShowSaveButton() {

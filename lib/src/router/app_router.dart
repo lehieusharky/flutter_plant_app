@@ -76,8 +76,6 @@ class AppRouter {
     ],
   );
 
-  static get animation => null;
-
   static Map<String, dynamic> _params(GoRouterState state) {
     return state.extra! as Map<String, dynamic>;
   }
