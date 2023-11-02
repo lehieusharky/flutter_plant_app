@@ -6,9 +6,14 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/theme_manager.dart';
 
-class ShareFriendButton extends StatelessWidget {
+class ShareFriendButton extends StatefulWidget {
   const ShareFriendButton({super.key});
 
+  @override
+  State<ShareFriendButton> createState() => _ShareFriendButtonState();
+}
+
+class _ShareFriendButtonState extends State<ShareFriendButton> {
   @override
   Widget build(BuildContext context) {
     return CustomButton(

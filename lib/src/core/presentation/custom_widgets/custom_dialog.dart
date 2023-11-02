@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
+import 'package:plant_market/src/core/extension/responsive.dart';
 
 class CustomDialog {
   static baseDialog({
@@ -16,11 +17,18 @@ class CustomDialog {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
+          shape: RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.all(Radius.circular(context.sizeWidth(24))),
+          ),
+          clipBehavior: Clip.antiAliasWithSaveLayer,
           alignment: Alignment.center,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-          title: Text(
-            title,
-            style: theme(context).textTheme.titleLarge,
+          title: Center(
+            child: Text(
+              title,
+              style: theme(context).textTheme.titleLarge,
+            ),
           ),
           content: content,
           actions: <Widget>[

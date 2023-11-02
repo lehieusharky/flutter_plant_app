@@ -16,6 +16,7 @@ class ZoomOutButtonHomePage extends StatelessWidget {
   final int lengthOfCommunityList;
   final void Function(CommunityPostModel communityPostModel)
       updateListCommunityPostModel;
+  final void Function() updateLengthOfCommunityPost;
 
   const ZoomOutButtonHomePage({
     super.key,
@@ -23,6 +24,7 @@ class ZoomOutButtonHomePage extends StatelessWidget {
     required this.end,
     required this.lengthOfCommunityList,
     required this.updateListCommunityPostModel,
+    required this.updateLengthOfCommunityPost,
   });
 
   @override
@@ -68,6 +70,7 @@ class ZoomOutButtonHomePage extends StatelessWidget {
                   child: CreateCommunityPostModal(
                     lengthOfCommunityList: lengthOfCommunityList,
                     updateListCommunityPostModel: updateListCommunityPostModel,
+                    updateLengthOfCommunityPost: updateLengthOfCommunityPost,
                   ),
                 ),
               ).animate().slide(
@@ -108,6 +111,7 @@ class ZoomOutButtonHomePage extends StatelessWidget {
 
   factory ZoomOutButtonHomePage.scrollDown(
       int lengthOfCommunityList,
+      final void Function() updateLengthOfCommunityPost,
       final void Function(CommunityPostModel communityPostModel)
           updateListCommunityPostModel) {
     return ZoomOutButtonHomePage(
@@ -115,11 +119,13 @@ class ZoomOutButtonHomePage extends StatelessWidget {
       end: Offset.zero,
       lengthOfCommunityList: lengthOfCommunityList,
       updateListCommunityPostModel: updateListCommunityPostModel,
+      updateLengthOfCommunityPost: updateLengthOfCommunityPost,
     );
   }
 
   factory ZoomOutButtonHomePage.scrollUp(
       int lengthOfCommunityList,
+      final void Function() updateLengthOfCommunityPost,
       final void Function(CommunityPostModel communityPostModel)
           updateListCommunityPostModel) {
     return ZoomOutButtonHomePage(
@@ -127,6 +133,7 @@ class ZoomOutButtonHomePage extends StatelessWidget {
       begin: Offset.zero,
       lengthOfCommunityList: lengthOfCommunityList,
       updateListCommunityPostModel: updateListCommunityPostModel,
+      updateLengthOfCommunityPost: updateLengthOfCommunityPost,
     );
   }
 

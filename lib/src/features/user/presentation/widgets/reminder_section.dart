@@ -10,7 +10,7 @@ class ReminderSection extends StatelessWidget {
       backgroundColor: Colors.transparent,
       body: Center(
         child: Text(
-          'Reminder',
+          'Comming soon...',
           style: theme(context).textTheme.titleMedium,
         ),
       ),

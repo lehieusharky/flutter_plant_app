@@ -53,7 +53,7 @@ class _LeafPlusButtonState extends State<LeafPlusButton> {
       content: SizedBox(
         width: context.width,
         child: CustomTextFormField(
-          borderRadius: context.sizeWidth(5),
+          borderRadius: context.sizeWidth(24),
           onTapOutSide: (value) {
             FocusManager.instance.primaryFocus!.unfocus();
           },
