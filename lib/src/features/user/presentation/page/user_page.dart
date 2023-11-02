@@ -117,44 +117,16 @@ class _UserPageState extends BaseWidgetState
   }
 
   Widget _buildAppBar() {
-    return BlocBuilder<DashBoardBloc, DashBoardState>(
-      builder: (context, state) {
-        return SliverAppBar(
-          pinned: true,
-          snap: true,
-          leadingWidth: context.sizeWidth(80),
-          floating: true,
-          backgroundColor: Theme.of(context)
-              .scaffoldBackgroundColor
-              .withOpacity(_appbarBackgroundOpacity),
-          expandedHeight: context.sizeHeight(100),
-          leading: LeafPlusButton(color: _colorLeadingAppBar),
-          flexibleSpace: FlexibleSpaceBar(
-            background: ClipRRect(
-              child: ImageFiltered(
-                imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                child: _listTimeLineModel.isEmpty
-                    ? Image.asset(
-                        imageConstant.backGroundPNG,
-                        fit: BoxFit.cover,
-                      )
-                    : CustomCatchedNetWorkImage(
-                        imageUrl:
-                            _listTimeLineModel.reversed.toList()[0].image),
-              ),
-            ),
-            title: PlantName(plantName: userInfo!.selectedPlantName),
-          ),
-          actions: [
-            ZoomOutButton(
-              borderRadius: context.sizeWidth(10),
-              opacity: _zoomOutCreateTimelineButtonOpacity,
-              onPressed: () => _showCreatePostModal(context),
-              iconPath: imageConstant.cameraSVG,
-            ),
-          ],
-        );
-      },
+    return AppBarUserPage(
+      appbarBackgroundOpacity: _appbarBackgroundOpacity,
+      colorLeadingAppBar: _colorLeadingAppBar,
+      zoomOutCreateTimelineButtonOpacity: _zoomOutCreateTimelineButtonOpacity,
+      updateTimeLine: (timeLineModel) => _updateTimeLine(timeLineModel),
+      listTimeLineIsEmpty: _listTimeLineModel.isEmpty,
+      backgroundImage: _listTimeLineModel.isNotEmpty
+          ? _listTimeLineModel.reversed.toList()[0].image
+          : '',
+      lengthOfListTimeLine: _listTimeLineModel.length,
     );
   }
 

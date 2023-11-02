@@ -17,6 +17,7 @@ import 'package:plant_market/src/features/dash_board/presentation/bloc/dash_boar
 import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/presentation/bloc/user_bloc.dart';
+import 'package:plant_market/src/features/user/presentation/widgets/app_bar_user_page.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/create_timeline_modal.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/leaf_plus_button.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/plant_name.dart';
