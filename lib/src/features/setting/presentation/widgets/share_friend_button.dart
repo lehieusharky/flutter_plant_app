@@ -1,3 +1,4 @@
+import 'package:appinio_social_share/appinio_social_share.dart';
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
@@ -6,15 +7,24 @@ import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.
 import 'package:plant_market/src/theme/color_theme.dart';
 import 'package:plant_market/src/theme/theme_manager.dart';
 
-class ShareFriendButton extends StatelessWidget {
+class ShareFriendButton extends StatefulWidget {
   const ShareFriendButton({super.key});
+
+  @override
+  State<ShareFriendButton> createState() => _ShareFriendButtonState();
+}
+
+class _ShareFriendButtonState extends State<ShareFriendButton> {
+  AppinioSocialShare appinioSocialShare = AppinioSocialShare();
 
   @override
   Widget build(BuildContext context) {
     return CustomButton(
       width: context.width,
       height: context.sizeHeight(55),
-      onPress: () {},
+      onPress: () async {
+        await appinioSocialShare.shareToFacebook('LeHieu - Plant More app','' );
+      },
       backgroundColor: ThemeManager.backgroundButton(),
       borderRadius: 3,
       borderSide: BorderSide(
