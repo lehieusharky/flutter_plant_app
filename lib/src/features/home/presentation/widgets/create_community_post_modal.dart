@@ -26,9 +26,12 @@ class CreateCommunityPostModal extends BaseWidget {
   final void Function(CommunityPostModel communityPostModel)
       updateListCommunityPostModel;
 
+  final void Function() updateLengthOfCommunityPost;
+
   const CreateCommunityPostModal({
     super.key,
     super.child,
+    required this.updateLengthOfCommunityPost,
     required this.lengthOfCommunityList,
     required this.updateListCommunityPostModel,
   });
@@ -60,7 +63,8 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
             }
 
             if (state is HomePageCreateCommunityPostSuccess) {
-              (widget as CreateCommunityPostModal).updateListCommunityPostModel(state.communityPostModel);
+              (widget as CreateCommunityPostModal)
+                  .updateListCommunityPostModel(state.communityPostModel);
               CustomSnakBar.showSnackbar(
                 context: context,
                 message: 'Create community post success',

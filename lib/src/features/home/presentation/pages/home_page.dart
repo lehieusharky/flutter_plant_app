@@ -161,8 +161,12 @@ class _HomePageState extends State<HomePage>
   void _handleVisibleZoomOutButton(double offset) {
     if (offset >= 235) {
       if (_appBarTitle !=
-          ZoomOutButtonHomePage.scrollDown(_communityModel.number ?? 0,
-              (communityPostModel) {
+          ZoomOutButtonHomePage.scrollDown(_communityModel.number ?? 0, () {
+            setState(() {
+              _communityModel =
+                  CommunityModel(number: _communityModel.number! + 1);
+            });
+          }, (communityPostModel) {
             setState(() {
               _listCommunityPost.insert(0, communityPostModel);
             });
@@ -182,15 +186,19 @@ class _HomePageState extends State<HomePage>
 
   void _openScrollUpButton() {
     if (_appBarTitle !=
-        ZoomOutButtonHomePage.scrollUp(_communityModel.number ?? 0,
-            (communityPostModel) {
+        ZoomOutButtonHomePage.scrollUp(_communityModel.number ?? 0, () {
+          setState(() {
+            _communityModel =
+                CommunityModel(number: _communityModel.number! + 1);
+          });
+        }, (communityPostModel) {
           setState(() {
             _listCommunityPost.insert(0, communityPostModel);
           });
         })) {
       setState(() {
         _appBarTitle = ZoomOutButtonHomePage.scrollUp(
-            _communityModel.number ?? 0, (communityPostModel) {
+            _communityModel.number ?? 0, () {}, (communityPostModel) {
           setState(() {
             _listCommunityPost.insert(0, communityPostModel);
           });
@@ -201,8 +209,12 @@ class _HomePageState extends State<HomePage>
 
   void _openScrollDownButton() {
     setState(() {
-      _appBarTitle = ZoomOutButtonHomePage.scrollDown(
-          _communityModel.number ?? 0, (communityPostModel) {
+      _appBarTitle =
+          ZoomOutButtonHomePage.scrollDown(_communityModel.number ?? 0, () {
+        setState(() {
+          _communityModel = CommunityModel(number: _communityModel.number! + 1);
+        });
+      }, (communityPostModel) {
         setState(() {
           _listCommunityPost.insert(0, communityPostModel);
         });
@@ -232,6 +244,12 @@ class _HomePageState extends State<HomePage>
         updateListCommunityPostModel: (CommunityPostModel communityPostModel) {
           setState(() {
             _listCommunityPost.insert(0, communityPostModel);
+          });
+        },
+        updateLengthOfCommunityPost: () {
+          setState(() {
+            _communityModel =
+                CommunityModel(number: _communityModel.number! + 1);
           });
         },
       ),
