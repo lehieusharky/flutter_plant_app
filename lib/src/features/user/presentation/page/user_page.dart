@@ -13,7 +13,6 @@ class _UserPageState extends BaseWidgetState
 
   final _nestedController = FixedExtentScrollController();
   double _zoomOutCreateTimelineButtonOpacity = 0;
-  double _appbarBackgroundOpacity = 0;
   Color? _colorLeadingAppBar;
   List<TimeLineModel> _listTimeLineModel = [];
 
@@ -81,10 +80,6 @@ class _UserPageState extends BaseWidgetState
           .add(UserGetListTimeLine(plantName: state.plantName));
     }
 
-    if (state is UserCreateTimeLineSuccess) {
-      Logger().e('okeeeee');
-    }
-
     if (state is UserGetListTimeLineSuccess) {
       _listTimeLineModel = state.listTimeLine;
     }
@@ -118,7 +113,6 @@ class _UserPageState extends BaseWidgetState
 
   Widget _buildAppBar() {
     return AppBarUserPage(
-      appbarBackgroundOpacity: _appbarBackgroundOpacity,
       colorLeadingAppBar: _colorLeadingAppBar,
       zoomOutCreateTimelineButtonOpacity: _zoomOutCreateTimelineButtonOpacity,
       updateTimeLine: (timeLineModel) => _updateTimeLine(timeLineModel),
@@ -145,8 +139,6 @@ class _UserPageState extends BaseWidgetState
   void _setOpacityWhenScroll({required double offset}) {
     setState(() {
       _zoomOutCreateTimelineButtonOpacity = (offset / 200).clamp(0.0, 1.0);
-
-      _appbarBackgroundOpacity = offset.clamp(0.0, 1.0);
 
       _setColorLeadingAppBar(offset: offset);
     });

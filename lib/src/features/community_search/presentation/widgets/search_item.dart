@@ -47,8 +47,8 @@ class SearchItem extends StatelessWidget {
                       _buildTitle(context),
                       context.sizedBox(height: 5),
                       _buildSpectificName(context),
-                      context.sizedBox(height: 5),
-                      _buildTag(context),
+                      // context.sizedBox(height: 5),
+                      // _buildTag(context),
                     ],
                   ),
                 )
@@ -60,22 +60,22 @@ class SearchItem extends StatelessWidget {
     );
   }
 
-  Widget _buildTag(BuildContext context) {
-    return SizedBox(
-      height: context.sizeHeight(30),
-      child: ListView.separated(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          itemCount: communityPostModel.tags.length,
-          separatorBuilder: (context, index) => context.sizedBox(width: 5),
-          itemBuilder: (context, index) {
-            return Text(
-              communityPostModel.tags[index],
-              style: theme(context).textTheme.titleSmall,
-            );
-          }),
-    );
-  }
+  // Widget _buildTag(BuildContext context) {
+  //   return SizedBox(
+  //     height: context.sizeHeight(30),
+  //     child: ListView.separated(
+  //         scrollDirection: Axis.horizontal,
+  //         shrinkWrap: true,
+  //         itemCount: communityPostModel.tags.length,
+  //         separatorBuilder: (context, index) => context.sizedBox(width: 5),
+  //         itemBuilder: (context, index) {
+  //           return Text(
+  //             communityPostModel.tags[index],
+  //             style: theme(context).textTheme.titleSmall,
+  //           );
+  //         }),
+  //   );
+  // }
 
   Widget _buildTitle(BuildContext context) {
     return Text(
@@ -92,6 +92,7 @@ class SearchItem extends StatelessWidget {
   Widget _buildSpectificName(BuildContext context) {
     return Text(
       communityPostModel.description,
+      maxLines: 1,
       style: theme(context).textTheme.titleSmall!.copyWith(),
       overflow: TextOverflow.ellipsis,
     );

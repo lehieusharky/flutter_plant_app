@@ -40,9 +40,10 @@ class _CreateCommunityPostFormState extends State<CreateCommunityPostForm> {
             backgroundColor:
                 theme(context).textTheme.titleMedium!.color!.withOpacity(0.1),
             keyboardType: TextInputType.text,
-            hintText: 'Tieu de',
-            validator: (title) =>
-                title == null ? 'Khong de trong tieu de ' : null,
+            hintText: translate(context).title,
+            validator: (title) => title == null
+                ? translate(context).canNotLeaveTheTitleBlank
+                : null,
           ),
           context.sizedBox(height: 3),
           CustomTextFormField.modal(
@@ -50,7 +51,7 @@ class _CreateCommunityPostFormState extends State<CreateCommunityPostForm> {
             controller: widget.bodyController,
             maxLine: 10,
             validator: (bodyValue) => _bodyValidation(bodyValue: bodyValue),
-            hintText: 'Noi dung cua bai viet',
+            hintText: translate(context).contentOfTheArticle,
           ),
         ],
       ),
@@ -61,7 +62,7 @@ class _CreateCommunityPostFormState extends State<CreateCommunityPostForm> {
     if (bodyValue == '' || bodyValue == null) {
       return translate(context).describeSomethingAboutThisStageOfThePlant;
     } else if (widget.imageFile == null) {
-      return 'Them anh de mo ta cho bai viet nhe';
+      return translate(context).pleaseAddPhotosToYourPosts;
     } else {
       return null;
     }

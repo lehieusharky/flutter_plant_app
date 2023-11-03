@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_divider.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_loading.dart';
@@ -67,7 +68,7 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
                   .updateListCommunityPostModel(state.communityPostModel);
               CustomSnakBar.showSnackbar(
                 context: context,
-                message: 'Create community post success',
+                message: translate(context).createCommunityPostSuccess,
                 backgroundColor: colorTheme.get2DDA93,
               );
               context.pop(true);
@@ -102,7 +103,7 @@ class _CreateCommunityPostModalState extends BaseWidgetState {
                                           onPressed: () => _post(
                                               context: context,
                                               imageFile: _imageFile!),
-                                          saveText: 'Post',
+                                          saveText: translate(context).post,
                                         )
                                       : const SizedBox(),
                                 ],

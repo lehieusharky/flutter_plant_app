@@ -10,7 +10,6 @@ class ShakeAnimationPage extends BaseWidget {
 class _ShakeAnimationPageState extends BaseWidgetState {
   final _hourScrollController = FixedExtentScrollController(initialItem: 0);
   final _minuteScrollController = FixedExtentScrollController(initialItem: 5);
-  final _countDownController = CountDownController();
   final player = AudioPlayer();
   bool _isStart = false;
   String _musicName = '';
@@ -25,6 +24,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
   }
 
   int minuteCount = 5;
+  int hourCount = 5;
 
   String _getMusicNameFromUrl({required Uri musicUrl}) {
     return musicUrl.pathSegments.last.split('/').last.split('.').first;
@@ -52,15 +52,20 @@ class _ShakeAnimationPageState extends BaseWidgetState {
                   children: [
                     context.sizedBox(height: 10),
                     TreeShakeAnimation(
-                      countDownController: _countDownController,
+                      value: ((hourCount * 60) + minuteCount).toDouble(),
                     ),
                     context.sizedBox(height: 10),
                     CountDownWidget(
                       hourScrollController: _hourScrollController,
                       minuteScrollController: _minuteScrollController,
-                      onMinuteSelected: (minute) {
+                      onHourSelected: (hourValue) {
                         setState(() {
-                          minuteCount = minute;
+                          hourCount = hourValue;
+                        });
+                      },
+                      onMinuteSelected: (minuteValue) {
+                        setState(() {
+                          minuteCount = minuteValue;
                         });
                       },
                     ),
@@ -125,12 +130,7 @@ class _ShakeAnimationPageState extends BaseWidgetState {
   }
 
   void _countDown() {
-    _countDownCircleBackGround();
     _countDownHourMinute();
-  }
-
-  void _countDownCircleBackGround() {
-    _countDownController.start();
   }
 
   void _countDownHourMinute() {
@@ -164,6 +164,10 @@ class _ShakeAnimationPageState extends BaseWidgetState {
             if (_hourScrollController.selectedItem != 0) {
               _countDownHourMinute();
             }
+          } else {
+            setState(() {
+              _isStart = !_isStart;
+            });
           }
         }
       });
@@ -181,19 +185,8 @@ class _ShakeAnimationPageState extends BaseWidgetState {
   }
 
   void _giveUp() {
-    _minuteScrollController
-        .animateToItem(
-      0,
-      duration: const Duration(seconds: 1),
-      curve: Curves.easeInOut,
-    )
-        .then((value) {
-      _hourScrollController.animateToItem(
-        0,
-        duration: const Duration(seconds: 1),
-        curve: Curves.easeInOut,
-      );
-    });
+    _hourScrollController.jumpToItem(0);
+    _minuteScrollController.jumpToItem(1);
   }
 
   void _startButtonEvent() {

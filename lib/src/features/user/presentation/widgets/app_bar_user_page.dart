@@ -15,7 +15,6 @@ import 'package:plant_market/src/features/user/presentation/widgets/plant_name.d
 import 'package:plant_market/src/features/user/presentation/widgets/zoom_out_button.dart';
 
 class AppBarUserPage extends StatelessWidget {
-  final double appbarBackgroundOpacity;
   final Color? colorLeadingAppBar;
   final double zoomOutCreateTimelineButtonOpacity;
   final bool listTimeLineIsEmpty;
@@ -24,7 +23,6 @@ class AppBarUserPage extends StatelessWidget {
   final int lengthOfListTimeLine;
   const AppBarUserPage({
     super.key,
-    required this.appbarBackgroundOpacity,
     required this.colorLeadingAppBar,
     required this.zoomOutCreateTimelineButtonOpacity,
     required this.updateTimeLine,
@@ -42,13 +40,12 @@ class AppBarUserPage extends StatelessWidget {
           snap: true,
           leadingWidth: context.sizeWidth(80),
           floating: true,
-          backgroundColor: Theme.of(context)
-              .scaffoldBackgroundColor
-              .withOpacity(appbarBackgroundOpacity),
+          backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           expandedHeight: context.sizeHeight(160),
           leading: LeafPlusButton(color: colorLeadingAppBar),
           flexibleSpace: FlexibleSpaceBar(
             background: ClipRRect(
+              borderRadius: BorderRadius.circular(context.sizeWidth(24)),
               child: ImageFiltered(
                 imageFilter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                 child: listTimeLineIsEmpty
@@ -56,7 +53,10 @@ class AppBarUserPage extends StatelessWidget {
                         imageConstant.backGroundPNG,
                         fit: BoxFit.cover,
                       )
-                    : CustomCatchedNetWorkImage(imageUrl: backgroundImage),
+                    : CustomCatchedNetWorkImage(
+                        imageUrl: backgroundImage,
+                        borderRadius: context.sizeWidth(24),
+                      ),
               ),
             ),
             title: PlantName(plantName: userInfo!.selectedPlantName),

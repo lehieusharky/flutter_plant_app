@@ -6,12 +6,14 @@ class CountDownWidget extends StatefulWidget {
   final ScrollController hourScrollController;
   final ScrollController minuteScrollController;
   final void Function(int)? onMinuteSelected;
+  final void Function(int)? onHourSelected;
 
   const CountDownWidget({
     super.key,
     required this.hourScrollController,
     required this.minuteScrollController,
     this.onMinuteSelected,
+    this.onHourSelected,
   });
 
   @override
@@ -30,7 +32,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
       children: [
         CustomListWheelSelectTime(
           scrollController: widget.hourScrollController,
-          onSelectedItem: (hourValue) {},
+          onSelectedItem: widget.onHourSelected,
           children: _listTimeIndexValue(endIndex: hourMax),
         ),
         _seperetorText(),

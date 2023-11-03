@@ -63,10 +63,10 @@ class _RowTopicButtonState extends State<RowTopicButton> {
                   ),
                   TopicButton(
                     onPressed: widget.onGalleryPressed,
-                    title: translate(context).gallery,
+                    title: translate(context).relax,
                     pathIcon: imageConstant.gallerySVG,
                     isChoosed: _isChoosedTopic,
-                    topicSymbol: TopicSymbol.gallery,
+                    topicSymbol: TopicSymbol.relax,
                   ),
                 ],
               ),

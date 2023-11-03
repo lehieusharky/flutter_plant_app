@@ -234,4 +234,43 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get takeImageFromCameraSucccess => 'Chụp ảnh thành công';
+
+  @override
+  String get commingSoon => 'Đang triển khai';
+
+  @override
+  String get createCommunityPostSuccess => 'Tạo bài viết cộng đồng thành công';
+
+  @override
+  String get post => 'Tải lên';
+
+  @override
+  String get title => 'Tiêu đề';
+
+  @override
+  String get canNotLeaveTheTitleBlank => 'Tiêu đề không được để trống';
+
+  @override
+  String get contentOfTheArticle => 'Nội dung của bài viết';
+
+  @override
+  String get pleaseAddPhotosToYourPosts => 'Hãy thêm ảnh cho bài viết';
+
+  @override
+  String get selectYourPlant => 'Chọn cây của bạn';
+
+  @override
+  String get addToFavoriteSuccess => 'Đã thêm vào yêu thích';
+
+  @override
+  String get removeFromFavoriteSuccess => 'Đã xóa khỏi yêu thích';
+
+  @override
+  String get searchCommunityPost => 'Tìm kiếm các bài viết cộng đồng';
+
+  @override
+  String get searchEnglishPost => 'Tìm kiếm các bài viết tiếng anh';
+
+  @override
+  String get relax => 'Thư giản';
 }

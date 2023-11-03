@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/data/defines/enum/plant_topic.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_search_bar.dart';
@@ -42,11 +42,7 @@ class _PopularTopicPageState extends BaseWidgetState {
                 plantTopic: _plantTopic),
           ),
         child: BlocConsumer<PopularTopicBloc, PopularTopicState>(
-          listener: (context, state) {
-            if (state is PopularTopicGetPlantDiseaseListSuccess) {
-              Logger().d('success disease');
-            }
-          },
+          listener: (context, state) {},
           builder: (context, state) {
             return Stack(
               children: [
@@ -56,7 +52,7 @@ class _PopularTopicPageState extends BaseWidgetState {
                     context.sizedBox(height: 60),
                     CustomSearchbar(
                       controller: _searchController,
-                      hintText: 'Tim kiem tai lieu tieng anh',
+                      hintText: translate(context).searchEnglishPost,
                       onSubmit: () {},
                     ),
                     const Expanded(

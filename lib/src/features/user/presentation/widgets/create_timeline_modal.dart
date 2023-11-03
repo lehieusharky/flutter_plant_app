@@ -48,7 +48,7 @@ class _CreateTimelineModalState extends State<CreateTimelineModal> {
             if (state is UserPickImageFromCameraSuccess) {
               CustomSnakBar.showSnackbar(
                 context: context,
-                message: 'Take image from camera succcess',
+                message: translate(context).takeImageFromCameraSucccess,
                 backgroundColor: colorTheme.get2DDA93,
               );
               _imageTimeLineFile = state.image;

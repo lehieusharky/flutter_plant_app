@@ -66,7 +66,7 @@ class _PlantNameState extends State<PlantName> {
   void _selectPlantDialog(BuildContext context) {
     CustomDialog.baseDialog(
       context: context,
-      title: 'Select your plant',
+      title: translate(context).selectYourPlant,
       confirmText: translate(context).accept,
       cancelText: translate(context).cancel,
       onConfirm: () =>

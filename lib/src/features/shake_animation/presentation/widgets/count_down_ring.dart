@@ -1,42 +1,29 @@
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
-class CountDownRingWidget extends StatefulWidget {
-  final CountDownController countDownController;
-  const CountDownRingWidget({super.key, required this.countDownController});
+class CountDownRingWidget extends StatelessWidget {
+  final double value;
 
-  @override
-  State<CountDownRingWidget> createState() => _CountDownRingWidgetState();
-}
+  const CountDownRingWidget({
+    super.key,
+    required this.value,
+  });
 
-class _CountDownRingWidgetState extends State<CountDownRingWidget> {
   @override
   Widget build(BuildContext context) {
-    return CircularCountDownTimer(
-      duration: 30,
-      initialDuration: 0,
-      controller: widget.countDownController,
-      width: context.sizeWidth(245),
-      height: context.sizeWidth(245),
-      ringColor: Colors.transparent,
-      fillColor: colorTheme.get2DDA93,
-      strokeWidth: context.sizeWidth(15),
-      strokeCap: StrokeCap.round,
-      isReverse: false,
-      isReverseAnimation: true,
-      autoStart: false,
-      onStart: () {},
-      onComplete: () {},
-      onChange: (String timeStamp) {},
-      timeFormatterFunction: (defaultFormatterFunction, duration) {
-        if (duration.inSeconds == 0) {
-          return "Start";
-        } else {
-          return Function.apply(defaultFormatterFunction, [duration]);
-        }
-      },
+    return SizedBox(
+      width: context.sizeWidth(248),
+      height: context.sizeHeight(248),
+      child: CircularProgressIndicator(
+        value: value / 100,
+        strokeWidth: context.sizeWidth(8),
+        backgroundColor: Colors.transparent,
+        color: sharePreference.isDarkMode()
+            ? colorTheme.get2DDA93
+            : const Color(0xff00FFCA),
+      ),
     );
   }
 }

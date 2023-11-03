@@ -75,5 +75,18 @@
   "roseExample": "Ex: Rose",
   "accept": "Accept",
   "createTimelineSuccess": "Create timeline success",
-  "takeImageFromCameraSucccess": "Take image from camera succcess"
+  "takeImageFromCameraSucccess": "Take image from camera succcess",
+  "commingSoon": "Comming soon",
+  "createCommunityPostSuccess": "Create community post success",
+  "post": "Post",
+  "title": "Title",
+  "canNotLeaveTheTitleBlank": "Can not leave the title blank",
+  "contentOfTheArticle": "Content of the article",
+  "pleaseAddPhotosToYourPosts": "Please add photos to your posts",
+  "selectYourPlant": "Select your plant",
+  "addToFavoriteSuccess": "Add to favorite success",
+  "removeFromFavoriteSuccess": "Remove from favorite success",
+  "searchCommunityPost": "Search community post",
+  "searchEnglishPost": "Search English post",
+  "relax": "Relax"
 }

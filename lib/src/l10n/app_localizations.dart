@@ -554,6 +554,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Take image from camera succcess'**
   String get takeImageFromCameraSucccess;
+
+  /// No description provided for @commingSoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Comming soon'**
+  String get commingSoon;
+
+  /// No description provided for @createCommunityPostSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Create community post success'**
+  String get createCommunityPostSuccess;
+
+  /// No description provided for @post.
+  ///
+  /// In en, this message translates to:
+  /// **'Post'**
+  String get post;
+
+  /// No description provided for @title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get title;
+
+  /// No description provided for @canNotLeaveTheTitleBlank.
+  ///
+  /// In en, this message translates to:
+  /// **'Can not leave the title blank'**
+  String get canNotLeaveTheTitleBlank;
+
+  /// No description provided for @contentOfTheArticle.
+  ///
+  /// In en, this message translates to:
+  /// **'Content of the article'**
+  String get contentOfTheArticle;
+
+  /// No description provided for @pleaseAddPhotosToYourPosts.
+  ///
+  /// In en, this message translates to:
+  /// **'Please add photos to your posts'**
+  String get pleaseAddPhotosToYourPosts;
+
+  /// No description provided for @selectYourPlant.
+  ///
+  /// In en, this message translates to:
+  /// **'Select your plant'**
+  String get selectYourPlant;
+
+  /// No description provided for @addToFavoriteSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Add to favorite success'**
+  String get addToFavoriteSuccess;
+
+  /// No description provided for @removeFromFavoriteSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove from favorite success'**
+  String get removeFromFavoriteSuccess;
+
+  /// No description provided for @searchCommunityPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Search community post'**
+  String get searchCommunityPost;
+
+  /// No description provided for @searchEnglishPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Search English post'**
+  String get searchEnglishPost;
+
+  /// No description provided for @relax.
+  ///
+  /// In en, this message translates to:
+  /// **'Relax'**
+  String get relax;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plant_market/src/core/presentation/custom_widgets/custom_loading.dart';
 import 'package:plant_market/src/features/popular_topic/data/models/plant_special_model.dart';
 import 'package:plant_market/src/features/popular_topic/presentation/bloc/popular_topic_bloc.dart';
 import 'package:plant_market/src/features/popular_topic/presentation/widgets/plant_special_item.dart';
@@ -23,9 +24,7 @@ class _PlantSpecialListState extends State<PlantSpecialList> {
       },
       builder: (context, state) {
         if (state.data == null) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
+          return const Center(child: CustomLoading());
         } else {
           return ListView.builder(
             physics: const BouncingScrollPhysics(),

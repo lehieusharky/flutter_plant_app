@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
@@ -122,9 +123,11 @@ class PlantSpecialItem extends StatelessWidget {
     CustomModal.baseModal(
       context: context,
       height: context.height * 0.9,
-      child: Text(
-        'Details',
-        style: theme(context).textTheme.titleMedium,
+      child: Center(
+        child: Text(
+          translate(context).commingSoon,
+          style: theme(context).textTheme.titleMedium,
+        ),
       ),
     );
   }

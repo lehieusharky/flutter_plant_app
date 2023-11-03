@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_back_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_search_bar.dart';
@@ -39,7 +40,7 @@ class _SearchPageState extends BaseWidgetState {
                       context.sizedBox(height: 60),
                       CustomSearchbar(
                         controller: _searchController,
-                        hintText: 'Tim kiem cac bai viet cong dong',
+                        hintText: translate(context).searchCommunityPost,
                         onSubmit: () => _search(context),
                       ),
                       const Expanded(
@@ -57,12 +58,6 @@ class _SearchPageState extends BaseWidgetState {
   }
 
   void _search(BuildContext context) {
-    // BlocProvider.of<CommunitySearchBloc>(context).add(
-    //     CommunitySearchGetListResult(
-    //         getListCommunitySearchResultParam:
-    //             GetListCommunitySearchResultParam(
-    //                 limit: 100, keyWord: _searchController.text.trim())));
-
     context.read<CommunitySearchBloc>().add(
           CommunitySearchGetListResult(
             getListCommunitySearchResultParam:

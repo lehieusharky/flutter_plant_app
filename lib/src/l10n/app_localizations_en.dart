@@ -234,4 +234,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get takeImageFromCameraSucccess => 'Take image from camera succcess';
+
+  @override
+  String get commingSoon => 'Comming soon';
+
+  @override
+  String get createCommunityPostSuccess => 'Create community post success';
+
+  @override
+  String get post => 'Post';
+
+  @override
+  String get title => 'Title';
+
+  @override
+  String get canNotLeaveTheTitleBlank => 'Can not leave the title blank';
+
+  @override
+  String get contentOfTheArticle => 'Content of the article';
+
+  @override
+  String get pleaseAddPhotosToYourPosts => 'Please add photos to your posts';
+
+  @override
+  String get selectYourPlant => 'Select your plant';
+
+  @override
+  String get addToFavoriteSuccess => 'Add to favorite success';
+
+  @override
+  String get removeFromFavoriteSuccess => 'Remove from favorite success';
+
+  @override
+  String get searchCommunityPost => 'Search community post';
+
+  @override
+  String get searchEnglishPost => 'Search English post';
+
+  @override
+  String get relax => 'Relax';
 }

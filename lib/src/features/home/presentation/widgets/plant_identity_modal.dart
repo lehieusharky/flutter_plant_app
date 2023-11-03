@@ -6,9 +6,11 @@ class PlantIdentifyModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'plant identify',
-      style: theme(context).textTheme.titleMedium,
+    return Center(
+      child: Text(
+        'Comming soon',
+        style: theme(context).textTheme.titleMedium,
+      ),
     );
   }
 }

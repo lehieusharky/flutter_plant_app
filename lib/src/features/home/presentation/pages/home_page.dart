@@ -34,28 +34,7 @@ class _HomePageState extends State<HomePage>
       body: BlocProvider(
         create: (context) => HomePageBloc(),
         child: BlocConsumer<HomePageBloc, HomePageState>(
-          listener: (context, state) {
-            if (state is HomePageGetCommunityInfoSuccess) {
-              _communityModel = state.communityModel;
-            }
-            if (state is HomePageAddFavoriteCommunityPostSuccess) {
-              CustomSnakBar.showSnackbar(
-                context: context,
-                message: 'Add to favorite success',
-                backgroundColor: colorTheme.get2DDA93,
-              );
-            }
-            if (state is HomePageRemoveFavoriteCommunityPostSuccess) {
-              CustomSnakBar.showSnackbar(
-                context: context,
-                message: 'Remove from favorite success',
-                backgroundColor: colorTheme.get2DDA93,
-              );
-            }
-            if (state is HomePageGetCommunityPostListSuccess) {
-              _listCommunityPost = state.listCommunityPost.reversed.toList();
-            }
-          },
+          listener: (context, state) => _handleState(state, context),
           builder: (context, state) {
             return BlocBuilder<MyAppBloc, MyAppState>(
               builder: (context, state) {
@@ -80,7 +59,9 @@ class _HomePageState extends State<HomePage>
                                 context.sizedBox(height: 10),
                                 Center(
                                   child: CustomSeeAllButton(
-                                    onPressed: () {},
+                                    width: context.width / 1.5,
+                                    onPressed: () =>
+                                        context.go(RouterPath.searchPage),
                                   ),
                                 ),
                                 context.sizedBox(height: 30),
@@ -113,6 +94,29 @@ class _HomePageState extends State<HomePage>
         ),
       ),
     );
+  }
+
+  void _handleState(HomePageState state, BuildContext context) {
+    if (state is HomePageGetCommunityInfoSuccess) {
+      _communityModel = state.communityModel;
+    }
+    if (state is HomePageAddFavoriteCommunityPostSuccess) {
+      CustomSnakBar.showSnackbar(
+        context: context,
+        message: translate(context).addToFavoriteSuccess,
+        backgroundColor: colorTheme.get2DDA93,
+      );
+    }
+    if (state is HomePageRemoveFavoriteCommunityPostSuccess) {
+      CustomSnakBar.showSnackbar(
+        context: context,
+        message: translate(context).removeFromFavoriteSuccess,
+        backgroundColor: colorTheme.get2DDA93,
+      );
+    }
+    if (state is HomePageGetCommunityPostListSuccess) {
+      _listCommunityPost = state.listCommunityPost.reversed.toList();
+    }
   }
 
   Widget _buildHeader(BuildContext context) {
@@ -259,7 +263,7 @@ class _HomePageState extends State<HomePage>
 
   void _onGalleryPressed({required BuildContext context}) {
     _showTopicModal(context: context, child: const ShakeAnimationPage());
-    _changeTopic(topicSymbol: TopicSymbol.gallery, context: context);
+    _changeTopic(topicSymbol: TopicSymbol.relax, context: context);
   }
 
   void _showTopicModal({required BuildContext context, required Widget child}) {

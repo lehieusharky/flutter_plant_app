@@ -42,8 +42,8 @@ class LogoutButton extends StatelessWidget {
     CustomDialog.baseDialog(
       context: context,
       title: 'Really log out?',
-      confirmText: 'Log out',
-      cancelText: 'Cancel',
+      confirmText: translate(context).accept,
+      cancelText: translate(context).cancel,
       onConfirm: () => _logOut(context),
     );
   }

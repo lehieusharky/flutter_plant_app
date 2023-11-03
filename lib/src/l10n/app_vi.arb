@@ -75,5 +75,18 @@
   "roseExample": "Ví dụ: Hoa hồng",
   "accept": "Đồng ý",
   "createTimelineSuccess": "Tạo mốc thời gian thành công",
-  "takeImageFromCameraSucccess": "Chụp ảnh thành công"
+  "takeImageFromCameraSucccess": "Chụp ảnh thành công",
+  "commingSoon": "Đang triển khai",
+  "createCommunityPostSuccess": "Tạo bài viết cộng đồng thành công",
+  "post": "Tải lên",
+  "title": "Tiêu đề",
+  "canNotLeaveTheTitleBlank": "Tiêu đề không được để trống",
+  "contentOfTheArticle": "Nội dung của bài viết",
+  "pleaseAddPhotosToYourPosts": "Hãy thêm ảnh cho bài viết",
+  "selectYourPlant": "Chọn cây của bạn",
+  "addToFavoriteSuccess": "Đã thêm vào yêu thích",
+  "removeFromFavoriteSuccess": "Đã xóa khỏi yêu thích",
+  "searchCommunityPost": "Tìm kiếm các bài viết cộng đồng",
+  "searchEnglishPost": "Tìm kiếm các bài viết tiếng anh",
+  "relax": "Thư giản"
 }

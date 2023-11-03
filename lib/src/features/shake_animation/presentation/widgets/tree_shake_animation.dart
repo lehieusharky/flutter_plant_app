@@ -1,5 +1,5 @@
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
+import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_lottie.dart';
@@ -8,11 +8,9 @@ import 'package:plant_market/src/features/shake_animation/presentation/widgets/c
 import 'package:plant_market/src/theme/theme_manager.dart';
 
 class TreeShakeAnimation extends StatefulWidget {
-  final CountDownController countDownController;
-  const TreeShakeAnimation({
-    super.key,
-    required this.countDownController,
-  });
+  final double value;
+
+  const TreeShakeAnimation({super.key, required this.value});
 
   @override
   State<TreeShakeAnimation> createState() => _TreeShakeAnimationState();
@@ -61,7 +59,7 @@ class _TreeShakeAnimationState extends State<TreeShakeAnimation> {
     return Stack(
       alignment: Alignment.center,
       children: [
-        CountDownRingWidget(countDownController: widget.countDownController),
+        CountDownRingWidget(value: widget.value),
         Container(
           width: context.sizeWidth(250),
           height: context.sizeHeight(250),

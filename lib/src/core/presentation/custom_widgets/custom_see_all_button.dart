@@ -26,7 +26,7 @@ class CustomSeeAllButton extends StatelessWidget {
         height: context.sizeHeight(45),
         onPress: onPressed,
         backgroundColor: ThemeManager.backgroundButton(),
-        borderRadius: 3,
+        borderRadius: context.sizeWidth(24),
         borderSide: const BorderSide(
           color: Color(0xffD8D8D8),
           width: 1,

@@ -1,1 +1,1 @@
-enum TopicSymbol { init, identification, community, gallery }
+enum TopicSymbol { init, identification, community, relax }
