@@ -1,9 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/exceptions/login_exception.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
-import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/features/auth/login/domain/repositories/login_repository.dart';
 
 LoginWithGoogleUseCase get loginWithGoogleUseCase =>
@@ -23,8 +21,7 @@ class LoginWithGoogleUseCaseImpl extends UseCase<void, NoParams>
   Future<void> call(NoParams params) async {
     try {
       final result = await _loginWithGoogleRepository.loginWithGoogle();
-      return result.fold((failure) => LoginFailure(message: failure.toString()),
-          (success) => Logger().d('Login success'));
+      return result.fold((failure) => {}, (success) => {});
     } catch (e) {
       throw LoginException(message: e.toString());
     }

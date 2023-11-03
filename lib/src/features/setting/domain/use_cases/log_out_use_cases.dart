@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
@@ -28,8 +27,8 @@ class LogOutUseCaseImpl extends UseCase<void, NoParams>
     try {
       final result = await _logOutRepository.logOut();
       result.fold(
-        (failure) => Logger().e('Log out failed'),
-        (success) => Logger().d('Log out success'),
+        (failure) => {},
+        (success) => {},
       );
     } catch (e) {
       throw LogOutFailure(message: e.toString());

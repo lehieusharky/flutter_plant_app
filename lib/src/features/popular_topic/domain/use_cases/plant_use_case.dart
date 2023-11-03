@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
@@ -40,7 +39,7 @@ class PlantUseCaseImpl extends UseCase<void, NoParams> implements PlantUseCase {
       );
       return result.fold(
         (failure) {
-          Logger().e('Get list plant special failed: ${failure.message}');
+        
           return const PlantSpecialModel();
         },
         (plantSpecialModel) => plantSpecialModel,
@@ -60,7 +59,7 @@ class PlantUseCaseImpl extends UseCase<void, NoParams> implements PlantUseCase {
       );
       return result.fold(
         (failure) {
-          Logger().e('Get list plant disease failed: ${failure.message}');
+       
           return const PlantDiseaseModel();
         },
         (plantDiseaseModel) => plantDiseaseModel,

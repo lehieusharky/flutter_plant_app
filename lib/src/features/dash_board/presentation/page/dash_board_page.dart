@@ -23,7 +23,7 @@ class _DashBoardPageState extends State<DashBoardPage> {
             child: BlocConsumer<DashBoardBloc, DashBoardState>(
               listener: (context, state) {
                 if (state is DashBoardGetUserInfomationSuccess) {
-                  Logger().f('Get user infomation success');
+                 
                   userInfo = state.userModel;
                 }
               },

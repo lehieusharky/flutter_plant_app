@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
@@ -81,7 +80,7 @@ class _LeafPlusButtonState extends State<LeafPlusButton> {
           .read<UserBloc>()
           .add(UserCreatePlant(plantName: _plantNameController.text.trim()));
     } else {
-      Logger().e('Plant name is already exist');
+  
     }
   }
 }

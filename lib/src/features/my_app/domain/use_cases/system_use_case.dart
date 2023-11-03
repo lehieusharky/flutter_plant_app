@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
@@ -32,7 +31,7 @@ class SystemUsecaseImpl extends UseCase<String, NoParams>
       final result = _systemRepository.systemLanguage();
       return result.fold(
         (failure) {
-          Logger().e(failure.message);
+        
           return AppConstant.en;
         },
         (languageCode) => languageCode,
@@ -48,7 +47,7 @@ class SystemUsecaseImpl extends UseCase<String, NoParams>
       final result = _systemRepository.systemThemeMode();
       return result.fold(
         (failure) {
-          Logger().e(failure.message);
+
           return ThemeMode.light;
         },
         (themeMode) => themeMode,

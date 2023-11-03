@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/data/datasource/local/share_preference_datasource.dart';
 import 'package:plant_market/src/core/data/defines/constants/app_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
@@ -99,7 +98,7 @@ class CommunityDataSourceImpl implements CommunityDataSource {
   Future<void> addToFavoritePost({required String communityPostId}) async {
     try {
       if (userInfo!.listFavoriteCommunityPost.contains(communityPostId)) {
-        Logger().d('post is added');
+      
       } else {
         final updateListFavoritePost = userInfo!.listFavoriteCommunityPost;
         updateListFavoritePost.add(communityPostId);

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
@@ -50,7 +49,6 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
           imageFile: imageFile);
       return result.fold(
         (failure) {
-          Logger().e('Can not post community post image: ${failure.message}');
           return null;
         },
         (imageUrl) => imageUrl,
@@ -68,8 +66,8 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
       final result = await _communityRepository.createCommunityPost(
           communityPostModel: communityPostModel, number: number);
       return result.fold(
-        (failure) => Logger().e('Create post failed ${failure.message}'),
-        (succcess) => Logger().d('Create post success'),
+        (failure) => {},
+        (succcess) => {},
       );
     } catch (e) {
       throw CommunityFailure(message: e.toString());
@@ -83,7 +81,6 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
       final result = await _communityRepository.getListCommunityPost(num: num);
       return result.fold(
         (failure) {
-          Logger().e('get list post error: ${failure.message}');
           return [];
         },
         (listCommunityPost) => listCommunityPost,
@@ -99,7 +96,6 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
       final result = await _communityRepository.getCommunityInformation();
       return result.fold(
         (failure) {
-          Logger().e('get community info failed: ${failure.message}');
           return const CommunityModel();
         },
         (communityModel) => communityModel,
@@ -115,9 +111,8 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
       final result = await _communityRepository.addToFavoritePost(
           communityPostId: communityPostId);
       return result.fold(
-        (failure) => Logger()
-            .e('add favorite community post  failed: ${failure.message}'),
-        (success) => Logger().e('add favorite community post  success: '),
+        (failure) => {},
+        (success) => {},
       );
     } catch (e) {
       throw CommunityFailure(message: e.toString());
@@ -130,9 +125,8 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
       final result = await _communityRepository.removeFromFavoritePost(
           communityPostId: communityPostId);
       return result.fold(
-        (failure) => Logger()
-            .e('remove favorite community post  failed: ${failure.message}'),
-        (success) => Logger().e('remove favorite community post  success: '),
+        (failure) => {},
+        (success) => {},
       );
     } catch (e) {
       throw CommunityFailure(message: e.toString());
@@ -152,8 +146,6 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
       );
       return result.fold(
         (failure) {
-          Logger().e('get list search community  failed: ${failure.message}');
-
           return [];
         },
         (listCommunityResult) => listCommunityResult,

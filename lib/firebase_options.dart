@@ -63,6 +63,6 @@ class DefaultFirebaseOptions {
     messagingSenderId: '113696488934',
     projectId: 'plant-more-22e23',
     storageBucket: 'plant-more-22e23.appspot.com',
-    iosBundleId: 'com.example.plantMarket',
+    iosBundleId: 'com.lehieultt.plantmore',
   );
 }

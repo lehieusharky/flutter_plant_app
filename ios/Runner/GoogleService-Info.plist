@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.example.plantMarket</string>
+	<string>com.lehieultt.plantmore</string>
 	<key>PROJECT_ID</key>
 	<string>plant-more-22e23</string>
 	<key>STORAGE_BUCKET</key>

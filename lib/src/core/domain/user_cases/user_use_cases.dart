@@ -1,4 +1,5 @@
 import 'package:injectable/injectable.dart';
+// ignore: unused_import
 import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/data/models/user_model.dart';
 import 'package:plant_market/src/core/di/di.dart';
@@ -35,7 +36,6 @@ class UserUseCaseImpl extends UseCase<void, NoParams> implements UserUseCase {
       final result = _userRepository.getUserInfomationStream();
       return result.fold(
         (failure) {
-          Logger().e('Get user infomation stream failed ${failure.message}');
           return null;
         },
         (userModel) => userModel,
@@ -50,8 +50,8 @@ class UserUseCaseImpl extends UseCase<void, NoParams> implements UserUseCase {
     try {
       final result = await _userRepository.createUserDataBase();
       return result.fold(
-        (failure) => Logger().e('Create new user db failed'),
-        (success) => Logger().f('Create user db success'),
+        (failure) {},
+        (success) {},
       );
     } catch (e) {
       throw AuthDataBaseFailure(message: e.toString());
@@ -76,8 +76,8 @@ class UserUseCaseImpl extends UseCase<void, NoParams> implements UserUseCase {
     try {
       final result = await _userRepository.deleteUserDataBase();
       return result.fold(
-        (failure) => Logger().e('delete account failed: ${failure.message}'),
-        (success) => Logger().e('delete account success'),
+        (failure) {},
+        (success) {},
       );
     } catch (e) {
       throw AuthDataBaseFailure(message: e.toString());

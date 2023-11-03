@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
@@ -30,8 +29,8 @@ class PhoneUsecaseimpl extends UseCase<void, NoParams> implements PhoneUseCase {
           phoneNumber: sentOtpParams.phoneNumber,
           pushToOtp: sentOtpParams.pushToOtp);
       result.fold(
-        (failure) => Logger().e(failure.message),
-        (success) => Logger().d('sent otp success'),
+        (failure) => {},
+        (success) => {},
       );
     } catch (e) {
       throw PhoneFailure(message: e.toString());
@@ -47,8 +46,8 @@ class PhoneUsecaseimpl extends UseCase<void, NoParams> implements PhoneUseCase {
           onError: verityOtpParams.onError);
 
       result.fold(
-        (failure) => Logger().e(failure.message),
-        (success) => Logger().d('verify otp success'),
+        (failure) => {},
+        (success) =>{},
       );
     } catch (e) {
       throw PhoneFailure(message: e.toString());

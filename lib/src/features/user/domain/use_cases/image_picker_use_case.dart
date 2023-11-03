@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
@@ -31,7 +30,7 @@ class ImagePickerUseCaseImpl extends UseCase<void, NoParams>
       final result = await _imagePickerRepository.getImageFromCamera();
       return result.fold(
         (failure) {
-          Logger().e(failure);
+
           return;
         },
         (image) => image,

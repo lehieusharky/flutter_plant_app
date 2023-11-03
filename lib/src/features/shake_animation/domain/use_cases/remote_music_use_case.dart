@@ -1,5 +1,4 @@
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
@@ -29,7 +28,7 @@ class RemoteMusicUseCaseImpl extends UseCase<void, NoParams>
       final result = await _remoteMusicRepository.getMusicPlayList();
       return result.fold(
         (failure) {
-          Logger().e('Get remote music play list failed ${failure.message}');
+         
           return [];
         },
         (musicPlayList) => musicPlayList,

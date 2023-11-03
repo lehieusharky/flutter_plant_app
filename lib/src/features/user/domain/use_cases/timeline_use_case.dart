@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:plant_market/src/core/di/di.dart';
 import 'package:plant_market/src/core/failure/failure.dart';
 import 'package:plant_market/src/core/use_cases/use_case.dart';
@@ -35,8 +34,8 @@ class TimeLineUseCaseImpl extends UseCase<void, TimeLineParams>
       final result = await _timeLineRepository.createTimeLine(
           timeLineModel: timeLineModel);
       return result.fold(
-        (failure) => Logger().e('Create timeline falure'),
-        (success) => Logger().f('create timeline success'),
+        (failure) {},
+        (success) {},
       );
     } catch (e) {
       throw TimeLineFailure(message: e.toString());
@@ -49,8 +48,8 @@ class TimeLineUseCaseImpl extends UseCase<void, TimeLineParams>
       final result =
           await _timeLineRepository.createPlant(plantName: plantName);
       return result.fold(
-        (failure) => Logger().e('Create plant falure'),
-        (success) => Logger().f('create plant success'),
+        (failure) {},
+        (success) {},
       );
     } catch (e) {
       throw TimeLineFailure(message: e.toString());
@@ -64,7 +63,7 @@ class TimeLineUseCaseImpl extends UseCase<void, TimeLineParams>
           await _timeLineRepository.postImageOfTimeLine(image: image);
       return result.fold(
         (failure) {
-          Logger().e('post image falure');
+         
           return null;
         },
         (imageUrl) => imageUrl,
@@ -80,8 +79,8 @@ class TimeLineUseCaseImpl extends UseCase<void, TimeLineParams>
       final result =
           await _timeLineRepository.toggleSelectedPlant(plantName: plantName);
       return result.fold(
-        (failure) => Logger().e('toggle plant name falure'),
-        (success) => Logger().e('toggle plant name success'),
+        (failure) => {},
+        (success) => {},
       );
     } catch (e) {
       throw TimeLineFailure(message: e.toString());
@@ -96,7 +95,7 @@ class TimeLineUseCaseImpl extends UseCase<void, TimeLineParams>
           await _timeLineRepository.getListTimeLine(plantName: plantName);
       return result.fold(
         (failure) {
-          Logger().e('get list timeline failed, ${failure.message}');
+         
           return [];
         },
         (listTimeLine) => listTimeLine,
