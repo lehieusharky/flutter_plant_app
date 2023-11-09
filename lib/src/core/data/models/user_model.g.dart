@@ -18,11 +18,15 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       listPlantName: (json['listPlantName'] as List<dynamic>)
           .map((e) => e as String)
           .toList(),
-      listFavoriteCommunityPost:
-          (json['listFavoriteCommunityPost'] as List<dynamic>)
+      listFavoriteCommunityPost: (json['listFavoriteCommunityPost']
+              as List<dynamic>)
+          .map((e) => CommunityPostModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      selectedPlantName: json['selectedPlantName'] as String,
+      listFavoriteIDCommunityPost:
+          (json['listFavoriteIDCommunityPost'] as List<dynamic>)
               .map((e) => e as String)
               .toList(),
-      selectedPlantName: json['selectedPlantName'] as String,
     );
 
 Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
@@ -33,6 +37,7 @@ Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
       'role': _$RoleEnumMap[instance.role]!,
       'listPostId': instance.listPostId,
       'listPlantName': instance.listPlantName,
+      'listFavoriteIDCommunityPost': instance.listFavoriteIDCommunityPost,
       'listFavoriteCommunityPost': instance.listFavoriteCommunityPost,
       'selectedPlantName': instance.selectedPlantName,
     };

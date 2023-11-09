@@ -137,7 +137,7 @@ class CommunityPostItem extends StatelessWidget {
 
   bool _isLiked() {
     try {
-      return userInfo!.listFavoriteCommunityPost
+      return userInfo!.listFavoriteIDCommunityPost
           .contains(communityPostModel.id);
     } catch (e) {
       return false;
