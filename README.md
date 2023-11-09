@@ -2,16 +2,17 @@
 
 A new Flutter project.
 
-# generate dependencies, json serialize , hive
-
 # Run commands before run project
 
+generate dependencies, json serialize , hive
 generate in pubspec.yaml must be false
 
-'''bash
-flutter pub run build_runner build --delete-conflicting-outputs
-'''
+```bash
+dart run build_runner build --delete-conflicting-outputs
+```
 
 # build apk
 
+```bash
 flutter build apk --split-per-abi
+```

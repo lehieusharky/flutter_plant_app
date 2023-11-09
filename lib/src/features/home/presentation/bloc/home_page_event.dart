@@ -32,8 +32,6 @@ final class HomePageDeterminePosition extends HomePageEvent {}
 
 final class HomePagePickImageFromCamera extends HomePageEvent {}
 
-
-
 final class HomePagePostCommunityPostImage extends HomePageEvent {
   final File imageFile;
 
@@ -69,10 +67,12 @@ final class HomePageGetCommunityInformation extends HomePageEvent {}
 
 final class HomePageAddFavoriteCommunityPost extends HomePageEvent {
   final String communityPostId;
+  final CommunityPostModel communityPostModel;
 
-  const HomePageAddFavoriteCommunityPost({required this.communityPostId});
+  const HomePageAddFavoriteCommunityPost(
+      {required this.communityPostModel, required this.communityPostId});
   @override
-  List<Object> get props => [communityPostId];
+  List<Object> get props => [communityPostId, communityPostModel];
 }
 
 final class HomePageRemoveFavoriteCommunityPost extends HomePageEvent {

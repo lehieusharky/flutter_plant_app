@@ -61,33 +61,23 @@ class CommunityPostItem extends StatelessWidget {
         padding: context.padding(all: 10),
         child: Container(
           alignment: Alignment.center,
-          width: context.sizeWidth(70),
-          height: context.sizeHeight(30),
+          width: context.sizeWidth(40),
+          height: context.sizeHeight(40),
           decoration: BoxDecoration(
             color: ThemeManager.backgroundButton().withOpacity(0.7),
             borderRadius: BorderRadius.circular(context.sizeWidth(8)),
           ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                '20',
-                style: AppTextTheme.darkTheme(context).titleSmall,
-              ),
-              CustomHeartButton(
-                size: context.sizeWidth(20),
-                isLiked: _isLiked(),
-                onPressed: (status) async {
-                  if (status) {
-                    _removeFavoriteCommunityPost(context);
-                  } else {
-                    _addFavoriteCommunityPost(context);
-                  }
-                  return !status;
-                },
-              ),
-            ],
+          child: CustomHeartButton(
+            size: context.sizeWidth(25),
+            isLiked: _isLiked(),
+            onPressed: (status) async {
+              if (status) {
+                _removeFavoriteCommunityPost(context);
+              } else {
+                _addFavoriteCommunityPost(context);
+              }
+              return !status;
+            },
           ),
         ),
       ),
@@ -146,7 +136,9 @@ class CommunityPostItem extends StatelessWidget {
 
   void _addFavoriteCommunityPost(BuildContext context) {
     context.read<HomePageBloc>().add(HomePageAddFavoriteCommunityPost(
-        communityPostId: communityPostModel.id));
+          communityPostId: communityPostModel.id,
+          communityPostModel: communityPostModel,
+        ));
   }
 
   void _removeFavoriteCommunityPost(BuildContext context) {

@@ -15,7 +15,10 @@ abstract class CommunityDataSource {
 
   Future<CommunityModel> getCommunityInformation();
 
-  Future<void> addToFavoritePost({required String communityPostId});
+  Future<void> addToFavoritePost({
+    required String communityPostId,
+    required CommunityPostModel communityPostModel,
+  });
 
   Future<void> removeFromFavoritePost({required String communityPostId});
 

@@ -21,7 +21,10 @@ abstract class CommunityUseCase {
 
   Future<CommunityModel> getCommunityInformation();
 
-  Future<void> addToFavoritePost({required String communityPostId});
+  Future<void> addToFavoritePost({
+    required String communityPostId,
+    required CommunityPostModel communityPostModel,
+  });
 
   Future<void> removeFromFavoritePost({required String communityPostId});
 
@@ -110,10 +113,14 @@ class CommunityUseCaseImpl extends UseCase<void, NoParams>
   }
 
   @override
-  Future<void> addToFavoritePost({required String communityPostId}) async {
+  Future<void> addToFavoritePost({
+    required String communityPostId,
+    required CommunityPostModel communityPostModel,
+  }) async {
     try {
       final result = await _communityRepository.addToFavoritePost(
-          communityPostId: communityPostId);
+          communityPostId: communityPostId,
+          communityPostModel: communityPostModel);
       return result.fold(
         (failure) => Logger()
             .e('add favorite community post  failed: ${failure.message}'),

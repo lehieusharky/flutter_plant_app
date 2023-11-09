@@ -17,7 +17,8 @@ abstract class CommunityRepository {
   Future<Either<CommunityFailure, CommunityModel>> getCommunityInformation();
 
   Future<Either<CommunityFailure, void>> addToFavoritePost(
-      {required String communityPostId});
+      {required String communityPostId,
+    required CommunityPostModel communityPostModel,});
 
   Future<Either<CommunityFailure, void>> removeFromFavoritePost(
       {required String communityPostId});
