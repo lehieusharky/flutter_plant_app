@@ -96,7 +96,10 @@ class CommunityDataSourceImpl implements CommunityDataSource {
   }
 
   @override
-  Future<void> addToFavoritePost({required String communityPostId}) async {
+  Future<void> addToFavoritePost({
+    required String communityPostId,
+    required CommunityPostModel communityPostModel,
+  }) async {
     try {
       if (userInfo!.listFavoriteIDCommunityPost.contains(communityPostId)) {
         Logger().d('post is added');
@@ -112,6 +115,13 @@ class CommunityDataSourceImpl implements CommunityDataSource {
             .collection(AppConstant.usersCollection)
             .doc(userInfo!.id)
             .update(dataUpdate);
+
+        await firebaseFirestore
+            .collection(AppConstant.usersCollection)
+            .doc(userInfo!.id)
+            .collection('favorite_post')
+            .doc(communityPostId)
+            .set(communityPostModel.toJson());
       }
     } catch (e) {
       throw Exception(e);
@@ -130,6 +140,15 @@ class CommunityDataSourceImpl implements CommunityDataSource {
           .collection(AppConstant.usersCollection)
           .doc(userInfo!.id)
           .update(dataUpdate);
+
+      await firebaseFirestore
+          .collection(AppConstant.usersCollection)
+          .doc(userInfo!.id)
+          .collection('favorite_post')
+          .doc(communityPostId)
+          .delete();
+
+          
     } catch (e) {
       throw Exception(e);
     }

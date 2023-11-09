@@ -61,11 +61,14 @@ class CommunityRepositoryImpl implements CommunityRepository {
   }
 
   @override
-  Future<Either<CommunityFailure, void>> addToFavoritePost(
-      {required String communityPostId}) async {
+  Future<Either<CommunityFailure, void>> addToFavoritePost({
+    required String communityPostId,
+    required CommunityPostModel communityPostModel,
+  }) async {
     try {
       final result = await _communityDataSource.addToFavoritePost(
-          communityPostId: communityPostId);
+          communityPostId: communityPostId,
+          communityPostModel: communityPostModel);
       return Right(result);
     } catch (e) {
       return Left(CommunityFailure(message: e.toString()));

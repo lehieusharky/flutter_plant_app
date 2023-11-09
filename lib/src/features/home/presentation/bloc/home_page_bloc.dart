@@ -51,7 +51,8 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       Emitter<HomePageState> emit) async {
     try {
       await communityUseCase.addToFavoritePost(
-          communityPostId: event.communityPostId);
+          communityPostId: event.communityPostId,
+          communityPostModel: event.communityPostModel);
       emit(HomePageInitial());
       emit(HomePageAddFavoriteCommunityPostSuccess());
     } catch (e) {
@@ -131,7 +132,6 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
       emit(HomePageFailure(message: e.toString()));
     }
   }
-
 
   Future<void> _changeTopic(
       HomePageChangetTopic event, Emitter<HomePageState> emit) async {
