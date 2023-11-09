@@ -70,7 +70,7 @@ class _AppBarCommunityPostState extends State<AppBarCommunityPost> {
 
   bool _isLiked() {
     try {
-      return userInfo!.listFavoriteCommunityPost.contains(widget.id);
+      return userInfo!.listFavoriteIDCommunityPost.contains(widget.id);
     } catch (e) {
       return false;
     }

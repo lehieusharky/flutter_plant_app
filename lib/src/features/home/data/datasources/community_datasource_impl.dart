@@ -98,10 +98,10 @@ class CommunityDataSourceImpl implements CommunityDataSource {
   @override
   Future<void> addToFavoritePost({required String communityPostId}) async {
     try {
-      if (userInfo!.listFavoriteCommunityPost.contains(communityPostId)) {
+      if (userInfo!.listFavoriteIDCommunityPost.contains(communityPostId)) {
         Logger().d('post is added');
       } else {
-        final updateListFavoritePost = userInfo!.listFavoriteCommunityPost;
+        final updateListFavoritePost = userInfo!.listFavoriteIDCommunityPost;
         updateListFavoritePost.add(communityPostId);
 
         final dataUpdate = {
@@ -121,7 +121,7 @@ class CommunityDataSourceImpl implements CommunityDataSource {
   @override
   Future<void> removeFromFavoritePost({required String communityPostId}) async {
     try {
-      final updateListFavoritePost = userInfo!.listFavoriteCommunityPost;
+      final updateListFavoritePost = userInfo!.listFavoriteIDCommunityPost;
       updateListFavoritePost.remove(communityPostId);
 
       final dataUpdate = {"listFavoriteCommunityPost": updateListFavoritePost};

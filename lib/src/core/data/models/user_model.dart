@@ -1,6 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 import 'package:plant_market/src/core/data/defines/enum/role.dart';
 import 'package:plant_market/src/core/domain/entities/user_entity.dart';
+import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 
 part 'user_model.g.dart';
 
@@ -16,6 +17,7 @@ class UserModel extends UserEntity {
     required super.listPlantName,
     required super.listFavoriteCommunityPost,
     required super.selectedPlantName,
+    required super.listFavoriteIDCommunityPost,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) =>

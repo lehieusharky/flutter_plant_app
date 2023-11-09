@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:plant_market/src/core/data/defines/enum/role.dart';
+import 'package:plant_market/src/features/home/data/models/community_post_model.dart';
 
 class UserEntity extends Equatable {
   final String id;
@@ -9,7 +10,8 @@ class UserEntity extends Equatable {
   final Role role;
   final List<String> listPostId;
   final List<String> listPlantName;
-  final List<String> listFavoriteCommunityPost;
+  final List<String> listFavoriteIDCommunityPost;
+  final List<CommunityPostModel> listFavoriteCommunityPost;
 
   final String selectedPlantName;
 
@@ -17,12 +19,13 @@ class UserEntity extends Equatable {
     required this.id,
     this.role = Role.regular,
     required this.createAt,
-    required this.listFavoriteCommunityPost,
+    required this.listFavoriteIDCommunityPost,
     required this.selectedPlantName,
     this.userName,
     this.email,
     required this.listPostId,
     required this.listPlantName,
+    required this.listFavoriteCommunityPost,
   });
 
   @override
@@ -34,6 +37,8 @@ class UserEntity extends Equatable {
         id,
         listPostId,
         selectedPlantName,
-        listPlantName
+        listPlantName,
+        listFavoriteCommunityPost,
+        listFavoriteIDCommunityPost,
       ];
 }
