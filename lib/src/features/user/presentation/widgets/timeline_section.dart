@@ -31,12 +31,6 @@ class _TimeLineSectionState extends BaseWidgetState
       child: Column(
         children: [
           context.sizedBox(height: 15),
-          CreateTimelineButton.fullWidth(
-            context: context,
-            onPressed: (widget as TimeLineSection).onPressed,
-            title: translate(context).recordPlantProcess,
-            iconPath: imageConstant.cameraSVG,
-          ),
           if ((widget as TimeLineSection).listTimeLineModel.isEmpty) ...[
             const SizedBox()
           ] else

@@ -15,6 +15,7 @@ class _UserPageState extends BaseWidgetState
   double _zoomOutCreateTimelineButtonOpacity = 0;
   Color? _colorLeadingAppBar;
   List<TimeLineModel> _listTimeLineModel = [];
+  bool _showSectionButton = false;
 
   @override
   void initState() {
@@ -49,7 +50,35 @@ class _UserPageState extends BaseWidgetState
                 headerSliverBuilder: (context, value) {
                   return [
                     _buildAppBar(),
-                    _buildTabBar(),
+                    // _buildTabBar(),
+                    SliverStack(children: [
+                      _showSectionButton
+                          ? SliverList.list(
+                              children: [
+                                context.sizedBox(height: 20),
+                                SectionTopicButton(
+                                  icon: imageConstant.timeLineSvg,
+                                  title: 'Time Line',
+                                ),
+                                context.sizedBox(height: 8),
+                                SectionTopicButton(
+                                  icon: imageConstant.reminderSvg,
+                                  title: 'Reminder',
+                                ),
+                                context.sizedBox(height: 8),
+                                SectionTopicButton(
+                                  icon: imageConstant.chartSvg,
+                                  title: 'Graph',
+                                ),
+                              ]
+                                  .animate(interval: 60.ms)
+                                  .fade(duration: 300.ms)
+                                  .slide(duration: 400.ms),
+                            )
+                          : const SliverToBoxAdapter(
+                              child: SizedBox(),
+                            )
+                    ]),
                   ];
                 },
                 body: _buildTabBarView(),
@@ -121,6 +150,11 @@ class _UserPageState extends BaseWidgetState
           ? _listTimeLineModel.reversed.toList()[0].image
           : '',
       lengthOfListTimeLine: _listTimeLineModel.length,
+      onLeadingPressed: () {
+        setState(() {
+          _showSectionButton = !_showSectionButton;
+        });
+      },
     );
   }
 

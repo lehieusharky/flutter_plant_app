@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
@@ -21,6 +22,7 @@ class AppBarUserPage extends StatelessWidget {
   final void Function(TimeLineModel timeLineModel) updateTimeLine;
   final String backgroundImage;
   final int lengthOfListTimeLine;
+  final void Function() onLeadingPressed;
   const AppBarUserPage({
     super.key,
     required this.colorLeadingAppBar,
@@ -29,6 +31,7 @@ class AppBarUserPage extends StatelessWidget {
     required this.listTimeLineIsEmpty,
     required this.backgroundImage,
     required this.lengthOfListTimeLine,
+    required this.onLeadingPressed,
   });
 
   @override
@@ -42,7 +45,13 @@ class AppBarUserPage extends StatelessWidget {
           floating: true,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           expandedHeight: context.sizeHeight(160),
-          leading: LeafPlusButton(color: colorLeadingAppBar),
+          leading: IconButton(
+              onPressed: onLeadingPressed,
+              icon: Icon(
+                Icons.menu_rounded,
+                color: theme(context).textTheme.titleMedium!.color,
+                size: context.sizeWidth(35),
+              )),
           flexibleSpace: FlexibleSpaceBar(
             background: ClipRRect(
               borderRadius: BorderRadius.circular(context.sizeWidth(24)),
@@ -62,6 +71,7 @@ class AppBarUserPage extends StatelessWidget {
             title: PlantName(plantName: userInfo!.selectedPlantName),
           ),
           actions: [
+            LeafPlusButton(color: colorLeadingAppBar),
             ZoomOutButton(
               borderRadius: context.sizeWidth(10),
               opacity: zoomOutCreateTimelineButtonOpacity,

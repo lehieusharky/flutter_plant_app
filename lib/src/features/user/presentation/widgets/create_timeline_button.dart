@@ -68,7 +68,7 @@ class CreateTimelineButton extends StatelessWidget {
       onPressed: onPressed,
       isHaveTitle: true,
       width: context.width * 0.85,
-      height: context.sizeHeight(55),
+      height: context.sizeHeight(40),
       title: title,
       iconPath: iconPath,
     );
