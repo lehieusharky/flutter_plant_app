@@ -26,7 +26,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -51,18 +54,10 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDERyzTt8ILzet_YkKC0Os7JfeCcXCVM8I',
-    appId: '1:113696488934:android:857ea0667248b49e526a27',
+    appId: '1:113696488934:android:981157fdc3d15b71526a27',
     messagingSenderId: '113696488934',
     projectId: 'plant-more-22e23',
+    databaseURL: 'https://plant-more-22e23-default-rtdb.firebaseio.com',
     storageBucket: 'plant-more-22e23.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBv1ScgSFtt2g5mGzLgejMmBuDHmkuzNjc',
-    appId: '1:113696488934:ios:a9c592f9ae32cb72526a27',
-    messagingSenderId: '113696488934',
-    projectId: 'plant-more-22e23',
-    storageBucket: 'plant-more-22e23.appspot.com',
-    iosBundleId: 'com.example.plantMarket',
   );
 }
