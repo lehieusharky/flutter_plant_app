@@ -15,13 +15,12 @@ class _UserPageState extends BaseWidgetState
   double _zoomOutCreateTimelineButtonOpacity = 0;
   Color? _colorLeadingAppBar;
   List<TimeLineModel> _listTimeLineModel = [];
-  bool _showSectionButton = false;
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(
-      length: 2,
+      length: 3,
       vsync: this,
     );
     _nestedController.addListener(() {
@@ -36,55 +35,28 @@ class _UserPageState extends BaseWidgetState
     if (super.isNotLoggedIn()) {
       return const UserPageNotLoggedIn();
     } else {
-      return Scaffold(
-        body: BlocProvider(
-          create: (context) => UserBloc()
-            ..add(UserGetListTimeLine(plantName: userInfo!.selectedPlantName)),
-          child: BlocConsumer<UserBloc, UserState>(
-            listener: (context, state) {
-              _handleState(state, context);
-            },
-            builder: (context, state) {
-              return NestedScrollView(
+      return BlocProvider(
+        create: (context) => UserBloc()
+          ..add(UserGetListTimeLine(plantName: userInfo!.selectedPlantName)),
+        child: BlocConsumer<UserBloc, UserState>(
+          listener: (context, state) {
+            _handleState(state, context);
+          },
+          builder: (context, state) {
+            return Scaffold(
+              drawer: DrawerUserPage(tabController: _tabController),
+              body: NestedScrollView(
                 controller: _nestedController,
                 headerSliverBuilder: (context, value) {
                   return [
                     _buildAppBar(),
                     // _buildTabBar(),
-                    SliverStack(children: [
-                      _showSectionButton
-                          ? SliverList.list(
-                              children: [
-                                context.sizedBox(height: 20),
-                                SectionTopicButton(
-                                  icon: imageConstant.timeLineSvg,
-                                  title: 'Time Line',
-                                ),
-                                context.sizedBox(height: 8),
-                                SectionTopicButton(
-                                  icon: imageConstant.reminderSvg,
-                                  title: 'Reminder',
-                                ),
-                                context.sizedBox(height: 8),
-                                SectionTopicButton(
-                                  icon: imageConstant.chartSvg,
-                                  title: 'Graph',
-                                ),
-                              ]
-                                  .animate(interval: 60.ms)
-                                  .fade(duration: 300.ms)
-                                  .slide(duration: 400.ms),
-                            )
-                          : const SliverToBoxAdapter(
-                              child: SizedBox(),
-                            )
-                    ]),
                   ];
                 },
                 body: _buildTabBarView(),
-              );
-            },
-          ),
+              ),
+            );
+          },
         ),
       );
     }
@@ -124,19 +96,8 @@ class _UserPageState extends BaseWidgetState
           listTimeLineModel: _listTimeLineModel,
         ),
         const ReminderSection(),
+        const GraphSection(),
       ],
-    );
-  }
-
-  Widget _buildTabBar() {
-    return SliverToBoxAdapter(
-      child: CustomTabBar(
-        tabController: _tabController,
-        tabs: [
-          CustomTabChild(title: translate(context).timeLine),
-          CustomTabChild(title: translate(context).reminder),
-        ],
-      ),
     );
   }
 
@@ -150,11 +111,6 @@ class _UserPageState extends BaseWidgetState
           ? _listTimeLineModel.reversed.toList()[0].image
           : '',
       lengthOfListTimeLine: _listTimeLineModel.length,
-      onLeadingPressed: () {
-        setState(() {
-          _showSectionButton = !_showSectionButton;
-        });
-      },
     );
   }
 

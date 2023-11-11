@@ -84,3 +84,11 @@ final class UserUpdateTimeLineSuccess extends UserState {
   @override
   List<Object> get props => [timeLineModel];
 }
+
+final class UserChooseSectionSuccess extends UserState {
+  final UserPageSection userPageSection;
+
+  const UserChooseSectionSuccess({required this.userPageSection});
+  @override
+  List<Object> get props => [userPageSection];
+}

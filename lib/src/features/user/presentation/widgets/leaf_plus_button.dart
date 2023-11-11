@@ -5,7 +5,6 @@ import 'package:plant_market/src/core/data/defines/constants/image_constant.dart
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_button.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_dialog.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_text_form_field.dart';
@@ -30,17 +29,13 @@ class _LeafPlusButtonState extends State<LeafPlusButton> {
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => UserBloc(),
-      child: Center(
-        child: CustomButton(
-          onPress: () => _showPlantNameInputDialog(context),
-          backgroundColor: Colors.transparent,
-          borderRadius: context.sizeWidth(20),
-          child: CustomSvg(
-            path: imageConstant.leafPlusSvg,
-            color: widget.color ?? theme(context).textTheme.titleMedium!.color!,
-            width: context.sizeWidth(25),
-            height: context.sizeHeight(25),
-          ),
+      child: InkWell(
+        onTap: () => _showPlantNameInputDialog(context),
+        child: CustomSvg(
+          path: imageConstant.leafPlusSvg,
+          color: widget.color ?? theme(context).textTheme.titleMedium!.color!,
+          width: context.sizeWidth(20),
+          height: context.sizeHeight(20),
         ),
       ),
     );

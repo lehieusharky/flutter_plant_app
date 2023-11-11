@@ -11,7 +11,6 @@ import 'package:plant_market/src/features/dash_board/presentation/bloc/dash_boar
 import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/create_timeline_modal.dart';
-import 'package:plant_market/src/features/user/presentation/widgets/leaf_plus_button.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/plant_name.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/zoom_out_button.dart';
 
@@ -22,7 +21,7 @@ class AppBarUserPage extends StatelessWidget {
   final void Function(TimeLineModel timeLineModel) updateTimeLine;
   final String backgroundImage;
   final int lengthOfListTimeLine;
-  final void Function() onLeadingPressed;
+
   const AppBarUserPage({
     super.key,
     required this.colorLeadingAppBar,
@@ -31,7 +30,6 @@ class AppBarUserPage extends StatelessWidget {
     required this.listTimeLineIsEmpty,
     required this.backgroundImage,
     required this.lengthOfListTimeLine,
-    required this.onLeadingPressed,
   });
 
   @override
@@ -46,11 +44,11 @@ class AppBarUserPage extends StatelessWidget {
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           expandedHeight: context.sizeHeight(160),
           leading: IconButton(
-              onPressed: onLeadingPressed,
+              onPressed: () => Scaffold.of(context).openDrawer(),
               icon: Icon(
                 Icons.menu_rounded,
                 color: theme(context).textTheme.titleMedium!.color,
-                size: context.sizeWidth(35),
+                size: context.sizeWidth(30),
               )),
           flexibleSpace: FlexibleSpaceBar(
             background: ClipRRect(
@@ -68,10 +66,12 @@ class AppBarUserPage extends StatelessWidget {
                       ),
               ),
             ),
-            title: PlantName(plantName: userInfo!.selectedPlantName),
+            title: PlantName(
+              plantName: userInfo!.selectedPlantName,
+              colorLeadingAppBar: colorLeadingAppBar,
+            ),
           ),
           actions: [
-            LeafPlusButton(color: colorLeadingAppBar),
             ZoomOutButton(
               borderRadius: context.sizeWidth(10),
               opacity: zoomOutCreateTimelineButtonOpacity,

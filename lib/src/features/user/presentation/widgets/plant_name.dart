@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_dialog.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_snack_bar.dart';
-import 'package:plant_market/src/core/presentation/custom_widgets/custom_svg.dart';
 import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/user/presentation/bloc/user_bloc.dart';
+import 'package:plant_market/src/features/user/presentation/widgets/leaf_plus_button.dart';
 import 'package:plant_market/src/theme/color_theme.dart';
 
 class PlantName extends StatefulWidget {
   final String plantName;
+  final Color? colorLeadingAppBar;
   const PlantName({
     super.key,
     required this.plantName,
+    this.colorLeadingAppBar,
   });
 
   @override
@@ -43,20 +44,18 @@ class _PlantNameState extends State<PlantName> {
         onTap: () => _selectPlantDialog(context),
         child: Row(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Text(
               widget.plantName,
               style: theme(context).textTheme.titleLarge!.copyWith(
                     fontSize: context.sizeWidth(20),
+                    color: colorTheme.get2DDA93,
                   ),
             ),
-            context.sizedBox(width: 5),
-            CustomSvg(
-              path: imageConstant.dropDownSVG,
-              color: theme(context).textTheme.titleMedium!.color!,
-              width: context.sizeWidth(10),
-            ),
+            context.sizedBox(width: 10),
+            LeafPlusButton(color: widget.colorLeadingAppBar),
           ],
         ),
       ),

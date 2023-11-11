@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:plant_market/src/features/user/data/enums/user_page_section.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/domain/use_cases/image_picker_use_case.dart';
 import 'package:plant_market/src/features/user/domain/use_cases/timeline_use_case.dart';
@@ -19,6 +20,7 @@ class UserBloc extends Bloc<UserEvent, UserState> {
     on<UserCreatePlant>(_createPlant);
     on<UserToggleSelectPlant>(_togglePlant);
     on<UserUpdateTimeLine>(_updateTimeLine);
+    on<UserChooseSection>(_chooseSection);
   }
 
   Future<void> _getListTimeLine(
@@ -31,6 +33,19 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       final listTimeLine =
           await timeLineUseCase.getListTimeLine(plantName: event.plantName);
       emit(UserGetListTimeLineSuccess(listTimeLine: listTimeLine));
+    } catch (e) {
+      emit(UserFailure(message: e.toString()));
+    }
+  }
+
+  Future<void> _chooseSection(
+    UserChooseSection event,
+    Emitter<UserState> emit,
+  ) async {
+    emit(UserLoading());
+
+    try {
+      emit(UserChooseSectionSuccess(userPageSection: event.userPageSection));
     } catch (e) {
       emit(UserFailure(message: e.toString()));
     }

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/localization.dart';
 
-class ReminderSection extends StatelessWidget {
-  const ReminderSection({super.key});
+class GraphSection extends StatelessWidget {
+  const GraphSection({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class ReminderSection extends StatelessWidget {
       backgroundColor: Colors.transparent,
       body: Center(
         child: Text(
-          "Reminder ${translate(context).commingSoon}",
+          "Graph ${translate(context).commingSoon}",
           style: theme(context).textTheme.titleMedium,
         ),
       ),
