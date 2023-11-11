@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:plant_market/src/core/data/defines/constants/image_constant.dart';
+import 'package:plant_market/src/core/di/part_di.dart';
 import 'package:plant_market/src/core/extension/responsive.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_catched_network_image.dart';
 import 'package:plant_market/src/core/presentation/custom_widgets/custom_modal.dart';
@@ -10,7 +11,6 @@ import 'package:plant_market/src/features/dash_board/presentation/bloc/dash_boar
 import 'package:plant_market/src/features/dash_board/presentation/page/part_dash_board_page.dart';
 import 'package:plant_market/src/features/user/data/models/timeline_model.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/create_timeline_modal.dart';
-import 'package:plant_market/src/features/user/presentation/widgets/leaf_plus_button.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/plant_name.dart';
 import 'package:plant_market/src/features/user/presentation/widgets/zoom_out_button.dart';
 
@@ -21,6 +21,7 @@ class AppBarUserPage extends StatelessWidget {
   final void Function(TimeLineModel timeLineModel) updateTimeLine;
   final String backgroundImage;
   final int lengthOfListTimeLine;
+
   const AppBarUserPage({
     super.key,
     required this.colorLeadingAppBar,
@@ -42,7 +43,13 @@ class AppBarUserPage extends StatelessWidget {
           floating: true,
           backgroundColor: Theme.of(context).scaffoldBackgroundColor,
           expandedHeight: context.sizeHeight(160),
-          leading: LeafPlusButton(color: colorLeadingAppBar),
+          leading: IconButton(
+              onPressed: () => Scaffold.of(context).openDrawer(),
+              icon: Icon(
+                Icons.menu_rounded,
+                color: theme(context).textTheme.titleMedium!.color,
+                size: context.sizeWidth(30),
+              )),
           flexibleSpace: FlexibleSpaceBar(
             background: ClipRRect(
               borderRadius: BorderRadius.circular(context.sizeWidth(24)),
@@ -59,7 +66,10 @@ class AppBarUserPage extends StatelessWidget {
                       ),
               ),
             ),
-            title: PlantName(plantName: userInfo!.selectedPlantName),
+            title: PlantName(
+              plantName: userInfo!.selectedPlantName,
+              colorLeadingAppBar: colorLeadingAppBar,
+            ),
           ),
           actions: [
             ZoomOutButton(

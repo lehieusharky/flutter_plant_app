@@ -36,6 +36,7 @@ class _TimeLineSectionState extends BaseWidgetState
             onPressed: (widget as TimeLineSection).onPressed,
             title: translate(context).recordPlantProcess,
             iconPath: imageConstant.cameraSVG,
+            height: 50,
           ),
           if ((widget as TimeLineSection).listTimeLineModel.isEmpty) ...[
             const SizedBox()

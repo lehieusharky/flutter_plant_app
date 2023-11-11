@@ -18,6 +18,15 @@ final class UserPostTimeLineImage extends UserEvent {
   List<Object> get props => [image];
 }
 
+final class UserChooseSection extends UserEvent {
+  final UserPageSection userPageSection;
+
+  const UserChooseSection({required this.userPageSection});
+
+  @override
+  List<Object> get props => [userPageSection];
+}
+
 final class UserCreateTimeLine extends UserEvent {
   final TimeLineModel timeLineModel;
 
