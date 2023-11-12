@@ -8,9 +8,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:113696488934:android:981157fdc3d15b71526a27",
+        "mobilesdk_app_id": "1:113696488934:android:3a6242f8052aa918526a27",
         "android_client_info": {
-          "package_name": "com.lehieultt.plantmore"
+          "package_name": "com.lehieultt.plant"
         }
       },
       "oauth_client": [
