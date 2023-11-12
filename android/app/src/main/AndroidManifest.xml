@@ -24,7 +24,7 @@
       </intent>
     </queries>
     <application
-        android:label="plant_market"
+        android:label="PlantMore"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

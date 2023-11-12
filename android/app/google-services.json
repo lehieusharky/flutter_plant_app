@@ -1,18 +1,24 @@
 {
   "project_info": {
     "project_number": "113696488934",
+    "firebase_url": "https://plant-more-22e23-default-rtdb.firebaseio.com",
     "project_id": "plant-more-22e23",
     "storage_bucket": "plant-more-22e23.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:113696488934:android:857ea0667248b49e526a27",
+        "mobilesdk_app_id": "1:113696488934:android:3a6242f8052aa918526a27",
         "android_client_info": {
-          "package_name": "com.example.plant_market"
+          "package_name": "com.lehieultt.plant"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "113696488934-am79iuf8bsaue4ctejtn3kpk9fa4oddc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDERyzTt8ILzet_YkKC0Os7JfeCcXCVM8I"
@@ -20,7 +26,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113696488934-am79iuf8bsaue4ctejtn3kpk9fa4oddc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "113696488934-ti5dqciof4ch1189glj8b8vkbi7djfk3.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.plantMarket"
+              }
+            }
+          ]
         }
       }
     }
